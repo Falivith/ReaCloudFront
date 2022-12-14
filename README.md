@@ -30,13 +30,6 @@ Seguindo o padrão de metadados Dublin Core o indexador armazena as principais i
  - [SIIEPE 2020](https://cti.ufpel.edu.br/siepe/arquivos/2020/CE_02270.pdf) (Semana Integrada de Inovação, Ensino, Pesquisa e Extensão) 
  - [SIIEPE 2021](https://cti.ufpel.edu.br/siepe/arquivos/2021/CE_02339.pdf) (Semana Integrada de Inovação, Ensino, Pesquisa e Extensão) 
  - [LACLO 2021](https://www.laclolala.com/#/laclo) (XVI Latin American Conference on Learning Technologies)
- 
-<h2 id="layout">Layout da Ferramenta</h2>
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/61896274/130973490-62cb769f-b59f-41da-9cd5-128f318fa33f.png" width="400"/>
-  <img src="https://user-images.githubusercontent.com/61896274/130973759-feddf43b-53d4-4166-b8bf-716ad0ef906e.png" width="400"/>
-</p>
-
 
 <h2 id="related">Projetos Relacionados</h2>
 
@@ -44,7 +37,7 @@ Seguindo o padrão de metadados Dublin Core o indexador armazena as principais i
 
 Plugin para navegadores desenvolvido para extender as funcionalidade da ferramenta ReaCloud. Facilita o processo de publicação de materiais.
 
-[Link repositório](https://github.com/Fernanda-Kipper/ReaCloud-Extension)
+[Link repositório](https://github.com/Falivith/ReaCloud-Extension-1)
 
 
 <h2 id="contribute">Contribuindo 🚀</h2>
@@ -52,7 +45,7 @@ Plugin para navegadores desenvolvido para extender as funcionalidade da ferramen
 Se você deseja contribuir, clone esse repositório, crie sua branch e coloque a mão na massa!
 
 ```bash
-git clone git@github.com:Fernanda-Kipper/ReaCloud-Interface.git
+git clone https://github.com/Falivith/ReaCloudFront.git
 git checkout -b feature/NAME
 ```
 
