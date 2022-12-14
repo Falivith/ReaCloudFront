@@ -1,0 +1,13 @@
+.content {
+    color: var(--gray);
+    line-height: 2rem;
+    font-size: 1.25rem;
+    font-weight: 400;
+}
+
+.container {
+    width: 48.6875rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3.1875rem;
+}

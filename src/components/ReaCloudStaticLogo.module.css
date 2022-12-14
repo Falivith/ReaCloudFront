@@ -1,0 +1,16 @@
+.body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.reaCloudLogoText {
+    color: var(--gray);
+    font-family: 'Antic', sans-serif;
+    font-size: 3rem;
+}
+
+.reaCloudLogo {
+    height: 5.125rem;
+}

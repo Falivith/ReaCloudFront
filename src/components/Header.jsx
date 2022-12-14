@@ -6,7 +6,7 @@ export function Header() {
         <header className = { styles.header }>
 
             <div className = { styles.home }>
-                <img className = { styles.reaCloudLogo } src={ ReaCloudLogo } alt="Logotipo do ReaCloud"/>
+                <img className = { styles.reaCloudLogo } src={ ReaCloudLogo } alt="Logotipo da ReaCloud"/>
                 <span className = { styles.reaCloudLogoText }>ReaCloud</span>
             </div>
 
