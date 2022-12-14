@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+<p align="center">
+  <img src="./src/Images/icon.png" width="100" />
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1 align="center">
+  ReaCloud
+</h1>
 
-## Available Scripts
+<p align="center">
+ <a href="#project">Projeto</a> •
+ <a href="#paper">Papers Publicados</a> •
+ <a href="#layout">Layout</a> • 
+ <a href="#related">Projetos Relacionados</a> • 
+ <a href="#contribute">Contribuindo</a>
+</p>
 
-In the project directory, you can run:
+<h2 id="project">Indexador de Recursos Educacionais Abertos 🎓</h2>
 
-### `npm start`
+**O ReaCloud é um indexador digital para [Recursos Educacionais Abertos](https://www.gov.br/capes/pt-br/acesso-a-informacao/acoes-e-programas/educacao-a-distancia/uab/rea#:~:text=Recursos%20Educacionais%20Abertos%20(REA)%20s%C3%A3o,utilizados%20ou%20adaptados%20por%20terceiros.)**, todos usuários que desejam contribuir com o mundo acadêmico podem acessar a ferramenta
+para visualizar os recursos indexados ou compartilhar novos recursos com os demais usuários. Desenvolvido na Universidade Federal de Pelotas, o ReaCloud surgiu em decorrência da necessidade de locais adequados para o armazenamento dos metadados desses recursos, os quais muitas vezes acabam-se perdidos e não reaproveitados.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Seguindo o padrão de metadados Dublin Core o indexador armazena as principais informações a respeito de um Recurso Educacional Aberto, incluindo seu link externo onde o usuário poderá baixar ou apenas visualizar o material - os materiais podem ser de qualquer natureza como livros, softwares, videos, podcasts, banners etc. Esse projeto refere-se á interface do Indexador Digital, sendo o projeto separado entre interface que recebe interação do usuário e API que lida e manipula os dados.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<a align="center" href="https://reacloud.com.br" />
+  Acesse clicando aqui
+</a>
 
-### `npm test`
+<h2 id="paper">Papers Publicados 📃</h2>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+ - [SIIEPE 2020](https://cti.ufpel.edu.br/siepe/arquivos/2020/CE_02270.pdf) (Semana Integrada de Inovação, Ensino, Pesquisa e Extensão) 
+ - [SIIEPE 2021](https://cti.ufpel.edu.br/siepe/arquivos/2021/CE_02339.pdf) (Semana Integrada de Inovação, Ensino, Pesquisa e Extensão) 
+ - [LACLO 2021](https://www.laclolala.com/#/laclo) (XVI Latin American Conference on Learning Technologies)
 
-### `npm run build`
+<h2 id="related">Projetos Relacionados</h2>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<h3> Extensão para navegadores Chrome ReaCloud </h3>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Plugin para navegadores desenvolvido para extender as funcionalidade da ferramenta ReaCloud. Facilita o processo de publicação de materiais.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+[Link repositório](https://github.com/Falivith/ReaCloud-Extension-1)
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<h2 id="contribute">Contribuindo 🚀</h2>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Se você deseja contribuir, clone esse repositório, crie sua branch e coloque a mão na massa!
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+git clone https://github.com/Falivith/ReaCloudFront.git
+git checkout -b feature/NAME
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+ No final, abra um Pull Request explicando o problema/melhoria identificado, o que foi feito para resolver e screenshots das alterações visuais :)
 
-## Learn More
+[Como fazer um Pull Request](https://www.atlassian.com/br/git/tutorials/making-a-pull-request)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[Padrões de Commit](https://github.com/iuricode/padroes-de-commits)
