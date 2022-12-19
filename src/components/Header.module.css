@@ -44,6 +44,11 @@
     border-radius: 10px;
     border: none;
     background: var(--green);
+    transition: 0.3s;
+}
+
+.addReaButton:hover {
+    background-color: var(--darkgreen);
 }
 
 .buttons {

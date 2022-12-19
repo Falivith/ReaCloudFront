@@ -6,8 +6,9 @@
 }
 
 .container {
+    margin-top: 4.875rem;
     width: 48.6875rem;
     display: flex;
     flex-direction: column;
-    gap: 3.1876rem;
+    gap: 3.1875rem;
 }
