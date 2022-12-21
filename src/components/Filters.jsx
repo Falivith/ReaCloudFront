@@ -25,8 +25,10 @@ export function Filters() {
                 <div className = { styles.internalContainerMenu }>
                     <select className = { styles.selectMenu }>
                         <option value="0">Todos</option>
-                        <option value="1">Português</option>
-                        <option value="2">Matemática</option>
+                        <option value="1">Vídeo</option>
+                        <option value="2">Site</option>
+                        <option value="3">Artigo</option>
+                        <option value="4">Documento</option>
                     </select>
                 </div>  
             </div>
