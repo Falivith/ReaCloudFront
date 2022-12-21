@@ -33,23 +33,6 @@
     padding: 0.3125rem;
 }
 
-.internalContainerMenu{
-    display: flex;
-    height: 2.75rem;
-    width: 12.5rem;
-}
-
-.selectMenu{
-    width: 100%;
-    padding-left: 0.7rem;
-    color: var(--gray);
-    font-size: 1.25rem;
-    border: 1px;
-    border-color: var(--lightgray);
-    border-style: solid;
-    border-radius: 10px;
-}
-
 .blueSpan{
     margin-left: 0.7rem;
     font-size: 0.875rem;
@@ -78,4 +61,28 @@
 
 .blueSearchButton:hover{
     background-color: var(--darkblue);
+}
+
+/*
+Select Menus
+(Container, Select, 
+*/
+
+.lsCustomSelect{
+    width: 12.5rem;
+}
+
+.lsSelect{
+    width: 100%;
+    padding: 0.565rem 1rem;
+    color: var(--gray);
+    font-size: 1.25rem;
+    border: 1px;
+    border-color: var(--lightgray);
+    border-style: solid;
+    border-radius: 10px;
+}
+
+.customArrow{
+
 }
