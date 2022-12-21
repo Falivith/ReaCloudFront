@@ -1,5 +1,10 @@
 .artContainer{
     display: flex;
     justify-content: center;
-    margin-top: 4.2rem;
+    align-items: flex-end;
+    margin-top: 3rem;
+}
+
+.artContainer img{
+    width: 48.5rem;
 }

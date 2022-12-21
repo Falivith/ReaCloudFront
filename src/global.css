@@ -15,18 +15,17 @@
     border-radius: 10px;
 }
 
-
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    overflow: hidden;
 }
 
 body {
     background-color: var(--white);
     color: var(--white);
     -webkit-font-smoothing: antialiased;
+    overflow: hidden;
 }
 
 body, input, textarea, button {

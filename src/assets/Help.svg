@@ -1,0 +1,5 @@
+<svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="25" cy="25" r="18.75" stroke="#BEBEBE" stroke-width="2"/>
+<circle cx="25" cy="37.5" r="1.04167" fill="#BEBEBE" stroke="#BEBEBE"/>
+<path d="M25 33.3333V30.3774C25 28.4102 26.2588 26.6637 28.125 26.0416V26.0416C29.9912 25.4196 31.25 23.6731 31.25 21.7059V20.6368C31.25 17.2936 28.5397 14.5833 25.1965 14.5833H25C21.5482 14.5833 18.75 17.3815 18.75 20.8333V20.8333" stroke="#BEBEBE" stroke-width="2"/>
+</svg>

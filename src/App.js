@@ -4,6 +4,7 @@ import { Welcome } from './components/Welcome';
 import { Filters } from './components/Filters';
 import { Art } from './components/Art';
 import styles from './App.module.css';
+import Help from './assets/Help.svg'
 
 function App() {
   return (
@@ -14,6 +15,9 @@ function App() {
       </div>
         <Filters/>
         <Art/>
+        <div className = { styles.help } >
+          <img src = { Help } alt="Ajuda"/>
+        </div>
     </div>
   );
 }

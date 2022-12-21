@@ -10,7 +10,7 @@ export function Filters() {
             </form>
 
             <div className = { styles.selectorExternalContainer }>
-                <span className = { styles.blueSpan }>Área do Conhecimento</span>
+                <span className = { styles.blueSpan }>ÁREA DO CONHECIMENTO</span>
                 <div className = { styles.lsCustomSelect }>
                     <select className = { styles.lsSelect } name = "area-conhecimento">
                         <option value="0">Todas</option>
@@ -22,7 +22,7 @@ export function Filters() {
             </div>
 
             <div className = { styles.selectorExternalContainer }>
-                <span className = { styles.blueSpan }>Tipo do Material</span>
+                <span className = { styles.blueSpan }>TIPO DO MATERIAL</span>
                 <div className = { styles.lsCustomSelect }>
                     <select className = { styles.lsSelect } name = "tipo-material">
                         <option value="0">Todos</option>
