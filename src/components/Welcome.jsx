@@ -1,5 +1,6 @@
 import styles from './Welcome.module.css'
 import { ReaCloudStaticLogo } from './ReaCloudStaticLogo'
+import Art from '../assets/RCart.svg'
 
 export function Welcome (){
     return(

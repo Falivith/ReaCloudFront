@@ -9,6 +9,7 @@
 }
 
 .home {
+    cursor: pointer;
     display: flex;
     align-items: center;
 }
@@ -25,6 +26,7 @@
 }
 
 .loginButton {
+    cursor: pointer;
     color: var(--white);
     font-weight: 600;
     border: none;
@@ -49,6 +51,7 @@
 
 .addReaButton:hover {
     background-color: var(--darkgreen);
+    cursor: pointer;
 }
 
 .buttons {

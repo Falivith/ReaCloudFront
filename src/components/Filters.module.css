@@ -1,0 +1,76 @@
+.container{
+    margin-top: 3.1875rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.125rem;
+    align-items: flex-end;
+}
+
+.internalContainer{
+    width: 24rem;
+    height: 2.75rem;
+    display: flex;
+    border: 1px;
+    border-color: var(--lightgray);
+    border-style: solid;
+    border-radius: 10px;
+    justify-content: space-between;
+}
+
+.inputSpace{
+    width: 100%;
+    font-size: 1.25rem;
+    background-color: transparent;
+    border: none;
+    padding-left: 1.3125rem;
+    color: var(--gray);
+}
+
+.searchButton{
+    cursor: pointer;
+    width: fit-content;
+    border: none;
+    background-color: transparent;
+    padding: 0.3125rem;
+}
+
+.internalContainerMenu{
+    display: flex;
+    height: 2.75rem;
+    width: 12.5rem;
+}
+
+.selectMenu{
+    width: 100%;
+    padding-left: 0.7rem;
+    color: var(--gray);
+    font-size: 1.25rem;
+    border: 1px;
+    border-color: var(--lightgray);
+    border-style: solid;
+    border-radius: 10px;
+}
+
+.blueSpan{
+    margin-left: 0.7rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--lightblue);
+}
+
+.selectorExternalContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.blueSearchButton{
+    padding: 12px 36px 12px 36px;
+    border: none;
+    border-radius: 10px;
+    height: 2.75rem;
+    font-size: 1rem;
+    color: var(--white);
+    background-color: var(--blue);
+    font-weight: 700;
+}

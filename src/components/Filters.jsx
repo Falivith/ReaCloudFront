@@ -1,24 +1,37 @@
-import styles from './Header.module.css'
-import ReaCloudLogo from '../assets/RClogo.svg'
+import styles from './Filters.module.css'
+import Search from '../assets/Search.svg'
 
 export function Filters() {
     return (
-        <header className = { styles.header }>
+        <div className = { styles.container }>
+            <form className = { styles.internalContainer } action="">
+                <input className = { styles.inputSpace } type = "text" placeholder="O que você procura?"/>
+                <button className = { styles.searchButton } type = "submit"><img src = { Search } alt="Pesquisar" /></button>
+            </form>
 
-            <div className = { styles.home }>
-                <img className = { styles.reaCloudLogo } src={ ReaCloudLogo } alt="Logotipo da ReaCloud"/>
-                <span className = { styles.reaCloudLogoText }>ReaCloud</span>
+            <div className = { styles.selectorExternalContainer }>
+                <span className = { styles.blueSpan }>Área do Conhecimento</span>
+                <div className = { styles.internalContainerMenu }>
+                    <select className = { styles.selectMenu }>
+                        <option value="0">Todas</option>
+                        <option value="1">Português</option>
+                        <option value="2">Matemática</option>
+                    </select>
+                </div>
             </div>
 
-            <div className = { styles.buttons }>
-                <button className = { styles.addReaButton } >ADICIONAR RECURSO</button>
-                <span className = { styles.loginButtons } >
-                    <button className = { styles.loginButton } >ENTRE</button>
-                    {' '} OU {' '}
-                    <button className = { styles.loginButton } >CADASTRE-SE</button>
-                </span>                
+            <div className = { styles.selectorExternalContainer }>
+                <span className = { styles.blueSpan }>Tipo do Material</span>
+                <div className = { styles.internalContainerMenu }>
+                    <select className = { styles.selectMenu }>
+                        <option value="0">Todos</option>
+                        <option value="1">Português</option>
+                        <option value="2">Matemática</option>
+                    </select>
+                </div>  
             </div>
 
-        </header>
+            <button className = { styles.blueSearchButton }>BUSCAR</button>
+        </div>
     );
 }
