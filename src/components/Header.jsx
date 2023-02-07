@@ -19,7 +19,7 @@ export function Header({showLogin = true, showCadastro = true}) {
             </div>
 
             <div className = { styles.buttons }>
-                <button onClick = {() => routeChangeHandler('AddRecurso')} className = { styles.addReaButton } >ADICIONAR RECURSO</button>
+                <button onClick = {() => routeChangeHandler('add')} className = { styles.addReaButton } >ADICIONAR RECURSO</button>
                 <span className = { styles.loginButtons } >
                     {showLogin ?
                     <button  className = { styles.loginButton } onClick = {() => routeChangeHandler('login')}>ENTRE</button> 
