@@ -6,7 +6,7 @@ export function Header({showLogin = true, showCadastro = true, showAddRecurso = 
     const navigate = useNavigate();   
     
     const routeChangeHandler = (route) => {
-        navigate(`../${route}`, { replace: true });
+        navigate(`../${route}`);
     } 
 
 
