@@ -2,7 +2,7 @@ import styles from './Header.module.css'
 import ReaCloudLogo from '../assets/RClogo.svg'
 import { useNavigate } from 'react-router-dom';
 
-export function Header() {
+export function Header({showLogin = true, showCadastro = true}) {
     const navigate = useNavigate();   
     
     const routeChangeHandler = (route) => {
@@ -21,9 +21,13 @@ export function Header() {
             <div className = { styles.buttons }>
                 <button onClick = {() => routeChangeHandler('AddRecurso')} className = { styles.addReaButton } >ADICIONAR RECURSO</button>
                 <span className = { styles.loginButtons } >
-                    <button  className = { styles.loginButton } onClick = {() => routeChangeHandler('login')}>ENTRE</button>
-                    {' '} OU {' '}
-                    <button onClick = {() => routeChangeHandler('Cadastrar')}  className = { styles.loginButton } >CADASTRE-SE</button>
+                    {showLogin ?
+                    <button  className = { styles.loginButton } onClick = {() => routeChangeHandler('login')}>ENTRE</button> 
+                    : null }
+                    {showLogin && showCadastro ? ' OU ': ''} 
+                    {showCadastro ?
+                     <button onClick = {() => routeChangeHandler('cadastro')}  className = { styles.loginButton } >CADASTRE-SE</button>
+                     :null}
                 </span>                
             </div>
 

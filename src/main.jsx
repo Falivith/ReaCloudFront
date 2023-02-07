@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { MainPage } from "./pages/MainPage"
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import  {Login}  from './pages/Login'
+import { Cadastrar } from './pages/Cadastrar';
 
 
 
@@ -23,7 +24,10 @@ const router = createBrowserRouter([
   {
     path : '/login',
     element: <Login/>,
-
+  },
+  {
+    path : '/cadastro',
+    element: <Cadastrar/>,
   }
 
 ]);
