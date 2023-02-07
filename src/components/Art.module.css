@@ -1,10 +1,12 @@
 .artContainer{
+    position: relative;
+    bottom: 0;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
-    margin-top: 3rem;
+    flex: 1;
 }
 
 .artContainer img{
-    width: 48.5rem;
+    width: 30%;
+    
 }
