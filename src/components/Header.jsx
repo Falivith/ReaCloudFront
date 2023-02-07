@@ -1,7 +1,16 @@
 import styles from './Header.module.css'
 import ReaCloudLogo from '../assets/RClogo.svg'
+import { useNavigate } from 'react-router-dom';
+// import { useEffect } from 'react';
 
 export function Header() {
+    const navigate = useNavigate();   
+    
+    const routeChangeHandler = (route) => {
+        navigate('login');
+    } 
+
+
     return (
         <header className = { styles.header }>
 
@@ -13,7 +22,7 @@ export function Header() {
             <div className = { styles.buttons }>
                 <button className = { styles.addReaButton } >ADICIONAR RECURSO</button>
                 <span className = { styles.loginButtons } >
-                    <button className = { styles.loginButton } >ENTRE</button>
+                    <button className = { styles.loginButton } onClick = {routeChangeHandler}>ENTRE</button>
                     {' '} OU {' '}
                     <button className = { styles.loginButton } >CADASTRE-SE</button>
                 </span>                
