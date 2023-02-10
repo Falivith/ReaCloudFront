@@ -1,6 +1,6 @@
 import styles from './Header.module.css'
 import ReaCloudLogo from '../assets/RClogo.svg'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 
 export function Header({showLogin = true, showCadastro = true}) {
     const navigate = useNavigate();   

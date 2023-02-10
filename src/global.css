@@ -9,11 +9,6 @@
     --lightgray: #D9D9D9;
 }
 
-:focus {
-    outline: transparent;
-    color: gray;
-}
-
 body {
     background-color: var(--white);
     color: var(--white);

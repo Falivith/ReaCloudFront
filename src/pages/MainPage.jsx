@@ -3,8 +3,8 @@ import { Header } from '../components/Header';
 import { Welcome } from '../components/Welcome';
 import { Filters } from '../components/Filters';
 import { Art } from '../components/Art';
+import { Help } from '../components/Help'
 import styles from '../App.module.css';
-import Help from '../assets/Help.svg'
 
 export function MainPage() {
   return(
@@ -15,9 +15,7 @@ export function MainPage() {
         </div>
           <Filters/>
           <Art/>
-          <div className = { styles.help } >
-            <img src = { Help } alt="Ajuda"/>
-          </div>
-      </div>
-)
+          <Help/>
+    </div>
+  )
 }
