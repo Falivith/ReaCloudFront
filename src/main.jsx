@@ -4,7 +4,7 @@ import { MainPage } from "./pages/MainPage"
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import  {Login}  from './pages/Login'
 import { Cadastrar } from './pages/Cadastrar';
-
+import { AddRecurso } from './pages/AddRecurso'
 
 
 const router = createBrowserRouter([
@@ -28,6 +28,10 @@ const router = createBrowserRouter([
   {
     path : '/cadastro',
     element: <Cadastrar/>,
+  },
+  {
+    path : '/add',
+    element: <AddRecurso/>
   }
 
 ]);
