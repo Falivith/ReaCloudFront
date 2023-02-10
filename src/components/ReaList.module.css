@@ -2,5 +2,6 @@
     display: flex;
     margin: 2.4375rem auto;
     flex-direction: column;
+    gap: 1.625rem;
     max-width: fit-content;
 }
