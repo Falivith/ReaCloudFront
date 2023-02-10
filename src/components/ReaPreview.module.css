@@ -1,0 +1,28 @@
+.container {
+    color: black;
+    max-width: 61.1rem;
+    max-height: 10.5rem;
+    display: flex;
+    border: 1px solid var(--lightgray);
+    border-radius: 10px;
+    padding: 0.75rem;
+}
+
+.contentContainer {
+    margin-left: 1.5rem;
+}
+
+.reaTitle {
+    color: var(--blue);
+    font-size: 1.25rem;
+}
+
+.reaDescription {
+    color: var(--gray);
+    font-size: 1rem;
+}
+
+.likesCount {
+    color: var(--green);
+    font-size: 0.875rem;
+}

@@ -1,9 +1,12 @@
 import styles from './ReaPreview.module.css'
+import ExampleRea from '../assets/ExampleRea.png'
 
 export function ReaPreview(){
     return (
         <div className = { styles.container }>
-            <div className = { styles.thumbContainer }></div>
+            <div className = { styles.thumbContainer }>
+                <img src = { ExampleRea } alt = "thumbPreview" />
+            </div>
             <div className = { styles.contentContainer }>
                 <div className = { styles.text }>
                     <h1 className = { styles.reaTitle } >Atividades de Matemática de acordo com a BNCC</h1>

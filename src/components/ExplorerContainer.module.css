@@ -1,0 +1,6 @@
+.container {
+    margin-top: 4.875rem;
+    display: flex;
+    justify-content: center;
+    gap: 3.1875rem;
+}

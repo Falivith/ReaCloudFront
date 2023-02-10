@@ -1,0 +1,6 @@
+.reaContainer {
+    display: flex;
+    margin: 2.4375rem auto;
+    flex-direction: column;
+    max-width: fit-content;
+}
