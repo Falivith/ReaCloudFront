@@ -16,6 +16,7 @@
 
 .reaCloudLogo {
     height: 1.875rem;
+    cursor: pointer;
 }
 
 .reaCloudLogoText {
@@ -57,4 +58,14 @@
 .buttons {
     display: flex;
     align-items: center;
+}
+
+.buttonsLogged {
+    cursor: pointer;
+    color: var(--white);
+    font-weight: 600;
+    border: hidden;
+    background: none;
+    padding-left: 0.3rem;
+    margin-right: 0.9375rem;
 }
