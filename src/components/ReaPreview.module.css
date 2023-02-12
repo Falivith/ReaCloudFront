@@ -6,10 +6,19 @@
     border: 1px solid var(--lightgray);
     border-radius: 10px;
     padding: 0.75rem;
+    max-height: fit-content;
 }
 
 .contentContainer {
     margin-left: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.text{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .reaTitle {
@@ -23,6 +32,49 @@
 }
 
 .likesCount {
+    font-weight: 600;
     color: var(--green);
-    font-size: 0.875rem;
+    font-size: 14px;
+    margin-top: 0.625rem;
+}
+
+.buttonContainer{
+    margin-top: 0.3125rem;
+    display: flex;
+    gap: 0.4375rem;
+}
+
+.socialButton{
+    color: var(--darkgray);
+    display: flex;
+    align-items: center;
+    background: none;
+    box-sizing: border-box;
+    border-radius: 24px;
+    border: 1px solid var(--lightgray);
+    padding: 5px 10px;
+}
+
+.socialButton:hover{
+    transition: 0.2s;
+    background: var(--lightgray);
+    cursor: pointer;
+}
+
+.socialButton:active{
+    background: var(--blue);
+    transition: 0.2s;
+    color: white;
+}
+
+.socialButton:active > img{
+    transition: 0.1s;
+
+    /* Filtro usado pra fazer a imagem ficar branca onClick */
+    filter: invert(98%) 
+    sepia(1%) 
+    saturate(248%) 
+    hue-rotate(10deg) 
+    brightness(115%) 
+    contrast(100%);
 }

@@ -33,6 +33,11 @@
     background: none;
 }
 
+.loginButton:hover {
+    color: var(--lightgray);
+    transition: 0.2s;
+}
+
 .loginButtons {
     margin-right: 1.125rem;
 }
