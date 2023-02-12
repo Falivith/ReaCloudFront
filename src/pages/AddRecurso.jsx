@@ -1,7 +1,7 @@
 import { Header } from '../components/Header';
 export function AddRecurso() {
     return (
-        <Header showAddRecurso = {false}/>
+        <Header showAddRecurso = {false} isLogged = {true}/>
 
     )
 }
