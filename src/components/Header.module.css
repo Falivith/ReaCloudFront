@@ -68,9 +68,26 @@
 .buttonsLogged {
     cursor: pointer;
     color: var(--white);
-    font-weight: 600;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
     border: hidden;
     background: none;
     padding-left: 0.3rem;
     margin-right: 0.9375rem;
+}
+
+.badge {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 0.65rem;
+    cursor: pointer;
+    margin-left: -0.7rem;
+    margin-top: -1.2rem;
+    background: var(--red);
+    padding-left: 0.25rem;
+    padding-top: 0.05rem;
+    padding-bottom: 0.05rem;
+    padding-right: 0.25rem;
+    border-radius: 50%;
+    transition: 0.3s;
 }
