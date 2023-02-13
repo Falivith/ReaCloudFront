@@ -1,10 +1,13 @@
 import { Header } from '../components/Header';
 import { ReaCloudStaticLogo } from '../components/ReaCloudStaticLogo';
 import { FormLogin } from '../components/FormLogin';
+import { FormLogin2 } from '../components/FormLogin2';
 
-const wrapper = {"marginTop":"4.875rem","maxWidth":"100rem","display":"flex","justifyContent":"center"}
-
-
+const wrapper = {"marginTop":"4.875rem",
+                  "maxWidth":"100rem",
+                  "display":"flex",
+                  "justifyContent":"center",
+                }
 
 
 export function Login() {
@@ -12,11 +15,10 @@ export function Login() {
     <div>
         
         <Header showLogin = {false}/>    
-        {/* ler sobre form e react */}
         <div style = {wrapper}>
         <ReaCloudStaticLogo/>
+        </div>
         <FormLogin/>
         
-        </div>
     </div>    )
 }
