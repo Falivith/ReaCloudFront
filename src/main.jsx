@@ -3,15 +3,15 @@ import ReactDOM from 'react-dom/client'
 import { MainPage } from "./pages/MainPage"
 import { Explorer } from "./pages/Explorer"
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import  {Login}  from './pages/Login'
-import { Cadastrar } from './pages/Cadastrar';
+import { Login } from './pages/Login'
+import { Cadastrar } from './pages/Cadastrar'
 import { AddRecurso } from './pages/AddRecurso'
-
+import { ReaView } from './pages/ReaView'
 
 const router = createBrowserRouter([
   {
     path : "/",
-    element: <Explorer/>,
+    element: <MainPage/>,
     // errorElement: <ErrorPage/>,
     // children: [
     //   {
@@ -21,7 +21,10 @@ const router = createBrowserRouter([
       
     // ]
   },
-
+  {
+    path : '/explorer',
+    element: <Explorer/>
+  },
   {
     path : '/login',
     element: <Login/>,
@@ -33,8 +36,11 @@ const router = createBrowserRouter([
   {
     path : '/add',
     element: <AddRecurso/>
+  },
+  {
+    path: '/reaview',
+    element: <ReaView/>
   }
-
 ]);
 
 

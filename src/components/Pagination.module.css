@@ -1,0 +1,35 @@
+.pagination{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 1.625rem;
+    display: flex;
+    justify-content: center;
+}
+
+.pagination > a{
+    color: var(--darkgray);
+    float: left;
+    padding: 8px 14px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid var(--lightgray2);
+    border-radius: 4px;
+    margin: 0 4px;
+}
+
+.pagination .active{
+    color: black;
+    background-color: var(--lightblue);
+    border: 1px solid var(--lightblue);
+}
+
+.pagination .active:hover{
+    background-color: var(--blue);
+    border-color: var(--blue);
+    color: white;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: var(--lightgray);
+}
