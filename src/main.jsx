@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Login } from './pages/Login'
 import { Cadastrar } from './pages/Cadastrar'
 import { AddRecurso } from './pages/AddRecurso'
+import { ReaView } from './pages/ReaView'
 
 const router = createBrowserRouter([
   {
@@ -35,8 +36,11 @@ const router = createBrowserRouter([
   {
     path : '/add',
     element: <AddRecurso/>
+  },
+  {
+    path: '/reaview',
+    element: <ReaView/>
   }
-
 ]);
 
 
