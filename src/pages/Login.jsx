@@ -1,7 +1,7 @@
 import { Header } from '../components/Header';
 import { ReaCloudStaticLogo } from '../components/ReaCloudStaticLogo';
 import { FormLogin } from '../components/FormLogin';
-import { FormLogin2 } from '../components/FormLogin2';
+
 
 const wrapper = {"marginTop":"4.875rem",
                   "maxWidth":"100rem",
