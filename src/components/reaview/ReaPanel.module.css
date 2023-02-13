@@ -1,0 +1,96 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    color: black;
+    border: 1px solid var(--lightgray);
+    border-radius: 10px;
+    padding: 24px 37px;
+    max-width: 70%;
+}
+
+.thumbAuxContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.thumbAuxContainer > img {
+    width: fit-content;
+}
+
+.previewContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: fit-content;
+}
+
+.reaTitle {
+    color: var(--blue);
+    font-size: 1.25rem;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.likesCount {
+    font-weight: 600;
+    color: var(--green);
+    font-size: 14px;
+    margin-top: 0.625rem;
+}
+
+.buttonContainer{
+    align-items: center;
+    margin-top: 0.3125rem;
+    display: flex;
+    gap: 0.4375rem;
+}
+
+.socialButton{
+    color: var(--darkgray);
+    display: flex;
+    align-items: center;
+    background: none;
+    box-sizing: border-box;
+    border-radius: 24px;
+    border: 1px solid var(--lightgray);
+    padding: 5px 10px;
+}
+
+.bugReport{
+    text-decoration: none;
+    color: var(--lightgray);
+}
+
+.socialButton:hover{
+    transition: 0.2s;
+    background: var(--lightgray);
+    cursor: pointer;
+}
+
+.socialButton:active{
+    background: var(--blue);
+    transition: 0.2s;
+    color: white;
+}
+
+.socialButton:active > img{
+    transition: 0.1s;
+
+    /* Filtro usado pra fazer a imagem ficar branca onClick */
+    filter: invert(98%) 
+    sepia(1%) 
+    saturate(248%) 
+    hue-rotate(10deg) 
+    brightness(115%) 
+    contrast(100%);
+}
+
+.metaData {
+    line-height: 22px;
+    color: var(--gray);
+    font-size: 14px;
+}
+
+.metaData > li > strong {
+    color: black;
+}

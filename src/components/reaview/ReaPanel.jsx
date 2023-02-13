@@ -1,16 +1,25 @@
-import styles from './ReaPanel.modules.css'
+import styles from './ReaPanel.module.css'
+import Like from '../../assets/Like.png'
+import Comments from '../../assets/Comments.png'
+import ReaThumb from '../../assets/ExampleRea.png'
 
 export function ReaPanel(){
     return (
-        <div>
-            <title>Atividades de Matemática de acordo com a BNCC</title>
-            <span>20 pessoas acharam isso útil</span>
-            <div>
-                <button></button>
-                <button></button>
-                <button></button>
+        <div className = { styles.container }>
+            <div className = { styles.thumbAuxContainer }>
+                <div className = { styles.previewContainer }>
+                    <h1 className = { styles.reaTitle }>Atividades de Matemática de acordo com a BNCC</h1>
+                    <span className = { styles.likesCount }>948 pessoas acharam isso útil</span>
+                    <div className = { styles.buttonContainer }>
+                        <button className = { styles.socialButton }> <img src = { Like } alt = "Joinha" /> Útil </button>
+                        <button className = { styles.socialButton }> <img src = { Comments } alt = "Joinha" /> Comentários </button>
+                        <a className = { styles.bugReport } href = "#"> Informar um Problema </a>
+                    </div>
+                </div>
+                <img src = { ReaThumb } alt="reaThumb" />  
             </div>
-            <ul>
+           
+            <ul className = { styles.metaData } >
                 <li> <strong>Tipo do Material:</strong> Website </li>
                 <li> <strong>Área do conhecimento:</strong> Matemática </li>
                 <li> <strong>Tipo de Licensa:</strong> Creative Commons </li>
