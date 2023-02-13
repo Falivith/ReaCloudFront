@@ -1,7 +1,17 @@
 import styles from './Filters.module.css'
 import Search from '../assets/Search.svg'
+import { useNavigate } from 'react-router-dom'
+
+
+
 
 export function Filters() {
+
+    const navigate = useNavigate();
+    const routeChangeHandler = (route) => {
+        navigate(`../${route}`);
+    }
+
     return (
         <div className = { styles.container }>
             <form className = { styles.internalContainer } action="">
@@ -35,7 +45,7 @@ export function Filters() {
                 </div>  
             </div>
 
-            <button className = { styles.blueSearchButton }>BUSCAR</button>
+            <button className = { styles.blueSearchButton } onClick={() => routeChangeHandler('/explorer')} >BUSCAR</button>
         </div>
     );
 }
