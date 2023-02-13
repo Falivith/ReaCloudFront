@@ -4,7 +4,7 @@ import RecursosEducacionaisLogo from '../assets/Add_ring.png'
 import UserLogo from '../assets/User_circle_light.png'
 import { useNavigate } from 'react-router-dom'
 
-export function Header({ showLogin = true, showCadastro = true, showAddRecurso = true, isLogged = false }) {
+export function Header({ showLogin = true, showCadastro = true, showAddRecurso = true, isLogged = false, notificationNumber = 0 }) {
     const navigate = useNavigate();
 
     const routeChangeHandler = (route) => {
@@ -38,9 +38,12 @@ export function Header({ showLogin = true, showCadastro = true, showAddRecurso =
                     </span>
                 : null}
 
-            {isLogged ?
+                {isLogged ?
                 <div className={styles.buttons}>
                     <img onClick={() => routeChangeHandler('')} className={styles.reaCloudLogo} src={RecursosEducacionaisLogo} />
+                    {notificationNumber > 0 ?
+                        <span className={`badge ${styles.badge}`}>{notificationNumber}</span>
+                    :null}
                     <button className={styles.buttonsLogged} onClick={() => routeChangeHandler('')}>RECURSOS EDUCACIONAIS</button>
                     <img onClick={() => routeChangeHandler('')} className={styles.reaCloudLogo} src={UserLogo} />
                     <button className={styles.buttonsLogged} onClick={() => routeChangeHandler('')}>MEU PERFIL</button>
