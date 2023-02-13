@@ -7,7 +7,6 @@ import  {Login}  from './pages/Login'
 import { Cadastrar } from './pages/Cadastrar';
 import { AddRecurso } from './pages/AddRecurso'
 
-
 const router = createBrowserRouter([
   {
     path : "/",
