@@ -15,7 +15,7 @@ export function Cadastrar() {
     
     return (
         <div>
-            <Header showCadastro = {false}/>   
+            <Header showCadastro = {false} showAddRecurso = {false}/>   
             <div style = {wrapper}>
             <ReaCloudStaticLogo/>
             </div>
