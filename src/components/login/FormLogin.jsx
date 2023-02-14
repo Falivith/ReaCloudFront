@@ -1,6 +1,8 @@
 import googleLogo from '../../assets/Google.png'
 import styles from './FormLogin.module.css'
 import { Link, useNavigate } from 'react-router-dom'
+import { LabelAndInput } from './LabelAndInput';
+import { Button } from './Button';
 
 const styleImage = {"marginTop":"1rem",
                     "marginBottom":"0.75rem",
@@ -17,12 +19,12 @@ export function FormLogin(){
     return(
     <div className= {styles.container}>
         <form > 
-            <p className= {styles.text} > E-MAIL</p>
-            <input className={styles.input} placeholder='exemplo@email.com'></input>
-            <p className= {styles.text} > SENHA</p>
-            <input type={'password'} className={styles.input}  placeholder='• • • • • • •' ></input>
+ 
+            <LabelAndInput labelText={'E-MAIL'} inputType={"email"} placeholderText={'exemplo@email.com'}/>
+            
+            <LabelAndInput labelText={'SENHA'} inputType={"password"} placeholderText={'• • • • • • •'}/>
             <div className={styles.containerForButtons}>
-                <button className={styles.entrarButton}  > <span className={`${styles.spanText} ${styles.spanText2}`}> ENTRAR  </span></button>
+                <Button textButton={'ENTRAR'}/>
                 <button className={styles.containerButtons}> <span className={styles.spanText} ><img src= {googleLogo} style = {styleImage}  /> ENTRAR COM O GOOGLE </span></button>
                 <button className={styles.containerButtons}> <span className={styles.spanText} > CADASTRAR  </span></button>
             </div>
