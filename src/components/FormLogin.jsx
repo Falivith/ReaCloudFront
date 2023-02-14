@@ -20,10 +20,11 @@ export function FormLogin(){
             <p className= {styles.text} > SENHA</p>
             <input className={styles.input}  placeholder='• • • • • • •' ></input>
             <div className={styles.containerForButtons}>
-                <button className={styles.entrarButton}  > <span > ENTRAR  </span></button>
+                <button className={styles.entrarButton}  > <span className={`${styles.spanText} ${styles.spanText2}`}> ENTRAR  </span></button>
                 <button className={styles.containerButtons}> <span className={styles.spanText} ><img src= {googleLogo} style = {styleImage}  /> ENTRAR COM O GOOGLE </span></button>
                 <button className={styles.containerButtons}> <span className={styles.spanText} > CADASTRAR  </span></button>
             </div>
+            <p className={styles.forgotPassword}>Esqueceu sua senha?&nbsp;<a className={styles.linkstyle} href=''>Clique aqui</a>  </p>
         </form>
     </div>  
     )
