@@ -1,0 +1,24 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-items: center;
+
+    margin-top: 11.9375rem;
+    min-height: 19.3125rem;
+    min-width: 22.75rem;
+    flex-direction: column;
+}
+
+.titleText{
+
+    font-family: 'Antic';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 22px;
+    color: #666666;
+}
+
+.normalText{
+    color:#838383
+}

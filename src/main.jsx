@@ -7,6 +7,10 @@ import { Login } from './pages/Login'
 import { Cadastrar } from './pages/Cadastrar'
 import { AddRecurso } from './pages/AddRecurso'
 import { ReaView } from './pages/ReaView'
+import { Recover } from './components/login/Recover';
+
+
+
 
 const router = createBrowserRouter([
   {
@@ -40,7 +44,14 @@ const router = createBrowserRouter([
   {
     path: '/reaview',
     element: <ReaView/>
+  },
+  {
+    path: '/redefinir',
+    element: <Recover/>
   }
+
+
+  
 ]);
 
 

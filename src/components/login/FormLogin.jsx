@@ -1,5 +1,6 @@
-import googleLogo from '../assets/Google.png'
+import googleLogo from '../../assets/Google.png'
 import styles from './FormLogin.module.css'
+import { Link, useNavigate } from 'react-router-dom'
 
 const styleImage = {"marginTop":"1rem",
                     "marginBottom":"0.75rem",
@@ -11,6 +12,7 @@ const styleImage = {"marginTop":"1rem",
 
 
 
+                
 export function FormLogin(){
     return(
     <div className= {styles.container}>
@@ -18,13 +20,13 @@ export function FormLogin(){
             <p className= {styles.text} > E-MAIL</p>
             <input className={styles.input} placeholder='exemplo@email.com'></input>
             <p className= {styles.text} > SENHA</p>
-            <input className={styles.input}  placeholder='• • • • • • •' ></input>
+            <input type={'password'} className={styles.input}  placeholder='• • • • • • •' ></input>
             <div className={styles.containerForButtons}>
                 <button className={styles.entrarButton}  > <span className={`${styles.spanText} ${styles.spanText2}`}> ENTRAR  </span></button>
                 <button className={styles.containerButtons}> <span className={styles.spanText} ><img src= {googleLogo} style = {styleImage}  /> ENTRAR COM O GOOGLE </span></button>
                 <button className={styles.containerButtons}> <span className={styles.spanText} > CADASTRAR  </span></button>
             </div>
-            <p className={styles.forgotPassword}>Esqueceu sua senha?&nbsp;<a className={styles.linkstyle} href=''>Clique aqui</a>  </p>
+            <p className={styles.forgotPassword}>Esqueceu sua senha?&nbsp;<Link to={'../redefinir'} >Clique aqui</Link>  </p>
         </form>
     </div>  
     )
