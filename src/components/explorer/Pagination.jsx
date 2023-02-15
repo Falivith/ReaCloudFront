@@ -1,6 +1,6 @@
-import styles from './Pagination.module.css'
-import Preview from '../assets/LeftArrow.svg'
-import Next from '../assets/RightArrow.svg'
+import styles from './Pagination.module.css';
+import Preview from '../../assets/LeftArrow.svg';
+import Next from '../../assets/RightArrow.svg';
 
 export function Pagination(){
     return(

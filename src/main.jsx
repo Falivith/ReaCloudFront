@@ -1,29 +1,18 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { MainPage } from "./pages/MainPage"
-import { Explorer } from "./pages/Explorer"
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { Login } from './pages/Login'
-import { Cadastrar } from './pages/Cadastrar'
-import { AddRecurso } from './pages/AddRecurso'
-import { ReaView } from './pages/ReaView'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { MainPage } from "./pages/MainPage";
+import { Explorer } from "./pages/Explorer";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { Login } from './pages/Login';
+import { Cadastrar } from './pages/Cadastrar';
+import { AddRecurso } from './pages/AddRecurso';
+import { ReaView } from './pages/ReaView';
 import { Recover } from './components/login/Recover';
-
-
-
 
 const router = createBrowserRouter([
   {
     path : "/",
     element: <MainPage/>,
-    // errorElement: <ErrorPage/>,
-    // children: [
-    //   {
-    //     path: "contacts/:contactId",
-    //     element: <Contact/>,
-    //   },
-      
-    // ]
   },
   {
     path : '/explorer',
@@ -49,11 +38,7 @@ const router = createBrowserRouter([
     path: '/redefinir',
     element: <Recover/>
   }
-
-
-  
 ]);
-
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

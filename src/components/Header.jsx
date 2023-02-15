@@ -1,8 +1,8 @@
-import styles from './Header.module.css'
-import ReaCloudLogo from '../assets/RClogo.svg'
-import RecursosEducacionaisLogo from '../assets/Add_ring.png'
-import UserLogo from '../assets/User_circle_light.png'
-import { useNavigate } from 'react-router-dom'
+import styles from './Header.module.css';
+import ReaCloudLogo from '../assets/RClogo.svg';
+import RecursosEducacionaisLogo from '../assets/Add_ring.png';
+import UserLogo from '../assets/User_circle_light.png';
+import { useNavigate } from 'react-router-dom';
 
 export function Header({ showLogin = true, showCadastro = true, showAddRecurso = true, isLogged = false, notificationNumber = 0 }) {
     const navigate = useNavigate();

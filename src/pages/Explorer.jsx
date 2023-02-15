@@ -2,9 +2,9 @@ import '../global.css';
 import { Header } from '../components/Header';
 import { Filters } from '../components/Filters';
 import { Help } from '../components/Help'
-import { ExplorerContainer } from '../components/ExplorerContainer';
-import { ReaList } from '../components/ReaList';
-import { Pagination } from '../components/Pagination';
+import { ExplorerContainer } from '../components/explorer/ExplorerContainer';
+import { ReaList } from '../components/explorer/ReaList';
+import { Pagination } from '../components/explorer/Pagination';
 
 /* Atributos Dinâmicos
     title: ""

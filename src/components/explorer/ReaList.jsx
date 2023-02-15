@@ -1,5 +1,5 @@
-import { ReaPreview } from './ReaPreview'
-import styles from './ReaList.module.css'
+import { ReaPreview } from './ReaPreview';
+import styles from './ReaList.module.css';
 
 const reas = [
     {

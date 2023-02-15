@@ -1,5 +1,5 @@
-import styles from './ExplorerContainer.module.css'
-import { ReaCloudStaticLogo } from './ReaCloudStaticLogo'
+import styles from './ExplorerContainer.module.css';
+import { ReaCloudStaticLogo } from '../ReaCloudStaticLogo';
 
 export function ExplorerContainer (){
     return(

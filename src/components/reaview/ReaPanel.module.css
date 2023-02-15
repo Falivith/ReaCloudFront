@@ -5,12 +5,14 @@
     border: 1px solid var(--lightgray);
     border-radius: 10px;
     padding: 24px 37px;
-    max-width: 70%;
+    max-width: 58%;
+    margin: 5rem 6rem;
 }
 
 .thumbAuxContainer{
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
 }
 
 .thumbAuxContainer > img {
@@ -22,6 +24,7 @@
     flex-direction: column;
     gap: 10px;
     max-width: fit-content;
+    max-height: fit-content;
 }
 
 .reaTitle {
@@ -36,11 +39,11 @@
     color: var(--green);
     font-size: 14px;
     margin-top: 0.625rem;
+    margin-left: 0.3rem; 
 }
 
 .buttonContainer{
     align-items: center;
-    margin-top: 0.3125rem;
     display: flex;
     gap: 0.4375rem;
 }
@@ -86,9 +89,11 @@
 }
 
 .metaData {
-    line-height: 22px;
+    line-height: 35px;
     color: var(--gray);
     font-size: 14px;
+    list-style-type: none;
+    margin-top: 1.5rem; 
 }
 
 .metaData > li > strong {

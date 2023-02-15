@@ -1,7 +1,7 @@
-import styles from './ReaPreview.module.css'
-import Like from '../assets/Like.png'
-import Comments from '../assets/Comments.png'
-import { useNavigate } from 'react-router-dom'
+import styles from './ReaPreview.module.css';
+import Like from '../../assets/Like.png';
+import Comments from '../../assets/Comments.png';
+import { useNavigate } from 'react-router-dom';
 
 /* Atributos Dinâmicos
     title = {rea.title}

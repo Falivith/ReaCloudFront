@@ -1,4 +1,4 @@
-import styles from './FormCadastro.module.css'
+import styles from './FormCadastro.module.css';
 import { LabelAndInput } from '../login/LabelAndInput';
 
 

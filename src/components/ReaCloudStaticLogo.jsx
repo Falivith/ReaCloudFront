@@ -1,5 +1,5 @@
-import styles from './ReaCloudStaticLogo.module.css'
-import ReaCloudLogo from '../assets/RClogoBlue.svg'
+import styles from './ReaCloudStaticLogo.module.css';
+import ReaCloudLogo from '../assets/RClogoBlue.svg';
 
 export function ReaCloudStaticLogo() {
     return (

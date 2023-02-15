@@ -1,5 +1,5 @@
-import styles from './Art.module.css'
-import RCart from '../assets/RCArt1.png'
+import styles from './Art.module.css';
+import RCart from '../../assets/RCArt1.png';
 
 export function Art() {
     return (

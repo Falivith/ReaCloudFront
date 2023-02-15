@@ -1,5 +1,5 @@
-import styles from './Welcome.module.css'
-import { ReaCloudStaticLogo } from './ReaCloudStaticLogo'
+import styles from './Welcome.module.css';
+import { ReaCloudStaticLogo } from '../ReaCloudStaticLogo';
 
 export function Welcome (){
     return(

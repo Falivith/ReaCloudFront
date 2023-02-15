@@ -1,6 +1,6 @@
-import styles from './Filters.module.css'
-import Search from '../assets/Search.svg'
-import { useNavigate } from 'react-router-dom'
+import styles from './Filters.module.css';
+import Search from '../assets/Search.svg';
+import { useNavigate } from 'react-router-dom';
 
 
 

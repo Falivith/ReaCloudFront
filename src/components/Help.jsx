@@ -1,5 +1,5 @@
-import styles from './Help.module.css'
-import HelpImg from '../assets/Help.svg'
+import styles from './Help.module.css';
+import HelpImg from '../assets/Help.svg';
 
 export function Help(){
     return (
