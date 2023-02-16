@@ -1,11 +1,16 @@
 .artContainer{
-    position: relative;
-    bottom: 0;
+    width: 550px;
     display: flex;
-    justify-content: center;
-    flex: 1;
+    margin: auto;
 }
 
 .artContainer img{
-    width: 30%;
+    min-width: 100%;
+    height: max-content;
+}
+
+@media (max-width: 850px) {
+    .artContainer {
+        visibility: hidden;
+    }
 }

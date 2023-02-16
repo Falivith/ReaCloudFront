@@ -6,51 +6,47 @@ import { useNavigate } from 'react-router-dom';
 
 export function Header({ showLogin = true, showCadastro = true, showAddRecurso = true, isLogged = false, notificationNumber = 0 }) {
     const navigate = useNavigate();
-
+    
     const routeChangeHandler = (route) => {
         navigate(`../${route}`);
     }
 
-
     return (
-        <header className={styles.header}>
-
-            <div className={styles.home}>
-                <img onClick={() => routeChangeHandler('/')} className={styles.reaCloudLogo} src={ReaCloudLogo} alt="Logotipo da ReaCloud" />
-                <span onClick={() => routeChangeHandler('/')} className={styles.reaCloudLogoText}>ReaCloud</span>
+        <header className={ styles.header }>
+            <div className={ styles.home }>
+                <img onClick = {() => routeChangeHandler('/')} className = { styles.reaCloudLogo } src={ ReaCloudLogo } alt="Logotipo da ReaCloud" />
+                <span onClick = {() => routeChangeHandler('/')} className = { styles.reaCloudLogoText }>ReaCloud</span>
             </div>
-
-
-            <div className={styles.buttons}>
-                {showAddRecurso ?
-                    <button onClick={() => routeChangeHandler('add')} className={styles.addReaButton} >ADICIONAR RECURSO</button>
+            <div className = { styles.buttons }>
+                { showAddRecurso ?
+                    <button onClick = {() => routeChangeHandler('add')} className={ styles.addReaButton } >ADICIONAR RECURSO</button>
                     : null
                 }
                 {!isLogged ?
-                    <span className={styles.loginButtons} >
+                    <span className = { styles.loginButtons } >
                         {showLogin ?
-                            <button className={styles.loginButton} onClick={() => routeChangeHandler('login')}>ENTRE</button>
+                            <button className={ styles.loginButton } onClick={() => routeChangeHandler('login')}>ENTRE</button>
                             : null}
                         {showLogin && showCadastro ? ' OU ' : ''}
                         {showCadastro ?
-                            <button onClick={() => routeChangeHandler('cadastro')} className={styles.loginButton} >CADASTRE-SE</button>
+                            <button onClick={() => routeChangeHandler('cadastro')} className = { styles.loginButton } >CADASTRE-SE</button>
                             : null}
                     </span>
-                : null}
-
+                : null
+                }
                 {isLogged ?
-                <div className={styles.buttons}>
-                    <img onClick={() => routeChangeHandler('')} className={styles.reaCloudLogo} src={RecursosEducacionaisLogo} />
+                <div className = { styles.buttons }>
+                    <img onClick = {() => routeChangeHandler('')} className = { styles.reaCloudLogo } src = { RecursosEducacionaisLogo } />
                     {notificationNumber > 0 ?
-                        <span className={`badge ${styles.badge}`}>{notificationNumber}</span>
+                        <span className = {`badge ${styles.badge}`}>{notificationNumber}</span>
                     :null}
-                    <button className={styles.buttonsLogged} onClick={() => routeChangeHandler('')}>RECURSOS EDUCACIONAIS</button>
-                    <img onClick={() => routeChangeHandler('')} className={styles.reaCloudLogo} src={UserLogo} />
-                    <button className={styles.buttonsLogged} onClick={() => routeChangeHandler('')}>MEU PERFIL</button>
+                    <button className = { styles.buttonsLogged } onClick = {() => routeChangeHandler('')}>RECURSOS EDUCACIONAIS</button>
+                    <img onClick = {() => routeChangeHandler('')} className = { styles.reaCloudLogo } src = { UserLogo } />
+                    <button className = { styles.buttonsLogged } onClick={() => routeChangeHandler('')}>MEU PERFIL</button>
                 </div>
-                : null}
+                : null
+                }
             </div>
-
         </header>
     );
 }

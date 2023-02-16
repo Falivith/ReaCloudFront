@@ -1,9 +1,16 @@
 .container{
-    margin-top: 3.1875rem;
+    margin: 3rem 1rem 0px 1rem;
     display: flex;
     justify-content: center;
     gap: 1.125rem;
     align-items: flex-end;
+}
+
+@media (max-width: 850px) {
+    .container {
+        flex-direction: column;
+        align-items: center;    
+    }
 }
 
 .internalContainer{
