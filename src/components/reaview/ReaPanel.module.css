@@ -5,21 +5,30 @@
     border: 1px solid var(--lightgray);
     border-radius: 10px;
     padding: 24px 37px;
-    max-width: 58%;
-    margin: 5rem 6rem;
+    max-width: 100%;
 }
 
-.thumbAuxContainer{
+.thumbAuxContainer {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
 }
 
+@media (max-width: 600px) {
+
+    .thumbAuxContainer{
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+}
+
+
 .thumbAuxContainer > img {
     width: fit-content;
 }
 
-.previewContainer{
+.previewContainer {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -42,13 +51,13 @@
     margin-left: 0.3rem; 
 }
 
-.buttonContainer{
+.buttonContainer {
     align-items: center;
     display: flex;
     gap: 0.4375rem;
 }
 
-.socialButton{
+.socialButton {
     color: var(--darkgray);
     display: flex;
     align-items: center;
@@ -59,24 +68,24 @@
     padding: 5px 10px;
 }
 
-.bugReport{
+.bugReport {
     text-decoration: none;
     color: var(--lightgray);
 }
 
-.socialButton:hover{
+.socialButton:hover {
     transition: 0.2s;
     background: var(--lightgray);
     cursor: pointer;
 }
 
-.socialButton:active{
+.socialButton:active {
     background: var(--blue);
     transition: 0.2s;
     color: white;
 }
 
-.socialButton:active > img{
+.socialButton:active > img {
     transition: 0.1s;
 
     /* Filtro usado pra fazer a imagem ficar branca onClick */
