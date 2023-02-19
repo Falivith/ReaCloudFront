@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+    height: fit-content;
+    gap: 18px;
+    align-items: flex-start;
+}
+
+.profilePhotoContainer {
+    width: 45px;
+}
+
+.profilePhoto {
+    width: 45px;
+    border-radius: 50%;
+    background-color: var(--lightgray);
+}
+
+.textContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.commentTitle {
+    color: var(--lightblue);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.commentContent {
+    font-size: 14px;
+    line-height: 22px;
+}

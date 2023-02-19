@@ -20,6 +20,5 @@ export function ReaCard(props){
                 <img src = { arrow } alt="Seta para acessar o REA" />
             </button>                 
         </div>
-
     )
 }

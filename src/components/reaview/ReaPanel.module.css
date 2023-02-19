@@ -6,6 +6,7 @@
     border-radius: 10px;
     padding: 24px 37px;
     max-width: 100%;
+    height: fit-content;
 }
 
 .thumbAuxContainer {

@@ -4,7 +4,7 @@
 
 .reaViewContainer{
     display: flex;
-    padding: 4rem 5rem;
+    padding: 5rem 6rem;
     justify-content: space-between;
     gap: 35px;
 }

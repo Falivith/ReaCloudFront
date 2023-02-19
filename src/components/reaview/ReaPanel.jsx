@@ -1,7 +1,7 @@
-import styles from './ReaPanel.module.css'
-import Like from '../../assets/Like.png'
-import Comments from '../../assets/Comments.png'
-import ReaThumb from '../../assets/ExampleRea.png'
+import styles from './ReaPanel.module.css';
+import Like from '../../assets/Like.png';
+import Comments from '../../assets/Comments.png';
+import ReaThumb from '../../assets/ExampleRea.png';
 
 export function ReaPanel(){
     return (

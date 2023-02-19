@@ -1,5 +1,5 @@
-import styles from './Suggestions.module.css'
-import { ReaCard } from './ReaCard'
+import styles from './Suggestions.module.css';
+import { ReaCard } from './ReaCard';
 
 const reapanels = [
     {

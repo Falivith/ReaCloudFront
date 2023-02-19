@@ -1,0 +1,73 @@
+.container {
+    margin-top: 20px;
+    color: var(--gray);
+}
+
+.formContainer {
+    margin: 0px;
+}
+
+.headerLabel {
+    font-size: 16px;
+    margin-left: 3px;
+    cursor: pointer;
+}
+
+.textArea {
+    margin-top: 10px;
+    border: 1px solid var(--lightgray);
+    border-radius: 10px;
+    width: 100%;
+    height: 72px;
+    padding: 10px;
+    resize: none;
+}
+
+.buttonsContainer {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.commentList {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.cancelButton {
+    background-color: white;
+    color: var(--blue);
+    font-weight: 700;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: 1px solid var(--blue);
+    border-radius: 10px;
+    transition: 0.2s;
+}
+
+.cancelButton:hover {
+    background-color: var(--blue);
+    color: white;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.submitButton {
+    background-color: var(--blue);
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 10px 10px;
+    border: 1px solid var(--blue);
+    border-radius: 10px;
+    transition: 0.2s;
+}
+
+.submitButton:hover {
+    background-color: var(--darkblue);
+    color: white;
+    transition: 0.2s;
+    cursor: pointer;
+}

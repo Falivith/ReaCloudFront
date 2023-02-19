@@ -1,8 +1,10 @@
 .externalContainer{
     flex: 2;
-    max-width: 80%;
+    max-width: 100%;
+    height: fit-content;
     display: flex;
     flex-direction: column;
+    align-items: center;
     color: black;
     border: solid 1px var(--lightgray);
     padding: 19px 25px;
@@ -13,10 +15,8 @@
 .suggLabel{
     color: var(--gray);
     font-weight: 600;
-    font-size: 20px; 
-    margin: auto;
+    font-size: 20px;
     margin-bottom: -5px;
-    max-width: max-content;
 }
 
 .moreRecomendations{
