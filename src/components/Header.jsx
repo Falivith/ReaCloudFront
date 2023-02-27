@@ -18,7 +18,7 @@ export function Header({ showLogin = true, showCadastro = true, showAddRecurso =
                 <span onClick = {() => routeChangeHandler('/')} className = { styles.reaCloudLogoText }>ReaCloud</span>
             </div>
             <div className = { styles.buttons }>
-                { showAddRecurso ?
+                {showAddRecurso ?
                     <button onClick = {() => routeChangeHandler('add')} className={ styles.addReaButton } >ADICIONAR RECURSO</button>
                     : null
                 }
@@ -42,7 +42,7 @@ export function Header({ showLogin = true, showCadastro = true, showAddRecurso =
                     :null}
                     <button className = { styles.buttonsLogged } onClick = {() => routeChangeHandler('')}>RECURSOS EDUCACIONAIS</button>
                     <img onClick = {() => routeChangeHandler('')} className = { styles.reaCloudLogo } src = { UserLogo } />
-                    <button className = { styles.buttonsLogged } onClick={() => routeChangeHandler('')}>MEU PERFIL</button>
+                    <button className = { styles.buttonsLogged } onClick={() => routeChangeHandler('/profile')}>MEU PERFIL</button>
                 </div>
                 : null
                 }

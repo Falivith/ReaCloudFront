@@ -8,6 +8,7 @@ import { Cadastrar } from './pages/Cadastrar';
 import { AddRecurso } from './pages/AddRecurso';
 import { ReaView } from './pages/ReaView';
 import { Recover } from './components/login/Recover';
+import { MeuPerfil } from './pages/MeuPerfil';
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
   {
     path: '/reaview',
     element: <ReaView/>
+  },
+  {
+    path: '/profile',
+    element: <MeuPerfil/>
   },
   {
     path: '/redefinir',
