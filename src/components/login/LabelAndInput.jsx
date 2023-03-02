@@ -1,7 +1,7 @@
 import styles from './LabelAndInput.module.css'
 
 
-export function LabelAndInput({labelText, inputType, placeholderText,inputStyle}) {
+export function LabelAndInput({labelText, inputType, placeholderText,inputStyle = styles.input}) {
 
     return(
         <div>
