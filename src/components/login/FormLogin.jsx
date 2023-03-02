@@ -4,6 +4,11 @@ import { Link, useNavigate } from 'react-router-dom'
 import { LabelAndInput } from './LabelAndInput';
 import { Button } from './Button';
 
+import styleLabelandInput from './LabelAndInput.module.css'
+
+
+
+
 const styleImage = {"marginTop":"1rem",
                     "marginBottom":"0.75rem",
                     "width": "1.25rem",
@@ -20,9 +25,9 @@ export function FormLogin(){
     <div className= {styles.container}>
         <form > 
  
-            <LabelAndInput labelText={'E-MAIL'} inputType={"email"} placeholderText={'exemplo@email.com'}/>
+            <LabelAndInput labelText={'E-MAIL'} inputType={"email"} placeholderText={'exemplo@email.com'} inputStyle = {styleLabelandInput.input}/>
             
-            <LabelAndInput labelText={'SENHA'} inputType={"password"} placeholderText={'• • • • • • •'}/>
+            <LabelAndInput labelText={'SENHA'} inputType={"password"}  placeholderText={'• • • • • • •'} inputStyle = {styleLabelandInput.input}/>
             <div className={styles.containerForButtons}>
                 <Button textButton={'ENTRAR'}/>
                 <button className={styles.containerButtons}> <span className={styles.spanText} ><img src= {googleLogo} style = {styleImage}  /> ENTRAR COM O GOOGLE </span></button>
