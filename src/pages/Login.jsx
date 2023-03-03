@@ -3,7 +3,7 @@ import { ReaCloudStaticLogo } from '../components/ReaCloudStaticLogo';
 import { FormLogin } from '../components/login/FormLogin';
 
 
-const wrapper = {"marginTop":"4.875rem",
+const wrapper = {"marginTop":"3rem",
                   "maxWidth":"100rem",
                   "display":"flex",
                   "justifyContent":"center",

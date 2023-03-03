@@ -28,12 +28,17 @@ export function Recover() {
                     "Escolha uma nova senha para a sua conta."
                     }
                 </p>
+                
                 <form>
                     <LabelAndInput labelText={'E-MAIL'} inputType={"email"} placeholderText={'exemplo@email.com'}/>
                     <div className={styles.marginDiv}>
                     <Button  handler= {buttonHandler}textButton={'ENVIAR'} class2={styles.spanText2} />
                     </div>
                 </form>
+
+
+
+
             </div>
             
         </div>

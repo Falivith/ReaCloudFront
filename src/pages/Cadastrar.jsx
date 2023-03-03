@@ -6,7 +6,7 @@ import { ReaCloudStaticLogo } from '../components/ReaCloudStaticLogo';
 
 export function Cadastrar() {
     
-    const wrapper = {"marginTop":"4.875rem",
+    const wrapper = {"marginTop":"3rem",
     "maxWidth":"100rem",
     "display":"flex",
     "justifyContent":"center",
