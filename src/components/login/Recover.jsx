@@ -32,6 +32,19 @@ export function Recover() {
         </form>)
     )
 
+    const descriptionText = () =>{
+        return(
+        !typePassword ?
+        <p className={styles.normalText}>
+        Informe o e-mail utilizado na criação da sua conta e enviaremos instruções para redefinir a sua senha!
+        </p>
+        :
+        <p className={styles.normalText2}>
+        Escolha uma nova senha para a sua conta
+        </p>
+        )
+    }
+
 
 
     return(
@@ -40,20 +53,16 @@ export function Recover() {
             <div className={styles.container}>
                 <p className={styles.titleText}>Redefinição de senha</p>
                 <br></br>
-                <p className={styles.normalText}>
+                {/* <p className={styles.normalText}>
                     {!typePassword ?
                     "Informe o e-mail utilizado na criação da sua conta e enviaremos instruções para redefinir a sua senha!"
                     :
                     "Escolha uma nova senha para a sua conta"   
                     }
-                </p>
+                </p> */}
+                {descriptionText()}
                 { !typePassword ?form1 : form2}
                 
-                
-
-
-
-
             </div>
             
         </div>
