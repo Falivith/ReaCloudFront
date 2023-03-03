@@ -15,6 +15,25 @@ export function Recover() {
         setTypePassword(true)
     }
 
+    const form1 = (<form>
+    <LabelAndInput labelText={'E-MAIL'} inputType={"email"} placeholderText={'exemplo@email.com'}/>
+    <div className={styles.marginDiv}>
+    <Button  handler= {buttonHandler}textButton={'ENVIAR'} class2={styles.spanText2} />
+    </div>
+    </form>)
+
+    const form2 = ((<form>
+        <LabelAndInput labelText={'NOVA SENHA'} inputType={"password"} placeholderText={'• • • • • • •'}/>
+        <LabelAndInput labelText={'REPITA SUA NOVA SENHA'} inputType={"password"} placeholderText={'• • • • • • •'}/>
+
+        <div className={styles.marginDiv}>
+        <Button  handler= {buttonHandler}textButton={'ENVIAR'} class2={styles.spanText2} />
+        </div>
+        </form>)
+    )
+
+
+
     return(
         
         <div> <Header showAddRecurso = {false}/> 
@@ -25,16 +44,12 @@ export function Recover() {
                     {!typePassword ?
                     "Informe o e-mail utilizado na criação da sua conta e enviaremos instruções para redefinir a sua senha!"
                     :
-                    "Escolha uma nova senha para a sua conta."
+                    "Escolha uma nova senha para a sua conta"   
                     }
                 </p>
+                { !typePassword ?form1 : form2}
                 
-                <form>
-                    <LabelAndInput labelText={'E-MAIL'} inputType={"email"} placeholderText={'exemplo@email.com'}/>
-                    <div className={styles.marginDiv}>
-                    <Button  handler= {buttonHandler}textButton={'ENVIAR'} class2={styles.spanText2} />
-                    </div>
-                </form>
+                
 
 
 
