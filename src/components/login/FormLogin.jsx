@@ -5,6 +5,7 @@ import { LabelAndInput } from './LabelAndInput';
 import { Button } from './Button';
 
 import styleLabelandInput from './LabelAndInput.module.css'
+import { useEffect } from 'react';
 
 
 
@@ -21,6 +22,28 @@ const styleImage = {"marginTop":"1rem",
 
                 
 export function FormLogin(){
+    
+    function handleCallBackResponse(response){
+        console.log("Encoded JWT ID token" + response.credential);
+      }
+    
+      useEffect(() => {
+        /* global google */
+            google.accounts.id.initialize({
+            client_id: "567563462560-pgebq1hruc66b5nlhjt6qb910m7tk0b7.apps.googleusercontent.com",
+            callback: handleCallBackResponse
+            });
+        
+            google.accounts.id.renderButton(
+            document.getElementById("signInDiv"),
+            {theme: "outline", 
+            size: "large",
+            width: "364",
+            shape: "square",     }  // ou pill
+            );
+        
+        }, [])
+     
     return(
     <div className= {styles.container}>
         <form > 
@@ -29,8 +52,10 @@ export function FormLogin(){
             
             <LabelAndInput labelText={'SENHA'} inputType={"password"}  placeholderText={'• • • • • • •'} inputStyle = {styleLabelandInput.input}/>
             <div className={styles.containerForButtons}>
+                {/* <button id="signInDiv" className={styles.containerButtons}> <span className={styles.spanText} ><img src= {googleLogo} style = {styleImage}  /> ENTRAR COM O GOOGLE </span></button> */}
+                <div id="signInDiv"></div> 
                 <Button textButton={'ENTRAR'}/>
-                <button className={styles.containerButtons}> <span className={styles.spanText} ><img src= {googleLogo} style = {styleImage}  /> ENTRAR COM O GOOGLE </span></button>
+                
                 <button className={styles.containerButtons}> <span className={styles.spanText} > CADASTRAR  </span></button>
             </div>
             <p className={styles.forgotPassword}>Esqueceu sua senha?&nbsp;<Link to={'../redefinir'} >Clique aqui</Link>  </p>
