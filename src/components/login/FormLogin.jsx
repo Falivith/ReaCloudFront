@@ -3,6 +3,7 @@ import styles from './FormLogin.module.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { LabelAndInput } from './LabelAndInput';
 import { Button } from './Button';
+import jwtDecode from 'jwt-decode';
 
 import styleLabelandInput from './LabelAndInput.module.css'
 import { useEffect } from 'react';
@@ -24,23 +25,32 @@ const styleImage = {"marginTop":"1rem",
 export function FormLogin(){
     
     function handleCallBackResponse(response){
-        console.log("Encoded JWT ID token" + response.credential);
+        console.log("Encoded JWT ID token" + userObject);
+        let userObject = jwt_decode(response.credential)
+        console.log("Decoded JWT ID token" + userObject);
+
       }
     
       useEffect(() => {
         /* global google */
+        if (typeof google !== 'undefined') {
             google.accounts.id.initialize({
-            client_id: "567563462560-pgebq1hruc66b5nlhjt6qb910m7tk0b7.apps.googleusercontent.com",
-            callback: handleCallBackResponse
-            });
+                client_id: "567563462560-pgebq1hruc66b5nlhjt6qb910m7tk0b7.apps.googleusercontent.com",
+                callback: handleCallBackResponse
+                });
+            
+                google.accounts.id.renderButton(
+                document.getElementById("signInDiv"),
+                {theme: "outline", 
+                size: "large",
+                width: "364",
+                shape: "square",     }  // ou pill
+                );
+    
+                google.accounts.id.prompt()
+          }
         
-            google.accounts.id.renderButton(
-            document.getElementById("signInDiv"),
-            {theme: "outline", 
-            size: "large",
-            width: "364",
-            shape: "square",     }  // ou pill
-            );
+            
         
         }, [])
      
