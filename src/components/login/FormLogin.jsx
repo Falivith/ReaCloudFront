@@ -3,7 +3,7 @@ import styles from './FormLogin.module.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { LabelAndInput } from './LabelAndInput';
 import { Button } from './Button';
-import jwtDecode from 'jwt-decode';
+import jwt_decode from 'jwt-decode';
 
 import styleLabelandInput from './LabelAndInput.module.css'
 import { useEffect } from 'react';
@@ -25,9 +25,9 @@ const styleImage = {"marginTop":"1rem",
 export function FormLogin(){
     
     function handleCallBackResponse(response){
-        console.log("Encoded JWT ID token" + userObject);
+        console.log("Encoded JWT ID token" + response.credential);
         let userObject = jwt_decode(response.credential)
-        console.log("Decoded JWT ID token" + userObject);
+        console.log(userObject);
 
       }
     
