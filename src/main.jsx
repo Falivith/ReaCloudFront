@@ -5,10 +5,11 @@ import { Explorer } from "./pages/Explorer";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Login } from './pages/Login';
 import { Cadastrar } from './pages/Cadastrar';
-import { AddRecurso } from './pages/AddRecurso';
+import { AddRea } from './pages/AddRea';
 import { ReaView } from './pages/ReaView';
 import { Recover } from './components/login/Recover';
 import { MeuPerfil } from './pages/MeuPerfil';
+import { PluginReas } from './pages/PluginReas';
 
 const router = createBrowserRouter([
   {
@@ -28,8 +29,12 @@ const router = createBrowserRouter([
     element: <Cadastrar/>,
   },
   {
-    path : '/add',
-    element: <AddRecurso/>
+    path : '/addrea',
+    element: <AddRea/>
+  },
+  {
+    path: '/pluginreas',
+    element: <PluginReas/>
   },
   {
     path: '/reaview',

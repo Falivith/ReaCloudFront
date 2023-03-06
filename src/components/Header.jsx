@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 
 export function Header({ showLogin = true, showCadastro = true, showAddRecurso = true, isLogged = false, notificationNumber = 0 }) {
     const navigate = useNavigate();
-    
     const routeChangeHandler = (route) => {
         navigate(`../${route}`);
     }
@@ -19,7 +18,7 @@ export function Header({ showLogin = true, showCadastro = true, showAddRecurso =
             </div>
             <div className = { styles.buttons }>
                 {showAddRecurso ?
-                    <button onClick = {() => routeChangeHandler('add')} className={ styles.addReaButton } >ADICIONAR RECURSO</button>
+                    <button onClick = {() => routeChangeHandler('addrea')} className={ styles.addReaButton } >ADICIONAR RECURSO</button>
                     : null
                 }
                 {!isLogged ?

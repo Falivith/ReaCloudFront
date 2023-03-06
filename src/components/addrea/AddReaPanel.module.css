@@ -1,0 +1,102 @@
+.container {
+    margin-top: 3rem;
+    gap: 45px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.addNewReaContainer{
+    display: flex;
+    align-items: center;
+    width: 460px;
+    height: 110px;
+    background-color: var(--blue);
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.addNewReaContainer:hover{
+    background-color: var(--darkblue);
+    transition: 0.2s;
+}
+
+.addImgContainer{
+    display: flex;
+    align-items: center;
+    height: 60px;
+    width: 60px;
+    padding: 10px;
+    margin-left: 10px;
+}
+
+.addImgContainer > img{
+    width: 55px;
+    height: 55px;
+}
+
+.addReaTitle{
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.textContainer{
+    margin-left: 10px;
+    padding: 18px;
+    font-size: 16px;
+    line-height: 22px;
+    width: 360px;
+    transition: 0.2s;
+}
+
+p{
+    margin-top: 5px; 
+}
+
+.editReaContainer{
+    display: flex;
+    border: solid 1px var(--blue);
+    border-radius: 10px;
+    width: 460px;
+    height: 110px;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.editReaContainer:hover{
+    background-color: var(--blue);
+    transition: 0.2s;
+}
+
+.editReaContainer:hover > div > *{
+    color: white;
+}
+
+.editReaTitle{
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--blue);
+}
+
+.editImgContainer{
+    display: flex;
+    align-items: center;
+    height: 60px;
+    width: 60px;
+    padding: 10px;
+    margin-left: 10px;
+}
+
+.editImgContainer > img{
+    width: 55px;
+    height: 55px;
+}
+
+.editReaSpan{
+    color: var(--blue);
+}
