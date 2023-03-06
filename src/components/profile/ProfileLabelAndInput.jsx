@@ -5,9 +5,11 @@ import { useState } from 'react';
 export function ProfileLabelAndInput({labelText, inputType, showButton = true, placeholderText,inputStyle = styles.input}) {
     
     const [readOnly, setReadOnly] = useState(true);
+    const [buttonClass, setButtonClass] = useState(true);
     
     const buttonHandler = (event) =>{
-        setReadOnly(false)
+        setReadOnly(prevReadOnly => !prevReadOnly)
+        setButtonClass(prevButtonClass => !prevButtonClass);
     }
 
     return(
@@ -16,7 +18,7 @@ export function ProfileLabelAndInput({labelText, inputType, showButton = true, p
                 <span className={styles.SpanContainer}>
                     <input type ={inputType} className={inputStyle} placeholder={placeholderText} readOnly = {readOnly}></input>
                     {showButton ?    
-                        <button onClick={(event) => buttonHandler(event)} type="button" className={styles.MeuButton} >
+                        <button onClick={(event) => buttonHandler(event)} type="button" className={buttonClass ? styles.MeuButton : styles.MeuButtonClick} >
                             <img src='src/assets/Editar.png'/>
                         </button>
                         :null

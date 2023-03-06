@@ -79,10 +79,23 @@
 
 .MeuButton {
 width: 3.563rem;
+cursor: pointer;
 height: 3rem;
 margin-left: -3.5rem;
 background: #E2E9FF;
-border: 1px solid #E2E9FF;
+border: 0px solid #E2E9FF;
+border-radius: 0px 10px 10px 0px;
+transition: ease-in 0.5s;
+}
+
+.MeuButtonClick {
+transition: ease-in 0.5s;
+width: 3.563rem;
+cursor: pointer;
+height: 3rem;
+margin-left: -3.5rem;
+background: transparent;
+border: 0px solid #E2E9FF;
 border-radius: 0px 10px 10px 0px;
 }
 
