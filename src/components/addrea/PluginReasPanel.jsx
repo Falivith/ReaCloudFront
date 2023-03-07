@@ -1,5 +1,6 @@
 import styles from './PluginReasPanel.module.css'
 import AddRing from "../../assets/Add_ring_green.png";
+import { PluginResourceContainer } from "./PluginResourceContainer"
 
 export function PluginReasPanel(){
     return(

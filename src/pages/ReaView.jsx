@@ -11,10 +11,10 @@ export function ReaView() {
           <Header/>
           <div className = { styles.reaViewContainer }>
             <div>
-            <ReaPanel/> 
-            <CommentSection/>               
+            <ReaPanel/>
+            <CommentSection/>
             </div>
-            <Suggestions/> 
+            <Suggestions/>
           </div>
       </div>
     )
