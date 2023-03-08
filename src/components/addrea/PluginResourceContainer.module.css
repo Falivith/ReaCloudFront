@@ -1,4 +1,36 @@
 .container {
-    height: 613px;
-    
+    height: 100px;
+    width: 613px;
+    display: flex;
+    justify-content: space-between;
+    border: solid 1px var(--lightgray);
+    border-radius: 10px;
+    padding: 26px 38px;
+    align-items: center;
+}
+
+.container > h1{
+    color: var(--darkblue);
+    width: 70%;
+    font-size: 20px;
+    line-height: 22px;
+}
+
+.container > button {
+    font-size: 14px;
+    color: white;
+    font-weight: 700;
+    padding: 6px 24px;
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--green);
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.container > button:hover {
+    background-color: var(--darkgreen);
+    transition: 0.2s;
+    cursor: pointer;
 }
