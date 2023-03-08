@@ -2,9 +2,6 @@ import styles from './Filters.module.css';
 import Search from '../assets/Search.svg';
 import { useNavigate } from 'react-router-dom';
 
-
-
-
 export function Filters() {
 
     const navigate = useNavigate();

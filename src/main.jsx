@@ -1,15 +1,16 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from "react-dom/client";
 import { MainPage } from "./pages/MainPage";
 import { Explorer } from "./pages/Explorer";
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Login } from './pages/Login';
-import { Cadastrar } from './pages/Cadastrar';
-import { AddRea } from './pages/AddRea';
-import { ReaView } from './pages/ReaView';
-import { Recover } from './components/login/Recover';
-import { MeuPerfil } from './pages/MeuPerfil';
-import { PluginReas } from './pages/PluginReas';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Login } from "./pages/Login";
+import { Cadastrar } from "./pages/Cadastrar";
+import { AddRea } from "./pages/AddRea";
+import { ReaView } from "./pages/ReaView";
+import { Recover } from "./components/login/Recover";
+import { MeuPerfil } from "./pages/MeuPerfil";
+import { PluginReas } from "./pages/PluginReas";
+import { ReaConfigAdd } from "./pages/ReaConfigAdd";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
   {
     path: '/redefinir',
     element: <Recover/>
+  },
+  {
+    path: '/reaeditadd',
+    element: <ReaConfigAdd/>
   }
 ]);
 

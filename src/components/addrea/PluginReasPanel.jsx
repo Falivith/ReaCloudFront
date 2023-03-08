@@ -1,6 +1,7 @@
 import styles from './PluginReasPanel.module.css'
 import AddRing from "../../assets/Add_ring_green.png";
-import { PluginResourceContainer } from "./PluginResourceContainer"
+import { PluginResourceContainer } from "./PluginResourceContainer";
+import { useNavigate } from 'react-router-dom';
 
 const reas = [
     {
@@ -15,9 +16,15 @@ const reas = [
         id: 3,
         title: "Licenças de direito autoral e Creative Commons, formatos abertos e formatos fechados",
     }
-  ];
+];
 
 export function PluginReasPanel(){
+
+    const navigate = useNavigate();
+    const routeChangeHandler = (route) => {
+        navigate(`../${route}`);
+    }
+
     return(
         <div className = { styles.container }>
             <div className = { styles.header }>
@@ -38,7 +45,7 @@ export function PluginReasPanel(){
             </div>
             <footer>
                 <p className = { styles.footerSpan }>Além do plugin, você pode adicionar um recurso próprio que está armazenado online (ex: Google Drive, Dropbox, etc)</p>
-                <button className = { styles.addOwnReaButton }>ADICIONAR RECURSO PRÓPRIO</button>
+                <button className = { styles.addOwnReaButton } onClick={() => routeChangeHandler('/reaeditadd')} >ADICIONAR RECURSO PRÓPRIO</button>
             </footer>
         </div>
     )
