@@ -19,18 +19,6 @@ export function CustomSelector(props){
     setIsOpen(false);
   };
 
-  // Estilo via props
-
-  const divStyle = {
-    width: props.width,
-    height: props.height
-  };
-
-  console.log("Props: ")
-  console.log(props)
-  console.log("Recebido: ")
-  console.log(divStyle)
-
   const options = props.options
 
   console.log(options)
@@ -56,7 +44,9 @@ export function CustomSelector(props){
       <div onClick = { toggling } className = { (isOpen ? styles.dropDownHeader : styles.dropDownHeaderClosed )} 
       style = {{ 
       width: props.width,
-      height: props.height
+      height: props.height,
+      color: props.color,
+      fontSize: props.fontSize
       }}>
         {selectedOption || "Todas"}
           <img className = { styles.arrow } src = { Polygon }/>

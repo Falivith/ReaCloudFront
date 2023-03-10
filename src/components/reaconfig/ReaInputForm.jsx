@@ -1,4 +1,5 @@
 import styles from "./ReaInputForm.module.css"
+import { CustomSelector } from "../CustomSelector";
 import AddRing from "../../assets/Add_ring_green.png";
 import FileUpload from "../../assets/FileUpload.png"
 
@@ -7,7 +8,7 @@ export function ReaInputForm(){
         <div className = { styles.container }>
             <header className = { styles.header }><img src = { AddRing } alt = "Símbolo de Adição de Recurso" /> Adicionar novos recursos</header>
             <form id = "reaconfig" className = { styles.formContainer }>
-                <div>
+                <div className = { styles.columns }>
                     <div className = { styles.column }>
                         <div className = { styles.inputContainer }>
                             <label htmlFor = "title" className = { styles.inputLabel }>TÍTULO DO MATERIAL</label>
@@ -15,22 +16,20 @@ export function ReaInputForm(){
                         </div>
                         <div className = { styles.inputContainer }>
                             <label htmlFor = "reatype" className = { styles.inputLabel }>TIPO DO MATERIAL</label>
-                            <input id = "reatype" type = "text" className = { styles.inputBox }/>
+                            <input id = "reatype" type = "text" className = { styles.inputBox } placeholder = "Tipo do Material"/>
                         </div>
                         <div className = { styles.inputContainer }>
                             <label htmlFor = "link" className = { styles.inputLabel }>LINK</label>
-                            <input id = "link" type = "text" className = { styles.inputBox }/>
+                            <input id = "link" type = "text" className = { styles.inputBox } placeholder = "Link"/>
                         </div>
                         <div className = { styles.inputContainer }>
                             <label htmlFor = "targetpublic" className = { styles.inputLabel }>PÚBLICO ALVO</label>
-                            <select id = "targetpublic" className = { styles.selector } name = "area-conhecimento" placeholder = "Título do Material">
-                                <option value="" disabled selected hidden>Público Alvo</option>
-                                <option value="0">Ensino Superior</option>
-                                <option value="1">Ensino Médio</option>
-                                <option value="2">Ensino Fundamental</option>
-                                <option value="3">Séries Iniciais</option>
-                                <option value="4">Geral</option>
-                            </select>
+                            <CustomSelector id = "targetpublic"
+                                width = {"364px"}
+                                height = {"44px"}
+                                color = {"var(--lightgray4)"}
+                                fontSize = {"18px"}
+                                options = {["Séries Iniciais", "Fundamental", "Médio", "Superior"]}/> 
                         </div>              
                     </div>
 
@@ -50,42 +49,43 @@ export function ReaInputForm(){
                         </div>
                         <div className = { styles.inputContainer }>
                             <label htmlFor = "reatype" className = { styles.inputLabel }>ÁREA DO CONHECIMENTO</label>
-                            <select id = "reatype" className = { styles.selector } name = "area-conhecimento">
-                                <option value="0">Matemática</option>
-                                <option value="1">Português</option>
-                                <option value="2">Ciências</option>
-                                <option value="3">Humanas</option>
-                                <option value="4">Linguagens</option>
-                            </select>
+                            <CustomSelector id = "reatype"
+                                width = {"364px"}
+                                height = {"44px"}
+                                color = {"var(--lightgray4)"}
+                                fontSize = {"18px"}
+                                options = {["Português", "Matemática", "Biologia", "Teologia"]}/>
                         </div>
                         <div className = { styles.inputContainer }>
                             <label htmlFor = "license" className = { styles.inputLabel }>TIPO DE LICENÇA</label>
-                            <select id = "license" className = { styles.selector } name = "area-conhecimento">
-                                <option value="0">GNU</option>
-                                <option value="1">MIT</option>
-                                <option value="2">Public</option>
-                                <option value="3">Free</option>
-                                <option value="4">Royalties Free</option>
-                            </select>
+                            <CustomSelector id = "targetpublic"
+                                width = {"364px"}
+                                height = {"44px"}
+                                color = {"var(--lightgray4)"}
+                                fontSize = {"18px"}
+                                options = {["Domínio Público", "GNU"]}/> 
                         </div>
                         <div className = { styles.inputContainer }>
                             <label htmlFor = "language" className = { styles.inputLabel }>IDIOMA DO MATERIAL</label>
-                            <select id = "language" className = { styles.selector } name = "area-conhecimento">
-                                <option value="0">Português</option>
-                                <option value="1">Inglês</option>
-                                <option value="2">Francês</option>
-                                <option value="3">Alemão</option>
-                                <option value="4">Outro</option>
-                            </select>
+                            <CustomSelector id = "targetpublic"
+                                width = {"364px"}
+                                height = {"44px"}
+                                color = {"var(--lightgray4)"}
+                                fontSize = {"18px"}
+                                options = {["Português", "Inglês", "Francês", "Alemão", "Outro"]}/>
                         </div>
                     </div>
                 </div>
+
                 <div className = { styles.description }>
                     <label htmlFor = "description" className = { styles.inputLabel }>DESCRIÇÃO</label>
-                    <input id = "description" type = "text" className = { styles.inputBox }/>
-                </div>      
-                <label htmlFor = "instructions"></label>
-                <textarea rows="4" cols="20" name="instructions" id = "instructions"  maxLength="1000" className = { styles.textArea }></textarea>
+                    <input id = "description" type = "text" className = { styles.descriptionInputBox } placeholder = "Descrição do recurso educacional"/>
+                </div>
+
+                <div className = { styles.instructions }>
+                    <label htmlFor = "instructions" className = { styles.inputLabel }>INSTRUÇÕES DE USO</label>
+                    <textarea rows="4" cols="20" name="instructions" id = "instructions"  maxLength="1000" className = { styles.textArea } placeholder = "Instruções de Uso"></textarea>                    
+                </div>
             </form>
         </div>
     )
