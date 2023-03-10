@@ -1,5 +1,6 @@
 import styles from './Filters.module.css';
 import Search from '../assets/Search.svg';
+import { CustomSelector } from './CustomSelector';
 import { useNavigate } from 'react-router-dom';
 
 export function Filters() {
@@ -18,28 +19,18 @@ export function Filters() {
 
             <div className = { styles.selectorExternalContainer }>
                 <span className = { styles.blueSpan }>ÁREA DO CONHECIMENTO</span>
-                <div className = { styles.lsCustomSelect }>
-                    <select className = { styles.lsSelect } name = "area-conhecimento">
-                        <option value="0">Todas</option>
-                        <option value="1">Português</option>
-                        <option value="2">Matemática</option>
-                    </select>
-                    <span className = { styles.customArrow }></span>
-                </div>
+                <CustomSelector
+                    width = {"201px"}
+                    height = {"44px"}
+                    options = {["Português", "Matemática", "Biologia", "Teologia"]}/> 
             </div>
 
             <div className = { styles.selectorExternalContainer }>
                 <span className = { styles.blueSpan }>TIPO DO MATERIAL</span>
-                <div className = { styles.lsCustomSelect }>
-                    <select className = { styles.lsSelect } name = "tipo-material">
-                        <option value="0">Todos</option>
-                        <option value="1">Vídeo</option>
-                        <option value="2">Site</option>
-                        <option value="3">Artigo</option>
-                        <option value="4">Documento</option>
-                    </select>
-                    <span className = { styles.customArrow }></span>
-                </div>  
+                <CustomSelector
+                    width = {"200px"}
+                    height = {"44px"}
+                    options = {["Website", "Vídeo", "Artigo"]}/> 
             </div>
 
             <button className = { styles.blueSearchButton } onClick={() => routeChangeHandler('/explorer')} >BUSCAR</button>

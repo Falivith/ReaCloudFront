@@ -15,7 +15,7 @@
 
 .internalContainer{
     width: 24rem;
-    height: 2.75rem;
+    height: 44px;
     display: flex;
     border: 1px;
     border-color: var(--lightgray);
@@ -41,7 +41,7 @@
 }
 
 .blueSpan{
-    margin-left: 0.7rem;
+    margin-left: 0.5rem;
     font-size: 0.875rem;
     font-weight: 700;
     color: var(--lightblue);
@@ -81,6 +81,7 @@ Select Menus
 
 .lsSelect{
     width: 100%;
+    height: 44px;
     padding: 0.565rem 1rem;
     color: var(--gray);
     font-size: 1.25rem;
