@@ -16,12 +16,15 @@ export function ProfileLabelAndInput({labelText, inputType, showButton = true, p
         <div>
             <p className= {styles.text} >{labelText}</p>
                 <span className={styles.SpanContainer}>
-                    <input type ={inputType} className={inputStyle} placeholder={placeholderText} readOnly = {readOnly}></input>
+                    
                     {showButton ?    
+                        <>
+                        <input type ={inputType} className={inputStyle} placeholder={placeholderText} readOnly = {readOnly}></input>
                         <button onClick={(event) => buttonHandler(event)} type="button" className={buttonClass ? styles.MeuButton : styles.MeuButtonClick} >
                             <img src='src/assets/Editar.png'/>
                         </button>
-                        :null
+                        </>
+                        :<input type ={inputType} className={inputStyle} placeholder={placeholderText} readOnly = {false}></input>
                     }
                 </span>
         </div>
