@@ -171,3 +171,15 @@ border-radius: 0px 10px 10px 0px;
 .whiteButton:hover{
     background-color: var(--lightgray);
 }
+
+.containerFormEmail {
+    width: 100vw;
+    margin-top: 2.875rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
