@@ -118,3 +118,56 @@ border-radius: 0px 10px 10px 0px;
     list-style-type: none;     
     color: #4F518C;
 }
+
+.addNewReasLabel{
+    display: flex;
+    padding: 0.5rem;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    background-color: #f2f2f2;
+    margin-bottom: -0.5rem;
+}
+
+.addNewReasLabel > h1 {
+    font-family: 'Antic', sans-serif;
+    color: var(--gray);
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.blueSearchButton{
+    cursor: pointer;
+    padding: 12px 36px 12px 36px;
+    border: hidden;
+    margin-left: 0.5rem;
+    width:49%;
+    border-radius: 10px;
+    height: 2.75rem;
+    font-size: 1rem;
+    color: var(--white);
+    background-color: var(--blue);
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.blueSearchButton:hover{
+    background-color: var(--darkblue);
+}
+
+.whiteButton{
+    cursor: pointer;
+    width:48%;
+    padding: 12px 36px 12px 36px;
+    border: 1px solid var(--blue);
+    border-radius: 10px;
+    height: 2.75rem;
+    font-size: 1rem;
+    color: var(--blue);
+    background-color: var(--white);
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.whiteButton:hover{
+    background-color: var(--lightgray);
+}
