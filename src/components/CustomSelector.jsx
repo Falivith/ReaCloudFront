@@ -4,12 +4,9 @@ import Polygon from "../assets/Polygon.png";
 
 export function CustomSelector(props){
 
-  const ref = useRef();
-
   const [isOpen, setIsOpen] = useState(false);
   const toggling = () => {
     setIsOpen(!isOpen);
-    //console.log("Aberto: " + !isOpen)
   }
 
   const [selectedOption, setSelectedOption] = useState('Todos');
@@ -20,15 +17,14 @@ export function CustomSelector(props){
   };
 
   const options = props.options
-
-  console.log(options)
+  const id = props.selectorId
 
   // Fechar ao clicar fora do container
 
   useEffect(() => {
     const closeDropDown = e => {
-      if(!e.composedPath()[0].className.includes("dropDownHeader") && !e.composedPath()[0].className.includes("arrow")){
-        setIsOpen(false); 
+      if(!(e.composedPath()[1].id == id) ){
+        setIsOpen(false);
       }
     }
     document.body.addEventListener('click', closeDropDown)
@@ -36,7 +32,7 @@ export function CustomSelector(props){
   }), [];
 
   return(
-    <div className = { styles.dropDownContainer } 
+    <div className = { styles.dropDownContainer } id = { props.selectorId } /*onClick = { () => { console.log("click", props.id) } }*/
       style = {{ 
       width: props.width,
       height: props.height
@@ -57,11 +53,12 @@ export function CustomSelector(props){
           style = {{ 
             width: props.width
           }}>
-          {options.map(option => (
-            <li className = { styles.listItem } onClick = { onOptionClicked(option) } key = {Math.random()}>
+          {options.map((option, index) => {
+            return (
+            <li className = { styles.listItem } onClick = { onOptionClicked(option) } key = { index } /*key = {Math.random() }*/ >
                 {option} 
             </li>
-          ))}
+          )})}
         </ul>
       </div>
       )}

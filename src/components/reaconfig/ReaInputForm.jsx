@@ -25,6 +25,7 @@ export function ReaInputForm(){
                         <div className = { styles.inputContainer }>
                             <label htmlFor = "targetpublic" className = { styles.inputLabel }>PÚBLICO ALVO</label>
                             <CustomSelector id = "targetpublic"
+                                selectorId = { 1 }
                                 width = {"364px"}
                                 height = {"44px"}
                                 color = {"var(--lightgray4)"}
@@ -50,6 +51,7 @@ export function ReaInputForm(){
                         <div className = { styles.inputContainer }>
                             <label htmlFor = "reatype" className = { styles.inputLabel }>ÁREA DO CONHECIMENTO</label>
                             <CustomSelector id = "reatype"
+                                selectorId = { 2 }
                                 width = {"364px"}
                                 height = {"44px"}
                                 color = {"var(--lightgray4)"}
@@ -59,6 +61,7 @@ export function ReaInputForm(){
                         <div className = { styles.inputContainer }>
                             <label htmlFor = "license" className = { styles.inputLabel }>TIPO DE LICENÇA</label>
                             <CustomSelector id = "targetpublic"
+                                selectorId = { 3 }
                                 width = {"364px"}
                                 height = {"44px"}
                                 color = {"var(--lightgray4)"}
@@ -68,6 +71,7 @@ export function ReaInputForm(){
                         <div className = { styles.inputContainer }>
                             <label htmlFor = "language" className = { styles.inputLabel }>IDIOMA DO MATERIAL</label>
                             <CustomSelector id = "targetpublic"
+                                selectorId = { 4 }
                                 width = {"364px"}
                                 height = {"44px"}
                                 color = {"var(--lightgray4)"}

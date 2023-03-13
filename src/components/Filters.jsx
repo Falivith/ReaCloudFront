@@ -20,6 +20,7 @@ export function Filters() {
             <div className = { styles.selectorExternalContainer }>
                 <span className = { styles.blueSpan }>ÁREA DO CONHECIMENTO</span>
                 <CustomSelector
+                    selectorId = {1}
                     width = {"201px"}
                     height = {"44px"}
                     options = {["Português", "Matemática", "Biologia", "Teologia"]}/> 
@@ -28,6 +29,7 @@ export function Filters() {
             <div className = { styles.selectorExternalContainer }>
                 <span className = { styles.blueSpan }>TIPO DO MATERIAL</span>
                 <CustomSelector
+                    selectorId = {2}
                     width = {"200px"}
                     height = {"44px"}
                     options = {["Website", "Vídeo", "Artigo"]}/> 
