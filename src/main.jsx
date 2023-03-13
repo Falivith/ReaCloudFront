@@ -10,7 +10,9 @@ import { ReaView } from "./pages/ReaView";
 import { Recover } from "./components/login/Recover";
 import { MeuPerfil } from "./pages/MeuPerfil";
 import { PluginReas } from "./pages/PluginReas";
-import { ReaConfigAdd } from "./pages/ReaConfigAdd";
+import { PostedReaEdit } from "./pages/PostedReaEdit";
+import { EditPostedReas } from './pages/EditPostedReas';
+import { NewReaEdit } from './pages/NewReaEdit';
 
 const router = createBrowserRouter([
   {
@@ -38,6 +40,18 @@ const router = createBrowserRouter([
     element: <PluginReas/>
   },
   {
+    path: '/editpostedreas',
+    element: <EditPostedReas/>
+  },
+  {
+    path: '/reaeditadd',
+    element: <NewReaEdit/>
+  },
+  {
+    path: '/postedreaedit',
+    element: <PostedReaEdit/>
+  },
+  {
     path: '/reaview',
     element: <ReaView/>
   },
@@ -48,10 +62,6 @@ const router = createBrowserRouter([
   {
     path: '/redefinir',
     element: <Recover/>
-  },
-  {
-    path: '/reaeditadd',
-    element: <ReaConfigAdd/>
   }
 ]);
 

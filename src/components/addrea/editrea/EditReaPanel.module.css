@@ -1,0 +1,97 @@
+.container {
+    color: black;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 50px;
+    height: 570px;
+    width: 780px;
+    gap: 20px;
+    align-items: center;
+}
+
+.header {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.header > span {
+    margin-left: 15px;
+    margin-top: 30px;
+    color: var(--gray);
+    font-size: 20px;
+    font-weight: 400;
+    display: flex;
+    gap: 5px;
+}
+
+.pluginReaCounter{
+    border: 1px solid var(--orange);
+    background-color: var(--orange);
+    color: white;
+    display: flex;
+    font-size: 16px;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1px;
+    padding: 3px; 
+    border-radius: 50%;
+}
+
+.addNewReasLabel{
+    display: flex;
+}
+
+.addNewReasLabel > h1 {
+    font-family: 'Antic', sans-serif;
+    color: var(--gray);
+    font-size: 48px;
+    font-weight: 400;
+}
+
+.pluginRequester{
+    height: 400px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.addOwnReaButton{
+    white-space: nowrap;
+    font-size: 14px;
+    color: var(--orange);
+    font-weight: 600;
+    padding: 0px 10px;
+    height: 30px;
+    border: solid 1px var(--orange);
+    border-radius: 10px;
+    background-color: white;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.addOwnReaButton:hover {
+    background-color: var(--darkgreen);
+    color: white;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+footer{
+    width: 570px;
+    margin: auto;
+    display: flex;
+    gap: 31px;
+    align-items: center;
+}
+
+.footerSpan{
+    color: var(--gray);
+    padding: 0px;
+    font-size: 16px;
+}

@@ -1,6 +1,6 @@
 import { ReaCloudStaticLogo } from "../ReaCloudStaticLogo";
 import AddRing from "../../assets/Add_ring_green.png";
-import SettingLine from "../../assets/Setting_line.png";
+import EditGear from "../../assets/Gear.png";
 import styles from "./AddReaPanel.module.css";
 import { useNavigate } from 'react-router-dom';
 
@@ -14,7 +14,7 @@ export function AddReaPanel(){
     return(
     <div className = { styles.container }>
         <ReaCloudStaticLogo/>
-        <div onClick = {() => routeChangeHandler('/PluginReas')} className = { styles.addNewReaContainer }>
+        <div onClick = {() => routeChangeHandler('/pluginreas')} className = { styles.addNewReaContainer }>
             <div className = { styles.addImgContainer }>
                 <img src = { AddRing } alt = "Adicionar novo recurso" />
             </div>
@@ -23,9 +23,9 @@ export function AddReaPanel(){
                 <p>Adicione novos recursos que foram salvos pelo plugin ou crie um novo recurso!</p>                
             </div>
         </div>
-        <div className = { styles.editReaContainer }>
+        <div onClick = {() => routeChangeHandler('/editpostedreas')} className = { styles.editReaContainer }>
             <div className = { styles.editImgContainer }>
-                <img src = { SettingLine } alt = "Adicionar novo recurso" />
+                <img src = { EditGear } alt = "Adicionar novo recurso" />
             </div>
             <div className = { styles.textContainer }>
                 <h1 className = { styles.editReaTitle }>EDITAR RECURSOS</h1>

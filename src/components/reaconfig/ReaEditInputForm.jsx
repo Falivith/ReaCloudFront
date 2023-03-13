@@ -1,12 +1,12 @@
 import styles from "./ReaInputForm.module.css"
 import { CustomSelector } from "../CustomSelector";
-import AddRing from "../../assets/Add_ring_green.png";
+import Gear from "../../assets/Gear.png";
 import FileUpload from "../../assets/FileUpload.png"
 
 export function ReaInputForm(){
     return(
         <div className = { styles.container }>
-            <header className = { styles.header }><img src = { AddRing } alt = "Símbolo de Adição de Recurso" /> Adicionar novos recursos</header>
+            <header className = { styles.header }><img src = { Gear } alt = "Símbolo de Adição de Recurso" /> Editar Recurso </header>
             <form id = "reaconfig" className = { styles.formContainer }>
                 <div className = { styles.columns }>
                     <div className = { styles.column }>

@@ -1,7 +1,7 @@
 import { Header } from "../components/Header"
-import { ReaInputForm } from "../components/reaconfig/ReaInputForm"
+import { ReaInputForm } from "../components/reaconfig/ReaEditInputForm"
 
-export function ReaConfigAdd(){
+export function PostedReaEdit(){
     return(
         <div>
             <Header showAddRecurso = {false} isLogged = {true}/>

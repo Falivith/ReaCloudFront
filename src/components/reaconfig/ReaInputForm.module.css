@@ -2,7 +2,8 @@
     color: black;
     margin: 24px auto;
     height: 90%;
-    width: 60%;
+    width: 50%;
+    min-width: fit-content;
     display: flex;
     flex-direction: column;
     border-radius: 10px;
@@ -54,14 +55,14 @@
 
 .formContainer{
     border: solid 1px var(--lightgray);
-    padding: 0px 60px 40px 60px;
+    padding: 0px 60px 20px 60px;
     border-radius: 0px 0px 10px 10px;
     display: grid;
     padding-top: 30px;
 }
 
 
-.formContainer > div{
+.formContainer > .column, .description, .instructions{
     display: flex;
     justify-content: space-between;
 }
@@ -90,6 +91,7 @@
 .columns{
     display: flex;
     gap: 15px;
+    justify-content: space-between;
 }
 
 .inputBox{
@@ -192,4 +194,48 @@
 
 .textArea::placeholder{
     color: var(--lightgray4);
+}
+
+.buttonsContainer {
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.cancelButton {
+    background-color: white;
+    color: var(--blue);
+    font-weight: 700;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: 1px solid var(--blue);
+    border-radius: 10px;
+    transition: 0.2s;
+}
+
+.cancelButton:hover {
+    background-color: var(--blue);
+    color: white;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.submitButton {
+    background-color: var(--blue);
+    width: 143px;
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 10px 10px;
+    border: 1px solid var(--blue);
+    border-radius: 10px;
+    transition: 0.2s;
+}
+
+.submitButton:hover {
+    background-color: var(--darkblue);
+    color: white;
+    transition: 0.2s;
+    cursor: pointer;
 }
