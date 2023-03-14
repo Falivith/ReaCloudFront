@@ -9,6 +9,11 @@
     gap: 35px;
 }
 
+.loginRCLogo{
+    margin: 3rem auto;
+    padding-right: 20px;
+}
+
 @media (max-width: 1000px){
 
     .reaViewContainer{

@@ -56,7 +56,7 @@ return(
             <LabelAndInput value = {values.password} onChange={handleChange} name="password" inputStyle = {styleLabelandInput.input2} labelText = {'SENHA'} inputType = {'password'} placeholderText = {'• • • • • • •'}/>          
             <LabelAndInput inputStyle = {styleLabelandInput.input2} labelText = {'REPETIR SENHA'} inputType = {'password'} placeholderText = {'• • • • • • •'}/>        
             </div>
-            <div style= {{"marginop": "1rem"}}> <Button textButton={"CADASTRAR"}/> </div>
+            <div style= {{"marginTop": "1rem"}}> <Button textButton={"CADASTRAR"}/> </div>
         </form> ''
     </div>
 )
