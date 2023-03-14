@@ -7,7 +7,7 @@ const login = async credentials => {
 }
 
 const register = async credentials => {
-  const response = await axios.post('/api/registration', credentials)
+  const response = await axios.post('/api/users', credentials)
   return response.data
 }
 
