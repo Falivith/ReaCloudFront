@@ -1,16 +1,15 @@
-import { Form } from 'react-router-dom';
 import { FormCadastro } from '../components/cadastro/FormCadastro';
 import { Header } from '../components/Header';
-import { LabelAndInput } from '../components/login/LabelAndInput';
 import { ReaCloudStaticLogo } from '../components/ReaCloudStaticLogo';
 
 export function Cadastrar() {
     
-    const wrapper = {"marginTop":"3rem",
-    "maxWidth":"100rem",
-    "display":"flex",
-    "justifyContent":"center",
-  }
+    const wrapper = {
+        "marginTop": "3rem",
+        "maxWidth": "100rem",
+        "display": "flex",
+        "justifyContent": "center",
+    }
     
     
     return (

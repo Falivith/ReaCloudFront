@@ -55,6 +55,7 @@ seria decidido pegando o atributo da última classe informada. Mas nao funcionou
     min-height: 3rem;
     border-radius: 0.625rem;
     border: 0.0625rem solid #4F518C;
+    font-family: 'Roboto', sans-serif;
 }
 
 .containerForButtons{
@@ -79,7 +80,7 @@ seria decidido pegando o atributo da última classe informada. Mas nao funcionou
     align-items: center;
     justify-content: center;
 
-    font-family: 'Roboto';
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 1rem;

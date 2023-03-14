@@ -2,6 +2,8 @@ import EditGear from "../../../assets/Gear.png";
 import { PostedResourceContainer } from "./PostedResourceContainer";
 import styles from "./EditReaPanel.module.css";
 import { useNavigate } from 'react-router-dom';
+import { RemoveReaModal } from '../../modals/RemoveReaModal'
+import { useState } from "react";
 
 const reas = [
     {
@@ -20,6 +22,12 @@ const reas = [
 
 export function EditReaPanel(){
 
+    const [modalOpen, open] = useState(false)
+
+    const callModal = () => {
+        open(!modalOpen);
+    }
+
     const navigate = useNavigate();
     const routeChangeHandler = (route) => {
         navigate(`../${route}`);
@@ -32,7 +40,7 @@ export function EditReaPanel(){
                     <img src = { EditGear } alt = "Adicionar novos recursos" />
                     <h1>Adicionar novos recursos</h1>                    
                 </div>
-                <span>Você tem <span className = { styles.pluginReaCounter }>2</span> recursos salvos que ainda não foram adicionados.</span>
+                <span>Você tem <span className = { styles.pluginReaCounter }>2</span> recursos adicionados e pode editá-los abaixo.</span>
             </div>
             <div className = { styles.pluginRequester }>
                 {reas.map(rea => {
@@ -44,5 +52,6 @@ export function EditReaPanel(){
                 }
             </div>
         </div>
+        /*{}*/
     )
 }
