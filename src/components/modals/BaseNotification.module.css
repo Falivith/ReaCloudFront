@@ -1,0 +1,44 @@
+.backgroundColorAndContainer{
+    position: absolute;
+    box-shadow: 0px 5px 16px 1px rgba(0, 0, 0, 0.09);
+    right: 0px;
+    display: flex;
+    width: 310px;
+    height: 78px;
+    border-radius: 10px 0px 0px 10px;
+}
+
+.background{
+    margin-left: 5px;
+    border-radius: 10px 0px 0px 10px;
+    width: 310px;
+    background-color: #F4F4F4;
+}
+
+.header{
+    margin-top: 16px;
+    margin-left: 5px;
+    font-display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.title{
+    font-weight: 600;
+    color: var(--red);
+    font-size: 15px;
+}
+
+.close{
+    position: relative;
+    right: -280px;
+    top: -50px;
+    cursor: pointer;
+}
+
+.description{
+    color: #666666;
+    margin-left: 45px;
+    font-size: 13px;
+    font-weight: 600;
+}

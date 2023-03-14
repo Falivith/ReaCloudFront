@@ -33,16 +33,16 @@ export function CustomSelector(props){
 
   return(
     <div className = { styles.dropDownContainer } id = { props.selectorId } /*onClick = { () => { console.log("click", props.id) } }*/
-      style = {{ 
-      width: props.width,
-      height: props.height
+        style = {{ 
+        width: props.width,
+        height: props.height
       }}>
       <div onClick = { toggling } className = { (isOpen ? styles.dropDownHeader : styles.dropDownHeaderClosed )} 
-      style = {{ 
-      width: props.width,
-      height: props.height,
-      color: props.color,
-      fontSize: props.fontSize
+        style = {{ 
+        width: props.width,
+        height: props.height,
+        color: props.color,
+        fontSize: props.fontSize
       }}>
         {selectedOption || "Todas"}
           <img className = { styles.arrow } src = { Polygon }/>
@@ -55,7 +55,7 @@ export function CustomSelector(props){
           }}>
           {options.map((option, index) => {
             return (
-            <li className = { styles.listItem } onClick = { onOptionClicked(option) } key = { index } /*key = {Math.random() }*/ >
+            <li className = { styles.listItem } onClick = { onOptionClicked( option ) } key = { index } /*key = {Math.random() }*/ >
                 {option} 
             </li>
           )})}

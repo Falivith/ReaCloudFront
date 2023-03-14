@@ -2,10 +2,16 @@ import styles from "./ReaInputForm.module.css"
 import { CustomSelector } from "../CustomSelector";
 import AddRing from "../../assets/Add_ring_green.png";
 import FileUpload from "../../assets/FileUpload.png"
+import { BaseNotification } from "../modals/BaseNotification";
+
+/* saveSuccess, saveError, passwordSuccess, passwordWarning, passwordError */
 
 export function ReaInputForm(){
     return(
         <div className = { styles.container }>
+
+            <BaseNotification type = "saveSuccess"/>
+
             <header className = { styles.header }><img src = { AddRing } alt = "Símbolo de Adição de Recurso" /> Adicionar novos recursos</header>
             <form id = "reaconfig" className = { styles.formContainer }>
                 <div className = { styles.columns }>

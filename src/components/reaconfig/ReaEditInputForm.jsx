@@ -2,10 +2,16 @@ import styles from "./ReaInputForm.module.css"
 import { CustomSelector } from "../CustomSelector";
 import Gear from "../../assets/Gear.png";
 import FileUpload from "../../assets/FileUpload.png"
+import { BaseNotification } from "../modals/BaseNotification";
+
+/* saveSuccess, saveError, passwordSuccess, passwordWarning, passwordError */
 
 export function ReaInputForm(){
     return(
         <div className = { styles.container }>
+
+            <BaseNotification type = "saveSuccess"/>
+
             <header className = { styles.header }><img src = { Gear } alt = "Símbolo de Adição de Recurso" /> Editar Recurso </header>
             <form id = "reaconfig" className = { styles.formContainer }>
                 <div className = { styles.columns }>
@@ -30,8 +36,8 @@ export function ReaInputForm(){
                                 height = {"44px"}
                                 color = {"var(--lightgray4)"}
                                 fontSize = {"18px"}
-                                options = {["Séries Iniciais", "Fundamental", "Médio", "Superior"]}/> 
-                        </div>              
+                                options = {["Séries Iniciais", "Fundamental", "Médio", "Superior"]}/>
+                        </div>
                     </div>
 
                     <div className = { styles.column }>

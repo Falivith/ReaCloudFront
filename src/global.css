@@ -1,4 +1,5 @@
 :root {
+    --orange2: #EE7700;
     --orange: #FAAB6B;
     --darkorange: #ff8520;
     --white: #fff;
@@ -15,6 +16,7 @@
     --lightgray3: #F2F2F2;
     --lightgray4: #BEBEBE;
     --red: #D30000;
+    --lightred: #EE4444;
 }
 
 body {
