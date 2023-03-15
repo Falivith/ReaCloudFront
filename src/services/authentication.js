@@ -7,6 +7,7 @@ import axios from 'axios'
 // }
 
 export async function login(credentials) {
+  console.log('credentials =', credentials);
   const response = await axios.post('/api/login', credentials)
   return response.data
 }

@@ -61,14 +61,15 @@ export function FormLogin(){
     const handleSubmit = async(event) =>{
         event.preventDefault();
         try {
+            console.log('email =', email);
+            console.log('password =', password);
             const user = await login({
               email,password
             })
             window.localStorage.setItem(
                 'user', JSON.stringify(user)
               ) 
-            console.log(await getUser(user.email));
-            
+            console.log('user = ', user);
         }
         catch (exception) {
             console.log("erro");
