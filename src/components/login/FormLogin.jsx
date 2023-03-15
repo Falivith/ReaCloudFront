@@ -7,7 +7,7 @@ import jwt_decode from 'jwt-decode';
 
 import styleLabelandInput from './LabelAndInput.module.css'
 import { useEffect, useState } from 'react';
-import {login} from '../../services/authentication';
+import { getUser, login, setToken } from '../../services/authentication';
 
 
 
@@ -65,6 +65,8 @@ export function FormLogin(){
               email,password
             })
             console.log('token', user);
+            setToken(user.token)
+            console.log(await getUser(user.email));
         }
         catch (exception) {
             console.log("erro");
