@@ -18,7 +18,6 @@ export function MeuEmailESenha() {
                     <ProfileLabelAndInput labelText={'REPETIR NOVA SENHA'} inputType={'password'} placeholderText={'• • • • • • • • • •'} showButton={false}/>
                     <input className={styles.whiteButton} type="reset" value="Cancelar"></input>
                     <input className={styles.blueSearchButton} type="submit" value="Salvar"></input>
-
             </fieldset>
             </form>
         </div>
