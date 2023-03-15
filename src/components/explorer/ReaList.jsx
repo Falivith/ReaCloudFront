@@ -1,5 +1,7 @@
 import { ReaPreview } from './ReaPreview';
 import styles from './ReaList.module.css';
+import ExampleRea from "/ExampleRea.png"
+import ExampleRea2 from "/ExampleRea2.png"
 
 const reas = [
     {
@@ -7,14 +9,14 @@ const reas = [
         title: "WolframAlpha",
         description: "WolframAlpha é um mecanismo de conhecimento computacional que responde dúvidas sobre matemática. Utiliza datasets acomulados de vários anos, e é excelente para o ensino da matemática.",
         likes: 20,
-        thumb_url: "/src/assets/ExampleRea.png"
+        thumb_url: ExampleRea
     },
     {
         id: 2,
         title: "Atividades de Matemática de Acordo com a BNCC",
         description: "Artigo do Brasil Escola sobre funções, que introduz o assunto para alunos de matemática básica.",
         likes: 10,
-        thumb_url: "/src/assets/ExampleRea2.png"
+        thumb_url: ExampleRea2
     }
   ];
 

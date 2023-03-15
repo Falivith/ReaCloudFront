@@ -1,7 +1,7 @@
 import styles from './Profile.module.css'
 import '../../global.css'
 import { useState } from 'react';
-
+import Editar from "/Editar.png"
 export function ProfileLabelAndInput({labelText, inputType, showButton = true, placeholderText,inputStyle = styles.input}) {
     
     const [readOnly, setReadOnly] = useState(true);
@@ -21,7 +21,7 @@ export function ProfileLabelAndInput({labelText, inputType, showButton = true, p
                         <>
                         <input type ={inputType} className={inputStyle} placeholder={placeholderText} readOnly = {readOnly}></input>
                         <button onClick={(event) => buttonHandler(event)} type="button" className={buttonClass ? styles.MeuButton : styles.MeuButtonClick} >
-                            <img src='src/assets/Editar.png'/>
+                            <img src={Editar}/>
                         </button>
                         </>
                         :<input type ={inputType} className={inputStyle} placeholder={placeholderText} readOnly = {false}></input>
