@@ -1,10 +1,10 @@
 import axios from 'axios'
 
-let token = null
 
-export function setToken(newToken){
-  token = `Bearer ${newToken}`
-}
+
+// export function setToken(newToken){
+//   token = `Bearer ${newToken}`
+// }
 
 export async function login(credentials) {
   const response = await axios.post('/api/login', credentials)
@@ -17,9 +17,10 @@ export async function register(credentials) {
 }
 
 
-export async function getUser(email) {
+export async function getUser(email,token) {
+  
   const config = {
-    headers: { Authorization: token },
+    headers: { Authorization: `Bearer ${token}` },
   }
   
   const response = await axios.get(`/api/users/${email}`, config)
