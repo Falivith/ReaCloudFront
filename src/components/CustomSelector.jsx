@@ -23,7 +23,7 @@ export function CustomSelector(props){
 
   useEffect(() => {
     const closeDropDown = e => {
-      if(!(e.composedPath()[1].id == id) ){
+      if(!(e.composedPath()[1].id == id || e.composedPath()[0].id == id)){
         setIsOpen(false);
       }
     }
@@ -45,7 +45,7 @@ export function CustomSelector(props){
         fontSize: props.fontSize
       }}>
         {selectedOption || "Todas"}
-          <img className = { styles.arrow } src = { Polygon }/>
+          <img className = { styles.arrow } src = { Polygon } id = { props.selectorId }/>
       </div>
       {isOpen && (
       <div className = { styles.dropDownListContainer + (isOpen ? '' : 'closed') }>

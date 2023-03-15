@@ -10,7 +10,7 @@ export function ReaInputForm(){
     return(
         <div className = { styles.container }>
 
-            <BaseNotification type = "saveSuccess"/>
+            <BaseNotification type = "passwordWarning"/>
 
             <header className = { styles.header }><img src = { Gear } alt = "Símbolo de Adição de Recurso" /> Editar Recurso </header>
             <form id = "reaconfig" className = { styles.formContainer }>
