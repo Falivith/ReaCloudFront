@@ -6,8 +6,8 @@ import { Button } from './Button';
 import jwt_decode from 'jwt-decode';
 
 import styleLabelandInput from './LabelAndInput.module.css'
-import { useEffect } from 'react';
-
+import { useEffect, useState } from 'react';
+import {login} from '../../services/authentication';
 
 
 
@@ -53,14 +53,31 @@ export function FormLogin(){
             
         
         }, [])
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    
      
+    const handleSubmit = async(event) =>{
+        event.preventDefault();
+        try {
+            const user = await login({
+              email,password
+            })
+            console.log('token', user);
+        }
+        catch (exception) {
+            console.log("erro");
+        }
+    }
+
     return(
     <div className= {styles.container}>
-        <form > 
+        <form onSubmit={handleSubmit} > 
  
-            <LabelAndInput labelText={'E-MAIL'} inputType={"email"} placeholderText={'exemplo@email.com'} inputStyle = {styleLabelandInput.input}/>
+            <LabelAndInput value ={email} onChange = {({target})=> setEmail(target.value)} labelText={'E-MAIL'} inputType={"email"} placeholderText={'exemplo@email.com'} inputStyle = {styleLabelandInput.input}/>
             
-            <LabelAndInput labelText={'SENHA'} inputType={"password"}  placeholderText={'• • • • • • •'} inputStyle = {styleLabelandInput.input}/>
+            <LabelAndInput value ={password} onChange = {({target})=> setPassword(target.value)} labelText={'SENHA'} inputType={"password"}  placeholderText={'• • • • • • •'} inputStyle = {styleLabelandInput.input}/>
             <div className={styles.containerForButtons}>
                 {/* <button id="signInDiv" className={styles.containerButtons}> <span className={styles.spanText} ><img src= {googleLogo} style = {styleImage}  /> ENTRAR COM O GOOGLE </span></button> */}
                 <div id="signInDiv"></div> 

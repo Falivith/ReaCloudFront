@@ -3,7 +3,7 @@ import { LabelAndInput } from '../login/LabelAndInput';
 import { Button } from '../login/Button';
 import styleLabelandInput from '../login/LabelAndInput.module.css'
 import { useState } from 'react';
-import register from '../../services/authentication';
+import {register} from '../../services/authentication';
 
 
 export function FormCadastro() {
@@ -38,7 +38,7 @@ const handleSubmit = async(e) =>{
         console.log('user', user);
     }
     catch (exception) {
-        console.log("erro");
+        console.log("erro no cadastro");
     }
 }
   
@@ -56,7 +56,7 @@ return(
             <LabelAndInput value = {values.password} onChange={handleChange} name="password" inputStyle = {styleLabelandInput.input2} labelText = {'SENHA'} inputType = {'password'} placeholderText = {'• • • • • • •'}/>          
             <LabelAndInput inputStyle = {styleLabelandInput.input2} labelText = {'REPETIR SENHA'} inputType = {'password'} placeholderText = {'• • • • • • •'}/>        
             </div>
-            <div style= {{"marginop": "1rem"}}> <Button textButton={"CADASTRAR"}/> </div>
+            <div style= {{"marginTop": "1rem"}}> <Button textButton={"CADASTRAR"}/> </div>
         </form> ''
     </div>
 )
