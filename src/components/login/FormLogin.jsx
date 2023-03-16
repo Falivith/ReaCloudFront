@@ -7,7 +7,7 @@ import jwt_decode from 'jwt-decode';
 
 import styleLabelandInput from './LabelAndInput.module.css'
 import { useEffect, useState } from 'react';
-import { getUser, login } from '../../services/authentication';
+import { getUser, login, loginOAuth } from '../../services/authentication';
 
 
 
@@ -26,8 +26,7 @@ export function FormLogin(){
     
     function handleCallBackResponse(response){
         console.log("Encoded JWT ID token" + response.credential);
-        let userObject = jwt_decode(response.credential)
-        console.log(userObject);
+        // loginOAuth(response.credential)
 
       }
     

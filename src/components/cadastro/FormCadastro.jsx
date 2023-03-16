@@ -32,9 +32,9 @@ const handleSubmit = async(e) =>{
     e.preventDefault();
     console.log('values =\n', values);
     try {
-        const user = await register({
+        const user = await register(
           values
-        })
+        )
         console.log('user', user);
     }
     catch (exception) {
