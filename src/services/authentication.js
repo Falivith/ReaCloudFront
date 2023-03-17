@@ -8,6 +8,12 @@ import axios from 'axios'
 
 export async function login(credentials) {
   const response = await axios.post('/api/login', credentials)
+  
+  if (response.status === 200){
+    window.localStorage.setItem(
+      'user', JSON.stringify(response.data)
+    )}
+   
   return response.data
 }
 

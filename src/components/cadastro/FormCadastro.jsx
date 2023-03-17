@@ -3,11 +3,13 @@ import { LabelAndInput } from '../login/LabelAndInput';
 import { Button } from '../login/Button';
 import styleLabelandInput from '../login/LabelAndInput.module.css'
 import { useState } from 'react';
-import {register} from '../../services/authentication';
+import {login, register} from '../../services/authentication';
+import { useNavigate } from 'react-router-dom';
 
 
 export function FormCadastro() {
 
+const navigate = useNavigate();
 
 const initialValues = {
     nome: '',
@@ -32,10 +34,11 @@ const handleSubmit = async(e) =>{
     e.preventDefault();
     console.log('values =\n', values);
     try {
-        const user = await register(
-          values
-        )
-        console.log('user', user);
+        const result1 = await register(values)
+        console.log('bla1 = ', result1);
+        const result2 = await login({email : values.email, password : values.password   })
+        console.log('bla2 = ', result2);
+        navigate('/');
     }
     catch (exception) {
         console.log("erro no cadastro");
