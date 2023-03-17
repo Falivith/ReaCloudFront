@@ -5,7 +5,7 @@ export function EditPostedReas(){
     return(
 
         <div>
-            <Header showAddRecurso = {false} isLogged = {true}/>
+            <Header />
             <EditReaPanel/>
         </div>
     )

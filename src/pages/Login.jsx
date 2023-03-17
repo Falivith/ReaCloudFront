@@ -14,7 +14,7 @@ const wrapper = {"marginTop":"3rem",
 export function Login() {
     return (
         <div>
-            <Header showLogin = {false}/>    
+            <Header />    
             <div className = { styles.loginRCLogo }>
                 <ReaCloudStaticLogo/>
             </div>

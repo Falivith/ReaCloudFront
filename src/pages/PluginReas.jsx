@@ -4,7 +4,7 @@ import { Header } from '../components/Header';
 export function PluginReas(){
     return(
         <div>
-            <Header showAddRecurso = {false} isLogged = {true}/>
+            <Header />
             <PluginReasPanel/>
         </div>
     )

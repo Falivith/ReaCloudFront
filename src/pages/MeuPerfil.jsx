@@ -8,7 +8,7 @@ import { getUser } from '../services/authentication';
 export function MeuPerfil() {
     return (
         <div>
-            <Header showAddRecurso={false} isLogged={true} notificationNumber = {4}/> 
+            <Header notificationNumber = {4}/> 
             <MeusDados />
             <MeuEmailESenha />
             <Help/>

@@ -49,7 +49,7 @@ export function Recover() {
 
     return(
         
-        <div> <Header showAddRecurso = {false}/> 
+        <div> <Header /> 
             <div className={styles.container}>
                 <p className={styles.titleText}>Redefinição de senha</p>
                 <br></br>

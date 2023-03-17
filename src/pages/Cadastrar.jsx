@@ -7,7 +7,7 @@ export function Cadastrar() {
     
     return (
         <div>
-            <Header showCadastro = {false} showAddRecurso = {false}/>   
+            <Header />   
             <div className = { styles.loginRCLogo }>
                 <ReaCloudStaticLogo/>
             </div>
