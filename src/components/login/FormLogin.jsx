@@ -24,6 +24,9 @@ const styleImage = {"marginTop":"1rem",
                 
 export function FormLogin(){
     
+    const navigate = useNavigate();
+
+
     function handleCallBackResponse(response){
         console.log("Encoded JWT ID token" + response.credential);
         // loginOAuth(response.credential)
@@ -60,15 +63,11 @@ export function FormLogin(){
     const handleSubmit = async(event) =>{
         event.preventDefault();
         try {
-            console.log('email =', email);
-            console.log('password =', password);
             const user = await login({
               email,password
-            })
-            window.localStorage.setItem(
-                'user', JSON.stringify(user)
-              ) 
+            })  
             console.log('user = ', user);
+            navigate('/');
         }
         catch (exception) {
             console.log("erro");
