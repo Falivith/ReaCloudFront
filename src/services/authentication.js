@@ -1,5 +1,9 @@
 import axios from 'axios'
 
+const baseUrl = axios.create({
+  baseURL: 'http://localhost:3001'
+});
+
 
 export async function checkLogin() {
   let token = JSON.parse(localStorage.getItem('user'))?.token
@@ -10,7 +14,7 @@ export async function checkLogin() {
   }
 
   if (token !== null && token !== undefined) {
-    const response = await axios.post('/api/login/checkToken',config)    
+    const response = await baseUrl.post('/api/login/checkToken',config)    
     if (response.status == 200) {
       return true}
   }
@@ -19,7 +23,7 @@ export async function checkLogin() {
 }
 
 export async function login(credentials) {
-  const response = await axios.post('/api/login', credentials)
+  const response = await baseUrl.post('/api/login', credentials)
   
   if (response.status === 200){
     window.localStorage.setItem(
@@ -30,12 +34,12 @@ export async function login(credentials) {
 }
 
 export async function loginOAuth(credentials) {
-  const response = await axios.post('api/login/googleAuth', credentials)
+  const response = await baseUrl.post('api/login/googleAuth', credentials)
   return response.data
 }
 
 export async function register(credentials) {
-  const response = await axios.post('/api/users', credentials)
+  const response = await baseUrl.post('/api/users', credentials)
   return response.data
 }
 
@@ -46,7 +50,7 @@ export async function getUser(email,token) {
     headers: { Authorization: `Bearer ${token}` },
   }
   
-  const response = await axios.get(`/api/users/${email}`, config)
+  const response = await baseUrl.get(`/api/users/${email}`, config)
   return response.data
 }
 
