@@ -20,6 +20,7 @@ export function Header({notificationNumber = 0 }) {
     const logout = () => {
         window.localStorage.clear()
         setIsLoggedIn(false)
+        window.location.reload();
     }
 
 
