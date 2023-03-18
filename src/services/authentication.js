@@ -1,10 +1,22 @@
 import axios from 'axios'
 
 
+export async function checkLogin() {
+  let token = JSON.parse(localStorage.getItem('user'))?.token
+  console.log('token =', token);
+ 
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  }
 
-// export function setToken(newToken){
-//   token = `Bearer ${newToken}`
-// }
+  if (token !== null && token !== undefined) {
+    const response = await axios.post('/api/login/checkToken',config)    
+    if (response.status == 200) {
+      return true}
+  }
+  return false;
+
+}
 
 export async function login(credentials) {
   const response = await axios.post('/api/login', credentials)

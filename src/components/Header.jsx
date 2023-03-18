@@ -3,6 +3,9 @@ import ReaCloudLogo from '../assets/RClogo.svg';
 import RecursosEducacionaisLogo from '../assets/Add_ring.png';
 import UserLogo from '../assets/User_circle_light.png';
 import { useNavigate } from 'react-router-dom';
+import { checkLogin } from '../services/authentication';
+import { useEffect, useState } from 'react';
+
 
 export function Header({notificationNumber = 0 }) {
     const navigate = useNavigate();
@@ -10,12 +13,17 @@ export function Header({notificationNumber = 0 }) {
         navigate(`../${route}`);
     }
 
-    let isLoggedIn = localStorage.getItem('user');
-    if (isLoggedIn !== null && isLoggedIn !== undefined) {
-        isLoggedIn = true
-      } else {
-        isLoggedIn = false
-      }
+    const [isLoggedIn, setIsLoggedIn] = useState(null); 
+
+    useEffect(() => {
+        async function fetchLoginStatus() {
+          const isLoggedIn = await checkLogin();
+          setIsLoggedIn(isLoggedIn);
+        }
+      
+        fetchLoginStatus();
+        console.log('isLoggedIn', isLoggedIn);
+      }, []);
     
 
     return (
@@ -52,6 +60,7 @@ export function Header({notificationNumber = 0 }) {
                     <button className = { styles.buttonsLogged } onClick = {() => routeChangeHandler('')}>RECURSOS EDUCACIONAIS</button>
                     <img onClick = {() => routeChangeHandler('')} className = { styles.reaCloudLogo } src = { UserLogo } />
                     <button className = { styles.buttonsLogged } onClick={() => routeChangeHandler('/profile')}>MEU PERFIL</button>
+                    
                 </div>
                 : null
                 }
