@@ -8,10 +8,21 @@ import { useEffect, useState } from 'react';
 
 
 export function Header({notificationNumber = 0 }) {
+    
+    
+    
+    
     const navigate = useNavigate();
     const routeChangeHandler = (route) => {
         navigate(`../${route}`);
     }
+
+    const logout = () => {
+        window.localStorage.clear()
+        setIsLoggedIn(false)
+    }
+
+
 
     const [isLoggedIn, setIsLoggedIn] = useState(null); 
 
@@ -22,7 +33,6 @@ export function Header({notificationNumber = 0 }) {
         }
       
         fetchLoginStatus();
-        console.log('isLoggedIn', isLoggedIn);
       }, []);
     
 
@@ -60,7 +70,7 @@ export function Header({notificationNumber = 0 }) {
                     <button className = { styles.buttonsLogged } onClick = {() => routeChangeHandler('')}>RECURSOS EDUCACIONAIS</button>
                     <img onClick = {() => routeChangeHandler('')} className = { styles.reaCloudLogo } src = { UserLogo } />
                     <button className = { styles.buttonsLogged } onClick={() => routeChangeHandler('/profile')}>MEU PERFIL</button>
-                    
+                    <button className={ styles.loginButton } onClick={logout}>SAIR</button>
                 </div>
                 : null
                 }
