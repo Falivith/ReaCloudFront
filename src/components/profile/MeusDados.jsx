@@ -20,6 +20,7 @@ export function MeusDados() {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
+        console.log('e.target = ', e.target);
         setValues({
         ...values,
         [name]: value,
