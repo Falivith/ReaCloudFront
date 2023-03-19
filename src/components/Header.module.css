@@ -21,6 +21,11 @@
     margin-right: 0rem;
 }
 
+.sairLogo {
+    cursor: pointer;
+    margin-right: 0rem;
+}
+
 .reaCloudLogoText {
     font-family: 'Antic', sans-serif;
     font-size: 1.25rem;
@@ -78,6 +83,12 @@
     background: none;
     padding-left: 0.3rem;
     margin-right: 0.9375rem;
+    text-decoration: none;
+}
+
+.buttonsLogged:hover {
+    color: var(--lightgray);
+    transition: 0.25s ease-in;
 }
 
 .badge {

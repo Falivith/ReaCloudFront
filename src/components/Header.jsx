@@ -1,6 +1,7 @@
 import styles from './Header.module.css';
 import ReaCloudLogo from '../assets/RClogo.svg';
 import RecursosEducacionaisLogo from '../assets/Add_ring.png';
+import SairLogo from '../assets/Close_round_light.png'
 import UserLogo from '../assets/User_circle_light.png';
 import { useNavigate } from 'react-router-dom';
 import { checkLogin } from '../services/authentication';
@@ -68,10 +69,11 @@ export function Header({notificationNumber = 0 }) {
                     {notificationNumber > 0 ?
                         <span className = {`badge ${styles.badge}`}>{notificationNumber}</span>
                     :null}
-                    <button className = { styles.buttonsLogged } onClick = {() => routeChangeHandler('')}>RECURSOS EDUCACIONAIS</button>
+                    <button className = { styles.buttonsLogged } onClick = {() => routeChangeHandler('addrea')}>RECURSOS EDUCACIONAIS</button>
                     <img onClick = {() => routeChangeHandler('')} className = { styles.reaCloudLogo } src = { UserLogo } />
-                    <button className = { styles.buttonsLogged } onClick={() => routeChangeHandler('/profile')}>MEU PERFIL</button>
-                    <button className={ styles.loginButton } onClick={logout}>SAIR</button>
+                    <button className = { styles.buttonsLogged } onClick={() => routeChangeHandler('profile')}>MEU PERFIL</button>
+                    <img onClick = {logout} className = { styles.sairLogo} src = { SairLogo } />
+                    <button className={ styles.buttonsLogged } onClick={logout}>SAIR</button>
                 </div>
                 : null
                 }

@@ -14,8 +14,10 @@ export function MeuEmailESenha() {
             <fieldset className={styles.fieldset}>
                     <ProfileLabelAndInput labelText={'E-MAIL'} inputType={'text'} placeholderText={'Email'} />
                     <ProfileLabelAndInput labelText={'SENHA ATUAL'} inputType={'password'} placeholderText={'• • • • • • • • • •'} showButton={false}/>
-                    <ProfileLabelAndInput labelText={'NOVA SENHA'} inputType={'password'} placeholderText={'• • • • • • • • • •'} showButton={false}/>
-                    <ProfileLabelAndInput labelText={'REPETIR NOVA SENHA'} inputType={'password'} placeholderText={'• • • • • • • • • •'} showButton={false}/>
+                    <div className = {styles.twoItens}> 
+                        <ProfileLabelAndInput labelText={'NOVA SENHA'} inputType={'password'} inputStyle = {styles.inputTwo} placeholderText={'• • • • • • • • • •'} showButton={false}/>
+                        <ProfileLabelAndInput labelText={'REPETIR NOVA SENHA'} inputType={'password'} inputStyle = {styles.inputTwo} placeholderText={'• • • • • • • • • •'} showButton={false}/>
+                    </div>
                     <input className={styles.whiteButton} type="reset" value="Cancelar"></input>
                     <input className={styles.blueSearchButton} type="submit" value="Salvar"></input>
             </fieldset>

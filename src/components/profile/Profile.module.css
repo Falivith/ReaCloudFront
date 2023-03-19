@@ -78,8 +78,28 @@
 }
 
 .inputTwo{
-    max-width: 174;
-    max-height: 48;
+    max-width: 10.875rem;
+    min-height: 3rem;
+    border: 0.0625rem solid #D9D9D9;
+    border-radius: 0.75rem;
+
+    display: flex;
+    align-items: center;
+   
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 22px;
+    padding-left: 1.125rem;
+}
+
+.inputTwo::placeholder {
+    display: flex;
+    align-items: center;
+    color: #BEBEBE;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 22px;
+
 }
 
 .MeuButton {
