@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -6,6 +7,7 @@ import { useState } from "react";
 
 const useFetch = (url) => {
 
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -36,6 +38,9 @@ const useFetch = (url) => {
       .catch((error) => {
         setError(error?.message);
       });
+      console.log("navegaaaaaaaaando");
+      navigate('../')
+
   };
   return { loading, error, handleGoogle };
 };
