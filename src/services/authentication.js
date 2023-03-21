@@ -7,7 +7,6 @@ const baseUrl = axios.create({
 
 export async function checkLogin() {
   let token = JSON.parse(localStorage.getItem('user'))?.token
-  console.log('token =', token);
  
   const config = {
     headers: { Authorization: `Bearer ${token}` },

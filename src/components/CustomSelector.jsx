@@ -13,6 +13,7 @@ export function CustomSelector(props){
 
   const onOptionClicked = value => () => {
     setSelectedOption(value);
+    props.handleResult(props.id, value)
     setIsOpen(false);
   };
 
