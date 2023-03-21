@@ -35,9 +35,7 @@ const handleSubmit = async(e) =>{
     console.log('values =\n', values);
     try {
         const result1 = await register(values)
-        console.log('bla1 = ', result1);
         const result2 = await login({email : values.email, password : values.password   })
-        console.log('bla2 = ', result2);
         navigate('/');
     }
     catch (exception) {

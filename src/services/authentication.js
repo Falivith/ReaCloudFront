@@ -43,13 +43,38 @@ export async function register(credentials) {
 }
 
 
-export async function getUser(email,token) {
+export async function getUser() {
+  const user = window.localStorage.getItem('user')   
+  const userObject = JSON.parse(user)
   
   const config = {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { Authorization: `Bearer ${userObject?.token}` },
   }
+  // futuramente colocar essa parte de cima em uma função(util), já que repeti no UpdateUser logo abaixo
+  if (user) {
+    
+    const response = await baseUrl.get(`/api/users/${userObject.email}`, config)
+    return response.data
+  }
+
+  console.log("nenhum usuario logado");  
   
-  const response = await baseUrl.get(`/api/users/${email}`, config)
+}
+
+
+export async function updateUser(updatedUser) {
+  
+  const user = window.localStorage.getItem('user')   
+  const userObject = JSON.parse(user)
+  
+  const config = {
+    headers: { Authorization: `Bearer ${userObject?.token}` },
+  }
+  // futuramente colocar essa parte de cima em uma função(util)
+
+  console.log('updatedUser', updatedUser);
+  
+  const response = await baseUrl.put(`/api/users/${userObject?.email}`,updatedUser,config)
   return response.data
 }
 

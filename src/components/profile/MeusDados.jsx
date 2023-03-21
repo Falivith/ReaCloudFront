@@ -3,7 +3,7 @@ import styles from './Profile.module.css';
 import MeusDadosImg from '../../assets/User_cicle_lightblue.png'
 import '../../global.css'
 import {useState,useEffect} from 'react';
-import { getUser } from '../../services/authentication';
+import { getUser, updateUser } from '../../services/authentication';
 
 export function MeusDados() {
     
@@ -30,23 +30,30 @@ export function MeusDados() {
    
     useEffect(() => {
         async function fetchData(){
-        const user = window.localStorage.getItem('user')
-        if (user) {
-          const userObject = JSON.parse(user)
-          const userInfo = await getUser(userObject.email,userObject.token)
-          console.log('userInfo = ', userInfo);
-          setValues({...userInfo})  
-        }}
+        
+        
+          setValues(await getUser())  
+        }
         fetchData()
       }, [])
     
-    
+      const handleSubmit = async(e) =>{
+        e.preventDefault();
+        console.log('values =\n', values);
+        try {
+            const result = await updateUser(values)
+            console.log('result = ', result);
+        }
+        catch (exception) {
+            console.log("erro ao atualizar");
+        }
+    }
     
     
     
     return(
         <div className={styles.containerForm}>
-            <form>
+            <form onSubmit={handleSubmit}>
             <div className={styles.addNewReasLabel}>
                     <img src = { MeusDadosImg } alt = "Meus Dados" />
                     <h1>Meus Dados</h1>
