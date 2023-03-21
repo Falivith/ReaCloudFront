@@ -31,11 +31,11 @@ export function Header({notificationNumber = 0 }) {
 
     useEffect(() => {
         async function fetchLoginStatus() {
-          const isLoggedIn = await checkLogin();
-          setIsLoggedIn(isLoggedIn);
+          setIsLoggedIn(await checkLogin());
         }
       
         fetchLoginStatus();
+
       }, []);
     
 

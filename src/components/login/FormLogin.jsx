@@ -8,6 +8,7 @@ import jwt_decode from 'jwt-decode';
 import styleLabelandInput from './LabelAndInput.module.css'
 import { useEffect, useState } from 'react';
 import { getUser, login, loginOAuth } from '../../services/authentication';
+import useFetch from '../../hooks/useFetch';
 
 
 
@@ -25,20 +26,17 @@ const styleImage = {"marginTop":"1rem",
 export function FormLogin(){
     
     const navigate = useNavigate();
-
-
-    function handleCallBackResponse(response){
-        console.log("Encoded JWT ID token" + response.credential);
-        // loginOAuth(response.credential)
-
-      }
+   
+    const { handleGoogle, loading, error } = useFetch(
+        "http://localhost:3001/api/googleLogin" 
+      );
     
       useEffect(() => {
         /* global google */
         if (typeof google !== 'undefined') {
             google.accounts.id.initialize({
                 client_id: "567563462560-pgebq1hruc66b5nlhjt6qb910m7tk0b7.apps.googleusercontent.com",
-                callback: handleCallBackResponse
+                callback: handleGoogle
                 });
             
                 google.accounts.id.renderButton(
@@ -51,10 +49,7 @@ export function FormLogin(){
     
                 google.accounts.id.prompt()
           }
-        
-            
-        
-        }, [])
+        }, [handleGoogle])
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
