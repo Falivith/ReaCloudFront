@@ -4,6 +4,7 @@ import MeusDadosImg from '../../assets/User_cicle_lightblue.png'
 import '../../global.css'
 import {useState,useEffect} from 'react';
 import { getUser, updateUser } from '../../services/authentication';
+import ProfilePicture from './profilePicture';
 
 export function MeusDados() {
     
@@ -53,6 +54,7 @@ export function MeusDados() {
     
     return(
         <div className={styles.containerForm}>
+            <ProfilePicture/>
             <form onSubmit={handleSubmit}>
             <div className={styles.addNewReasLabel}>
                     <img src = { MeusDadosImg } alt = "Meus Dados" />
