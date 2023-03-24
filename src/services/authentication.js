@@ -72,10 +72,15 @@ export async function uploadPhoto(profilePicture) {
   
   const {userObject,config} = await checkLoginStatus()
 
-  console.log('profilePicture = ', profilePicture);
+  console.log('profilePicture = ', profilePicture.get('file'));
   if (userObject) {
-    const response = await baseUrl.post('api/users/uploadPhoto', {profilePicture, mimeType:profilePicture.type },config)
-    return response.data
+    try{
+      const response = await baseUrl.post('api/users/uploadPhoto', profilePicture,config)
+      return response.data
+    }
+    catch(error){
+      console.log("error");
+    }  
   }
 }
 

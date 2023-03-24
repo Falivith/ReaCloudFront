@@ -3,15 +3,15 @@ import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import { getProfilePicture, uploadPhoto } from '../../services/authentication';
 
-const ProfilePicture = () => {
-  const [avatarSrc, setAvatarSrc] = useState('/deletar.jpg');
+const ProfilePicture = ({nome}) => {
+  const [avatarSrc, setAvatarSrc] = useState(null);
 
   useEffect(() => {
     async function fetchData(){
         
       const response = await getProfilePicture()
-      console.log('response =', response);
-      const blob = new Blob([response.data], { type: response.type });
+      const uint8Array = new Uint8Array(response.data.data);
+      const blob = new Blob([uint8Array], { type: response.data.type });
       const url = URL.createObjectURL(blob);
       setAvatarSrc(url);
   }
@@ -20,14 +20,16 @@ const ProfilePicture = () => {
 
 
 
-  const handleAvatarChange = (event) => {
+  const handleAvatarChange = async(event) => {
     const file = event.target.files[0];
+    const formData = new FormData();
+    
+    formData.append('file', file);
+    await uploadPhoto(formData)
+    
     const reader = new FileReader();
-
-    reader.onload = async (e) => {
-      const formData = new FormData();
-      formData.append('file', file);
-      await uploadPhoto(formData)
+    
+    reader.onload = async (e) => {   
       setAvatarSrc(e.target.result);
     };
 
@@ -38,11 +40,13 @@ const ProfilePicture = () => {
   return (
     <Stack direction="row" alignItems="center" spacing={2}>
       <label htmlFor="avatar-upload">
-        <Avatar
-          alt="John Doe"
+        <Avatar alt="John Doe"
           src={avatarSrc}
           sx={{ width: 100, height: 100, cursor: 'pointer' }}
-        />
+          >
+          {nome} 
+          
+          </Avatar>
       </label>
       <input
         id="avatar-upload"

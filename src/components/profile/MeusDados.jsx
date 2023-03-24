@@ -31,12 +31,7 @@ export function MeusDados() {
    
     useEffect(() => {
         async function fetchData(){
-        
-       
             setValues(await getUser()) 
-            
-        
-           
         }
         fetchData()
       }, [])
@@ -57,7 +52,7 @@ export function MeusDados() {
     
     return(
         <div className={styles.containerForm}>
-            <ProfilePicture/>
+            <ProfilePicture nome={values.nome}/>
             <form onSubmit={handleSubmit}>
             <div className={styles.addNewReasLabel}>
                     <img src = { MeusDadosImg } alt = "Meus Dados" />
