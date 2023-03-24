@@ -1,19 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
+import { getProfilePicture, uploadPhoto } from '../../services/authentication';
 
 const ProfilePicture = () => {
   const [avatarSrc, setAvatarSrc] = useState('/deletar.jpg');
+
+  useEffect(() => {
+    async function fetchData(){
+        
+      const response = await getProfilePicture()
+      console.log('response =', response);
+      const blob = new Blob([response.data], { type: response.type });
+      const url = URL.createObjectURL(blob);
+      setAvatarSrc(url);
+  }
+  fetchData()
+  }, []);
+
+
 
   const handleAvatarChange = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
 
-    reader.onload = (e) => {
+    reader.onload = async (e) => {
+      const formData = new FormData();
+      formData.append('file', file);
+      await uploadPhoto(formData)
       setAvatarSrc(e.target.result);
     };
 
     reader.readAsDataURL(file);
+    
   };
 
   return (

@@ -3,7 +3,7 @@ import styles from './Profile.module.css';
 import MeusDadosImg from '../../assets/User_cicle_lightblue.png'
 import '../../global.css'
 import {useState,useEffect} from 'react';
-import { getUser, updateUser } from '../../services/authentication';
+import { checkLogin, getUser, updateUser } from '../../services/authentication';
 import ProfilePicture from './profilePicture';
 
 export function MeusDados() {
@@ -32,8 +32,11 @@ export function MeusDados() {
     useEffect(() => {
         async function fetchData(){
         
+       
+            setValues(await getUser()) 
+            
         
-          setValues(await getUser())  
+           
         }
         fetchData()
       }, [])

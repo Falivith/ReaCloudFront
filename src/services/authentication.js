@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { checkLoginStatus } from './utils';
 
 const baseUrl = axios.create({
   baseURL: 'http://localhost:3001'
@@ -44,15 +45,10 @@ export async function register(credentials) {
 
 
 export async function getUser() {
-  const user = window.localStorage.getItem('user')   
-  const userObject = JSON.parse(user)
+  const {userObject,config} = await checkLoginStatus()
   
-  const config = {
-    headers: { Authorization: `Bearer ${userObject?.token}` },
-  }
-  // futuramente colocar essa parte de cima em uma função(util), já que repeti no UpdateUser logo abaixo
-  if (user) {
-    
+  
+  if (userObject) {
     const response = await baseUrl.get(`/api/users/${userObject.email}`, config)
     return response.data
   }
@@ -64,17 +60,37 @@ export async function getUser() {
 
 export async function updateUser(updatedUser) {
   
-  const user = window.localStorage.getItem('user')   
-  const userObject = JSON.parse(user)
-  
-  const config = {
-    headers: { Authorization: `Bearer ${userObject?.token}` },
-  }
-  // futuramente colocar essa parte de cima em uma função(util)
+  const {userObject,config} = await checkLoginStatus()
 
-  console.log('updatedUser', updatedUser);
-  
-  const response = await baseUrl.put(`/api/users/${userObject?.email}`,updatedUser,config)
-  return response.data
+  if (userObject) {
+    const response = await baseUrl.put(`/api/users/${userObject?.email}`,updatedUser,config)
+    return response.data
+  }
 }
+
+export async function uploadPhoto(profilePicture) {
+  
+  const {userObject,config} = await checkLoginStatus()
+
+  console.log('profilePicture = ', profilePicture);
+  if (userObject) {
+    const response = await baseUrl.post('api/users/uploadPhoto', {profilePicture, mimeType:profilePicture.type },config)
+    return response.data
+  }
+}
+
+
+export async function getProfilePicture() {
+  
+  const {userObject,config} = await checkLoginStatus()
+
+  if (userObject) {
+    const response = await baseUrl.get('api/users/uploadPhoto', config)
+    return response.data
+  }
+}
+
+
+
+
 

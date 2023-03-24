@@ -6,9 +6,10 @@ const baseUrl = axios.create({
 });
 
 export async function submitRea(recurso){
-  user,config = checkLoginStatus()
+  const {userObject,config} = await checkLoginStatus()
+  
 
-  if(user){
+  if(userObject){
     const response = await baseUrl.post(`/api/users/${userObject.email}`, recurso, config)
   }
   else{
