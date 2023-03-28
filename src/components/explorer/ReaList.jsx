@@ -1,9 +1,11 @@
 import { ReaPreview } from './ReaPreview';
 import styles from './ReaList.module.css';
-import ExampleRea from "/ExampleRea.png"
-import ExampleRea2 from "/ExampleRea2.png"
+import ExampleRea from "/ExampleRea.png";
+import ExampleRea2 from "/ExampleRea2.png";
+import { getAllReas } from '../../services/reaquerys';
+import { useState, useEffect } from 'react';
 
-const reas = [
+/*const reas = [
     {
         id: 1,
         title: "WolframAlpha",
@@ -18,8 +20,7 @@ const reas = [
         likes: 10,
         thumb_url: ExampleRea2
     }
-  ];
-
+  ];*/
   /* Atributos Dinâmicos
     title = {rea.title}
     description = {rea.description}
@@ -28,17 +29,36 @@ const reas = [
 */
 
 export function ReaList() {
+    
+    const [reas, setReas] = useState([]);
+
+    useEffect(() => {
+        async function fetchData() {
+          const result = await getAllReas();
+          setReas(result);
+        }
+        fetchData();
+      }, []);
+
     return (
         <div className = { styles.reaContainer }>
             {reas.map(rea => {
+                
+                const uint8Array = new Uint8Array(rea.thumb);
+                const blob = new Blob([uint8Array], { type: "Buffer" });
+                const url = URL.createObjectURL(blob);
+
                 return <ReaPreview
                     key = {rea.id}
                     title = {rea.title}
                     description = {rea.description}
                     likes = {rea.likes}
-                    thumb = {rea.thumb_url}
+                    thumb = {url}
                 />
                 })
+            }
+            {
+                console.log(reas)
             }
         </div>
     )

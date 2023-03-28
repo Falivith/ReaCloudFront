@@ -54,7 +54,6 @@ export async function getUser() {
   }
 
   console.log("nenhum usuario logado");  
-  
 }
 
 
