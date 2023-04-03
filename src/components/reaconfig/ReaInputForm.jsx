@@ -3,16 +3,48 @@ import { CustomSelector } from "../CustomSelector";
 import AddRing from "../../assets/Add_ring_green.png";
 import FileUpload from "../../assets/FileUpload.png"
 import { BaseNotification } from "../modals/BaseNotification";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useForm } from 'react-hook-form';
 
 /* saveSuccess, saveError, passwordSuccess, passwordWarning, passwordError */
 
 export function ReaInputForm(){
 
+    /*fetch('http://localhost:3001/api/recurso', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtldmluMzExMjEzQGNhc3Ryby5jb20iLCJpZCI6NSwiaWF0IjoxNjc5OTYxOTUyLCJleHAiOjE2Nzk5Nzk5NTJ9.taodRSLxCuvDePyUFdfUYVWGsUKUvlrxDLY4pKtHpi8'
+  },
+  body: JSON.stringify({
+    title: 'Recurso3',
+    reatype: 'Ferramenta',
+    link: 'https://pt.symbolab.com/',
+    targetPublic: 'Médio',
+    thumb: 'https://www.shutterstock.com/image-vector/man-icon-vector-260nw-1040084344.jpg',
+    knowledgeArea: 'Matemática',
+    license: 'Domínio Público',
+    language: 'Português',
+    description: 'is simply dummy text of the printing and types',
+    instructions: 'Abra, insira equação veja resposta.'
+  })
+})
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Erro na requisição');
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log(data);
+  })
+  .catch(error => {
+    console.error(error);
+  });*/
+
     const initialValues = {
         title: '',
-        reatype: '',
+        reaType: '',
         link: '',
         targetPublic: '',
         thumb: '',
@@ -24,7 +56,40 @@ export function ReaInputForm(){
     };
 
     const [ result, setResult ] = useState(initialValues)
+    const { register, handleSubmit, formState: { errors }} = useForm()
+    const [ file , setFileName ] = useState({nome: "", escolhido: false, path: ""});
 
+    const handleFileChange = (event) => {
+        const selectedFile = event.target.files[0];
+        const path = URL.createObjectURL(selectedFile);
+        setFileName ({nome:  selectedFile.name, escolhido: true, path: path});
+      };
+
+    const addRea = data => {
+        setResult(prevState => ({
+            ...prevState,
+            title: data.title,
+            reaType: data.reaType,
+            link: data.link,
+            description: data.description,
+            instructions: data.instructions,
+            thumb: file.path
+        }))
+        const onSubmit = data => console.log(data);
+    }
+
+    const sendRea = async(e) =>{
+        e.preventDefault();
+        console.log("Recurso: ", result);
+        try {
+            const result1 = await register(result)
+        }
+        catch (exception) {
+            console.log("erro no cadastro");
+        }
+    }
+
+    // Update Selector
     const updateSelected = (id, s) => {
         setResult(prevState => ({
             ...prevState, 
@@ -32,41 +97,9 @@ export function ReaInputForm(){
         }))
     }    
 
-    const {register, handleSubmit, formState: { errors }} = useForm()
-
-    const addRea = data => {
-        setResult(prevState => ({
-            ...prevState,
-            title: data.title,
-            reatype: data.reatype,
-            link: data.link,
-            description: data.description,
-            instructions: data.instructions
-        }))
-    }
-
-    const send = async(e) =>{
-        e.preventDefault();
-        console.log('values =\n', result);
-        try {
-            const result1 = await register(values)
-            console.log('bla1 = ', result1);
-            const result2 = await login({email : values.email, password : values.password   })
-            console.log('bla2 = ', result2);
-            navigate('/');
-        }
-        catch (exception) {
-            console.log("erro no cadastro");
-        }
-    }
-
     useEffect(() => {
         console.log(result);
-      }, [result]);
-
-    const getValues = s => {
-
-    }
+    }, [result]);
 
     return(
         <div className = { styles.container }>
@@ -82,8 +115,8 @@ export function ReaInputForm(){
                             <input id = "title" type = "text" name = "title" {...register("title")} className = { styles.inputBox } placeholder = "Título do Material"/>
                         </div>
                         <div className = { styles.inputContainer }>
-                            <label htmlFor = "reatype" className = { styles.inputLabel }>TIPO DO MATERIAL</label>
-                            <input id = "reatype" type = "text" name = "reaType" {...register("reaType")}  className = { styles.inputBox } placeholder = "Tipo do Material"/>
+                            <label htmlFor = "reaType" className = { styles.inputLabel }>TIPO DO MATERIAL</label>
+                            <input id = "reaType" type = "text" name = "reaType" {...register("reaType")}  className = { styles.inputBox } placeholder = "Tipo do Material"/>
                         </div>
                         <div className = { styles.inputContainer }>
                             <label htmlFor = "link" className = { styles.inputLabel }>LINK</label>
@@ -108,8 +141,8 @@ export function ReaInputForm(){
                             <label htmlFor = "imgpathStyle" className = { styles.inputLabel }>IMAGEM DO MATERIAL</label>
 
                             <label id = "imgpathStyle" htmlFor = "imgpath" className = { styles.fileChooser }>
-                                <span>Imagem</span>
-                                <input id = "imgpath" type = "file" style = {{ display: "none" }}/>
+                                <span> { file.escolhido? file.nome : "Imagem" } </span>
+                                <input id = "imgpath" type = "file" accept = ".png, .jpg, .jpeg" style = {{ display: "none" }} onChange = { handleFileChange }/>
                                 <div className = { styles.cornerUpload }>
                                     <img src = { FileUpload } alt = "Upload de Arquivo" />
                                     <span>CARREGAR</span>
@@ -118,8 +151,8 @@ export function ReaInputForm(){
 
                         </div>
                         <div className = { styles.inputContainer }>
-                            <label htmlFor = "reatype" className = { styles.inputLabel }>ÁREA DO CONHECIMENTO</label>
-                            <CustomSelector id = "reatype"
+                            <label htmlFor = "knowledgeArea" className = { styles.inputLabel }>ÁREA DO CONHECIMENTO</label>
+                            <CustomSelector id = "knowledgeArea"
                                 selectorId = { 2 }
                                 width = {"364px"}
                                 height = {"44px"}
@@ -170,7 +203,7 @@ export function ReaInputForm(){
 
                 <div className = { styles.buttonsContainer } >
                     <button className = { styles.cancelButton }>Cancelar</button>
-                    <button onClick = { getValues() } className = { styles.submitButton }>Salvar</button>
+                    <button className = { styles.submitButton }>Salvar</button>
                 </div>
             </form>
         </div>
