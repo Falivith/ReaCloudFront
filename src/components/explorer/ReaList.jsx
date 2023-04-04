@@ -1,7 +1,5 @@
 import { ReaPreview } from './ReaPreview';
 import styles from './ReaList.module.css';
-import ExampleRea from "/ExampleRea.png";
-import ExampleRea2 from "/ExampleRea2.png";
 import { getAllReas } from '../../services/reaquerys';
 import { useState, useEffect } from 'react';
 
@@ -44,9 +42,16 @@ export function ReaList() {
         <div className = { styles.reaContainer }>
             {reas.map(rea => {
                 
-                const uint8Array = new Uint8Array(rea.thumb);
-                const blob = new Blob([uint8Array], { type: "Buffer" });
-                const url = URL.createObjectURL(blob);
+                let uint8Array = new Uint8Array(rea.thumb);
+                let blob = new Blob([uint8Array], { type: "Buffer" });
+                let url = URL.createObjectURL(blob);
+
+                if(rea.thumb){
+                    uint8Array = new Uint8Array(rea.thumb.data)
+                    blob = new Blob([uint8Array], { type: "Buffer" });
+                    url = URL.createObjectURL(blob);
+                }
+                console.log(rea)
 
                 return <ReaPreview
                     key = {rea.id}
@@ -56,9 +61,6 @@ export function ReaList() {
                     thumb = {url}
                 />
                 })
-            }
-            {
-                console.log(reas)
             }
         </div>
     )

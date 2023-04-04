@@ -57,13 +57,7 @@ export function ReaInputForm(){
 
     const [ result, setResult ] = useState(initialValues)
     const { register, handleSubmit, formState: { errors }} = useForm()
-    const [ file , setFileName ] = useState({nome: "", escolhido: false, path: ""});
-
-    const handleFileChange = (event) => {
-        const selectedFile = event.target.files[0];
-        const path = URL.createObjectURL(selectedFile);
-        setFileName ({nome:  selectedFile.name, escolhido: true, path: path});
-      };
+    const [ image , setImage ] = useState("");
 
     const addRea = data => {
         setResult(prevState => ({
@@ -72,10 +66,10 @@ export function ReaInputForm(){
             reaType: data.reaType,
             link: data.link,
             description: data.description,
-            instructions: data.instructions,
-            thumb: file.path
+            instructions: data.instructions
         }))
-        const onSubmit = data => console.log(data);
+        console.log(data);
+        console.log(image);
     }
 
     const sendRea = async(e) =>{
@@ -97,9 +91,9 @@ export function ReaInputForm(){
         }))
     }    
 
-    useEffect(() => {
+    /*useEffect(() => {
         console.log(result);
-    }, [result]);
+    }, [result]);*/
 
     return(
         <div className = { styles.container }>
@@ -141,8 +135,8 @@ export function ReaInputForm(){
                             <label htmlFor = "imgpathStyle" className = { styles.inputLabel }>IMAGEM DO MATERIAL</label>
 
                             <label id = "imgpathStyle" htmlFor = "imgpath" className = { styles.fileChooser }>
-                                <span> { file.escolhido? file.nome : "Imagem" } </span>
-                                <input id = "imgpath" type = "file" accept = ".png, .jpg, .jpeg" style = {{ display: "none" }} onChange = { handleFileChange }/>
+                                <span> { image? image.name : "Imagem" } </span>
+                                <input id = "imgpath" type = "file" accept = ".png, .jpg, .jpeg" style = {{ display: "none" }} onChange = { e => setImage(e.target.files[0]) }/>
                                 <div className = { styles.cornerUpload }>
                                     <img src = { FileUpload } alt = "Upload de Arquivo" />
                                     <span>CARREGAR</span>

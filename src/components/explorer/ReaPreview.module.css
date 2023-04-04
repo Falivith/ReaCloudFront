@@ -15,6 +15,12 @@
     justify-content: space-between;
 }
 
+.dynamicImg{
+    border-radius: 50%;
+    width: 114px;
+    height: 113px;
+}
+
 .text{
     display: flex;
     flex-direction: column;
