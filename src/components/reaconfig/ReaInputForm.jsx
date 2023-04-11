@@ -5,6 +5,7 @@ import FileUpload from "../../assets/FileUpload.png"
 import { BaseNotification } from "../modals/BaseNotification";
 import { useEffect, useState, useRef } from "react";
 import { useForm } from 'react-hook-form';
+import { submitRea } from "../../services/submitNewRea";
 
 /* saveSuccess, saveError, passwordSuccess, passwordWarning, passwordError */
 
@@ -68,8 +69,14 @@ export function ReaInputForm(){
             description: data.description,
             instructions: data.instructions
         }))
-        console.log(data);
-        console.log(image);
+        // console.log('data = ', data);
+        // console.log(image);
+        const formData = new FormData();
+        formData.append("json", JSON.stringify(data));
+        formData.append('file', image);
+        console.log('formData = ', formData);
+
+        submitRea(data)
     }
 
     const sendRea = async(e) =>{

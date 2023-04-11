@@ -9,8 +9,10 @@ export async function submitRea(recurso){
   const {userObject,config} = await checkLoginStatus()
   
 
+  console.log('recurso = ', recurso);
+
   if(userObject){
-    const response = await baseUrl.post(`/api/users/${userObject.email}`, recurso, config)
+    const response = await baseUrl.post(`/api/recurso`, recurso, config)
   }
   else{
     console.log("Sem usuário logado");
