@@ -1,9 +1,9 @@
-import styles from "./ReaInputForm.module.css"
+import styles from "./ReaInputForm.module.css";
 import { CustomSelector } from "../CustomSelector";
 import AddRing from "../../assets/Add_ring_green.png";
-import FileUpload from "../../assets/FileUpload.png"
+import FileUpload from "../../assets/FileUpload.png";
 import { BaseNotification } from "../modals/BaseNotification";
-import { useEffect, useState, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from 'react-hook-form';
 import { submitRea } from "../../services/submitNewRea";
 
@@ -11,44 +11,11 @@ import { submitRea } from "../../services/submitNewRea";
 
 export function ReaInputForm(){
 
-    /*fetch('http://localhost:3001/api/recurso', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtldmluMzExMjEzQGNhc3Ryby5jb20iLCJpZCI6NSwiaWF0IjoxNjc5OTYxOTUyLCJleHAiOjE2Nzk5Nzk5NTJ9.taodRSLxCuvDePyUFdfUYVWGsUKUvlrxDLY4pKtHpi8'
-  },
-  body: JSON.stringify({
-    title: 'Recurso3',
-    reatype: 'Ferramenta',
-    link: 'https://pt.symbolab.com/',
-    targetPublic: 'Médio',
-    thumb: 'https://www.shutterstock.com/image-vector/man-icon-vector-260nw-1040084344.jpg',
-    knowledgeArea: 'Matemática',
-    license: 'Domínio Público',
-    language: 'Português',
-    description: 'is simply dummy text of the printing and types',
-    instructions: 'Abra, insira equação veja resposta.'
-  })
-})
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Erro na requisição');
-    }
-    return response.json();
-  })
-  .then(data => {
-    console.log(data);
-  })
-  .catch(error => {
-    console.error(error);
-  });*/
-
     const initialValues = {
         title: '',
         reaType: '',
         link: '',
         targetPublic: '',
-        thumb: '',
         knowledgeArea: '',
         license: '',
         language: '',
@@ -58,7 +25,7 @@ export function ReaInputForm(){
 
     const [ result, setResult ] = useState(initialValues)
     const { register, handleSubmit, formState: { errors }} = useForm()
-    const [ image , setImage ] = useState("");
+    const [ image , setImage ] = useState("")
 
     const addRea = data => {
         setResult(prevState => ({
@@ -69,25 +36,24 @@ export function ReaInputForm(){
             description: data.description,
             instructions: data.instructions
         }))
-        // console.log('data = ', data);
-        // console.log(image);
+
+        console.log(image);
+
         const formData = new FormData();
-        formData.append("json", JSON.stringify(data));
-        formData.append('file', image);
-        console.log('formData = ', formData);
 
-        submitRea(data)
-    }
+        formData.append('title', result.title)
+        formData.append('reaType', result.reaType)
+        formData.append('link', result.link)
+        formData.append('description', result.description)
+        formData.append('instructions', result.instructions)
+        formData.append('targetPublic', result.targetPublic)
+        formData.append('language', result.language)
+        formData.append('license', result.license)
+        formData.append('knowledgeArea', result.knowledgeArea)
 
-    const sendRea = async(e) =>{
-        e.preventDefault();
-        console.log("Recurso: ", result);
-        try {
-            const result1 = await register(result)
-        }
-        catch (exception) {
-            console.log("erro no cadastro");
-        }
+        formData.append('thumb', image)
+
+        submitRea(formData)
     }
 
     // Update Selector
@@ -96,7 +62,9 @@ export function ReaInputForm(){
             ...prevState, 
             [id]: s
         }))
-    }    
+    }
+
+    // Descomentar para ver efeito da atualização do objeto recurso pelo Front
 
     /*useEffect(() => {
         console.log(result);
