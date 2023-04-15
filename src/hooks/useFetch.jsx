@@ -1,10 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
-
-
-
-
 const useFetch = (url) => {
 
   const navigate = useNavigate();
