@@ -3,7 +3,7 @@ import styles from './Profile.module.css';
 import Lock from '../../assets/Lock.png'
 import '../../global.css'
 
-export function MeuEmailESenha() {
+export function MeuEmailESenha({values,handleChange}) {
     return (
         <div className={styles.containerFormEmail}>
             <form>
@@ -12,7 +12,7 @@ export function MeuEmailESenha() {
                     <h1>Email e Senha</h1>
             </div>
             <fieldset className={styles.fieldset}>
-                    <ProfileLabelAndInput labelText={'E-MAIL'} inputType={'text'} placeholderText={'Email'} />
+                    <ProfileLabelAndInput name={'email'} value={values.email} onChange = {handleChange} labelText={'E-MAIL'} inputType={'text'} placeholderText={'Email'} />
                     <ProfileLabelAndInput labelText={'SENHA ATUAL'} inputType={'password'} placeholderText={'• • • • • • • • • •'} showButton={false}/>
                     <div className = {styles.twoItens}> 
                         <ProfileLabelAndInput labelText={'NOVA SENHA'} inputType={'password'} inputStyle = {styles.inputTwo} placeholderText={'• • • • • • • • • •'} showButton={false}/>

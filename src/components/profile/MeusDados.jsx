@@ -6,35 +6,7 @@ import {useState,useEffect} from 'react';
 import { checkLogin, getUser, updateUser } from '../../services/authentication';
 import ProfilePicture from './profilePicture';
 
-export function MeusDados() {
-    
-    const initialValues = {
-        nome: '',
-        sobrenome: '',
-        instituicao: '',
-        perfil: '',
-        email: '',
-        password: '',
-    };
-
-    const [values, setValues] = useState(initialValues);
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        console.log('e.target = ', e.target);
-        setValues({
-        ...values,
-        [name]: value,
-        });
-    };
-    
-   
-    useEffect(() => {
-        async function fetchData(){
-            setValues(await getUser()) 
-        }
-        fetchData()
-      }, [])
+export function MeusDados({values,handleChange}) {
     
       const handleSubmit = async(e) =>{
         e.preventDefault();
@@ -47,8 +19,6 @@ export function MeusDados() {
             console.log("erro ao atualizar");
         }
     }
-    
-    
     
     return(
         <div className={styles.containerForm}>
