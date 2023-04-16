@@ -81,15 +81,15 @@ export function ReaInputForm(){
                     <div className = { styles.column }>
                         <div className = { styles.inputContainer }>
                             <label htmlFor = "title" className = { styles.inputLabel }>TÍTULO DO MATERIAL</label>
-                            <input id = "title" type = "text" name = "title" {...register("title")} className = { styles.inputBox } placeholder = "Título do Material" autocomplete="off"/>
+                            <input id = "title" type = "text" name = "title" {...register("title")} className = { styles.inputBox } placeholder = "Título do Material" autoComplete="off"/>
                         </div>
                         <div className = { styles.inputContainer }>
                             <label htmlFor = "reaType" className = { styles.inputLabel }>TIPO DO MATERIAL</label>
-                            <input id = "reaType" type = "text" name = "reaType" {...register("reaType")}  className = { styles.inputBox } placeholder = "Tipo do Material" autocomplete="off"/>
+                            <input id = "reaType" type = "text" name = "reaType" {...register("reaType")}  className = { styles.inputBox } placeholder = "Tipo do Material" autoComplete="off"/>
                         </div>
                         <div className = { styles.inputContainer }>
                             <label htmlFor = "link" className = { styles.inputLabel }>LINK</label>
-                            <input id = "link" type = "text" name = "link" {...register("link")} className = { styles.inputBox } placeholder = "Link" autocomplete="off"/>
+                            <input id = "link" type = "text" name = "link" {...register("link")} className = { styles.inputBox } placeholder = "Link" autoComplete="off"/>
                         </div>
                         <div className = { styles.inputContainer }>
                             <label htmlFor = "targetPublic" className = { styles.inputLabel }>PÚBLICO ALVO</label>
@@ -162,12 +162,12 @@ export function ReaInputForm(){
 
                 <div className = { styles.description }>
                     <label htmlFor = "description" className = { styles.inputLabel }>DESCRIÇÃO</label>
-                    <input id = "description" type = "text" name = "description" {...register("description")}  className = { styles.descriptionInputBox } placeholder = "Descrição do recurso educacional" autocomplete="off"/>
+                    <input id = "description" type = "text" name = "description" {...register("description")}  className = { styles.descriptionInputBox } placeholder = "Descrição do recurso educacional" autoComplete="off"/>
                 </div>
 
                 <div className = { styles.instructions }>
                     <label htmlFor = "instructions" className = { styles.inputLabel }>INSTRUÇÕES DE USO</label>
-                    <textarea rows="4" cols="20" name="instructions" {...register("instructions")}  id = "instructions"  maxLength="1000" className = { styles.textArea } placeholder = "Instruções de Uso" autocomplete="off"></textarea>                    
+                    <textarea rows="4" cols="20" name="instructions" {...register("instructions")}  id = "instructions"  maxLength="1000" className = { styles.textArea } placeholder = "Instruções de Uso" autoComplete="off"></textarea>                    
                 </div>
 
                 <div className = { styles.buttonsContainer } >
