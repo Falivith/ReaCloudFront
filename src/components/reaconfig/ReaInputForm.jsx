@@ -41,11 +41,11 @@ export function ReaInputForm(){
 
         const formData = new FormData();
 
-        formData.append('title', result.title)
-        formData.append('reaType', result.reaType)
-        formData.append('link', result.link)
-        formData.append('description', result.description)
-        formData.append('instructions', result.instructions)
+        formData.append('title', data.title)
+        formData.append('reaType', data.reaType)
+        formData.append('link', data.link)
+        formData.append('description', data.description)
+        formData.append('instructions', data.instructions)
         formData.append('targetPublic', result.targetPublic)
         formData.append('language', result.language)
         formData.append('license', result.license)
