@@ -41,11 +41,11 @@ export function ReaInputForm(){
 
         const formData = new FormData();
 
-        formData.append('title', data.title)
-        formData.append('reaType', data.reaType)
-        formData.append('link', data.link)
-        formData.append('description', data.description)
-        formData.append('instructions', data.instructions)
+        formData.append('title', result.title)
+        formData.append('reaType', result.reaType)
+        formData.append('link', result.link)
+        formData.append('description', result.description)
+        formData.append('instructions', result.instructions)
         formData.append('targetPublic', result.targetPublic)
         formData.append('language', result.language)
         formData.append('license', result.license)
@@ -81,15 +81,15 @@ export function ReaInputForm(){
                     <div className = { styles.column }>
                         <div className = { styles.inputContainer }>
                             <label htmlFor = "title" className = { styles.inputLabel }>TÍTULO DO MATERIAL</label>
-                            <input id = "title" type = "text" name = "title" {...register("title")} className = { styles.inputBox } placeholder = "Título do Material" autoComplete="off"/>
+                            <input id = "title" type = "text" name = "title" {...register("title")} className = { styles.inputBox } placeholder = "Título do Material"/>
                         </div>
                         <div className = { styles.inputContainer }>
                             <label htmlFor = "reaType" className = { styles.inputLabel }>TIPO DO MATERIAL</label>
-                            <input id = "reaType" type = "text" name = "reaType" {...register("reaType")}  className = { styles.inputBox } placeholder = "Tipo do Material" autoComplete="off"/>
+                            <input id = "reaType" type = "text" name = "reaType" {...register("reaType")}  className = { styles.inputBox } placeholder = "Tipo do Material"/>
                         </div>
                         <div className = { styles.inputContainer }>
                             <label htmlFor = "link" className = { styles.inputLabel }>LINK</label>
-                            <input id = "link" type = "text" name = "link" {...register("link")} className = { styles.inputBox } placeholder = "Link" autoComplete="off"/>
+                            <input id = "link" type = "text" name = "link" {...register("link")} className = { styles.inputBox } placeholder = "Link"/>
                         </div>
                         <div className = { styles.inputContainer }>
                             <label htmlFor = "targetPublic" className = { styles.inputLabel }>PÚBLICO ALVO</label>
@@ -162,16 +162,16 @@ export function ReaInputForm(){
 
                 <div className = { styles.description }>
                     <label htmlFor = "description" className = { styles.inputLabel }>DESCRIÇÃO</label>
-                    <input id = "description" type = "text" name = "description" {...register("description")}  className = { styles.descriptionInputBox } placeholder = "Descrição do recurso educacional" autoComplete="off"/>
+                    <input id = "description" type = "text" name = "description" {...register("description")}  className = { styles.descriptionInputBox } placeholder = "Descrição do recurso educacional"/>
                 </div>
 
                 <div className = { styles.instructions }>
                     <label htmlFor = "instructions" className = { styles.inputLabel }>INSTRUÇÕES DE USO</label>
-                    <textarea rows="4" cols="20" name="instructions" {...register("instructions")}  id = "instructions"  maxLength="1000" className = { styles.textArea } placeholder = "Instruções de Uso" autoComplete="off"></textarea>                    
+                    <textarea rows="4" cols="20" name="instructions" {...register("instructions")}  id = "instructions"  maxLength="1000" className = { styles.textArea } placeholder = "Instruções de Uso"></textarea>                    
                 </div>
 
                 <div className = { styles.buttonsContainer } >
-                    <button className = { styles.cancelButton } type = "button" >Cancelar</button>
+                    <button className = { styles.cancelButton }>Cancelar</button>
                     <button className = { styles.submitButton }>Salvar</button>
                 </div>
             </form>
