@@ -1,10 +1,5 @@
-import axios from 'axios'
 import { checkLoginStatus } from './utils';
-
-const baseUrl = axios.create({
-  baseURL: 'https://reacloud-back.vercel.app'
-});
-
+import { baseUrl } from './utils';
 
 export async function checkLogin() {
   let token = JSON.parse(localStorage.getItem('user'))?.token

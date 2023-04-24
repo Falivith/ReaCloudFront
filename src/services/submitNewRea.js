@@ -1,9 +1,5 @@
-import axios from 'axios';
 import { checkLoginStatus } from './utils';
-
-const baseUrl = axios.create({
-  baseURL: 'https://reacloud-back.vercel.app/'
-});
+import { baseUrl } from './utils';
 
 export async function submitRea(recurso){
   const {userObject, config} = await checkLoginStatus()

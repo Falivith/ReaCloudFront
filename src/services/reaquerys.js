@@ -1,8 +1,4 @@
-import axios from 'axios'
-
-const baseUrl = axios.create({
-  baseURL: 'https://reacloud-back.vercel.app/'
-});
+import { baseUrl } from './utils';
 
   export async function getAllReas() {
 
