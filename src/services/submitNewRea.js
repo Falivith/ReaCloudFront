@@ -15,7 +15,7 @@ export async function submitRea(recurso){
     }
   };
 
-  console.log('recurso = ', recurso);
+  console.log('recurso = ', ...recurso);
 
   if(userObject){
     const response = await baseUrl.post(`/api/recurso`, recurso, reaConfig)

@@ -93,6 +93,15 @@ export async function getProfilePicture() {
     return response.data
   }
 }
+export async function updateUserAccount(password,newPassword) {    // pra email e senha  
+  
+  const {userObject,config} = await checkLoginStatus()
+
+  if (userObject) {
+    const response = await baseUrl.put('/api/users/dados',{password,newPassword},config)
+    return response.data
+  }
+}
 
 
 
