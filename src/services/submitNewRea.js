@@ -2,7 +2,7 @@ import axios from 'axios';
 import { checkLoginStatus } from './utils';
 
 const baseUrl = axios.create({
-  baseURL: 'http://localhost:3001'
+  baseURL: 'https://reacloud-back.vercel.app/'
 });
 
 export async function submitRea(recurso){
