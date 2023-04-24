@@ -52,7 +52,7 @@ export function ReaInputForm(){
         formData.append('knowledgeArea', result.knowledgeArea)
 
         formData.append('thumb', image)
-
+        console.log(...formData);
         submitRea(formData)
     }
 
