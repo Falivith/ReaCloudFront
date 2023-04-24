@@ -30,12 +30,7 @@ export function Header({notificationNumber = 0 }) {
     const [isLoggedIn, setIsLoggedIn] = useState(null); 
 
     useEffect(() => {
-        async function fetchLoginStatus() {
-          setIsLoggedIn(await checkLogin());
-        }
-      
-        fetchLoginStatus();
-
+        localStorage.getItem('user') ? setIsLoggedIn(true): setIsLoggedIn(false)
       }, []);
     
 
