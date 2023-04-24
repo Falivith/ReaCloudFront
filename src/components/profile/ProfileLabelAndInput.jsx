@@ -24,7 +24,8 @@ export function ProfileLabelAndInput({labelText, inputType, showButton = true, p
                             <img src={Editar}/>
                         </button>
                         </>
-                        :<input onChange = {onChange} value = {value} type ={inputType} className={inputStyle} placeholder={placeholderText} readOnly = {false}></input>
+                        :
+                        <input name = {name} onChange = {onChange} value = {value} type ={inputType} className={inputStyle} placeholder={placeholderText} readOnly = {false}></input>
                     }
                 </span>
         </div>
