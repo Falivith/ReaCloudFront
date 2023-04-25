@@ -9,6 +9,7 @@ import styleLabelandInput from './LabelAndInput.module.css'
 import { useEffect, useState } from 'react';
 import { getUser, login, loginOAuth } from '../../services/authentication';
 import useFetch from '../../hooks/useFetch';
+import { baseUrl } from '../../services/utils';
 
 
 
@@ -28,7 +29,7 @@ export function FormLogin(){
     const navigate = useNavigate();
    
     const { handleGoogle, loading, error } = useFetch(
-        "http://localhost:3001/api/googleLogin" 
+        `${baseUrl}/api/googleLogin`
       );
     
       useEffect(() => {

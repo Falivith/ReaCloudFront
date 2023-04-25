@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from 'axios';
 
 export async function checkLoginStatus() {
   const user = window.localStorage.getItem('user')   
@@ -11,6 +11,7 @@ export async function checkLoginStatus() {
   return {userObject,config}
 }
 
+
 export const baseUrl = axios.create({
-  baseURL: 'http://localhost:5000' //|| 'https://reacloud-back.vercel.app'
+  baseURL: 'https://reacloud2.fly.dev'
 });
