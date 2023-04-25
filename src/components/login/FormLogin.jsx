@@ -27,9 +27,10 @@ const styleImage = {"marginTop":"1rem",
 export function FormLogin(){
     
     const navigate = useNavigate();
-   
+    const url = process.env.NODE_ENV === 'development'? 'http://localhost:3001/api/googleLogin': 'https://reacloud2.fly.dev/api/googleLogin'
+    
     const { handleGoogle, loading, error } = useFetch(
-        `${baseUrl}/api/googleLogin`
+        url
       );
     
       useEffect(() => {

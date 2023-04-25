@@ -13,5 +13,5 @@ export async function checkLoginStatus() {
 
 
 export const baseUrl = axios.create({
-  baseURL: 'https://reacloud2.fly.dev'
+  baseURL: process.env.NODE_ENV === 'development'? 'http://localhost:3001': 'https://reacloud2.fly.dev'
 });

@@ -29,7 +29,7 @@ export async function login(credentials) {
 }
 
 export async function loginOAuth(credentials) {
-  const response = await baseUrl.post('api/login/googleAuth', credentials)
+  const response = await baseUrl.post('/api/login/googleAuth', credentials)
   return response.data
 }
 
@@ -69,7 +69,7 @@ export async function uploadPhoto(profilePicture) {
   console.log('profilePicture = ', profilePicture.get('file'));
   if (userObject) {
     try{
-      const response = await baseUrl.post('api/users/uploadPhoto', profilePicture,config)
+      const response = await baseUrl.post('/api/users/uploadPhoto', profilePicture,config)
       return response.data
     }
     catch(error){
@@ -84,7 +84,7 @@ export async function getProfilePicture() {
   const {userObject,config} = await checkLoginStatus()
 
   if (userObject) {
-    const response = await baseUrl.get('api/users/uploadPhoto', config)
+    const response = await baseUrl.get('/api/users/uploadPhoto', config)
     return response.data
   }
 }
