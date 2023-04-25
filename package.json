@@ -7,7 +7,8 @@
     "dev": "cross-env NODE_ENV=development vite",
     "build": "vite build",
     "preview": "vite preview",
-    "buildStatic": "vite build; cp -r dist ../ReaCloudBack"
+    "buildStatic": "vite build; cp -r dist ../ReaCloudBack",
+    "deploy": "fly deploy"
   },
   "dependencies": {
     "@emotion/styled": "^11.10.6",
