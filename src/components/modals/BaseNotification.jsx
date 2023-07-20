@@ -70,7 +70,7 @@ export function BaseNotification(props){
             notificationProps = {
                 img: WarningSymbol,
                 title: "Notificação Indefinida",
-                description: "Invie alguma propriedade de notificação, dev!",
+                description: "Envie alguma propriedade de notificação, dev!",
                 backgroundcolor: "#22BB55",
                 textcolor: "#22BB55"
             }

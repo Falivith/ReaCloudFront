@@ -68,10 +68,12 @@ export function ReaInputForm(){
 
     }
 
+    const [showNotification, setShowNotification] = useState(false);
+
     return(
         <div className = { styles.container }>
 
-            <BaseNotification type = "saveSuccess"/>
+            <BaseNotification type = "saveSuccess" />
 
             <header className = { styles.header }><img src = { AddRing } alt = "Símbolo de Adição de Recurso" /> Adicionar novos recursos</header>
             <form id = "reaconfig" className = { styles.formContainer } onSubmit = {handleSubmit( addRea )}>
