@@ -15,8 +15,10 @@ export async function submitRea(recurso){
 
   if(userObject){
     const response = await baseUrl.post(`/api/recurso`, recurso, reaConfig)
+    return response;
   }
   else{
     console.log("Você não pode cadastrar um recurso sem estar logado.");
+    return null; 
   }
 }

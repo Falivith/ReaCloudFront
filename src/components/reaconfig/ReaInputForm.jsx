@@ -53,7 +53,14 @@ export function ReaInputForm(){
 
         formData.append('thumb', image)
         console.log(...formData);
-        submitRea(formData)
+        formSubmitSuccess = submitRea(formData)
+
+        if (formSubmitSuccess) {
+            setShowNotification(true);
+          } else {
+            setShowNotification(false);
+          }
+        };
     }
 
     // Update Selector
@@ -75,7 +82,7 @@ export function ReaInputForm(){
     return(
         <div className = { styles.container }>
 
-            <BaseNotification type = "saveSuccess" />
+            {showNotification && (<BaseNotification type = "saveSuccess" />)}
 
             <header className = { styles.header }><img src = { AddRing } alt = "Símbolo de Adição de Recurso" /> Adicionar novos recursos</header>
             <form id = "reaconfig" className = { styles.formContainer } onSubmit = {handleSubmit( addRea )}>
