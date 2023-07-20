@@ -1,10 +1,5 @@
-import axios from 'axios'
 import { checkLoginStatus } from './utils';
-
-const baseUrl = axios.create({
-  baseURL: 'http://localhost:3001'
-});
-
+import { baseUrl } from './utils';
 
 export async function checkLogin() {
   let token = JSON.parse(localStorage.getItem('user'))?.token
@@ -34,7 +29,7 @@ export async function login(credentials) {
 }
 
 export async function loginOAuth(credentials) {
-  const response = await baseUrl.post('api/login/googleAuth', credentials)
+  const response = await baseUrl.post('/api/login/googleAuth', credentials)
   return response.data
 }
 
@@ -54,7 +49,6 @@ export async function getUser() {
   }
 
   console.log("nenhum usuario logado");  
-  
 }
 
 
@@ -75,7 +69,7 @@ export async function uploadPhoto(profilePicture) {
   console.log('profilePicture = ', profilePicture.get('file'));
   if (userObject) {
     try{
-      const response = await baseUrl.post('api/users/uploadPhoto', profilePicture,config)
+      const response = await baseUrl.post('/api/users/uploadPhoto', profilePicture,config)
       return response.data
     }
     catch(error){
@@ -90,7 +84,16 @@ export async function getProfilePicture() {
   const {userObject,config} = await checkLoginStatus()
 
   if (userObject) {
-    const response = await baseUrl.get('api/users/uploadPhoto', config)
+    const response = await baseUrl.get('/api/users/uploadPhoto', config)
+    return response.data
+  }
+}
+export async function updateUserAccount(password,newPassword) {    // pra email e senha  
+  
+  const {userObject,config} = await checkLoginStatus()
+
+  if (userObject) {
+    const response = await baseUrl.put('/api/users/dados',{password,newPassword},config)
     return response.data
   }
 }

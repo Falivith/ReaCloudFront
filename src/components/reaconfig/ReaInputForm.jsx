@@ -1,10 +1,11 @@
-import styles from "./ReaInputForm.module.css"
+import styles from "./ReaInputForm.module.css";
 import { CustomSelector } from "../CustomSelector";
 import AddRing from "../../assets/Add_ring_green.png";
-import FileUpload from "../../assets/FileUpload.png"
+import FileUpload from "../../assets/FileUpload.png";
 import { BaseNotification } from "../modals/BaseNotification";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from 'react-hook-form';
+import { submitRea } from "../../services/submitNewRea";
 
 /* saveSuccess, saveError, passwordSuccess, passwordWarning, passwordError */
 
@@ -12,10 +13,9 @@ export function ReaInputForm(){
 
     const initialValues = {
         title: '',
-        reatype: '',
+        reaType: '',
         link: '',
         targetPublic: '',
-        thumb: '',
         knowledgeArea: '',
         license: '',
         language: '',
@@ -24,49 +24,51 @@ export function ReaInputForm(){
     };
 
     const [ result, setResult ] = useState(initialValues)
-
-    const updateSelected = (id, s) => {
-        setResult(prevState => ({
-            ...prevState, 
-            [id]: s
-        }))
-    }    
-
-    const {register, handleSubmit, formState: { errors }} = useForm()
+    const { register, handleSubmit, formState: { errors }} = useForm()
+    const [ image , setImage ] = useState("")
 
     const addRea = data => {
         setResult(prevState => ({
             ...prevState,
             title: data.title,
-            reatype: data.reatype,
+            reaType: data.reaType,
             link: data.link,
             description: data.description,
             instructions: data.instructions
         }))
+
+        console.log(image);
+
+        const formData = new FormData();
+
+        formData.append('title', result.title)
+        formData.append('reaType', result.reaType)
+        formData.append('link', result.link)
+        formData.append('description', result.description)
+        formData.append('instructions', result.instructions)
+        formData.append('targetPublic', result.targetPublic)
+        formData.append('language', result.language)
+        formData.append('license', result.license)
+        formData.append('knowledgeArea', result.knowledgeArea)
+
+        formData.append('thumb', image)
+        console.log(...formData);
+        submitRea(formData)
     }
 
-    const send = async(e) =>{
-        e.preventDefault();
-        console.log('values =\n', result);
-        try {
-            const result1 = await register(values)
-            console.log('bla1 = ', result1);
-            const result2 = await login({email : values.email, password : values.password   })
-            console.log('bla2 = ', result2);
-            navigate('/');
-        }
-        catch (exception) {
-            console.log("erro no cadastro");
-        }
+    // Update Selector
+    const updateSelected = (id, s) => {
+        setResult(prevState => ({
+            ...prevState, 
+            [id]: s
+        }))
     }
 
-    useEffect(() => {
+    // Descomentar para ver efeito da atualização do objeto recurso pelo Front
+
+    /*useEffect(() => {
         console.log(result);
-      }, [result]);
-
-    const getValues = s => {
-
-    }
+    }, [result]);*/
 
     const [showNotification, setShowNotification] = useState(false);
 
@@ -84,8 +86,8 @@ export function ReaInputForm(){
                             <input id = "title" type = "text" name = "title" {...register("title")} className = { styles.inputBox } placeholder = "Título do Material"/>
                         </div>
                         <div className = { styles.inputContainer }>
-                            <label htmlFor = "reatype" className = { styles.inputLabel }>TIPO DO MATERIAL</label>
-                            <input id = "reatype" type = "text" name = "reaType" {...register("reaType")}  className = { styles.inputBox } placeholder = "Tipo do Material"/>
+                            <label htmlFor = "reaType" className = { styles.inputLabel }>TIPO DO MATERIAL</label>
+                            <input id = "reaType" type = "text" name = "reaType" {...register("reaType")}  className = { styles.inputBox } placeholder = "Tipo do Material"/>
                         </div>
                         <div className = { styles.inputContainer }>
                             <label htmlFor = "link" className = { styles.inputLabel }>LINK</label>
@@ -110,8 +112,8 @@ export function ReaInputForm(){
                             <label htmlFor = "imgpathStyle" className = { styles.inputLabel }>IMAGEM DO MATERIAL</label>
 
                             <label id = "imgpathStyle" htmlFor = "imgpath" className = { styles.fileChooser }>
-                                <span>Imagem</span>
-                                <input id = "imgpath" type = "file" style = {{ display: "none" }}/>
+                                <span> { image? image.name : "Imagem" } </span>
+                                <input id = "imgpath" type = "file" accept = ".png, .jpg, .jpeg" style = {{ display: "none" }} onChange = { e => setImage(e.target.files[0]) }/>
                                 <div className = { styles.cornerUpload }>
                                     <img src = { FileUpload } alt = "Upload de Arquivo" />
                                     <span>CARREGAR</span>
@@ -120,8 +122,8 @@ export function ReaInputForm(){
 
                         </div>
                         <div className = { styles.inputContainer }>
-                            <label htmlFor = "reatype" className = { styles.inputLabel }>ÁREA DO CONHECIMENTO</label>
-                            <CustomSelector id = "reatype"
+                            <label htmlFor = "knowledgeArea" className = { styles.inputLabel }>ÁREA DO CONHECIMENTO</label>
+                            <CustomSelector id = "knowledgeArea"
                                 selectorId = { 2 }
                                 width = {"364px"}
                                 height = {"44px"}
@@ -172,7 +174,7 @@ export function ReaInputForm(){
 
                 <div className = { styles.buttonsContainer } >
                     <button className = { styles.cancelButton }>Cancelar</button>
-                    <button onClick = { getValues() } className = { styles.submitButton }>Salvar</button>
+                    <button className = { styles.submitButton }>Salvar</button>
                 </div>
             </form>
         </div>

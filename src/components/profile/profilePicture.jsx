@@ -19,7 +19,6 @@ const ProfilePicture = ({nome}) => {
   }, []);
 
 
-
   const handleAvatarChange = async(event) => {
     const file = event.target.files[0];
     const formData = new FormData();

@@ -9,6 +9,7 @@ import styleLabelandInput from './LabelAndInput.module.css'
 import { useEffect, useState } from 'react';
 import { getUser, login, loginOAuth } from '../../services/authentication';
 import useFetch from '../../hooks/useFetch';
+import { baseUrl } from '../../services/utils';
 
 
 
@@ -26,9 +27,10 @@ const styleImage = {"marginTop":"1rem",
 export function FormLogin(){
     
     const navigate = useNavigate();
-   
+    const url = process.env.NODE_ENV === 'development'? 'http://localhost:3001/api/googleLogin': 'https://reacloud2.fly.dev/api/googleLogin'
+    
     const { handleGoogle, loading, error } = useFetch(
-        "http://localhost:3001/api/googleLogin" 
+        url
       );
     
       useEffect(() => {

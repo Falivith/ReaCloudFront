@@ -4,10 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "cross-env NODE_ENV=development vite",
     "build": "vite build",
     "preview": "vite preview",
-    "buildStatic": "vite build; cp -r dist ../ReaCloudBack"
+    "buildStatic": "vite build; cp -r dist ../ReaCloudBack",
+    "deploy": "fly deploy"
   },
   "dependencies": {
     "@emotion/styled": "^11.10.6",
@@ -15,6 +16,7 @@
     "@mui/styled-engine": "^5.11.11",
     "axios": "^1.3.4",
     "classnames": "^2.3.2",
+    "cross-env": "^7.0.3",
     "jwt-decode": "^3.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

@@ -6,54 +6,14 @@ import {useState,useEffect} from 'react';
 import { checkLogin, getUser, updateUser } from '../../services/authentication';
 import ProfilePicture from './profilePicture';
 
-export function MeusDados() {
+export function MeusDados({values,handleChange,handleSubmit}) {
     
-    const initialValues = {
-        nome: '',
-        sobrenome: '',
-        instituicao: '',
-        perfil: '',
-        email: '',
-        password: '',
-    };
-
-    const [values, setValues] = useState(initialValues);
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        console.log('e.target = ', e.target);
-        setValues({
-        ...values,
-        [name]: value,
-        });
-    };
-    
-   
-    useEffect(() => {
-        async function fetchData(){
-            setValues(await getUser()) 
-        }
-        fetchData()
-      }, [])
-    
-      const handleSubmit = async(e) =>{
-        e.preventDefault();
-        console.log('values =\n', values);
-        try {
-            const result = await updateUser(values)
-            console.log('result = ', result);
-        }
-        catch (exception) {
-            console.log("erro ao atualizar");
-        }
-    }
-    
-    
+      
     
     return(
         <div className={styles.containerForm}>
             <ProfilePicture nome={values.nome}/>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} name = {'MeusDados'}>
             <div className={styles.addNewReasLabel}>
                     <img src = { MeusDadosImg } alt = "Meus Dados" />
                     <h1>Meus Dados</h1>

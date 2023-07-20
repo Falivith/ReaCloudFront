@@ -20,7 +20,7 @@ export function ReaPreview(props){
     return (
         <div className = { styles.container }>
             <div className = { styles.thumbContainer }>
-                <img src = { props.thumb } alt = "thumbPreview" />
+                <img className = { styles.dynamicImg } src = { props.thumb } alt = "thumbPreview" />
             </div>
             <div className = { styles.contentContainer }>
                 <div className = { styles.text }>
