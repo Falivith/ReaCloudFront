@@ -57,10 +57,9 @@ export function ReaInputForm(){
 
         if (formSubmitSuccess) {
             setShowNotification(true);
-          } else {
+        } else {
             setShowNotification(false);
-          }
-        };
+        }
     }
 
     // Update Selector
