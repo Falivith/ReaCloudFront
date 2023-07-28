@@ -19,31 +19,37 @@ const styleImage =
 export function FormLogin(){
     
     const navigate = useNavigate();
-    const url = process.env.NODE_ENV === 'development'? 'http://localhost:3001/api/googleLogin': 'https://reacloud2.fly.dev/api/googleLogin'
-    
+    let url = process.env.NODE_ENV === 'development'? 'http://localhost:3001/api/googleLogin': 'https://reacloud2.fly.dev/api/googleLogin'
+
+    url = 'http://localhost:3001/api/googleLogin'
+
     const { handleGoogle, loading, error } = useFetch(
         url
-      );
-    
-      useEffect(() => {
-        /* global google */
-        if (typeof google !== 'undefined') {
-            google.accounts.id.initialize({
-                client_id: "567563462560-pgebq1hruc66b5nlhjt6qb910m7tk0b7.apps.googleusercontent.com",
-                callback: handleGoogle
-                });
-            
-                google.accounts.id.renderButton(
-                document.getElementById("signInDiv"),
-                {theme: "outline", 
+    );
+
+    useEffect(() => {
+    /* global google */
+    if (typeof google !== 'undefined') {
+        google.accounts.id.initialize({
+            client_id: "567563462560-pgebq1hruc66b5nlhjt6qb910m7tk0b7.apps.googleusercontent.com",
+            callback: handleGoogle
+            });
+        
+            /*google.accounts.id.renderButton(
+            document.getElementById("signInDiv"),
+            {
+                theme: "outline", 
                 size: "large",
                 width: "364",
-                shape: "square",     }  // ou pill
-                );
-    
-                google.accounts.id.prompt()
-          }
-        }, [handleGoogle])
+                shape: "square",
+            }  // ou pill
+            );*/
+
+            google.accounts.id.prompt()
+        }else{
+            console.log("Indefinido")
+        }
+    }, [handleGoogle])
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
