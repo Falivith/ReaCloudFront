@@ -37,8 +37,6 @@ export function ReaInputForm(){
             instructions: data.instructions
         }))
 
-        console.log(image);
-
         const formData = new FormData();
 
         formData.append('title', result.title)
@@ -52,7 +50,7 @@ export function ReaInputForm(){
         formData.append('knowledgeArea', result.knowledgeArea)
 
         formData.append('thumb', image)
-        console.log(...formData);
+        //console.log(...formData);
         formSubmitSuccess = submitRea(formData)
 
         if (formSubmitSuccess) {

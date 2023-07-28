@@ -13,7 +13,10 @@ export function CustomSelector(props){
 
   const onOptionClicked = value => () => {
     setSelectedOption(value);
+
+    if(props.handleResult) // Se o parâmetro foi passado
     props.handleResult(props.id, value)
+
     setIsOpen(false);
   };
 

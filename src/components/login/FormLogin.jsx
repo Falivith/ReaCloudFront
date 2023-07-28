@@ -1,29 +1,21 @@
-import googleLogo from '../../assets/Google.png'
 import styles from './FormLogin.module.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { LabelAndInput } from './LabelAndInput';
 import { Button } from './Button';
-import jwt_decode from 'jwt-decode';
-
 import styleLabelandInput from './LabelAndInput.module.css'
 import { useEffect, useState } from 'react';
-import { getUser, login, loginOAuth } from '../../services/authentication';
+import { login } from '../../services/authentication';
 import useFetch from '../../hooks/useFetch';
-import { baseUrl } from '../../services/utils';
 
+const styleImage = 
+    {
+        "marginTop":"1rem",
+        "marginBottom":"0.75rem",
+        "width": "1.25rem",
+        "height": "1.25rem",
+        "marginRight": "0.4rem"
+    }
 
-
-const styleImage = {"marginTop":"1rem",
-                    "marginBottom":"0.75rem",
-                    "width": "1.25rem",
-                    "height": "1.25rem",
-                    "marginRight": "0.4rem"
-                }
-
-
-
-
-                
 export function FormLogin(){
     
     const navigate = useNavigate();
