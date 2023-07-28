@@ -52,7 +52,7 @@ const router = createBrowserRouter([
     element: <PostedReaEdit/>
   },
   {
-    path: '/reaview',
+    path: '/reaview/:id',
     element: <ReaView/>
   },
   {

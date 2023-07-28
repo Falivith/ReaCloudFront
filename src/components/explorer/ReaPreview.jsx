@@ -14,7 +14,7 @@ export function ReaPreview(props){
 
     const navigate = useNavigate();
     const routeChangeHandler = (route) => {
-        navigate(`../${route}`);
+        navigate(`../${route}/${props.id}`);
     }
 
     return (

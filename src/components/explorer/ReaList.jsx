@@ -31,7 +31,7 @@ export function ReaList() {
                 console.log(rea)
 
                 return <ReaPreview
-                    key = {rea.id}
+                    id = {rea.id}
                     title = {rea.title}
                     description = {rea.description}
                     likes = {rea.likes}
