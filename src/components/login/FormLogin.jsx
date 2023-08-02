@@ -6,6 +6,9 @@ import styleLabelandInput from './LabelAndInput.module.css'
 import { useEffect, useState } from 'react';
 import { login } from '../../services/authentication';
 import useFetch from '../../hooks/useFetch';
+import { baseUrl } from '../../services/utils';
+import { GoogleLogin } from '@react-oauth/google';
+import { useGoogleLogin } from '@react-oauth/google';
 
 const styleImage = 
     {
@@ -16,40 +19,27 @@ const styleImage =
         "marginRight": "0.4rem"
     }
 
+
+
+
+                
 export function FormLogin(){
     
+  
+
+    
+
+
+    
+
+    const login = useGoogleLogin({
+      onSuccess: tokenResponse => console.log(tokenResponse),
+    });   
+
+
     const navigate = useNavigate();
-    let url = process.env.NODE_ENV === 'development'? 'http://localhost:3001/api/googleLogin': 'https://reacloud2.fly.dev/api/googleLogin'
-
-    url = 'http://localhost:3001/api/googleLogin'
-
-    const { handleGoogle, loading, error } = useFetch(
-        url
-    );
-
-    useEffect(() => {
-    /* global google */
-    if (typeof google !== 'undefined') {
-        google.accounts.id.initialize({
-            client_id: "567563462560-pgebq1hruc66b5nlhjt6qb910m7tk0b7.apps.googleusercontent.com",
-            callback: handleGoogle
-            });
-        
-            /*google.accounts.id.renderButton(
-            document.getElementById("signInDiv"),
-            {
-                theme: "outline", 
-                size: "large",
-                width: "364",
-                shape: "square",
-            }  // ou pill
-            );*/
-
-            google.accounts.id.prompt()
-        }else{
-            console.log("Indefinido")
-        }
-    }, [handleGoogle])
+    
+    
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -77,8 +67,12 @@ export function FormLogin(){
             
             <LabelAndInput value ={password} onChange = {({target})=> setPassword(target.value)} labelText={'SENHA'} inputType={"password"}  placeholderText={'• • • • • • •'} inputStyle = {styleLabelandInput.input}/>
             <div className={styles.containerForButtons}>
-                {/* <button id="signInDiv" className={styles.containerButtons}> <span className={styles.spanText} ><img src= {googleLogo} style = {styleImage}  /> ENTRAR COM O GOOGLE </span></button> */}
-                <div id="signInDiv"></div> 
+              
+                
+                
+                <button onClick={() => login()}  id="signInDiv" className={styles.containerButtons}> <span className={styles.spanText} ><img src= {googleLogo} style = {styleImage}  /> ENTRAR COM O GOOGLE </span></button>
+              
+              
                 <Button textButton={'ENTRAR'}/>
                 
                 <button className={styles.containerButtons}> <span className={styles.spanText} > CADASTRAR  </span></button>

@@ -13,6 +13,10 @@ import { PluginReas } from "./pages/PluginReas";
 import { PostedReaEdit } from "./pages/PostedReaEdit";
 import { EditPostedReas } from './pages/EditPostedReas';
 import { NewReaEdit } from './pages/NewReaEdit';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
+const secret = process.env.GOOGLE_SECRET;
+
 
 const router = createBrowserRouter([
   {
@@ -66,7 +70,9 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
+  <GoogleOAuthProvider clientId={secret}>
   <React.StrictMode>
     <RouterProvider router = {router}/> 
   </React.StrictMode>,
+  </GoogleOAuthProvider>
 )
