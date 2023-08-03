@@ -11,6 +11,13 @@ import { submitRea } from "../../services/submitNewRea";
 
 export function ReaInputForm(){
 
+    const [showNotification, setShowNotification] = useState(false);
+    const [notificationType, setNotificationType] = useState('');
+
+    const closeNotification = () => {
+        setShowNotification(false);
+    };
+
     const initialValues = {
         title: '',
         reaType: '',
@@ -27,7 +34,7 @@ export function ReaInputForm(){
     const { register, handleSubmit, formState: { errors }} = useForm()
     const [ image , setImage ] = useState("")
 
-    const addRea = data => {
+    const addRea = async data => {
         setResult(prevState => ({
             ...prevState,
             title: data.title,
@@ -50,13 +57,19 @@ export function ReaInputForm(){
         formData.append('knowledgeArea', result.knowledgeArea)
 
         formData.append('thumb', image)
-        //console.log(...formData);
-        formSubmitSuccess = submitRea(formData)
 
-        if (formSubmitSuccess) {
-            setShowNotification(true);
-        } else {
-            setShowNotification(false);
+        try {
+            const formSubmitSuccess = await submitRea(formData);
+    
+            if (formSubmitSuccess) {
+                setShowNotification(true);
+                setNotificationType('saveSuccess'); 
+            } else {
+                setShowNotification(true);
+                setNotificationType('saveError'); 
+            }
+        } catch (error) {
+            console.error("Error submitting REA:", error);
         }
     }
 
@@ -74,12 +87,10 @@ export function ReaInputForm(){
         console.log(result);
     }, [result]);*/
 
-    const [showNotification, setShowNotification] = useState(false);
-
     return(
         <div className = { styles.container }>
 
-            {showNotification && (<BaseNotification type = "saveSuccess" />)}
+            {(<BaseNotification type = {notificationType} showing={showNotification} onClose={closeNotification}  />)}
 
             <header className = { styles.header }><img src = { AddRing } alt = "Símbolo de Adição de Recurso" /> Adicionar novos recursos</header>
             <form id = "reaconfig" className = { styles.formContainer } onSubmit = {handleSubmit( addRea )}>

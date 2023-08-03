@@ -3,15 +3,14 @@ import WarningSymbol from '../../assets/WarningSymbol.png'
 import CheckSymbol from '../../assets/CheckSymbol.png'
 import DangerSymbol from '../../assets/DangerSymbol.png'
 import CloseSymbol from '../../assets/CloseX.png'
-import { useState } from 'react'
 
 export function BaseNotification(props){
 
-    const [showing, toggle] = useState(true);
-
     const close = () => {
-        toggle(!showing);
-    }
+        if (props.onClose) {
+            props.onClose();
+        }
+    };
 
     let notificationProps
 
@@ -76,7 +75,7 @@ export function BaseNotification(props){
             }
     }
 
-    return showing ? (
+    return props.showing ? (
         <div className = { styles.backgroundColorAndContainer } style = {{ backgroundColor: notificationProps.backgroundcolor }}>
             <div className = { styles.background }>
                 <header className = { styles.header }>
