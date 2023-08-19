@@ -44,7 +44,11 @@ export function MeuPerfil() {
         console.log('values = ', values);
         if (e.target.name === 'MeusDados'){
             try {
-                const result = await updateUser(values)
+                const valores = { ...values };
+                delete valores.password; 
+                delete valores.newPassword;    
+                console.log("valores = ", valores);
+                const result = await updateUser(valores)
                 console.log('result = ', result);
             }
             catch (exception) {
@@ -53,8 +57,9 @@ export function MeuPerfil() {
         }
         
         else if (e.target.name === 'MeuEmailESenha'){
+            console.log("atualizando  ",values.password,values.newPassword);
             const result = await updateUserAccount(values.password,values.newPassword)
-            console.log('result feijoada = ', result);
+            console.log('result= ', result);
         }
       
     }

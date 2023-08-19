@@ -4,7 +4,7 @@ import { LabelAndInput } from './LabelAndInput';
 import { Button } from './Button';
 import styleLabelandInput from './LabelAndInput.module.css'
 import { useEffect, useState } from 'react';
-import { login } from '../../services/authentication';
+import { login, loginOAuth } from '../../services/authentication';
 import useFetch from '../../hooks/useFetch';
 import { baseUrl } from '../../services/utils';
 import { GoogleLogin } from '@react-oauth/google';
@@ -32,9 +32,18 @@ export function FormLogin(){
 
     
 
-    const login = useGoogleLogin({
-      onSuccess: tokenResponse => console.log(tokenResponse),
-    });   
+    const signIn = useGoogleLogin({
+        onSuccess: async tokenResponse => {
+        //   loginOAuth(tokenResponse);
+          console.log(tokenResponse);
+          navigate('/');
+        },
+      });
+    
+    const handleClick = (event) => {
+        event.preventDefault();  // Prevent the form from being submitted
+        signIn();  // Manually trigger Google login
+      };
 
 
     const navigate = useNavigate();
@@ -70,7 +79,7 @@ export function FormLogin(){
               
                 
                 
-                <button onClick={() => login()}  id="signInDiv" className={styles.containerButtons}> <span className={styles.spanText} ><img src= {googleLogo} style = {styleImage}  /> ENTRAR COM O GOOGLE </span></button>
+                <button onClick={handleClick}  id="signInDiv" className={styles.containerButtons}> <span className={styles.spanText} ><img src= {'Google.png'} style = {styleImage}  /> ENTRAR COM O GOOGLE </span></button>
               
               
                 <Button textButton={'ENTRAR'}/>

@@ -29,7 +29,7 @@ export async function login(credentials) {
 }
 
 export async function loginOAuth(credentials) {
-  const response = await baseUrl.post('/api/login/googleAuth', credentials)
+  const response = await baseUrl.post('/api/googleLogin', credentials)
   return response.data
 }
 

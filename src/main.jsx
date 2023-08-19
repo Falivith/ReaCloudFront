@@ -15,7 +15,8 @@ import { EditPostedReas } from './pages/EditPostedReas';
 import { NewReaEdit } from './pages/NewReaEdit';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
-const secret = process.env.GOOGLE_SECRET;
+
+const secret = import.meta.env.VITE_GOOGLE_SECRET;
 
 
 const router = createBrowserRouter([
