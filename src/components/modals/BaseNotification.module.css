@@ -1,7 +1,8 @@
 .backgroundColorAndContainer{
-    position: absolute;
+    position: fixed;
     box-shadow: 0px 5px 16px 1px rgba(0, 0, 0, 0.09);
     right: 0px;
+    top: 53px;
     display: flex;
     width: 310px;
     height: 78px;

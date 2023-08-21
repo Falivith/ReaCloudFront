@@ -1,11 +1,12 @@
-import styles from './FormLogin.module.css'
-import { Link, useNavigate } from 'react-router-dom'
+import styles from './FormLogin.module.css';
+import { Link, useNavigate } from 'react-router-dom';
 import { LabelAndInput } from './LabelAndInput';
 import { Button } from './Button';
-import styleLabelandInput from './LabelAndInput.module.css'
+import styleLabelandInput from './LabelAndInput.module.css';
 import { useState } from 'react';
 import { login } from '../../services/authentication';
 import { useGoogleLogin } from '@react-oauth/google';
+import { BaseNotification } from '../modals/BaseNotification';
 
 const styleImage = 
     {
@@ -39,6 +40,13 @@ export function FormLogin(){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     
+    const [showNotification, setShowNotification] = useState(false);
+    const [notificationType, setNotificationType] = useState('');
+
+    const closeNotification = () => {
+        setShowNotification(false);
+    };
+    
     const handleSubmit = async(event) =>{
         event.preventDefault();
         console.log("ta entrando");
@@ -50,13 +58,16 @@ export function FormLogin(){
             navigate('/');
         }
         catch (exception) {
-            console.log("erro");
-            <BaseNotification type = "passwordWarning"/>
+            setNotificationType("loginError")
+            setShowNotification(true)
         }
     }
 
     return(
     <div className= {styles.container}>
+
+        {(<BaseNotification type = {notificationType} showing={showNotification} onClose={closeNotification}  />)}
+
         <form onSubmit={handleSubmit} > 
  
             <LabelAndInput value ={email} onChange = {({target})=> setEmail(target.value)} labelText={'E-MAIL'} inputType={"email"} placeholderText={'exemplo@email.com'} inputStyle = {styleLabelandInput.input}/>

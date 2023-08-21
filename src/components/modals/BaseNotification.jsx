@@ -45,6 +45,26 @@ export function BaseNotification(props){
             }
         break;
 
+        case 'signupError':
+            notificationProps = {
+                img: DangerSymbol,
+                title: "Erro ao cadastrar usuário.",
+                description: "Verifique a sua conexão e tente novamente.",
+                backgroundcolor: "#D30000",
+                textcolor: "#D30000"
+            }
+        break;
+
+        case 'loginError':
+            notificationProps = {
+                img: DangerSymbol,
+                title: "Erro ao fazer login.",
+                description: "Verifique a sua conexão e tente novamente.",
+                backgroundcolor: "#D30000",
+                textcolor: "#D30000"
+            }
+        break;
+
         case 'passwordSuccess':
             notificationProps = {
                 img: CheckSymbol,

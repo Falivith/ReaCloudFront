@@ -52,7 +52,6 @@ export function FormCadastro() {
     const handleSubmit = async(e) =>{
 
         e.preventDefault();
-        console.log('values =\n', values);
 
         /*if(values.perfil == ""){
             console.log("Erro, escolha um perfil");
@@ -72,13 +71,17 @@ export function FormCadastro() {
             }
         }
         catch (exception) {
-            console.log("erro no cadastro");
+            setShowNotification(true);
+            setNotificationType('signupError'); 
+            console.log("Conexão não permitida.");
         }
     }
     
     return(
         <div className={styles.containerForm}>
+
             {(<BaseNotification type = {notificationType} showing={showNotification} onClose={closeNotification}  />)}
+            
             <form onSubmit={handleSubmit}>
 
             <LabelAndInput

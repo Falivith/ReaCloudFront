@@ -80,7 +80,8 @@ export function ReaInputForm(){
     
             if (formSubmitSuccess) {
                 setShowNotification(true);
-                setNotificationType('saveSuccess'); 
+                setNotificationType('saveSuccess');
+                await routeChangeHandler('');
             } else {
                 setShowNotification(true);
                 setNotificationType('saveError'); 
@@ -91,8 +92,6 @@ export function ReaInputForm(){
             setShowNotification(true);
             setNotificationType('saveError');
         }
-
-        await routeChangeHandler('');
     }
 
     // Update Selector
