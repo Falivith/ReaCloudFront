@@ -10,7 +10,6 @@ const wrapper = {"marginTop":"3rem",
                   "justifyContent":"center",
                 }
 
-
 export function Login() {
     return (
         <div>
