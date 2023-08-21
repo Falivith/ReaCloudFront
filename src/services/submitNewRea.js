@@ -19,6 +19,6 @@ export async function submitRea(recurso){
   }
   else{
     console.log("Você não pode cadastrar um recurso sem estar logado.");
-    return null; 
+    return null;
   }
 }

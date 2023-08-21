@@ -15,11 +15,21 @@ export function BaseNotification(props){
     let notificationProps
 
     switch(props.type){
-        case 'saveSuccess':
+        case 'savePerfilSuccess':
             notificationProps = {
                 img: CheckSymbol, 
-                title: "Dados salvos com sucesso",
-                description: "Seu perfil foi atualizado",
+                title: "Dados salvos com sucesso!",
+                description: "Seu perfil foi atualizado.",
+                backgroundcolor: "#22BB55",
+                textcolor: "#22BB55"
+            }
+        break;
+
+        case 'saveReaSuccess':
+            notificationProps = {
+                img: CheckSymbol, 
+                title: "Dados salvos com sucesso!",
+                description: "Seu recurso foi salvo.",
                 backgroundcolor: "#22BB55",
                 textcolor: "#22BB55"
             }

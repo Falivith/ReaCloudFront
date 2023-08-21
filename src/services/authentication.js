@@ -57,8 +57,18 @@ export async function updateUser(updatedUser) {
   const {userObject,config} = await checkLoginStatus()
 
   if (userObject) {
-    const response = await baseUrl.put(`/api/users/${userObject?.email}`,updatedUser,config)
-    return response.data
+    const response = await baseUrl.put(`/api/users/${userObject?.email}`, updatedUser, {
+      ...config,
+      validateStatus: function (status) {
+        return true; // Isso faz com que a Axios não rejeite a promessa com base no status da resposta
+      },
+    });
+
+    console.log("blablabla", response.status);
+    return {
+      data: response.data,
+      status: response.status
+    };
   }
 }
 

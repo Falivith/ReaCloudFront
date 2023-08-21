@@ -4,9 +4,18 @@ import { MeusDados } from '../components/profile/MeusDados';
 import { MeuEmailESenha } from '../components/profile/MeuEmailESenha'
 import { useEffect, useState } from 'react';
 import { getUser, updateUser, updateUserAccount } from '../services/authentication';
+import { BaseNotification } from '../components/modals/BaseNotification';
 
 export function MeuPerfil() {
     
+
+    const [showNotification, setShowNotification] = useState(false);
+    const [notificationType, setNotificationType] = useState('');
+
+    const closeNotification = () => {
+        setShowNotification(false);
+    };
+
     const initialValues = {
         nome: '',
         sobrenome: '',
@@ -49,10 +58,25 @@ export function MeuPerfil() {
                 delete valores.newPassword;    
                 console.log("valores = ", valores);
                 const result = await updateUser(valores)
-                console.log('result = ', result);
+                
+                
+                console.log('result = ', result.data);
+                console.log('codigo= ', result.status);
+     
+                setShowNotification(true);
+                if (result.status === 200){
+                    setNotificationType('savePerfilSuccess'); 
+                }   
+
+                if (result.status === 400){
+                    setNotificationType('saveError');   
+                }
+                
             }
+
             catch (exception) {
-                console.log("erro ao atualizar");
+                console.log("algum erro aconteceu", exception);
+
             }
         }
         
@@ -67,7 +91,10 @@ export function MeuPerfil() {
     
     return (
         <div>
-            <Header notificationNumber = {0}/> 
+            <Header notificationNumber = {4}/>
+
+            {(<BaseNotification type = {notificationType} showing={showNotification} onClose={closeNotification} />)}
+
             <MeusDados values = {values}  handleChange={handleChange}  handleSubmit={handleSubmit} />
             <MeuEmailESenha values = {values} handleChange={handleChange} handleSubmit={handleSubmit} />
             <Help/>
