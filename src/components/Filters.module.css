@@ -11,10 +11,16 @@
         flex-direction: column;
         align-items: center;    
     }
+    .internalContainer{
+        width: 200px;
+    }    
+    .inputSpace::placeholder{
+        color: white;
+    }
 }
 
 .internalContainer{
-    width: 24rem;
+    max-width: 24rem;
     height: 44px;
     display: flex;
     border: 1px;

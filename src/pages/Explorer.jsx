@@ -20,8 +20,8 @@ export function Explorer() {
         <ExplorerContainer/>
         <Filters/>
         <ReaList/>
-        <Help/>
         <Pagination/>
+        <Help/>
     </div>
   )
 }

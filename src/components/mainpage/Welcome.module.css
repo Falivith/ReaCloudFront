@@ -14,3 +14,11 @@
     flex-direction: column;
     gap: 3.1875rem;
 }
+
+@media (max-width: 800px){
+    .content {
+        font-size: 18px;
+        margin-right: 50px;
+        margin-left: 50px;
+    }
+}

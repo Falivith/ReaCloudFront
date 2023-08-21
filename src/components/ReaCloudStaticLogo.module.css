@@ -14,3 +14,14 @@
 .reaCloudLogo {
     height: 5.125rem;
 }
+
+@media (max-width: 800px){
+    .reaCloudLogo{
+        height: 4rem;
+    }
+    .reaCloudLogoText {
+        color: var(--gray);
+        font-family: 'Antic', sans-serif;
+        font-size: 2.5rem;
+    }
+}

@@ -1,5 +1,7 @@
 .mainPageContainer{
     height: 100%;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .reaViewContainer{
@@ -15,7 +17,6 @@
 }
 
 @media (max-width: 1000px){
-
     .reaViewContainer{
         display: flex;
         flex-direction: column;

@@ -70,7 +70,7 @@ export function Filters() {
                 <CustomSelector
                     id = "knowledgeArea"
                     selectorId={1}
-                    width={"201px"}
+                    width={"200px"}
                     height={"44px"}
                     options={["Português", "Matemática", "Biologia", "Teologia"]}
                     handleResult = { updateSelected }

@@ -4,14 +4,11 @@
     margin-top: 1.5rem;
     display: flex;
     flex-direction: column;
-    /* align-content: center; */
     justify-items: center;
     align-items: center;
-  }
+}
 
 .input{
-    min-width: 22.75rem;
-    min-height: 3rem;
     border: 0.0625rem solid #D9D9D9;
     border-radius: 0.75rem;
 
@@ -79,7 +76,6 @@ seria decidido pegando o atributo da última classe informada. Mas nao funcionou
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width: 22.75rem;
     min-height: 3rem;
     border-radius: 0.625rem;
     background: #FFFFFF;

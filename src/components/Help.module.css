@@ -3,3 +3,9 @@
     bottom: 0px;
     right: 0px;
 }
+
+@media (max-width: 800px) {
+    .help{
+        display: none;
+    }
+}

@@ -106,3 +106,9 @@
     border-radius: 50%;
     transition: 0.3s;
 }
+
+@media (max-width: 500px) {
+    .addReaButton {
+        display: none;
+    }
+}
