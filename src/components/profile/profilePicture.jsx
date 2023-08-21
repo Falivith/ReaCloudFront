@@ -41,7 +41,7 @@ const ProfilePicture = ({nome}) => {
       <label htmlFor="avatar-upload">
         <Avatar alt="John Doe"
           src={avatarSrc}
-          sx={{ width: 100, height: 100, cursor: 'pointer' }}
+          sx={{ width: 100, height: 100, cursor: 'pointer', marginBottom: '35px' }}
           >
           {nome} 
           

@@ -67,7 +67,7 @@ export function MeuPerfil() {
     
     return (
         <div>
-            <Header notificationNumber = {4}/> 
+            <Header notificationNumber = {0}/> 
             <MeusDados values = {values}  handleChange={handleChange}  handleSubmit={handleSubmit} />
             <MeuEmailESenha values = {values} handleChange={handleChange} handleSubmit={handleSubmit} />
             <Help/>

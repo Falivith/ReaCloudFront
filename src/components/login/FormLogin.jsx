@@ -3,11 +3,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { LabelAndInput } from './LabelAndInput';
 import { Button } from './Button';
 import styleLabelandInput from './LabelAndInput.module.css'
-import { useEffect, useState } from 'react';
-import { login, loginOAuth } from '../../services/authentication';
-import useFetch from '../../hooks/useFetch';
-import { baseUrl } from '../../services/utils';
-import { GoogleLogin } from '@react-oauth/google';
+import { useState } from 'react';
+import { login } from '../../services/authentication';
 import { useGoogleLogin } from '@react-oauth/google';
 
 const styleImage = 
@@ -19,22 +16,10 @@ const styleImage =
         "marginRight": "0.4rem"
     }
 
-
-
-
-                
 export function FormLogin(){
-    
-  
-
-    
-
-
-    
 
     const signIn = useGoogleLogin({
         onSuccess: async tokenResponse => {
-        //   loginOAuth(tokenResponse);
           console.log(tokenResponse);
           navigate('/');
         },
@@ -45,17 +30,18 @@ export function FormLogin(){
         signIn();  // Manually trigger Google login
       };
 
-
     const navigate = useNavigate();
-    
-    
+
+    const routeChangeHandler = (route) => {
+        navigate(`../${route}`);
+    }
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     
-     
     const handleSubmit = async(event) =>{
         event.preventDefault();
+        console.log("ta entrando");
         try {
             const user = await login({
               email,password
@@ -65,6 +51,7 @@ export function FormLogin(){
         }
         catch (exception) {
             console.log("erro");
+            <BaseNotification type = "passwordWarning"/>
         }
     }
 
@@ -77,14 +64,16 @@ export function FormLogin(){
             <LabelAndInput value ={password} onChange = {({target})=> setPassword(target.value)} labelText={'SENHA'} inputType={"password"}  placeholderText={'• • • • • • •'} inputStyle = {styleLabelandInput.input}/>
             <div className={styles.containerForButtons}>
               
-                
-                
-                <button onClick={handleClick}  id="signInDiv" className={styles.containerButtons}> <span className={styles.spanText} ><img src= {'Google.png'} style = {styleImage}  /> ENTRAR COM O GOOGLE </span></button>
-              
+                <button onClick={handleClick}  id="signInDiv" className={styles.containerButtons}> 
+                    <div className = {styles.googleImgContainer}>
+                        <img src= {'Google.png'} style = {styleImage}/>                            
+                    </div>
+                    <span className={styles.spanText}> ENTRAR COM O GOOGLE </span>
+                </button>
               
                 <Button textButton={'ENTRAR'}/>
                 
-                <button className={styles.containerButtons}> <span className={styles.spanText} > CADASTRAR  </span></button>
+                <button onClick={() => routeChangeHandler('cadastro')} className={styles.containerButtons}> <span className={styles.spanText} > CADASTRAR  </span></button>
             </div>
             <p className={styles.forgotPassword}>Esqueceu sua senha?&nbsp;<Link to={'../redefinir'} >Clique aqui</Link>  </p>
         </form>

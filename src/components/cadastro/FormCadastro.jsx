@@ -5,11 +5,26 @@ import styleLabelandInput from '../login/LabelAndInput.module.css'
 import { useState } from 'react';
 import {login, register} from '../../services/authentication';
 import { useNavigate } from 'react-router-dom';
-
+import { BaseNotification } from "../modals/BaseNotification";
+import { CustomSelector } from '../CustomSelector';
 
 export function FormCadastro() {
 
 const navigate = useNavigate();
+
+const [showNotification, setShowNotification] = useState(false);
+const [notificationType, setNotificationType] = useState('');
+
+const closeNotification = () => {
+    setShowNotification(false);
+};
+
+const updateSelected = (id, s) => {
+    setResult(prevState => ({
+        ...prevState, 
+        [id]: s
+    }))
+}
 
 const initialValues = {
     nome: '',
@@ -34,9 +49,17 @@ const handleSubmit = async(e) =>{
     e.preventDefault();
     console.log('values =\n', values);
     try {
-        const result1 = await register(values)
-        const result2 = await login({email : values.email, password : values.password   })
-        navigate('/');
+        if (values.nome.length > 2 && values.email.length > 0) {
+            const result1 = await register(values)
+            const result2 = await login({email : values.email, password : values.password   })
+            navigate('/');
+            setShowNotification(true);
+            setNotificationType('saveSuccess'); 
+        } else {
+            setShowNotification(true);
+            setNotificationType('saveError'); 
+            throw new Error('Nome ou email inválidos!');
+        }
     }
     catch (exception) {
         console.log("erro no cadastro");
@@ -45,11 +68,23 @@ const handleSubmit = async(e) =>{
   
 return(
     <div className={styles.containerForm}>
+        {(<BaseNotification type = {notificationType} showing={showNotification} onClose={closeNotification}  />)}
         <form onSubmit={handleSubmit}>
             <LabelAndInput value = {values.nome} onChange={handleChange} name="nome" labelText={'NOME'} inputType={'text'} placeholderText={'Nome'} inputStyle = {styleLabelandInput.input}/>
             <div className = {styles.divSpacing}> <LabelAndInput value = {values.sobrenome} onChange={handleChange} name="sobrenome" inputStyle = {styleLabelandInput.input} labelText = {'SOBRENOME'} inputType={'text'} placeholderText = {'Sobrenome'}/>          </div>
             <div className = {styles.divSpacing}> <LabelAndInput value = {values.instituicao} onChange={handleChange} name="instituicao" inputStyle = {styleLabelandInput.input} labelText = {'INSTITUIÇÃO DE ENSINO'} inputType = {'text'} placeholderText = {'Instituição de ensino'}/>          </div>
             <div className = {styles.divSpacing}> <LabelAndInput value = {values.perfil} onChange={handleChange} name="perfil" inputStyle = {styleLabelandInput.input} labelText = {'PERFIL'} inputType={'text'} placeholderText = {'Selecione...'}/>          </div>
+            
+            <CustomSelector
+                    id = "knowledgeArea"
+                    selectorId={1}
+                    width={"364px"}
+                    height={"44px"}
+                    placeholder = {"Escolha..."}
+                    options={["Estudante", "Professor", "Outro"]}
+                    handleResult = { updateSelected }
+            />
+            
             <div className = {styles.divSpacing}> <LabelAndInput value = {values.email} onChange={handleChange} name="email" inputStyle = {styleLabelandInput.input} labelText = {'E-MAIL'} inputType={'email'} placeholderText = {'E-mail'}/>          </div>
             <div className = {styles.twoItens}> 
             <LabelAndInput value = {values.password} onChange={handleChange} name="password" inputStyle = {styleLabelandInput.input2} labelText = {'SENHA'} inputType = {'password'} placeholderText = {'• • • • • • •'}/>          

@@ -8,6 +8,18 @@ import { baseUrl } from './utils';
     })
     return reas.data;
   }
+
+
+  export async function filterReas(filter) {
+    const reas = await baseUrl.get('/api/recurso/filter', {
+        params: filter
+    })
+    return reas.data;
+}
+
+
+
+
   
   export async function getReaInfo(id) {
 

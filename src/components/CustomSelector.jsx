@@ -1,5 +1,5 @@
 import styles from "./CustomSelector.module.scss";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Polygon from "../assets/Polygon.png";
 
 export function CustomSelector(props){
@@ -9,7 +9,7 @@ export function CustomSelector(props){
     setIsOpen(!isOpen);
   }
 
-  const [selectedOption, setSelectedOption] = useState('Todos');
+  const [selectedOption, setSelectedOption] = useState(props.placeholder);
 
   const onOptionClicked = value => () => {
     setSelectedOption(value);

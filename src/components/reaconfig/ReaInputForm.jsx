@@ -3,13 +3,21 @@ import { CustomSelector } from "../CustomSelector";
 import AddRing from "../../assets/Add_ring_green.png";
 import FileUpload from "../../assets/FileUpload.png";
 import { BaseNotification } from "../modals/BaseNotification";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useForm } from 'react-hook-form';
 import { submitRea } from "../../services/submitNewRea";
+import { useNavigate } from 'react-router-dom'
 
 /* saveSuccess, saveError, passwordSuccess, passwordWarning, passwordError */
 
 export function ReaInputForm(){
+
+    const navigate = useNavigate();
+
+    const routeChangeHandler = async (route) => {
+        await new Promise(resolve => setTimeout(resolve, 2000)); // Aguarda 2 segundos
+        navigate(`../${route}`);
+    }
 
     const [showNotification, setShowNotification] = useState(false);
     const [notificationType, setNotificationType] = useState('');
@@ -42,22 +50,31 @@ export function ReaInputForm(){
             link: data.link,
             description: data.description,
             instructions: data.instructions
-        }))
+        }));
+    
+        const updatedResult = {
+            ...result,
+            title: data.title,
+            reaType: data.reaType,
+            link: data.link,
+            description: data.description,
+            instructions: data.instructions
+        };
 
         const formData = new FormData();
-
-        formData.append('title', result.title)
-        formData.append('reaType', result.reaType)
-        formData.append('link', result.link)
-        formData.append('description', result.description)
-        formData.append('instructions', result.instructions)
-        formData.append('targetPublic', result.targetPublic)
-        formData.append('language', result.language)
-        formData.append('license', result.license)
-        formData.append('knowledgeArea', result.knowledgeArea)
-
-        formData.append('thumb', image)
-
+    
+        formData.append('title', updatedResult.title);
+        formData.append('reaType', updatedResult.reaType);
+        formData.append('link', updatedResult.link);
+        formData.append('description', updatedResult.description);
+        formData.append('instructions', updatedResult.instructions);
+        formData.append('targetPublic', updatedResult.targetPublic);
+        formData.append('language', updatedResult.language);
+        formData.append('license', updatedResult.license);
+        formData.append('knowledgeArea', updatedResult.knowledgeArea);
+    
+        formData.append('thumb', image);
+    
         try {
             const formSubmitSuccess = await submitRea(formData);
     
@@ -70,7 +87,12 @@ export function ReaInputForm(){
             }
         } catch (error) {
             console.error("Error submitting REA:", error);
+
+            setShowNotification(true);
+            setNotificationType('saveError');
         }
+
+        await routeChangeHandler('');
     }
 
     // Update Selector

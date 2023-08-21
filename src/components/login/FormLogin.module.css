@@ -34,8 +34,6 @@
 
 }
 
-
-
 .text{
     font-style: normal;
     font-weight: 700;
@@ -46,7 +44,6 @@
     margin-top: 0.4375rem;
 }
 
-
 .entrarButton{
     /* única coisa diferente de containerButtons é o background, tentei só alterar isso e utilizar as duas classes, pensando que o conflito
 seria decidido pegando o atributo da última classe informada. Mas nao funcionou como eu esperava */
@@ -55,6 +52,19 @@ seria decidido pegando o atributo da última classe informada. Mas nao funcionou
     min-height: 3rem;
     border-radius: 0.625rem;
     border: 0.0625rem solid #4F518C;
+    font-family: 'Roboto', sans-serif;
+    transition: 0.3s;
+}
+
+.entrarButton:hover{
+    background-color: var(--darkblue);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.containerButtons:hover span{
+    color: white;
+    transition: 0.3s;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -66,20 +76,28 @@ seria decidido pegando o atributo da última classe informada. Mas nao funcionou
 }
 
 .containerButtons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     min-width: 22.75rem;
     min-height: 3rem;
     border-radius: 0.625rem;
     background: #FFFFFF;
     border: 0.0625rem solid #4F518C;
+    transition: 0.3s;
+    gap: 10px;
 }
 
+.containerButtons:hover{
+    background-color: var(--blue);
+    transition: 0.2s;
+    cursor: pointer;
+}
 
 .spanText{
- 
     display: flex;
     align-items: center;
     justify-content: center;
-
     font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 700;
@@ -102,6 +120,13 @@ seria decidido pegando o atributo da última classe informada. Mas nao funcionou
     align-items: center;
     justify-content: center;
     color: #BEBEBE;
+}
+
+.googleImgContainer{
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+    margin-bottom: 5px;
 }
 
 linkstyle{

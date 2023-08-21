@@ -4,15 +4,9 @@ import RecursosEducacionaisLogo from '../assets/Add_ring.png';
 import SairLogo from '../assets/Close_round_light.png'
 import UserLogo from '../assets/User_circle_light.png';
 import { useNavigate } from 'react-router-dom';
-import { checkLogin } from '../services/authentication';
 import { useEffect, useState } from 'react';
 
-
 export function Header({notificationNumber = 0 }) {
-    
-    
-    
-    
     const navigate = useNavigate();
     const routeChangeHandler = (route) => {
         navigate(`../${route}`);
@@ -25,18 +19,13 @@ export function Header({notificationNumber = 0 }) {
         window.location.reload();
     }
 
-
-
     const [isLoggedIn, setIsLoggedIn] = useState(null); 
 
     useEffect(() => {
         localStorage.getItem('user') ? setIsLoggedIn(true): setIsLoggedIn(false)
       }, []);
-    
 
     return (
-        
-        
         <header className={ styles.header }>
             <div className={ styles.home }>
                 <img onClick = {() => routeChangeHandler('/')} className = { styles.reaCloudLogo } src={ ReaCloudLogo } alt="Logotipo da ReaCloud" />
