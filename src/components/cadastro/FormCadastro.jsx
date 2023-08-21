@@ -80,27 +80,89 @@ export function FormCadastro() {
         <div className={styles.containerForm}>
             {(<BaseNotification type = {notificationType} showing={showNotification} onClose={closeNotification}  />)}
             <form onSubmit={handleSubmit}>
-                <LabelAndInput value = {values.nome} onChange={handleChange} name="nome" labelText={'NOME'} inputType={'text'} placeholderText={'Nome'} inputStyle = {styleLabelandInput.input}/>
-                <div className = {styles.divSpacing}> <LabelAndInput value = {values.sobrenome} onChange={handleChange} name="sobrenome" inputStyle = {styleLabelandInput.input} labelText = {'SOBRENOME'} inputType={'text'} placeholderText = {'Sobrenome'}/>          </div>
-                <div className = {styles.divSpacing}> <LabelAndInput value = {values.instituicao} onChange={handleChange} name="instituicao" inputStyle = {styleLabelandInput.input} labelText = {'INSTITUIÇÃO DE ENSINO'} inputType = {'text'} placeholderText = {'Instituição de ensino'}/> </div>
 
-                <p className= {styles.label}> PERFIL </p>
-                <CustomSelector
-                        id = "knowledgeArea"
-                        selectorId={1}
-                        width={"364px"}
-                        height={"44px"}
-                        placeholder = {"Escolha..."}
-                        options={["Estudante", "Professor", "Outro"]}
-                        handleResult = { updateSelected }
-                />
+            <LabelAndInput
+                value={values.nome}
+                onChange={handleChange}
+                name="nome"
+                id="nome"
+                inputStyle={styleLabelandInput.input}
+                labelText={'NOME'}
+                inputType={'text'}
+                placeholderText={'Nome'}
+                autoComplete="given-name"
+            />
+
+            <LabelAndInput
+                value={values.sobrenome}
+                onChange={handleChange}
+                name="sobrenome"
+                id="sobrenome"
+                inputStyle={styleLabelandInput.input}
+                labelText={'SOBRENOME'}
+                inputType={'text'}
+                placeholderText={'Sobrenome'}
+                autoComplete="family-name"
+            />
+
+            <LabelAndInput
+                value={values.instituicao}
+                onChange={handleChange}
+                name="instituicao"
+                id="instituicao"
+                inputStyle={styleLabelandInput.input}
+                labelText={'INSTITUIÇÃO DE ENSINO'}
+                inputType={'text'}
+                placeholderText={'Instituição de ensino'}
+                autoComplete="organization"
+            />
+
+            <p className= {styles.label}> PERFIL </p>
+
+            <CustomSelector
+                    id = "knowledgeArea"
+                    selectorId={1}
+                    width={"364px"}
+                    height={"44px"}
+                    placeholder = {"Escolha..."}
+                    options={["Estudante", "Professor", "Outro"]}
+                    handleResult = { updateSelected }
+            />
                 
-                <div className = {styles.divSpacing}> <LabelAndInput value = {values.email} onChange={handleChange} name="email" inputStyle = {styleLabelandInput.input} labelText = {'E-MAIL'} inputType={'email'} placeholderText = {'E-mail'}/>          </div>
-                <div className = {styles.twoItens}> 
-                <LabelAndInput value = {values.password} onChange={handleChange} name="password" inputStyle = {styleLabelandInput.input2} labelText = {'SENHA'} inputType = {'password'} placeholderText = {'• • • • • • •'}/>          
-                <LabelAndInput inputStyle = {styleLabelandInput.input2} labelText = {'REPETIR SENHA'} inputType = {'password'} placeholderText = {'• • • • • • •'}/>        
-                </div>
-                <div style= {{"marginTop": "1rem"}}> <Button textButton={"CADASTRAR"}/> </div>
+            <LabelAndInput
+                value={values.email}
+                onChange={handleChange}
+                name="email"
+                id="email"
+                inputStyle={styleLabelandInput.input}
+                labelText={'E-MAIL'}
+                inputType={'email'}
+                placeholderText={'E-mail'}
+                autoComplete="email" // Sugestões para endereços de e-mail
+            />
+
+            <div className = {styles.twoItens}> 
+                <LabelAndInput
+                    value={values.password}
+                    onChange={handleChange}
+                    name="password"
+                    id="password"
+                    inputStyle={styleLabelandInput.input2}
+                    labelText={'SENHA'}
+                    inputType={'password'}
+                    placeholderText={'• • • • • • •'}
+                    autoComplete="new-password"
+                />
+
+                <LabelAndInput
+                    inputStyle={styleLabelandInput.input2}
+                    labelText={'REPETIR SENHA'}
+                    inputType={'password'}
+                    placeholderText={'• • • • • • •'}
+                    autoComplete="new-password"
+                />
+            </div>
+            <div style= {{"marginTop": "1rem"}}> <Button textButton={"CADASTRAR"}/> </div>
             </form> ''
         </div>
     )
