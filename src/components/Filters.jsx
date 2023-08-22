@@ -77,7 +77,10 @@ export function Filters({ onFilterChange = () => {} }) {
     return (
         <div className={styles.container}>
 
-            <form className={styles.internalContainer} action="">
+            <form className={styles.internalContainer} onSubmit={(e) => {
+                                                        e.preventDefault(); 
+                                                        fetchResources();
+    }}>
                 <input className={styles.inputSpace} type="text" placeholder="O que você procura?" onChange={(e) => setSearchValue(e.target.value)}/>
                 <button className={styles.searchButton} type="submit"><img src={Search} alt="Pesquisar" /></button>
             </form>
