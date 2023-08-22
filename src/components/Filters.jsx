@@ -5,9 +5,11 @@ import { CustomSelector } from './CustomSelector';
 import { useNavigate } from 'react-router-dom';
 import { filterReas } from '../services/reaquerys';
 
-export function Filters() {
-    const navigate = useNavigate();
+export function Filters({ onFilterChange = () => {} }) {
+    
+    
 
+    const navigate = useNavigate();
     const standardValues = {
         title: '',
         type: '',
@@ -40,7 +42,7 @@ export function Filters() {
             title: searchValue
         }));
     
-        console.log(reqConfig);
+        console.log("reqConfig = ",reqConfig);
     
         try {
             const response = await filterReas({
@@ -50,13 +52,21 @@ export function Filters() {
                 //"title": reqConfig.title, // Use o título do reqConfig
                 //"knowledge_area": reqConfig.knowledgeArea,
                 //"rea_type": reqConfig.type
-            });
+            }); 
+            // const response = await filterReas({
+            //     "title": reqConfig.title, // Use o título do reqConfig
+            //     "knowledge_area": reqConfig.knowledgeArea,
+            //     "rea_type": reqConfig.type
+            // });
             
             console.log(response);
+            onFilterChange(response)  // isso é uma função lá do Explorer, esse estado é mandado pra lá
+                                      // e então o ReaList pode pegar essa resposta
         } catch (error) {
             console.error(error);
         }
     }
+    
 
     return (
         <div className={styles.container}>

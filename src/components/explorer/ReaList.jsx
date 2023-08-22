@@ -1,23 +1,24 @@
 import { ReaPreview } from './ReaPreview';
 import styles from './ReaList.module.css';
 import { getAllReas } from '../../services/reaquerys';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
-export function ReaList() {
+
+export function ReaList({filterData,onFilterChange}) {
     
-    const [reas, setReas] = useState([]);
-
     useEffect(() => {
         async function fetchData() {
           const result = await getAllReas();
-          setReas(result);
+          onFilterChange(result);
         }
         fetchData();
       }, []);
 
+    
+
     return (
         <div className = { styles.reaContainer }>
-            {reas.map(rea => {
+            {filterData &&  filterData.map(rea => {
                 
                 let uint8Array = new Uint8Array(rea.thumb);
                 let blob = new Blob([uint8Array], { type: "Buffer" });

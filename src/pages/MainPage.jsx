@@ -11,7 +11,7 @@ export function MainPage() {
     <div className = { styles.mainPageContainer }>
       <Header/>
       <Welcome/>
-      <Filters/>
+      <Filters />
       <Art/>
       <Help/>
     </div>
