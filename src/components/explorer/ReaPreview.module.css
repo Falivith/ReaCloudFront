@@ -1,6 +1,6 @@
 .container {
+    width: 100%;
     color: black;
-    max-width: 61.1rem;
     max-height: 10.5rem;
     display: flex;
     border: 1px solid var(--lightgray);

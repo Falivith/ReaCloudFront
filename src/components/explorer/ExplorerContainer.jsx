@@ -1,10 +1,20 @@
 import styles from './ExplorerContainer.module.css';
 import { ReaCloudStaticLogo } from '../ReaCloudStaticLogo';
+import { Filters } from '../Filters';
+import { ReaList } from './ReaList';
+import { Pagination } from './Pagination';
+import { useState } from 'react';
 
 export function ExplorerContainer (){
+    
+  const [filterData, setFilterData] = useState(null);
+
     return(
         <div className = { styles.container }>
             <ReaCloudStaticLogo/>
+            <Filters onFilterChange={setFilterData} />
+            <ReaList filterData={filterData} onFilterChange={setFilterData} />
+            <Pagination/>
         </div>
     );
 }

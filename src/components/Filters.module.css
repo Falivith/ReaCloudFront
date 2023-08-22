@@ -1,33 +1,25 @@
 .container{
-    margin: 3rem 1rem 0px 1rem;
+    margin: 3rem 0px;
     display: flex;
-    justify-content: center;
-    gap: 1.125rem;
+    gap: 10px;
+    align-items: center;
     align-items: flex-end;
 }
 
-@media (max-width: 850px) {
-    .container {
-        flex-direction: column;
-        align-items: center;    
-    }
-    .internalContainer{
-        width: 200px;
-    }    
-    .inputSpace::placeholder{
-        color: white;
-    }
+.selectorsAndSearch{
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
 }
 
 .internalContainer{
-    max-width: 24rem;
+    width: 100%;
     height: 44px;
     display: flex;
     border: 1px;
     border-color: var(--lightgray);
     border-style: solid;
     border-radius: 10px;
-    justify-content: space-between;
 }
 
 .inputSpace{
@@ -95,4 +87,33 @@ Select Menus
     border-color: var(--lightgray);
     border-style: solid;
     border-radius: 10px;
+}
+
+@media (max-width: 1300px) {
+    .container{
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    .internalContainer{
+        width: 560px;
+    }
+}
+
+@media (max-width: 650px) {
+    .internalContainer{
+        width: 200px;
+    }
+    .inputSpace::placeholder{
+        color: white;
+    }
+    .selectorsAndSearch{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .blueSearchButton{
+        width: 200px;
+    }
 }

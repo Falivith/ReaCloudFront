@@ -14,8 +14,6 @@ export function ReaList({filterData,onFilterChange}) {
         fetchData();
       }, []);
 
-    
-
     return (
         <div className = { styles.reaContainer }>
             {filterData &&  filterData.map(rea => {

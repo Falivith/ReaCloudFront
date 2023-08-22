@@ -1,7 +1,15 @@
 .reaContainer {
     display: flex;
-    margin: 2.4375rem auto;
+    margin: 2.4375rem 0rem;
     flex-direction: column;
     gap: 1.625rem;
-    max-width: fit-content;
+}
+
+@media (max-width: 950px) {
+    .reaContainer {
+        display: flex;
+        margin: 2.4375rem 0rem;
+        flex-direction: column;
+        gap: 1.625rem;
+    }    
 }

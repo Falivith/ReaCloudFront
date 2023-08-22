@@ -6,10 +6,14 @@ import { useNavigate } from 'react-router-dom';
 import { filterReas } from '../services/reaquerys';
 
 export function Filters({ onFilterChange = () => {} }) {
-    
-    
 
     const navigate = useNavigate();
+
+    const routeChangeHandler = async (route) => {
+        await new Promise(resolve => setTimeout(resolve, 1)); 
+        navigate(`../${route}`);
+    }
+
     const standardValues = {
         title: '',
         type: '',
@@ -31,10 +35,6 @@ export function Filters({ onFilterChange = () => {} }) {
     // Estado para armazenar as seleções dos filtros
     const [searchValue, setSearchValue] = useState('');
 
-    const routeChangeHandler = (route) => {
-        navigate(`../${route}`);
-    }
-
     // Função para construir e executar a requisição à API com base nas seleções dos filtros
     const fetchResources = async () => {
         setReqConfig(prevState => ({
@@ -49,19 +49,12 @@ export function Filters({ onFilterChange = () => {} }) {
                 "title": "Kevin",
                 "knowledge_area": "Português",
                 "rea_type": "Site"
-                //"title": reqConfig.title, // Use o título do reqConfig
-                //"knowledge_area": reqConfig.knowledgeArea,
-                //"rea_type": reqConfig.type
-            }); 
-            // const response = await filterReas({
-            //     "title": reqConfig.title, // Use o título do reqConfig
-            //     "knowledge_area": reqConfig.knowledgeArea,
-            //     "rea_type": reqConfig.type
-            // });
-            
+            });
+
             console.log(response);
             onFilterChange(response)  // isso é uma função lá do Explorer, esse estado é mandado pra lá
-                                      // e então o ReaList pode pegar essa resposta
+            await routeChangeHandler('/explorer');
+
         } catch (error) {
             console.error(error);
         }
@@ -70,36 +63,39 @@ export function Filters({ onFilterChange = () => {} }) {
 
     return (
         <div className={styles.container}>
+
             <form className={styles.internalContainer} action="">
                 <input className={styles.inputSpace} type="text" placeholder="O que você procura?" onChange={(e) => setSearchValue(e.target.value)}/>
                 <button className={styles.searchButton} type="submit"><img src={Search} alt="Pesquisar" /></button>
             </form>
 
-            <div className={styles.selectorExternalContainer}>
-                <span className={styles.blueSpan}>ÁREA DO CONHECIMENTO</span>
-                <CustomSelector
-                    id = "knowledgeArea"
-                    selectorId={1}
-                    width={"200px"}
-                    height={"44px"}
-                    options={["Português", "Matemática", "Biologia", "Teologia"]}
-                    handleResult = { updateSelected }
-                    />
-            </div>
+            <div className = { styles.selectorsAndSearch }>
+                <div className={styles.selectorExternalContainer}>
+                    <span className={styles.blueSpan}>ÁREA DO CONHECIMENTO</span>
+                    <CustomSelector
+                        id = "knowledgeArea"
+                        selectorId={1}
+                        width={"200px"}
+                        height={"44px"}
+                        options={["Português", "Matemática", "Biologia", "Teologia"]}
+                        handleResult = { updateSelected }
+                        />
+                </div>
 
-            <div className={styles.selectorExternalContainer}>
-                <span className={styles.blueSpan}>TIPO DO MATERIAL</span>
-                <CustomSelector
-                    id = "type"
-                    selectorId={2}
-                    width={"200px"}
-                    height={"44px"}
-                    options={["Website", "Vídeo", "Artigo"]}
-                    handleResult = { updateSelected } 
-                    />
-            </div>
+                <div className={styles.selectorExternalContainer}>
+                    <span className={styles.blueSpan}>TIPO DO MATERIAL</span>
+                    <CustomSelector
+                        id = "type"
+                        selectorId={2}
+                        width={"200px"}
+                        height={"44px"}
+                        options={["Website", "Vídeo", "Artigo"]}
+                        handleResult = { updateSelected } 
+                        />
+                </div>
 
-            <button className={styles.blueSearchButton} onClick={fetchResources}>BUSCAR</button>
+                <button className={styles.blueSearchButton} onClick={fetchResources}>BUSCAR</button>
+            </div>
         </div>
     );
 }

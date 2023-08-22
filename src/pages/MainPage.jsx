@@ -1,18 +1,13 @@
 import '../global.css';
 import { Header } from '../components/Header';
-import { Welcome } from '../components/mainpage/Welcome';
-import { Filters } from '../components/Filters';
-import { Art } from '../components/mainpage/Art';
 import { Help } from '../components/Help';
-import styles from '../App.module.css';
+import { MainPageContainer } from '../components/mainpage/MainPageContainer';
 
 export function MainPage() {
   return(
-    <div className = { styles.mainPageContainer }>
+    <div>
       <Header/>
-      <Welcome/>
-      <Filters />
-      <Art/>
+      <MainPageContainer/>
       <Help/>
     </div>
   )
