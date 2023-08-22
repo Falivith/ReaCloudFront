@@ -6,7 +6,7 @@ import UserLogo from '../assets/User_circle_light.png';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-export function Header({notificationNumber = 0 }) {
+export function Header({ notificationNumber = 0 }) {
     const navigate = useNavigate();
     const routeChangeHandler = (route) => {
         navigate(`../${route}`);
@@ -19,48 +19,44 @@ export function Header({notificationNumber = 0 }) {
         window.location.reload();
     }
 
-    const [isLoggedIn, setIsLoggedIn] = useState(null); 
+    const [isLoggedIn, setIsLoggedIn] = useState(null);
+    const [initialCheckDone, setInitialCheckDone] = useState(false);
 
     useEffect(() => {
-        localStorage.getItem('user') ? setIsLoggedIn(true): setIsLoggedIn(false)
-      }, []);
+        const user = localStorage.getItem('user');
+        setIsLoggedIn(!!user); // Convert truthy/falsy value to boolean
+        setInitialCheckDone(true);
+    }, []);
+    
+    if (!initialCheckDone) {
+        // Return loading or null during initial check
+        return null;
+    }
 
     return (
-        <header className={ styles.header }>
-            <div className={ styles.home }>
-                <img onClick = {() => routeChangeHandler('/')} className = { styles.reaCloudLogo } src={ ReaCloudLogo } alt="Logotipo da ReaCloud" />
-                <span onClick = {() => routeChangeHandler('/')} className = { styles.reaCloudLogoText }>ReaCloud</span>
+        <header className={styles.header}>
+            <div className={styles.home}>
+                <img onClick={() => routeChangeHandler('/')} className={styles.reaCloudLogo} src={ReaCloudLogo} alt="Logotipo da ReaCloud" />
+                <span onClick={() => routeChangeHandler('/')} className={styles.reaCloudLogoText}>ReaCloud</span>
             </div>
-            <div className = { styles.buttons }>
-                {!isLoggedIn ?
-                    <button onClick = {() => routeChangeHandler('addrea')} className={ styles.addReaButton } >ADICIONAR RECURSO</button>
-                    : null
-                }
-                {!isLoggedIn ?
-                    <span className = { styles.loginButtons } >
-                        {!isLoggedIn ?
-                            <button className={ styles.loginButton } onClick={() => routeChangeHandler('login')}>ENTRE</button>
-                            : null}
-                        {!isLoggedIn ? ' OU ' : ''}
-                        {!isLoggedIn ?
-                            <button onClick={() => routeChangeHandler('cadastro')} className = { styles.loginButton } >CADASTRE-SE</button>
-                            : null}
-                    </span>
-                : null
-                }
+            <div className={styles.buttons}>
                 {isLoggedIn ?
-                <div className = { styles.buttons }>
-                    <img onClick = {() => routeChangeHandler('addrea')} className = { styles.reaCloudLogo } src = { RecursosEducacionaisLogo } />
-                    {notificationNumber > 0 ?
-                        <span className = {`badge ${styles.badge}`}>{notificationNumber}</span>
-                    :null}
-                    <button className = { styles.buttonsLogged } onClick = {() => routeChangeHandler('addrea')}>RECURSOS EDUCACIONAIS</button>
-                    <img onClick = {() => routeChangeHandler('profile')} className = { styles.reaCloudLogo } src = { UserLogo } />
-                    <button className = { styles.buttonsLogged } onClick={() => routeChangeHandler('profile')}>MEU PERFIL</button>
-                    <img onClick = {logout} className = { styles.sairLogo} src = { SairLogo } />
-                    <button className={ styles.buttonsLogged } onClick={logout}>SAIR</button>
-                </div>
-                : null
+                    <div className={styles.buttons}>
+                        <img onClick={() => routeChangeHandler('addrea')} className={styles.reaCloudLogo} src={RecursosEducacionaisLogo} />
+                        {notificationNumber > 0 ?
+                            <span className={`badge ${styles.badge}`}>{notificationNumber}</span>
+                            : null}
+                        <button className={styles.buttonsLogged} onClick={() => routeChangeHandler('addrea')}>RECURSOS EDUCACIONAIS</button>
+                        <img onClick={() => routeChangeHandler('profile')} className={styles.reaCloudLogo} src={UserLogo} />
+                        <button className={styles.buttonsLogged} onClick={() => routeChangeHandler('profile')}>MEU PERFIL</button>
+                        <img onClick={logout} className={styles.sairLogo} src={SairLogo} />
+                        <button className={styles.buttonsLogged} onClick={logout}>SAIR</button>
+                    </div>
+                    : <span className={styles.loginButtons} >
+                        <button onClick={() => routeChangeHandler('addrea')} className={styles.addReaButton} >ADICIONAR RECURSO</button>
+                        <button className={styles.loginButton} onClick={() => routeChangeHandler('login')}>ENTRE</button>
+                        <button onClick={() => routeChangeHandler('cadastro')} className={styles.loginButton} >CADASTRE-SE</button>
+                      </span>
                 }
             </div>
         </header>
