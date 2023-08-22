@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Filters.module.css';
 import Search from '../assets/Search.svg';
 import { CustomSelector } from './CustomSelector';
@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { filterReas } from '../services/reaquerys';
 
 export function Filters({ onFilterChange = () => {} }) {
+
 
     const navigate = useNavigate();
 
@@ -31,34 +32,46 @@ export function Filters({ onFilterChange = () => {} }) {
     }
 
     const [ reqConfig, setReqConfig ] = useState(standardValues)
+   
 
     // Estado para armazenar as seleções dos filtros
     const [searchValue, setSearchValue] = useState('');
 
     // Função para construir e executar a requisição à API com base nas seleções dos filtros
     const fetchResources = async () => {
-        setReqConfig(prevState => ({
-            ...prevState,
-            title: searchValue
-        }));
-    
-        console.log("reqConfig = ",reqConfig);
-    
         try {
-            const response = await filterReas({
-                "title": "Kevin",
-                "knowledge_area": "Português",
-                "rea_type": "Site"
-            });
-
-            console.log(response);
-            onFilterChange(response)  // isso é uma função lá do Explorer, esse estado é mandado pra lá
-            await routeChangeHandler('/explorer');
-
+            setReqConfig(prevState => ({
+                ...prevState,
+                title: searchValue
+            }));
+    
         } catch (error) {
             console.error(error);
         }
     }
+    
+    // Use useEffect to handle the API call after reqConfig is updated
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await filterReas({
+                    "title": reqConfig.title,
+                    "knowledge_area": reqConfig.knowledgeArea,
+                    "rea_type": reqConfig.type
+                });
+    
+                console.log(response);
+                onFilterChange(response);
+                await routeChangeHandler('/explorer');
+    
+            } catch (error) {
+                console.error(error);
+            }
+        };
+    
+        fetchData();
+    }, [reqConfig]); // Run this effect whenever reqConfig changes
+    
     
 
     return (
