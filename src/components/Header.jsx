@@ -55,6 +55,7 @@ export function Header({ notificationNumber = 0 }) {
                     : <span className={styles.loginButtons} >
                         <button onClick={() => routeChangeHandler('addrea')} className={styles.addReaButton} >ADICIONAR RECURSO</button>
                         <button className={styles.loginButton} onClick={() => routeChangeHandler('login')}>ENTRE</button>
+                        {' OU '}
                         <button onClick={() => routeChangeHandler('cadastro')} className={styles.loginButton} >CADASTRE-SE</button>
                       </span>
                 }
