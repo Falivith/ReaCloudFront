@@ -24,12 +24,12 @@ export function FormLogin(){
           console.log(tokenResponse);
           navigate('/');
         },
-      });
+    });
     
     const handleClick = (event) => {
         event.preventDefault();  // Prevent the form from being submitted
         signIn();  // Manually trigger Google login
-      };
+    };
 
     const navigate = useNavigate();
 

@@ -62,7 +62,7 @@ export function Filters({ onFilterChange = () => {}, pageSize, currentPage }) {
                 console.log("currentPageXXX = ",currentPage);
                 console.log(response);
                 onFilterChange(response);
-                await routeChangeHandler('/explorer');
+                //await routeChangeHandler('/explorer');
     
             } catch (error) {
                 console.error(error);
