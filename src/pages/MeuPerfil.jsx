@@ -91,7 +91,7 @@ export function MeuPerfil() {
     
     return (
         <div>
-            <Header notificationNumber = {4}/>
+            <Header notificationNumber = {0}/>
 
             {(<BaseNotification type = {notificationType} showing={showNotification} onClose={closeNotification} />)}
 

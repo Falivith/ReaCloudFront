@@ -50,12 +50,12 @@ export function Header({notificationNumber = 0 }) {
                 }
                 {isLoggedIn ?
                 <div className = { styles.buttons }>
-                    <img onClick = {() => routeChangeHandler('')} className = { styles.reaCloudLogo } src = { RecursosEducacionaisLogo } />
+                    <img onClick = {() => routeChangeHandler('addrea')} className = { styles.reaCloudLogo } src = { RecursosEducacionaisLogo } />
                     {notificationNumber > 0 ?
                         <span className = {`badge ${styles.badge}`}>{notificationNumber}</span>
                     :null}
                     <button className = { styles.buttonsLogged } onClick = {() => routeChangeHandler('addrea')}>RECURSOS EDUCACIONAIS</button>
-                    <img onClick = {() => routeChangeHandler('')} className = { styles.reaCloudLogo } src = { UserLogo } />
+                    <img onClick = {() => routeChangeHandler('profile')} className = { styles.reaCloudLogo } src = { UserLogo } />
                     <button className = { styles.buttonsLogged } onClick={() => routeChangeHandler('profile')}>MEU PERFIL</button>
                     <img onClick = {logout} className = { styles.sairLogo} src = { SairLogo } />
                     <button className={ styles.buttonsLogged } onClick={logout}>SAIR</button>
