@@ -10,9 +10,13 @@ import { baseUrl } from './utils';
   }
 
 
-  export async function filterReas(filter) {
+  export async function filterReas(filter,currentPage,pageSize) {
     const reas = await baseUrl.get('/api/recurso/filter', {
-        params: filter
+      params: {
+        ...filter,
+        currentPage: currentPage,
+        pageSize: pageSize,
+      },
     })
     return reas.data;
 }

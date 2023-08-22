@@ -5,7 +5,7 @@ import { CustomSelector } from './CustomSelector';
 import { useNavigate } from 'react-router-dom';
 import { filterReas } from '../services/reaquerys';
 
-export function Filters({ onFilterChange = () => {} }) {
+export function Filters({ onFilterChange = () => {}, pageSize, currentPage }) {
 
 
     const navigate = useNavigate();
@@ -58,8 +58,8 @@ export function Filters({ onFilterChange = () => {} }) {
                     "title": reqConfig.title,
                     "knowledge_area": reqConfig.knowledgeArea,
                     "rea_type": reqConfig.type
-                });
-    
+                },currentPage,pageSize);
+                console.log("currentPageXXX = ",currentPage);
                 console.log(response);
                 onFilterChange(response);
                 await routeChangeHandler('/explorer');
@@ -70,7 +70,7 @@ export function Filters({ onFilterChange = () => {} }) {
         };
     
         fetchData();
-    }, [reqConfig]); // Run this effect whenever reqConfig changes
+    }, [reqConfig,currentPage]); // Run this effect whenever reqConfig changes
     
     
 

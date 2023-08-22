@@ -8,13 +8,17 @@ import { useState } from 'react';
 export function ExplorerContainer (){
     
   const [filterData, setFilterData] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
 
     return(
         <div className = { styles.container }>
             <ReaCloudStaticLogo/>
-            <Filters onFilterChange={setFilterData} />
+            <Filters onFilterChange={setFilterData} 
+                     pageSize = {pageSize} currentPage = {currentPage}   
+            />
             <ReaList filterData={filterData} onFilterChange={setFilterData} />
-            <Pagination/>
+            <Pagination setCurrentPage = {setCurrentPage} currentPage = {currentPage}  />
         </div>
     );
 }
