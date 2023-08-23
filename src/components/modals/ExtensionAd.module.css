@@ -23,8 +23,9 @@
 }
 
 .header{
-    margin-top: 10px;
-    margin-left: 0px;
+    padding-top: 10px;
+    display: flex;
+    gap: 15px;
     font-display: flex;
     align-items: flex-start;
     justify-content: flex-start;
@@ -39,6 +40,7 @@
 }
 
 .close{
+    margin: 0px;
     margin-top: 5px;
     cursor: pointer;
     height: 10px;
@@ -80,4 +82,5 @@
 .link > img{
     width: 40px;
     padding: 5px;
+    padding-right: 0px;
 }

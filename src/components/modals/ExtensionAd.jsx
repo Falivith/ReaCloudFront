@@ -11,6 +11,10 @@ export function ExtensionAd(props){
         }
     };
 
+    const handleClick = () => {
+        close(); // Fechar a notificação ao clicar no link
+    };
+
     return props.showing ? (
         <div className = { styles.backgroundColorAndContainer }>
             <div className = { styles.background }>
@@ -27,7 +31,12 @@ export function ExtensionAd(props){
                         acesse facilmente o que você encontrou.
                     </p>
 
-                    <a className = { styles.link } href="https://chrome.google.com/webstore/detail/reacloud/flnllibpodbojpadpmpajmggfjchabdp/related?hl=pt-BR">
+                    <a className = { styles.link } 
+                        href="https://chrome.google.com/webstore/detail/reacloud/flnllibpodbojpadpmpajmggfjchabdp/related?hl=pt-BR" 
+                        target='_blank'
+                        onClick={handleClick}
+                    
+                    >
                         <p> Link da Chrome Web Store </p>
                         <img src = {reaCloudLogo} alt="Logotipo do ReaCloud"/>
                     </a>
