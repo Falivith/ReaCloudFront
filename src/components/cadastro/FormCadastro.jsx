@@ -58,7 +58,7 @@ export function FormCadastro() {
         }*/
 
         try {
-            if (values.nome.length > 2 && values.email.length > 0) {
+            if (values.nome.length > 2 && values.email.length > 5) {
                 const result1 = await register(values)
                 const result2 = await login({email : values.email, password : values.password   })
                 navigate('/');
@@ -71,8 +71,8 @@ export function FormCadastro() {
             }
         }
         catch (exception) {
-            if (showNotification === true){
-                console.log("Nome ou email inválidos.");
+            if (values.nome.length < 2 || values.email.length < 5){
+                console.log("Nome ou email inválidos.", );
             } else {
                 setShowNotification(true);
                 setNotificationType('signupError'); 
