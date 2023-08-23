@@ -7,10 +7,6 @@ import { Art } from './Art';
 export function MainPageContainer (){
     
   
-  const [filterData, setFilterData] = useState(null);
-
-
-
 
     return(
         <div className = { styles.container }>

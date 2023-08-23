@@ -5,7 +5,7 @@ import { ReaList } from './ReaList';
 import { Pagination } from './Pagination';
 import { useState } from 'react';
 
-export function ExplorerContainer (){
+export function ExplorerContainer ({reqConfig}){
     
   const [filterData, setFilterData] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -15,7 +15,8 @@ export function ExplorerContainer (){
         <div className = { styles.container }>
             <ReaCloudStaticLogo/>
             <Filters onFilterChange={setFilterData} 
-                     pageSize = {pageSize} currentPage = {currentPage}   
+                     pageSize = {pageSize} currentPage = {currentPage}
+                     reqConfigState = {reqConfig}   
             />
             <ReaList filterData={filterData} onFilterChange={setFilterData} />
             <Pagination setCurrentPage = {setCurrentPage} currentPage = {currentPage}  />

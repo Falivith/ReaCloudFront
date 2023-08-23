@@ -4,11 +4,18 @@ import Search from '../assets/Search.svg';
 import { CustomSelector } from './CustomSelector';
 import { useNavigate } from 'react-router-dom';
 import { filterReas } from '../services/reaquerys';
+import { useLocation } from 'react-router-dom';
 
-export function Filters({ onFilterChange = () => {}, pageSize, currentPage }) {
+export function Filters({ onFilterChange = () => {},pageSize, currentPage, reqConfigState }) {
 
-
+    
+    const location = useLocation();
     const navigate = useNavigate();
+
+
+
+
+
 
     const routeChangeHandler = async (route) => {
         await new Promise(resolve => setTimeout(resolve, 1)); 
@@ -18,9 +25,12 @@ export function Filters({ onFilterChange = () => {}, pageSize, currentPage }) {
     const standardValues = {
         title: '',
         type: '',
-        knowledgeArea: ''
-    };
+        knowledgeArea: '',
+        ...(reqConfigState !== null ? reqConfigState : {})
+      };
     
+
+    console.log("standardValues = ",standardValues);
     const updateSelected = (id, s) => {
         console.log(id, s);
     
@@ -31,11 +41,19 @@ export function Filters({ onFilterChange = () => {}, pageSize, currentPage }) {
         }));
     }
 
+    
     const [ reqConfig, setReqConfig ] = useState(standardValues)
    
 
+
     // Estado para armazenar as seleções dos filtros
     const [searchValue, setSearchValue] = useState('');
+
+    useEffect(() => {
+    if (reqConfigState !== null && reqConfigState !== undefined) {
+      setSearchValue(reqConfigState.title);
+    }
+  }, [reqConfigState]);
 
     // Função para construir e executar a requisição à API com base nas seleções dos filtros
     const fetchResources = async () => {
@@ -44,7 +62,7 @@ export function Filters({ onFilterChange = () => {}, pageSize, currentPage }) {
                 ...prevState,
                 title: searchValue
             }));
-            await routeChangeHandler('/explorer');
+            
     
         } catch (error) {
             console.error(error);
@@ -63,6 +81,10 @@ export function Filters({ onFilterChange = () => {}, pageSize, currentPage }) {
                 console.log("currentPageXXX = ",currentPage);
                 console.log(response);
                 onFilterChange(response);
+                if (location.pathname === '/' && reqConfig.title.length > 1 ) {
+                    console.log("SENDING ... ",reqConfig);
+                    navigate('/explorer', { state: { reqConfig}});
+                }
                 
     
             } catch (error) {
@@ -82,7 +104,7 @@ export function Filters({ onFilterChange = () => {}, pageSize, currentPage }) {
                                                         e.preventDefault(); 
                                                         fetchResources();
     }}>
-                <input className={styles.inputSpace} type="text" placeholder="O que você procura?" onChange={(e) => setSearchValue(e.target.value)}/>
+                <input value={searchValue} className={styles.inputSpace} type="text" placeholder="O que você procura?" onChange={(e) => setSearchValue(e.target.value)}/>
                 <button className={styles.searchButton} type="submit"><img src={Search} alt="Pesquisar" /></button>
             </form>
 
