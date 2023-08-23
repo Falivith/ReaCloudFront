@@ -13,7 +13,7 @@ export function Filters({ onFilterChange = () => {}, pageSize, currentPage }) {
     const routeChangeHandler = async (route) => {
         await new Promise(resolve => setTimeout(resolve, 1)); 
         navigate(`../${route}`);
-    }
+    }   
 
     const standardValues = {
         title: '',
@@ -44,6 +44,7 @@ export function Filters({ onFilterChange = () => {}, pageSize, currentPage }) {
                 ...prevState,
                 title: searchValue
             }));
+            await routeChangeHandler('/explorer');
     
         } catch (error) {
             console.error(error);
@@ -62,7 +63,7 @@ export function Filters({ onFilterChange = () => {}, pageSize, currentPage }) {
                 console.log("currentPageXXX = ",currentPage);
                 console.log(response);
                 onFilterChange(response);
-                //await routeChangeHandler('/explorer');
+                
     
             } catch (error) {
                 console.error(error);
