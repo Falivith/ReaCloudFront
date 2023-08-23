@@ -11,6 +11,7 @@ export function Filters({ onFilterChange = () => {},pageSize, currentPage, reqCo
     
     const location = useLocation();
     const navigate = useNavigate();
+    
 
     useEffect(() => {
         if (reqConfigState !== null && reqConfigState !== undefined) {
@@ -44,7 +45,7 @@ export function Filters({ onFilterChange = () => {},pageSize, currentPage, reqCo
 
     
     const [ reqConfig, setReqConfig ] = useState(standardValues)
-   
+    const [isSubmitted, setIsSubmitted] = useState(false);
 
 
     // Estado para armazenar as seleções dos filtros
@@ -54,6 +55,7 @@ export function Filters({ onFilterChange = () => {},pageSize, currentPage, reqCo
 
     // Função para construir e executar a requisição à API com base nas seleções dos filtros
     const fetchResources = async () => {
+        setIsSubmitted(true)
         try {
             setReqConfig(prevState => ({
                 ...prevState,
@@ -69,16 +71,23 @@ export function Filters({ onFilterChange = () => {},pageSize, currentPage, reqCo
     // Use useEffect to handle the API call after reqConfig is updated
     useEffect(() => {
         const fetchData = async () => {
+            
+
             try {
-                const response = await filterReas({
-                    "title": reqConfig.title,
-                    "knowledge_area": reqConfig.knowledgeArea,
-                    "rea_type": reqConfig.type
-                },currentPage,pageSize);
-                console.log("currentPageXXX = ",currentPage);
-                console.log(response);
-                onFilterChange(response);
-                if (location.pathname === '/' && reqConfig.title.length > 1 ) {
+                if (location.pathname === '/explorer' ) {
+                    console.log("ola e reqCOnfig = ", reqConfig);
+                    console.log("ola e reqCOnfigState = ", reqConfigState);
+
+                    const response = await filterReas({
+                        "title": reqConfig.title,
+                        "knowledge_area": reqConfig.knowledgeArea,
+                        "rea_type": reqConfig.type
+                    },currentPage,pageSize);
+                    
+                    console.log("response = ", response);
+                    onFilterChange(response);
+                }
+                if (location.pathname === '/' && isSubmitted ) {
                     console.log("SENDING ... ",reqConfig);
                     navigate('/explorer', { state: { reqConfig}});
                 }
