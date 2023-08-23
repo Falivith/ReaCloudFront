@@ -15,9 +15,15 @@ export function Pagination({ setCurrentPage,currentPage }) {
         setCurrentPage((prevPage) => prevPage + 1);
     };
 
+    const handlePreviousClick = (event) => {
+        console.log("currentPage = ",currentPage)
+        event.preventDefault();
+        setCurrentPage((prevPage) => prevPage - 1);
+    };
+
     return (
         <div className={styles.pagination}>
-            <a href="#"><img src={Preview} alt="preview" /></a>
+            <a onClick={handlePreviousClick} href="#"><img src={Preview} alt="preview" /></a>
             {[1, 2, 3, 4, 5, 6].map((page) => (
                 <a 
                     href="#" 

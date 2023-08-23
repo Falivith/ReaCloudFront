@@ -12,8 +12,11 @@ export function Filters({ onFilterChange = () => {},pageSize, currentPage, reqCo
     const location = useLocation();
     const navigate = useNavigate();
 
-
-
+    useEffect(() => {
+        if (reqConfigState !== null && reqConfigState !== undefined) {
+          setSearchValue(reqConfigState.title);
+        }
+      }, [reqConfigState]);
 
 
 
@@ -29,8 +32,6 @@ export function Filters({ onFilterChange = () => {},pageSize, currentPage, reqCo
         ...(reqConfigState !== null ? reqConfigState : {})
       };
     
-
-    console.log("standardValues = ",standardValues);
     const updateSelected = (id, s) => {
         console.log(id, s);
     
@@ -49,11 +50,7 @@ export function Filters({ onFilterChange = () => {},pageSize, currentPage, reqCo
     // Estado para armazenar as seleções dos filtros
     const [searchValue, setSearchValue] = useState('');
 
-    useEffect(() => {
-    if (reqConfigState !== null && reqConfigState !== undefined) {
-      setSearchValue(reqConfigState.title);
-    }
-  }, [reqConfigState]);
+    
 
     // Função para construir e executar a requisição à API com base nas seleções dos filtros
     const fetchResources = async () => {
@@ -94,6 +91,8 @@ export function Filters({ onFilterChange = () => {},pageSize, currentPage, reqCo
     
         fetchData();
     }, [reqConfig,currentPage]); // Run this effect whenever reqConfig changes
+
+    
     
     
 
