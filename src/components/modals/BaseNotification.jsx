@@ -45,6 +45,16 @@ export function BaseNotification(props){
             }
         break;
 
+        case 'saveErrorLogin':
+            notificationProps = {
+                img: DangerSymbol,
+                title: "Erro ao salvar os dados",
+                description: "Nome ou email inválidos!",
+                backgroundcolor: "#D30000",
+                textcolor: "#D30000"
+            }
+        break;
+
         case 'signupError':
             notificationProps = {
                 img: DangerSymbol,

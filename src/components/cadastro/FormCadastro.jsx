@@ -66,14 +66,19 @@ export function FormCadastro() {
                 setNotificationType('saveSuccess'); 
             } else {
                 setShowNotification(true);
-                setNotificationType('saveError'); 
+                setNotificationType('saveErrorLogin'); 
                 throw new Error('Nome ou email inválidos!');
             }
         }
         catch (exception) {
-            setShowNotification(true);
-            setNotificationType('signupError'); 
-            console.log("Conexão não permitida.");
+            if (showNotification === true){
+                console.log("Nome ou email inválidos.");
+            } else {
+                setShowNotification(true);
+                setNotificationType('signupError'); 
+                console.log("Conexão não permitida.");
+            }
+            
         }
     }
     
