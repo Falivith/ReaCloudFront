@@ -35,6 +35,16 @@ export function BaseNotification(props){
             }
         break;
 
+        case 'saveReaError':
+            notificationProps = {
+                img: DangerSymbol,
+                title: "Erro ao criar o recurso.",
+                description: "Por favor, tente novamente.",
+                backgroundcolor: "#D30000",
+                textcolor: "#D30000"
+            }
+        break;
+
         case 'saveError':
             notificationProps = {
                 img: DangerSymbol,

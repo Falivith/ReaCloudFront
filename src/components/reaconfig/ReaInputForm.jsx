@@ -12,13 +12,12 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 export function ReaInputForm(){
 
-    var ExtensionId = "hhglkeeogekcimonpepemfjabkikbimh"
+    var extensionId = "hhglkeeogekcimonpepemfjabkikbimh"
 
     const [ selectedRea, setSelectedRea ] = useState(null);
     const { index } = useParams();
 
     useEffect(() => {
-        const extensionId = ExtensionId;
         if (window.chrome && chrome.runtime && chrome.runtime.sendMessage) {
             chrome.runtime.sendMessage(extensionId, { getTargetData: true }, (response) => {
                 if (response && response.setTargetData) {
@@ -27,6 +26,17 @@ export function ReaInputForm(){
             });
         }
     }, [index]);
+
+    useEffect(() => {
+        if (selectedRea){
+            setResult(prevState => ({
+                ...prevState,
+                title: selectedRea.title,
+                link: selectedRea.link,
+                description: selectedRea.description,
+            }));
+        }
+    }, [selectedRea]);
 
     const navigate = useNavigate();
 
@@ -59,6 +69,7 @@ export function ReaInputForm(){
     const [ image , setImage ] = useState("")
 
     const addRea = async data => {
+
         setResult(prevState => ({
             ...prevState,
             title: data.title,
@@ -96,17 +107,24 @@ export function ReaInputForm(){
     
             if (formSubmitSuccess) {
                 setShowNotification(true);
-                setNotificationType('saveSuccess');
+                setNotificationType('saveReaSuccess');
+
+                chrome.runtime.sendMessage(extensionId, { delete: selectedRea.link }, (response) => {
+                    if (response && response.setTargetData) {
+                        console.log(response);
+                    }
+                });
+
                 await routeChangeHandler('');
             } else {
                 setShowNotification(true);
-                setNotificationType('saveError'); 
+                setNotificationType('saveReaError'); 
             }
         } catch (error) {
             console.error("Error submitting REA:", error);
 
             setShowNotification(true);
-            setNotificationType('saveError');
+            setNotificationType('saveReaError');
         }
     }
 
@@ -117,12 +135,6 @@ export function ReaInputForm(){
             [id]: s
         }))
     }
-
-    // Descomentar para ver efeito da atualização do objeto recurso pelo Front
-
-    /*useEffect(() => {
-        console.log(result);
-    }, [result]);*/
 
     return(
         <div className = { styles.container }>

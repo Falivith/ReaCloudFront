@@ -6,7 +6,23 @@ import UserLogo from '../assets/User_circle_light.png';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-export function Header({ notificationNumber = 0 }) {
+export function Header() {
+
+    var ExtensionId = "hhglkeeogekcimonpepemfjabkikbimh"
+
+    const [reasPluginCount, setReasPluginCount] = useState(0);
+
+    useEffect(() => {
+        const extensionId = ExtensionId;
+        if (window.chrome && chrome.runtime && chrome.runtime.sendMessage) {
+            chrome.runtime.sendMessage(extensionId, { getTargetData: true }, (response) => {
+                if (response && response.setTargetData) {
+                    setReasPluginCount(response.setTargetData.length)
+                }
+            });
+        }
+    }, []);
+
     const navigate = useNavigate();
     const routeChangeHandler = (route) => {
         navigate(`../${route}`);
@@ -43,8 +59,8 @@ export function Header({ notificationNumber = 0 }) {
                 {isLoggedIn ?
                     <div className={styles.buttons}>
                         <img onClick={() => routeChangeHandler('addrea')} className={styles.reaCloudLogo} src={RecursosEducacionaisLogo} />
-                        {notificationNumber > 0 ?
-                            <span className={`badge ${styles.badge}`}>{notificationNumber}</span>
+                        {reasPluginCount > 0 ?
+                            <span className={`badge ${styles.badge}`}>{reasPluginCount}</span>
                             : null}
                         <button className={styles.buttonsLogged} onClick={() => routeChangeHandler('addrea')}>RECURSOS EDUCACIONAIS</button>
                         <img onClick={() => routeChangeHandler('profile')} className={styles.reaCloudLogo} src={UserLogo} />
