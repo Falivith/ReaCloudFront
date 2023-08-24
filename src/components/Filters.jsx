@@ -72,7 +72,6 @@ export function Filters({ onFilterChange = () => {}, pageSize, currentPage, reqC
 
             try {
                 if (location.pathname === '/explorer' ) {
-                    
                     setIsLoading(true);
 
                     const response = await filterReas({
@@ -81,16 +80,14 @@ export function Filters({ onFilterChange = () => {}, pageSize, currentPage, reqC
                         "rea_type": reqConfig.type
                     },currentPage,pageSize);
                     
-                    
                     onFilterChange(response);
-                }
-                if (location.pathname === '/' && isSubmitted ) {
-                    navigate('/explorer', { state: { reqConfig}});
+                    setIsLoading(false);
                 }
 
-                setIsLoading(false);
+                if (location.pathname === '/' && isSubmitted ) {
+                    navigate('/explorer', { state: { reqConfig }});
+                }
                 
-    
             } catch (error) {
                 console.error(error);
             }

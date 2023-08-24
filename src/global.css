@@ -23,7 +23,6 @@ body {
     background-color: var(--white);
     color: var(--white);
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */

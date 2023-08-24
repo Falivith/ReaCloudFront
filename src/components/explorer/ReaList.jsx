@@ -4,8 +4,6 @@ import Loading from '../loading';
 
 export function ReaList({ filterData, onFilterChange, isLoading }) {
 
-    console.log(isLoading);
-
     return (
         <div className={styles.reaContainer}>
             {isLoading ? <Loading /> :
