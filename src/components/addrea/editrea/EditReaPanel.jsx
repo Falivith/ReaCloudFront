@@ -40,7 +40,7 @@ export function EditReaPanel({reas}){
                     <img src = { EditGear } alt = "Editar seus Recursos" />
                     <h1>Edite seus recursos</h1>                    
                 </div>
-                <span>Você tem <span className = { styles.pluginReaCounter }>2</span> recursos cadastrados. </span>
+                <span>Você tem <span className = { styles.pluginReaCounter }>{reas?.length}</span> recursos cadastrados. </span>
             </div>
             <div className = { styles.pluginRequester }>
                 {reas && reas.map(rea => {
