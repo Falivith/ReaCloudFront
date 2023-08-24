@@ -8,7 +8,6 @@ import { useLocation } from 'react-router-dom';
 
 export function Filters({ onFilterChange = () => {},pageSize, currentPage, reqConfigState }) {
 
-    
     const location = useLocation();
     const navigate = useNavigate();
     
