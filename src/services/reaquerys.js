@@ -1,4 +1,4 @@
-import { baseUrl } from './utils';
+import { baseUrl, checkLoginStatus } from './utils';
 
   export async function getAllReas() {
 
@@ -22,6 +22,17 @@ import { baseUrl } from './utils';
 }
 
 
+export async function getUserResources() {
+  const {userObject,config} = await checkLoginStatus()
+  
+  
+  if (userObject) {
+    const response = await baseUrl.get(`/api/recurso/user`, config)
+    return response.data
+  }
+
+  console.log("nenhum usuario logado");  
+}
 
 
   
