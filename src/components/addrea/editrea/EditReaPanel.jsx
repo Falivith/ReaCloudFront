@@ -37,10 +37,10 @@ export function EditReaPanel(){
         <div className = { styles.container }>
             <div className = { styles.header }>
                 <div className = { styles.addNewReasLabel }>
-                    <img src = { EditGear } alt = "Adicionar novos recursos" />
-                    <h1>Adicionar novos recursos</h1>                    
+                    <img src = { EditGear } alt = "Editar seus Recursos" />
+                    <h1>Edite seus recursos</h1>                    
                 </div>
-                <span>Você tem <span className = { styles.pluginReaCounter }>2</span> recursos adicionados e pode editá-los abaixo.</span>
+                <span>Você tem <span className = { styles.pluginReaCounter }>2</span> recursos cadastrados. </span>
             </div>
             <div className = { styles.pluginRequester }>
                 {reas.map(rea => {
