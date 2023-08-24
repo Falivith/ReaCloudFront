@@ -20,7 +20,7 @@ export function EditPostedReas(){
 
         <div>
             <Header />
-            <EditReaPanel/>
+            <EditReaPanel reas = {userResources}/>
         </div>
     )
 }
