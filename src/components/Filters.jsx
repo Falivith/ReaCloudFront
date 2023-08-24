@@ -12,20 +12,17 @@ export function Filters({ onFilterChange = () => {},pageSize, currentPage, reqCo
     const location = useLocation();
     const navigate = useNavigate();
     
-
     useEffect(() => {
         if (reqConfigState !== null && reqConfigState !== undefined) {
           setSearchValue(reqConfigState.title);
+          
         }
       }, [reqConfigState]);
-
-
 
     const routeChangeHandler = async (route) => {
         await new Promise(resolve => setTimeout(resolve, 1)); 
         navigate(`../${route}`);
     }   
-
     const standardValues = {
         title: '',
         type: '',
@@ -75,8 +72,7 @@ export function Filters({ onFilterChange = () => {},pageSize, currentPage, reqCo
 
             try {
                 if (location.pathname === '/explorer' ) {
-                    console.log("ola e reqCOnfig = ", reqConfig);
-                    console.log("ola e reqCOnfigState = ", reqConfigState);
+                    
 
                     const response = await filterReas({
                         "title": reqConfig.title,
@@ -84,11 +80,10 @@ export function Filters({ onFilterChange = () => {},pageSize, currentPage, reqCo
                         "rea_type": reqConfig.type
                     },currentPage,pageSize);
                     
-                    console.log("response = ", response);
+                    
                     onFilterChange(response);
                 }
                 if (location.pathname === '/' && isSubmitted ) {
-                    console.log("SENDING ... ",reqConfig);
                     navigate('/explorer', { state: { reqConfig}});
                 }
                 
@@ -126,6 +121,7 @@ export function Filters({ onFilterChange = () => {},pageSize, currentPage, reqCo
                         height={"44px"}
                         options={["Português", "Matemática", "Biologia", "Teologia"]}
                         handleResult = { updateSelected }
+                        placeholder = {reqConfigState?.knowledgeArea}
                         />
                 </div>
 
@@ -138,6 +134,7 @@ export function Filters({ onFilterChange = () => {},pageSize, currentPage, reqCo
                         height={"44px"}
                         options={["Website", "Vídeo", "Artigo"]}
                         handleResult = { updateSelected } 
+                        placeholder = {reqConfigState?.type}
                         />
                 </div>
 
