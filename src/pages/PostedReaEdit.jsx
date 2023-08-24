@@ -1,8 +1,8 @@
 import { Header } from "../components/Header"
 import { ReaInputForm } from "../components/reaconfig/ReaEditInputForm"
 import { useLocation } from 'react-router-dom';
-
-
+import { getResourceInfo } from "../services/reaquerys";
+import { useEffect } from "react";
 
 
 export function PostedReaEdit(){
@@ -10,8 +10,19 @@ export function PostedReaEdit(){
     const { state } = location;
     const id = state?.id;
 
-    console.log("id = ", id);
+    useEffect(() => {
+        const fetchResourceInfo = async () => {
+            try {
+                const result = await getResourceInfo(id);
+                console.log(result);
+            } catch (error) {
+                console.error('Failed to fetch resource info', error);
+            }
+        };
 
+        fetchResourceInfo();
+    }, [id]); // Dependency array. If the id changes, the effect runs again.
+    
 
     return(
         <div>
