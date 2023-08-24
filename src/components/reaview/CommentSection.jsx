@@ -4,7 +4,7 @@ import { Comment } from './Comment';
 export function CommentSection(){
     return(
         <div className = { styles.container }>
-            <label for = "commentTextArea" className = { styles.headerLabel }>Envie um comentário</label>
+            <label htmlFor = "commentTextArea" className = { styles.headerLabel }>Envie um comentário</label>
             <form className = { styles.formContainer }>
                 <textarea rows="4" cols="20" name="comment" id = "commentTextArea"  maxLength="1000" className = { styles.textArea }></textarea>
                 <div className = { styles.buttonsContainer } >
