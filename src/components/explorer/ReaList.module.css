@@ -1,17 +1,21 @@
 .reaContainer {
     display: flex;
-    margin: auto;
+    margin: 1.5rem 0rem;
+    margin-top: 0.5rem;
     align-items: center;
     flex-direction: column;
     gap: 1.625rem;
-    max-width: 90%;
+    width: 98%;
 }
 
-@media (max-width: 950px) {
+@media (max-width: 1350px) {
     .reaContainer {
-        display: flex;
-        margin: 2.4375rem 0rem;
-        flex-direction: column;
-        gap: 1.625rem;
-    }    
+        max-width: 72.5%;
+    }
+}
+
+@media (max-width: 850px) {
+    .reaContainer {
+        max-width: 95%;
+    }
 }

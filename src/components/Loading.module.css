@@ -13,5 +13,6 @@
     border-top: 10px solid var(--lightblue);
     border-radius: 50%;
     animation: spinner 1.5s linear infinite;
+    margin-top: 70px;
     margin-bottom: 70px;
 }
