@@ -1,8 +1,10 @@
 .reaContainer {
     display: flex;
-    margin: 2.4375rem 0rem;
+    margin: auto;
+    align-items: center;
     flex-direction: column;
     gap: 1.625rem;
+    max-width: 90%;
 }
 
 @media (max-width: 950px) {

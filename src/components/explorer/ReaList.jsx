@@ -4,7 +4,7 @@ import { getAllReas } from '../../services/reaquerys';
 import { useEffect } from 'react';
 
 
-export function ReaList({filterData,onFilterChange}) {
+export function ReaList({filterData, onFilterChange}) {
     
     // useEffect(() => {
     //     async function fetchData() {
@@ -27,8 +27,7 @@ export function ReaList({filterData,onFilterChange}) {
                     blob = new Blob([uint8Array], { type: "Buffer" });
                     url = URL.createObjectURL(blob);
                 }
-                console.log(rea)
-
+                
                 return <ReaPreview
                     id = {rea.id}
                     title = {rea.title}
