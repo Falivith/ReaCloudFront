@@ -117,3 +117,9 @@
         justify-content: space-evenly;
     }
 }
+
+@media (max-width: 500px) {
+    .header{
+        justify-content: center;
+    }
+}

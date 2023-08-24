@@ -40,19 +40,18 @@ export function Header() {
 
     useEffect(() => {
         const user = localStorage.getItem('user');
-        setIsLoggedIn(!!user); // Convert truthy/falsy value to boolean
+        setIsLoggedIn(!!user);
         setInitialCheckDone(true);
     }, []);
     
     if (!initialCheckDone) {
-        // Return loading or null during initial check
         return null;
     }
 
     return (
         <header className={styles.header}>
             <div className={styles.home}>
-                <img onClick={() => routeChangeHandler('/')} className={styles.reaCloudLogo} src={ReaCloudLogo} alt="Logotipo da ReaCloud" />
+                <img onClick={() => routeChangeHandler('/')} className={styles.reaCloudHat } src={ReaCloudLogo} alt="Logotipo da ReaCloud" />
                 <span onClick={() => routeChangeHandler('/')} className={styles.reaCloudLogoText}>ReaCloud</span>
             </div>
             <div className={styles.buttons}>
@@ -62,7 +61,7 @@ export function Header() {
                         {reasPluginCount > 0 ?
                             <span className={`badge ${styles.badge}`}>{reasPluginCount}</span>
                             : null}
-                        <button className={styles.buttonsLogged} onClick={() => routeChangeHandler('addrea')}>RECURSOS EDUCACIONAIS</button>
+                        <button className={styles.buttonsLogged} onClick={() => routeChangeHandler('addrea')}>RECURSOS</button>
                         <img onClick={() => routeChangeHandler('profile')} className={styles.reaCloudLogo} src={UserLogo} />
                         <button className={styles.buttonsLogged} onClick={() => routeChangeHandler('profile')}>MEU PERFIL</button>
                         <img onClick={logout} className={styles.sairLogo} src={SairLogo} />

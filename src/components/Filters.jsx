@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { filterReas } from '../services/reaquerys';
 import { useLocation } from 'react-router-dom';
 
-export function Filters({ onFilterChange = () => {},pageSize, currentPage, reqConfigState }) {
+export function Filters({ onFilterChange = () => {}, pageSize, currentPage, reqConfigState, setIsLoading }) {
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -66,12 +66,14 @@ export function Filters({ onFilterChange = () => {},pageSize, currentPage, reqCo
     
     // Use useEffect to handle the API call after reqConfig is updated
     useEffect(() => {
+
         const fetchData = async () => {
             
 
             try {
                 if (location.pathname === '/explorer' ) {
                     
+                    setIsLoading(true);
 
                     const response = await filterReas({
                         "title": reqConfig.title,
@@ -85,6 +87,8 @@ export function Filters({ onFilterChange = () => {},pageSize, currentPage, reqCo
                 if (location.pathname === '/' && isSubmitted ) {
                     navigate('/explorer', { state: { reqConfig}});
                 }
+
+                setIsLoading(false);
                 
     
             } catch (error) {
@@ -93,7 +97,7 @@ export function Filters({ onFilterChange = () => {},pageSize, currentPage, reqCo
         };
     
         fetchData();
-    }, [reqConfig,currentPage]); // Run this effect whenever reqConfig changes
+    }, [reqConfig, currentPage]); // Run this effect whenever reqConfig changes
 
     
     

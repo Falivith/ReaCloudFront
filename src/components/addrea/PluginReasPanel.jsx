@@ -36,7 +36,7 @@ export function PluginReasPanel(){
                     <img src = { AddRing } alt = "Adicionar novos recursos" />
                     <h1>Adicionar novos recursos</h1>                    
                 </div>
-                <span>Você tem <span className = { styles.pluginReaCounter }> { reasPluginCount } </span> recursos na sua mochila.</span>
+                <span>Você tem <span className = { styles.pluginReaCounter }> { reasPluginCount } </span> recurso(s) na sua mochila.</span>
             </div>
             <div className = { styles.pluginRequester }>
                 {reasPlugin.map((rea, index) => {

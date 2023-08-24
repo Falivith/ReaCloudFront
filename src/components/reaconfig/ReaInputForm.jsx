@@ -6,7 +6,8 @@ import { BaseNotification } from "../modals/BaseNotification";
 import { useState, useEffect } from "react";
 import { useForm } from 'react-hook-form';
 import { submitRea } from "../../services/submitNewRea";
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom';
+import Loading from "../loading";
 
 /* saveSuccess, saveError, passwordSuccess, passwordWarning, passwordError */
 
@@ -35,6 +36,8 @@ export function ReaInputForm(){
                 link: selectedRea.link,
                 description: selectedRea.description,
             }));
+
+            setIsLoading(false)
         }
     }, [selectedRea]);
 
@@ -64,6 +67,7 @@ export function ReaInputForm(){
         instructions: '',
     };
 
+    const [ isLoading, setIsLoading ] = useState(index ? true : false)
     const [ result, setResult ] = useState(initialValues)
     const { register, handleSubmit, formState: { errors }} = useForm()
     const [ image , setImage ] = useState("")
@@ -112,7 +116,7 @@ export function ReaInputForm(){
                 if (chrome && chrome.runtime) {
                     chrome.runtime.sendMessage(extensionId, { delete: selectedRea.link }, (response) => {
                         if (response && response.setTargetData) {
-                            console.log(response);
+                            console.log("Recursos atuais na mochila: ", response);
                         }
                     });
                 }
@@ -144,20 +148,42 @@ export function ReaInputForm(){
             {(<BaseNotification type = {notificationType} showing={showNotification} onClose={closeNotification}  />)}
 
             <header className = { styles.header }><img src = { AddRing } alt = "Símbolo de Adição de Recurso" /> Adicionar novos recursos</header>
-            <form id = "reaconfig" className = { styles.formContainer } onSubmit = {handleSubmit( addRea )}>
+
+            {isLoading ? Loading : 
+            (<form id = "reaconfig" className = { styles.formContainer } onSubmit = {handleSubmit( addRea )}>
                 <div className = { styles.columns }>
                     <div className = { styles.column }>
                         <div className = { styles.inputContainer }>
                             <label htmlFor = "title" className = { styles.inputLabel }>TÍTULO DO MATERIAL</label>
-                            <input id = "title" type = "text" name = "title" {...register("title")} className = { styles.inputBox } placeholder = "Título do Material" defaultValue = {selectedRea?.title ?? ""} />
+                            <input 
+                                id = "title" 
+                                type = "text" 
+                                name = "title" {...register("title")} 
+                                className = { styles.inputBox } 
+                                placeholder = "Título do Material" 
+                                defaultValue = {selectedRea?.title ?? ""}
+                            />
                         </div>
                         <div className = { styles.inputContainer }>
                             <label htmlFor = "reaType" className = { styles.inputLabel }>TIPO DO MATERIAL</label>
-                            <input id = "reaType" type = "text" name = "reaType" {...register("reaType")}  className = { styles.inputBox } placeholder = "Tipo do Material"/>
+                            <input 
+                                id = "reaType" 
+                                type = "text" 
+                                name = "reaType" {...register("reaType")} 
+                                className = { styles.inputBox } 
+                                placeholder = "Tipo do Material"
+                            />
                         </div>
                         <div className = { styles.inputContainer }>
                             <label htmlFor = "link" className = { styles.inputLabel }>LINK</label>
-                            <input id = "link" type = "text" name = "link" {...register("link")} className = { styles.inputBox } placeholder = "Link" defaultValue = {selectedRea?.link ?? ""}/>
+                            <input 
+                                id = "link" 
+                                type = "text" 
+                                name = "link" {...register("link")} 
+                                className = { styles.inputBox } 
+                                placeholder = "Link" 
+                                defaultValue = {selectedRea?.link ?? ""}
+                            />
                         </div>
                         <div className = { styles.inputContainer }>
                             <label htmlFor = "targetPublic" className = { styles.inputLabel }>PÚBLICO ALVO</label>
@@ -230,7 +256,14 @@ export function ReaInputForm(){
 
                 <div className = { styles.description }>
                     <label htmlFor = "description" className = { styles.inputLabel }>DESCRIÇÃO</label>
-                    <input id = "description" type = "text" name = "description" {...register("description")}  className = { styles.descriptionInputBox } placeholder = "Descrição do recurso educacional" defaultValue = {selectedRea?.description ?? ""}/>
+                    <input 
+                        id = "description" 
+                        type = "text" 
+                        name = "description" {...register("description")} 
+                        className = { styles.descriptionInputBox } 
+                        placeholder = "Descrição do recurso educacional" 
+                        defaultValue = {selectedRea?.description ?? ""}
+                    />
                 </div>
 
                 <div className = { styles.instructions }>
@@ -242,7 +275,7 @@ export function ReaInputForm(){
                     <button className = { styles.cancelButton }>Cancelar</button>
                     <button className = { styles.submitButton }>Salvar</button>
                 </div>
-            </form>
+            </form>)}
         </div>
     )
 }

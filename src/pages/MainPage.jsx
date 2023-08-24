@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 
 export function MainPage() {
 
-  const [showNotification, setShowNotification] = useState(true);
+  const [showNotification, setShowNotification] = useState(false);
 
   const closeNotification = () => {
       setShowNotification(false);
@@ -24,6 +24,9 @@ export function MainPage() {
           setShowNotification(false)
         }
       });
+    }else{
+      console.log('Extension is not installed.');
+      setShowNotification(true)
     }
   }, []);
 
