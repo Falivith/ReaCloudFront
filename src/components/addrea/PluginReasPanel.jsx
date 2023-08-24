@@ -32,7 +32,7 @@ export function PluginReasPanel(){
                     <img src = { AddRing } alt = "Adicionar novos recursos" />
                     <h1>Adicionar novos recursos</h1>                    
                 </div>
-                <span>Você tem <span className = { styles.pluginReaCounter }>3</span> recursos salvos que ainda não foram adicionados.</span>
+                <span>Você tem <span className = { styles.pluginReaCounter }>3</span> recursos na sua mochila.</span>
             </div>
             <div className = { styles.pluginRequester }>
                 {reas.map(rea => {
@@ -43,7 +43,7 @@ export function PluginReasPanel(){
                     })
                 }
             </div>
-            <footer>
+            <footer className = { styles.footerPluginReas }>
                 <p className = { styles.footerSpan }>Além do plugin, você pode adicionar um recurso próprio que está armazenado online (ex: Google Drive, Dropbox, etc)</p>
                 <button className = { styles.addOwnReaButton } onClick={() => routeChangeHandler('/reaeditadd')} >ADICIONAR RECURSO PRÓPRIO</button>
             </footer>

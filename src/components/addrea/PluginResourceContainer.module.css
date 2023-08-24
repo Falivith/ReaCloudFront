@@ -1,5 +1,5 @@
 .container {
-    height: 100px;
+    max-height: 150px;
     width: 613px;
     display: flex;
     justify-content: space-between;
@@ -7,11 +7,11 @@
     border-radius: 10px;
     padding: 26px 38px;
     align-items: center;
+    overflow-y: scroll;
 }
 
-.container > h1{
+.container > div > h1{
     color: var(--darkblue);
-    width: 70%;
     font-size: 20px;
     line-height: 22px;
 }
@@ -33,4 +33,19 @@
     background-color: var(--darkgreen);
     transition: 0.2s;
     cursor: pointer;
+}
+
+@media (max-width: 600px){
+    .container{
+        width: 100%;
+        padding: 10px 10px;
+        padding-left: 20px;
+    }
+    .container div h1{
+        font-size: 16px;
+        margin-right: 15px;
+    }
+    .container > button{
+        padding: 6px 8px;
+    }
 }

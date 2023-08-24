@@ -100,3 +100,18 @@ p{
 .editReaSpan{
     color: var(--blue);
 }
+
+@media (max-width: 600px){
+    .addNewReaContainer{
+        width: 90%;
+    }
+    .textContainer > p{
+        display: none;
+    }
+    .textContainer{
+        text-align: center;
+    }
+    .editReaContainer{
+        width: 90%;
+    }
+}

@@ -8,9 +8,12 @@ export function PluginResourceContainer(props){
         navigate(`../${route}`);
 
     }
+    
     return(
         <div className = { styles.container }>
-            <h1>{ props.title }</h1>
+            <div className = { styles.h1container }>
+                <h1>{ props.title }</h1>    
+            </div>
             <button onClick={() => routeChangeHandler('/reaeditadd')}>ADICIONAR</button>
         </div>
     )

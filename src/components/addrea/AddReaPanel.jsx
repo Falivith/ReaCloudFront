@@ -25,7 +25,7 @@ export function AddReaPanel(){
         </div>
         <div onClick = {() => routeChangeHandler('/editpostedreas')} className = { styles.editReaContainer }>
             <div className = { styles.editImgContainer }>
-                <img src = { EditGear } alt = "Adicionar novo recurso" />
+                <img src = { EditGear } alt = "Editar recurso" />
             </div>
             <div className = { styles.textContainer }>
                 <h1 className = { styles.editReaTitle }>EDITAR RECURSOS</h1>
