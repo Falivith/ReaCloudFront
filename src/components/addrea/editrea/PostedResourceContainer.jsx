@@ -18,7 +18,7 @@ export function PostedResourceContainer(props){
             </div>
             <div>
                 <button onClick={() => routeChangeHandler('/postedreaedit')}>EDITAR</button>
-                <img src = { CloseSymbol } onClick = "" alt = "Figura de remoção" className = { styles.close }/>
+                <img src = { CloseSymbol }  alt = "Figura de remoção" className = { styles.close }/>
             </div>
         </div>
     )

@@ -108,12 +108,14 @@ export function ReaInputForm(){
             if (formSubmitSuccess) {
                 setShowNotification(true);
                 setNotificationType('saveReaSuccess');
-
-                chrome.runtime.sendMessage(extensionId, { delete: selectedRea.link }, (response) => {
-                    if (response && response.setTargetData) {
-                        console.log(response);
-                    }
-                });
+                
+                if (chrome && chrome.runtime) {
+                    chrome.runtime.sendMessage(extensionId, { delete: selectedRea.link }, (response) => {
+                        if (response && response.setTargetData) {
+                            console.log(response);
+                        }
+                    });
+                }
 
                 await routeChangeHandler('');
             } else {
