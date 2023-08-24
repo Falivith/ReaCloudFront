@@ -12,9 +12,9 @@ export function PluginResourceContainer(props){
     return(
         <div className = { styles.container }>
             <div className = { styles.h1container }>
-                <h1>{ props.title }</h1>    
+                <h1>{ props.rea.title }</h1>    
             </div>
-            <button onClick={() => routeChangeHandler('/reaeditadd')}>ADICIONAR</button>
+            <button onClick={() => routeChangeHandler(`/reaeditadd/${props.index}`)}>ADICIONAR</button>
         </div>
     )
 }

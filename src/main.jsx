@@ -48,7 +48,11 @@ const router = createBrowserRouter([
   },
   {
     path: '/reaeditadd',
-    element: <NewReaEdit/>
+    element:  <NewReaEdit/> // http://localhost:5173/reaeditadd
+  },
+  {
+    path: '/reaeditadd/:index', //  http://localhost:5173/reaeditadd/algum-indice
+    element:  <NewReaEdit/>
   },
   {
     path: '/postedreaedit',

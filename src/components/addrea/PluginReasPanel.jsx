@@ -2,21 +2,7 @@ import styles from './PluginReasPanel.module.css'
 import AddRing from "../../assets/Add_ring_green.png";
 import { PluginResourceContainer } from "./PluginResourceContainer";
 import { useNavigate } from 'react-router-dom';
-
-const reas = [
-    {
-        id: 1,
-        title: "Histórico dos Recursos Educacionais Abertos no Brasil e no Mundo",
-    },
-    {
-        id: 2,
-        title: "Escolas, universidades, ONGs, governos, etc.",
-    },
-    {
-        id: 3,
-        title: "Licenças de direito autoral e Creative Commons, formatos abertos e formatos fechados",
-    }
-];
+import { useState, useEffect } from 'react';
 
 export function PluginReasPanel(){
 
@@ -25,6 +11,24 @@ export function PluginReasPanel(){
         navigate(`../${route}`);
     }
 
+    var ExtensionId = "hhglkeeogekcimonpepemfjabkikbimh"
+
+    const [reasPlugin, setReasPlugin] = useState([]);
+    const [reasPluginCount, setReasPluginCount] = useState(0);
+
+    useEffect(() => {
+        const extensionId = ExtensionId;
+        if (window.chrome && chrome.runtime && chrome.runtime.sendMessage) {
+            chrome.runtime.sendMessage(extensionId, { getTargetData: true }, (response) => {
+                if (response && response.setTargetData) {
+                    setReasPlugin(response.setTargetData);
+                    setReasPluginCount(response.setTargetData.length)
+                    console.log(response.setTargetData);
+                }
+            });
+        }
+    }, []);
+
     return(
         <div className = { styles.container }>
             <div className = { styles.header }>
@@ -32,13 +36,13 @@ export function PluginReasPanel(){
                     <img src = { AddRing } alt = "Adicionar novos recursos" />
                     <h1>Adicionar novos recursos</h1>                    
                 </div>
-                <span>Você tem <span className = { styles.pluginReaCounter }>3</span> recursos na sua mochila.</span>
+                <span>Você tem <span className = { styles.pluginReaCounter }> { reasPluginCount } </span> recursos na sua mochila.</span>
             </div>
             <div className = { styles.pluginRequester }>
-                {reas.map(rea => {
+                {reasPlugin.map((rea, index) => {
                     return <PluginResourceContainer
-                        key = {rea.id}
-                        title = {rea.title}
+                        index = {index}
+                        rea = {rea}
                     />
                     })
                 }
