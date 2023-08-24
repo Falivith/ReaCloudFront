@@ -45,6 +45,7 @@ export function EditReaPanel({reas}){
             <div className = { styles.pluginRequester }>
                 {reas && reas.map(rea => {
                     return <PostedResourceContainer
+                        id = {rea.id}
                         key = {rea.id}
                         title = {rea.title}
                     />
