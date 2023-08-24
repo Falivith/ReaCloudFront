@@ -6,13 +6,13 @@ import { useEffect } from 'react';
 
 export function ReaList({filterData,onFilterChange}) {
     
-    useEffect(() => {
-        async function fetchData() {
-          const result = await getAllReas();
-          onFilterChange(result);
-        }
-        fetchData();
-      }, []);
+    // useEffect(() => {
+    //     async function fetchData() {
+    //       const result = await getAllReas();
+    //       onFilterChange(result);
+    //     }
+    //     fetchData();
+    //   }, []);
 
     return (
         <div className = { styles.reaContainer }>
