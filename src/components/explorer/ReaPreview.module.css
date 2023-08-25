@@ -7,6 +7,15 @@
     border-radius: 10px;
     padding: 0.75rem;
     max-height: fit-content;
+    cursor: pointer;
+    transition: .4s;
+}
+
+.container:hover{
+    transform: scale(1.05);
+    transition: .4s;
+    border-color: var(--blue);
+    border: 2px solid var(--blue);
 }
 
 .contentContainer {
@@ -26,7 +35,7 @@
 }
 
 .dynamicImg:hover{
-    transform: scale(1.3);
+    transform: scale(1.1);
     transition: .4s;
     border-color: var(--blue);
 }
@@ -50,7 +59,7 @@
 .reaTitle:hover {
     color: var(--darkblue);
     transition: .2s;
-    font-size: 22px;
+    font-size: 20px;
 }
 
 .reaDescription {

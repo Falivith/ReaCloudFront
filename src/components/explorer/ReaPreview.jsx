@@ -11,7 +11,7 @@ export function ReaPreview(props){
     }
 
     return (
-        <div className = { styles.container }>
+        <div className = { styles.container } onClick={() => routeChangeHandler('/ReaView')}>
             <div className = { styles.thumbContainer }>
                 <img onClick={() => routeChangeHandler('/ReaView')} className = { styles.dynamicImg } src = { props.thumb } alt = "thumbPreview" />
             </div>
