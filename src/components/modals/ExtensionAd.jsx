@@ -38,7 +38,7 @@ export function ExtensionAd(props){
                     
                     >
                         <p> Link da Chrome Web Store </p>
-                        <img src = {reaCloudLogo} alt="Logotipo do ReaCloud"/>
+                        <img className = { styles.reaCloudLogoImage } src = {reaCloudLogo} alt="Logotipo do ReaCloud"/>
                     </a>
             </div>
         </div>

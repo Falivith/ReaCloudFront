@@ -5,7 +5,7 @@
     top: 53px;
     display: flex;
     width: 310px;
-    height: 78px;
+    height: fit-content;
     border-radius: 10px 0px 0px 10px;
 }
 
@@ -18,10 +18,13 @@
 
 .header{
     margin-top: 16px;
-    margin-left: 5px;
+    margin-left: 12px;
     font-display: flex;
-    align-items: flex-start;
     justify-content: flex-start;
+}
+
+.header > img {
+    margin-right: 8px;
 }
 
 .title{
@@ -33,7 +36,7 @@
 .close{
     position: relative;
     right: -280px;
-    top: -50px;
+    bottom: 68px;
     cursor: pointer;
 }
 

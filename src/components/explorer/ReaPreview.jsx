@@ -3,13 +3,6 @@ import Like from '../../assets/Like.png';
 import Comments from '../../assets/Comments.png';
 import { useNavigate } from 'react-router-dom';
 
-/* Atributos Dinâmicos
-    title = {rea.title}
-    description = {rea.description}
-    likes = {rea.likes}
-    thumb = {rea.thumb_url}
-*/
-
 export function ReaPreview(props){
 
     const navigate = useNavigate();
@@ -20,7 +13,7 @@ export function ReaPreview(props){
     return (
         <div className = { styles.container }>
             <div className = { styles.thumbContainer }>
-                <img className = { styles.dynamicImg } src = { props.thumb } alt = "thumbPreview" />
+                <img onClick={() => routeChangeHandler('/ReaView')} className = { styles.dynamicImg } src = { props.thumb } alt = "thumbPreview" />
             </div>
             <div className = { styles.contentContainer }>
                 <div className = { styles.text }>

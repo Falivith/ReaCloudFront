@@ -19,6 +19,16 @@
     border-radius: 50%;
     width: 114px;
     height: 113px;
+    transition: transform 0.3s ease-in-out; 
+    border: 5px solid transparent;
+    transition: .4s;
+    cursor: pointer;
+}
+
+.dynamicImg:hover{
+    transform: scale(1.3);
+    transition: .4s;
+    border-color: var(--blue);
 }
 
 .text{
@@ -34,6 +44,13 @@
     font-size: 1.25rem;
     cursor: pointer;
     width: fit-content;
+    transition: .2s;
+}
+
+.reaTitle:hover {
+    color: var(--darkblue);
+    transition: .2s;
+    font-size: 22px;
 }
 
 .reaDescription {

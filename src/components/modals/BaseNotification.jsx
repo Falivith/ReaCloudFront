@@ -39,7 +39,7 @@ export function BaseNotification(props){
             notificationProps = {
                 img: DangerSymbol,
                 title: "Erro ao criar o recurso.",
-                description: "Por favor, tente novamente.",
+                description: "Por favor, tente novamente. Lembre-se que todos os campos, incluindo a imagem do recurso são obrigatórios.",
                 backgroundcolor: "#D30000",
                 textcolor: "#D30000"
             }
@@ -62,6 +62,16 @@ export function BaseNotification(props){
                 description: "Nome ou email inválidos!",
                 backgroundcolor: "#D30000",
                 textcolor: "#D30000"
+            }
+        break;
+
+        case 'saveReaErrorUnloged':
+            notificationProps = {
+                img: WarningSymbol,
+                title: "Você não está logado.",
+                description: "Faça login no ReaCloud para poder adicionar seus Recursos.",
+                backgroundcolor: "#EE7700",
+                textcolor: "#EE7700"
             }
         break;
 

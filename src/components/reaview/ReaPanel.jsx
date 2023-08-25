@@ -1,7 +1,6 @@
 import styles from './ReaPanel.module.css';
 import Like from '../../assets/Like.png';
 import Comments from '../../assets/Comments.png';
-import { useState } from 'react';
 import Loading from '../Loading';
 
 export function ReaPanel({ isLoading, rea }) {
@@ -20,8 +19,6 @@ export function ReaPanel({ isLoading, rea }) {
         }
     }
 
-    console.log(rea);
-
     if (isLoading) {
         return(
         <div className = { styles.containerLoading }>
@@ -39,10 +36,10 @@ export function ReaPanel({ isLoading, rea }) {
                     <div className = { styles.buttonContainer }>
                         <button className = { styles.socialButton }> <img src = { Like } alt = "Joinha" /> Útil </button>
                         <button className = { styles.socialButton }> <img src = { Comments } alt = "Joinha" /> Comentários </button>
-                        <a className = { styles.bugReport } href = "#"> Informar um Problema </a>
+                        <a className = { styles.bugReport } href = "https://github.com/Falivith" target='_blank'> Informar um Problema </a>
                     </div>
                 </div>
-                <a href= {rea.link} target="_blank" rel="noopener noreferrer">
+                <a href= { rea.link } target="_blank" rel="noopener noreferrer">
                     <img src={url} alt="reaThumb" className={styles.thumbImage} />
                 </a> 
             </div>

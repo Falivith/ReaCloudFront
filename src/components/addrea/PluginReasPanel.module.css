@@ -54,8 +54,9 @@
 }
 
 .addNewReasLabel > img {
-    width: 75px;
-    height: 75px;
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
 }
 
 .pluginRequester{

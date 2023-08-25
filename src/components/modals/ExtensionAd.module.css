@@ -12,6 +12,12 @@
     transition: .5s;
 }
 
+.reaCloudLogoImage{
+    height: 35px;
+    margin-right: 5px;
+    margin-bottom: 1px;
+}
+
 .background{
     gap: 20px;
     align-items: center;

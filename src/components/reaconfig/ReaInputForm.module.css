@@ -47,11 +47,9 @@
     padding: 8px 13px;
 }
 
-
 .header > img {
     height: 40px;
 }
-
 
 .formContainer{
     border: solid 1px var(--lightgray);
@@ -61,14 +59,28 @@
     padding-top: 30px;
 }
 
-
 .formContainer > .column, .description, .instructions{
     display: flex;
     justify-content: space-between;
 }
 
+.errorMessage {
+    position: absolute;
+    top: 84%;
+    left: 0;
+    width: 100%;
+    background-color: #ffcccc; /* Cor de fundo */
+    color: #ff0000; /* Cor do texto */
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    transform: translateY(5px);
+}
 
 .inputContainer{
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 3px;
@@ -129,12 +141,24 @@
 
 .cornerUpload{
     background-color: var(--lightestblue);
+    display: flex;
+    gap: 7px;
     color: var(--lightblue);
     padding: 8px 13px 9px 5px;
     display: flex;
     align-items: center;
     font-size: 16px;
     font-weight: 700;
+    transition: .3s;
+}
+
+.cornerUpload:hover{
+    background-color: var(--blue);
+    transition: .3s;
+}
+
+.cornerUpload > img {
+    margin-left: 6px;
 }
 
 .cornerUpload > span {
@@ -153,6 +177,7 @@
 
 
 .description{
+    position: relative;
     margin-top: 10px;
     display: flex;
     flex-direction: column;

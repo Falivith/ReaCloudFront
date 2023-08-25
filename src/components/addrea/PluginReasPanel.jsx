@@ -48,7 +48,7 @@ export function PluginReasPanel(){
                 }
             </div>
             <footer className = { styles.footerPluginReas }>
-                <p className = { styles.footerSpan }>Além do plugin, você pode adicionar um recurso próprio que está armazenado online (ex: Google Drive, Dropbox, etc)</p>
+                <p className = { styles.footerSpan }>Além do plugin, você pode adicionar o link de um recurso próprio que está armazenado online (ex: Google Drive, Dropbox, etc)</p>
                 <button className = { styles.addOwnReaButton } onClick={() => routeChangeHandler('/reaeditadd')} >ADICIONAR RECURSO PRÓPRIO</button>
             </footer>
         </div>

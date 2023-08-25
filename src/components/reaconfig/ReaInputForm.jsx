@@ -110,10 +110,10 @@ export function ReaInputForm(){
             const formSubmitSuccess = await submitRea(formData);
     
             if (formSubmitSuccess) {
-                setShowNotification(true);
                 setNotificationType('saveReaSuccess');
+                setShowNotification(true);
                 
-                if (chrome && chrome.runtime) {
+                if (chrome && chrome.runtime && selectedRea) {
                     chrome.runtime.sendMessage(extensionId, { delete: selectedRea.link }, (response) => {
                         if (response && response.setTargetData) {
                             console.log("Recursos atuais na mochila: ", response);
@@ -122,15 +122,16 @@ export function ReaInputForm(){
                 }
 
                 await routeChangeHandler('');
+
             } else {
+                setNotificationType('saveReaErrorUnloged'); 
                 setShowNotification(true);
-                setNotificationType('saveReaError'); 
             }
         } catch (error) {
             console.error("Error submitting REA:", error);
 
-            setShowNotification(true);
             setNotificationType('saveReaError');
+            setShowNotification(true);
         }
     }
 
@@ -141,6 +142,15 @@ export function ReaInputForm(){
             [id]: s
         }))
     }
+
+    const [focusedField, setFocusedField] = useState(null);
+    const handleFocus = (fieldName) => {
+        setFocusedField(fieldName);
+    };
+
+    const handleBlur = () => {
+        setFocusedField(null); // Remover o foco do campo atual
+    };
 
     return(
         <div className = { styles.container }>
@@ -153,37 +163,55 @@ export function ReaInputForm(){
             (<form id = "reaconfig" className = { styles.formContainer } onSubmit = {handleSubmit( addRea )}>
                 <div className = { styles.columns }>
                     <div className = { styles.column }>
-                        <div className = { styles.inputContainer }>
-                            <label htmlFor = "title" className = { styles.inputLabel }>TÍTULO DO MATERIAL</label>
-                            <input 
-                                id = "title" 
-                                type = "text" 
-                                name = "title" {...register("title")} 
-                                className = { styles.inputBox } 
-                                placeholder = "Título do Material" 
-                                defaultValue = {selectedRea?.title ?? ""}
+                        <div className={styles.inputContainer}>
+                            <label htmlFor="title" className={styles.inputLabel}>
+                                TÍTULO DO MATERIAL
+                            </label>
+                            <input
+                                id="title"
+                                type="text"
+                                name="title"
+                                {...register("title", { required: "Este campo é obrigatório" })}
+                                className={styles.inputBox}
+                                placeholder="Título do Material"
+                                defaultValue={selectedRea?.title ?? ""}
+                                onFocus={() => handleFocus("title")}
+                                onBlur={handleBlur}
                             />
+                            {errors.title && focusedField === "title" && (
+                                <p className={styles.errorMessage}>{errors.title.message}</p>
+                            )}
                         </div>
                         <div className = { styles.inputContainer }>
                             <label htmlFor = "reaType" className = { styles.inputLabel }>TIPO DO MATERIAL</label>
-                            <input 
-                                id = "reaType" 
-                                type = "text" 
-                                name = "reaType" {...register("reaType")} 
-                                className = { styles.inputBox } 
-                                placeholder = "Tipo do Material"
+                            <CustomSelector
+                                id="reaType"
+                                selectorId={5}
+                                width={"364px"}
+                                height={"44px"}
+                                color={"var(--lightgray4)"}
+                                fontSize={"18px"}
+                                options={["Site", "Artigo", "Documento"]}
+                                handleResult={updateSelected}
+                                placeholder = {"Escolha"}
                             />
                         </div>
                         <div className = { styles.inputContainer }>
                             <label htmlFor = "link" className = { styles.inputLabel }>LINK</label>
-                            <input 
-                                id = "link" 
-                                type = "text" 
-                                name = "link" {...register("link")} 
-                                className = { styles.inputBox } 
-                                placeholder = "Link" 
-                                defaultValue = {selectedRea?.link ?? ""}
+                            <input
+                                id="link"
+                                type="text"
+                                name="link"
+                                {...register("link", { required: "Este campo é obrigatório" })}
+                                className={styles.inputBox}
+                                placeholder="Link"
+                                defaultValue={selectedRea?.link ?? ""}
+                                onFocus={() => handleFocus("link")}
+                                onBlur={handleBlur}
                             />
+                            {errors.link && focusedField === "link" && (
+                                <p className={styles.errorMessage}>{errors.link.message}</p>
+                            )}
                         </div>
                         <div className = { styles.inputContainer }>
                             <label htmlFor = "targetPublic" className = { styles.inputLabel }>PÚBLICO ALVO</label>
@@ -195,6 +223,7 @@ export function ReaInputForm(){
                                 fontSize = {"18px"}
                                 options = {["Séries Iniciais", "Fundamental", "Médio", "Superior"]}
                                 handleResult = { updateSelected }
+                                placeholder = {"Escolha"}
                                 /> 
                         </div>              
                     </div>
@@ -223,6 +252,7 @@ export function ReaInputForm(){
                                 fontSize = {"18px"}
                                 options = {["Português", "Matemática", "Biologia", "Teologia"]}
                                 handleResult = { updateSelected }
+                                placeholder = {"Escolha"}
                                 />
                         </div>
                         <div className = { styles.inputContainer }>
@@ -236,6 +266,7 @@ export function ReaInputForm(){
                                 fontSize = {"18px"}
                                 options = {["Domínio Público", "GNU"]}
                                 handleResult = { updateSelected }
+                                placeholder = {"Escolha"}
                                 /> 
                         </div>
                         <div className = { styles.inputContainer }>
@@ -249,21 +280,30 @@ export function ReaInputForm(){
                                 fontSize = {"18px"}
                                 options = {["Português", "Inglês", "Francês", "Alemão", "Outro"]}
                                 handleResult = { updateSelected }
+                                placeholder = {"Escolha"}
                                 />
                         </div>
                     </div>
                 </div>
 
-                <div className = { styles.description }>
-                    <label htmlFor = "description" className = { styles.inputLabel }>DESCRIÇÃO</label>
-                    <input 
-                        id = "description" 
-                        type = "text" 
-                        name = "description" {...register("description")} 
-                        className = { styles.descriptionInputBox } 
-                        placeholder = "Descrição do recurso educacional" 
-                        defaultValue = {selectedRea?.description ?? ""}
+                <div className={styles.description}>
+                    <label htmlFor="description" className={styles.inputLabel}>
+                        DESCRIÇÃO
+                    </label>
+                    <input
+                        id="description"
+                        type="text"
+                        name="description"
+                        {...register("description", { required: "Este campo é obrigatório" })}
+                        className={styles.descriptionInputBox}
+                        placeholder="Descrição do recurso educacional"
+                        defaultValue={selectedRea?.description ?? ""}
+                        onFocus={() => handleFocus("description")}
+                        onBlur={handleBlur}
                     />
+                    {errors.description && focusedField === "description" && (
+                        <p className={styles.errorMessage}>{errors.description.message}</p>
+                    )}
                 </div>
 
                 <div className = { styles.instructions }>
@@ -272,7 +312,7 @@ export function ReaInputForm(){
                 </div>
 
                 <div className = { styles.buttonsContainer } >
-                    <button className = { styles.cancelButton }>Cancelar</button>
+                    <button className = { styles.cancelButton } onClick = {() => navigate('/')}>Cancelar</button>
                     <button className = { styles.submitButton }>Salvar</button>
                 </div>
             </form>)}

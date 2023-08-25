@@ -24,6 +24,7 @@ export function ReaList({ filterData, onFilterChange, isLoading }) {
                     key={rea.id}
                     id={rea.id}
                     title={rea.title}
+                    link={rea.link}
                     description={rea.description}
                     likes={rea.likes}
                     thumb={url}

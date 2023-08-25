@@ -1,5 +1,6 @@
 .header {
     height: 3.3125rem;
+    width: 100%;
     background: var(--blue); /* 0,6875 */
     padding-top: 0.6875rem;
     padding-left: 1.125rem;
@@ -120,6 +121,6 @@
 
 @media (max-width: 500px) {
     .header{
-        justify-content: center;
+        justify-content: space-between;
     }
 }
