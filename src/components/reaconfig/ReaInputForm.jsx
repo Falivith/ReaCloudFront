@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import { useForm } from 'react-hook-form';
 import { submitRea } from "../../services/submitNewRea";
 import { useNavigate, useParams } from 'react-router-dom';
-import Loading from "../loading";
+import Loading from "../Loading";
 
 /* saveSuccess, saveError, passwordSuccess, passwordWarning, passwordError */
 

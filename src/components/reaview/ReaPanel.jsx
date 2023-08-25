@@ -1,7 +1,7 @@
 import styles from './ReaPanel.module.css';
 import Like from '../../assets/Like.png';
 import Comments from '../../assets/Comments.png';
-import Loading from '../loading';
+import Loading from '../Loading';
 
 export function ReaPanel({ isLoading, rea }) {
 

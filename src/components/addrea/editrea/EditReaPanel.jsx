@@ -2,7 +2,7 @@ import EditGear from "../../../assets/Gear.png";
 import { PostedResourceContainer } from "./PostedResourceContainer";
 import styles from "./EditReaPanel.module.css";
 import { useNavigate } from 'react-router-dom';
-import Loading from "../../loading";
+import Loading from "../../Loading";
 import { useState } from "react";
 
 export function EditReaPanel({reas, isLoading}){
