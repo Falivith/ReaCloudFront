@@ -3,10 +3,14 @@ import { CustomSelector } from "../CustomSelector";
 import Gear from "../../assets/Gear.png";
 import FileUpload from "../../assets/FileUpload.png"
 import { BaseNotification } from "../modals/BaseNotification";
+import { useNavigate } from "react-router-dom";
 
 /* saveSuccess, saveError, passwordSuccess, passwordWarning, passwordError */
 
 export function ReaInputForm(){
+    
+    const navigate = useNavigate();
+
     return(
         <div className = { styles.container }>
 
@@ -98,7 +102,7 @@ export function ReaInputForm(){
                 </div>
 
                 <div className = { styles.buttonsContainer } >
-                    <button className = { styles.cancelButton }>Cancelar</button>
+                    <button className = { styles.cancelButton } onClick = {() => navigate('/')} >Cancelar</button>
                     <button className = { styles.submitButton }>Salvar</button>
                 </div>
             </form>
