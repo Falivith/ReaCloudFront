@@ -40,7 +40,7 @@ export function Header() {
 
     useEffect(() => {
         const user = localStorage.getItem('user');
-        setIsLoggedIn(!!user);
+        setIsLoggedIn(user);
         setInitialCheckDone(true);
     }, []);
     
