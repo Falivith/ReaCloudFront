@@ -1,3 +1,65 @@
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Adapte a opacidade conforme necessário */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Certifique-se de que o z-index seja maior do que o restante da página */
+}
+
+.modalContainer {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    max-width: 500px; /* Defina um tamanho máximo para o modal */
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding-bottom: 20px;
+    align-items: center;
+}
+
+.header{
+    width: 100%;
+    background-color: #F2F2F2;
+    border-radius: 10px 10px 0px 0px;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 5px;
+}
+
+.header > img {
+    width: 40px;
+    cursor: pointer;
+}
+
+.header > h1 {
+    text-align: right;
+    font-family: 'Antic', sans-serif;
+    color: var(--gray);
+    font-weight: 400;
+}
+
+.span{
+    color: red;
+}
+
+.text{
+    word-wrap: break-word;
+}
+
+.textContainer {
+    padding: 30px 40px;
+    width: 100%;
+    font-family: 'Antic', sans-serif;
+    font-size: 18px;
+}
+
 .buttonsContainer {
     margin-top: 15px;
     display: flex;
@@ -6,37 +68,37 @@
 }
 
 .cancelButton {
-    background-color: white;
-    color: var(--blue);
+    background-color: var(--blue);
+    width: 143px;
+    color: white;
     font-weight: 700;
     font-size: 16px;
-    padding: 10px 20px;
+    padding: 10px 0px;
     border: 1px solid var(--blue);
     border-radius: 10px;
     transition: 0.2s;
 }
 
 .cancelButton:hover {
-    background-color: var(--blue);
+    background-color: var(--darkblue);
     color: white;
     transition: 0.2s;
     cursor: pointer;
 }
 
 .submitButton {
-    background-color: var(--blue);
-    width: 143px;
-    color: white;
+    background-color: white;
+    color: var(--blue);
     font-weight: 700;
     font-size: 16px;
-    padding: 10px 10px;
-    border: 1px solid var(--blue);
+    padding: 10px 20px;
+    border: 2px solid var(--blue);
     border-radius: 10px;
     transition: 0.2s;
 }
 
 .submitButton:hover {
-    background-color: var(--darkblue);
+    background-color: var(--blue);
     color: white;
     transition: 0.2s;
     cursor: pointer;

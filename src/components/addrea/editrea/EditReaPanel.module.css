@@ -47,6 +47,7 @@
 }
 
 .addNewReasLabel > h1 {
+    margin-left: 15px;
     font-family: 'Antic', sans-serif;
     color: var(--gray);
     font-size: 48px;
@@ -58,6 +59,7 @@
     display: flex;
     flex-direction: column;
     gap: 22px;
+    margin-bottom: 30px;
 }
 
 .addOwnReaButton{

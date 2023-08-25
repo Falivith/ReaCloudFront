@@ -43,6 +43,7 @@
     font-size: 20px;
     font-weight: 400;
     display: flex;
+    gap: 10px;
     justify-content: flex-start;
     padding: 8px 13px;
 }

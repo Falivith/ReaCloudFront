@@ -6,7 +6,8 @@
       transform: rotate(360deg);
     }
   }
-  .spinner {
+
+.spinner {
     width: 50px;
     height: 50px;
     border: 10px solid var(--blue);
@@ -15,4 +16,15 @@
     animation: spinner 1.5s linear infinite;
     margin-top: 70px;
     margin-bottom: 70px;
+}
+
+.spinnerEdit{
+  width: 50px;
+  height: 50px;
+  border: 10px solid var(--orange2);
+  border-top: 10px solid var(--orange);
+  border-radius: 50%;
+  animation: spinner 1.5s linear infinite;
+  margin-top: 70px;
+  margin-bottom: 70px;
 }

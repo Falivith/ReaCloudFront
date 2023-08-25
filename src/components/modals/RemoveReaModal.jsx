@@ -1,20 +1,20 @@
 import styles from './RemoveReaModal.module.css'
-import XFigure from '../../assets/XFigure.png'
+import XFigure from '../../assets/XFigure.svg'
 
-export function RemoveReaModal(){
+export default function RemoveReaModal(props){
     return(
         <div className = { styles.background }>
             <div className = { styles.modalContainer }>
                 <header className = { styles.header }>
-                    <img src = { XFigure } alt = "Figura de remoção"/>
+                    <img onClick = {props.callModal} src = { XFigure } alt = "Figura de remoção"/>
                     <h1> Remover recurso </h1>
                 </header>
                 <div className = { styles.textContainer }>
-                    <p className = { styles.text }>Você deseja <span className = { styles.span }> remover </span> o recurso <strong>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX?</strong></p>
+                    <p className = { styles.text }>Você deseja <span className = { styles.span }> remover </span> o recurso <strong>{ props.title }</strong></p>
                 </div>
                 <div className = { styles.buttonsContainer } >
-                    <button className = { styles.cancelButton }> Cancelar </button>
-                    <button className = { styles.submitButton }> Salvar </button>
+                    <button className = { styles.cancelButton } onClick = {props.callModal} >CANCELAR</button>
+                    <button className = { styles.submitButton }>REMOVER</button>
                 </div>
             </div>
         </div>
