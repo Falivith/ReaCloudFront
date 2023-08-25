@@ -21,18 +21,11 @@ import { baseUrl, checkLoginStatus } from './utils';
     return reas.data;
 }
 
-
 export async function getResourceInfo(resourceId) {
-  const {userObject,config} = await checkLoginStatus()
-  
-  if (userObject) {
-    const response = await baseUrl.get(`/api/recurso/resource/${resourceId}`, config)
+
+    const response = await baseUrl.get(`/api/recurso/resource/${resourceId}`)
     return response.data
-  }
-
-  console.log("No user is logged in");  
 }
-
 
 export async function getUserResources() {
   const {userObject,config} = await checkLoginStatus()

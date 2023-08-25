@@ -1,6 +1,6 @@
 import { ReaPreview } from './ReaPreview';
 import styles from './ReaList.module.css';
-import Loading from '../loading';
+import Loading from '../Loading';
 
 export function ReaList({ filterData, onFilterChange, isLoading }) {
 

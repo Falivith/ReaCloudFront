@@ -1,23 +1,40 @@
 import styles from './ReaPanel.module.css';
 import Like from '../../assets/Like.png';
 import Comments from '../../assets/Comments.png';
-import ReaThumb from '../../assets/ExampleRea.png';
 import { useState } from 'react';
-export function ReaPanel(){
+import Loading from '../Loading';
 
-    const [tipoMaterial, setTipoMaterial] = useState('Website');
-    const [areaConhecimento, setAreaConhecimento] = useState('Matemática');
-    const [tipoLicenca, setTipoLicenca] = useState('Creative Commons');
-    const [publicoAlvo, setPublicoAlvo] = useState('Ensino Fundamental');
-    const [idioma, setIdioma] = useState('Português');
-    const [descricao, setDescricao] = useState('Lorem, ipsum dolor sit amet consectetur adipisicing elit...');
-    const [instrucoesUso, setInstrucoesUso] = useState('Lorem ipsum dolor sit amet consectetur, adipisicing elit...');
+export function ReaPanel({ isLoading, rea }) {
+
+    let url;
+
+    if (rea) {
+        let uint8Array = new Uint8Array(rea.thumb);
+        let blob = new Blob([uint8Array], { type: "Buffer" });
+        url = URL.createObjectURL(blob);
+
+        if (rea.thumb) {
+            uint8Array = new Uint8Array(rea.thumb.data);
+            blob = new Blob([uint8Array], { type: "Buffer" });
+            url = URL.createObjectURL(blob);
+        }
+    }
+
+    console.log(rea);
+
+    if (isLoading) {
+        return(
+        <div className = { styles.containerLoading }>
+            <Loading />;
+        </div>    
+        )
+    }
 
     return (
         <div className = { styles.container }>
             <div className = { styles.thumbAuxContainer }>
                 <div className = { styles.previewContainer }>
-                    <h1 className = { styles.reaTitle }>Atividades de Matemática de acordo com a BNCC</h1>
+                    <h1 className = { styles.reaTitle }>{ rea.title }</h1>
                     <span className = { styles.likesCount }>948 pessoas acharam isso útil</span>
                     <div className = { styles.buttonContainer }>
                         <button className = { styles.socialButton }> <img src = { Like } alt = "Joinha" /> Útil </button>
@@ -25,30 +42,32 @@ export function ReaPanel(){
                         <a className = { styles.bugReport } href = "#"> Informar um Problema </a>
                     </div>
                 </div>
-                <img src = { ReaThumb } alt="reaThumb" />  
+                <a href= {rea.link} target="_blank" rel="noopener noreferrer">
+                    <img src={url} alt="reaThumb" className={styles.thumbImage} />
+                </a> 
             </div>
            
             <ul className={styles.metaData}>
             <li>
-                <strong>Tipo do Material:</strong> {tipoMaterial}
+                <strong>Tipo do Material:</strong> {rea.reaType}
             </li>
             <li>
-                <strong>Área do conhecimento:</strong> {areaConhecimento}
+                <strong>Área do conhecimento:</strong> {rea.knowledgeArea}
             </li>
             <li>
-                <strong>Tipo de Licença:</strong> {tipoLicenca}
+                <strong>Tipo de Licença:</strong> {rea.license}
             </li>
             <li>
-                <strong>Público alvo:</strong> {publicoAlvo}
+                <strong>Público alvo:</strong> {rea.targetPublic}
             </li>
             <li>
-                <strong>Idioma:</strong> {idioma}
+                <strong>Idioma:</strong> {rea.language}
             </li>
             <li>
-                <strong>Descrição:</strong> {descricao}
+                <strong>Descrição:</strong> {rea.description}
             </li>
             <li>
-                <strong>Instruções de uso:</strong> {instrucoesUso}
+                <strong>Instruções de uso:</strong> {rea.instructions}
             </li>
         </ul>
         </div>

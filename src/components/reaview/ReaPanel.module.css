@@ -9,6 +9,18 @@
     height: fit-content;
 }
 
+.containerLoading{
+    display: flex;
+    flex-direction: column;
+    color: black;
+    border: 1px solid var(--lightgray);
+    border-radius: 10px;
+    padding: 24px 37px;
+    max-width: 100%;
+    height: fit-content;
+    align-items: center;
+}
+
 .thumbAuxContainer {
     display: flex;
     justify-content: space-between;
@@ -24,9 +36,19 @@
     }
 }
 
+.thumbImage {
+    width: 140px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out; 
+    border: 10px solid transparent;
+    transition: .4s;
+}
 
-.thumbAuxContainer > img {
-    width: fit-content;
+.thumbImage:hover {
+    transform: scale(1.3);
+    transition: .4s;
+    border-color: var(--blue);
 }
 
 .previewContainer {
@@ -53,9 +75,10 @@
 }
 
 .buttonContainer {
+    margin-top: 10px;
     align-items: center;
     display: flex;
-    gap: 0.4375rem;
+    gap: 13px;
 }
 
 .socialButton {
