@@ -1,0 +1,17 @@
+.selector{
+    background-color: white !important;
+    width: 200px !important;
+    height: 44px !important;
+    border-radius: 10px !important;
+    font-size: 21px !important;    
+    font-weight: 400 !important;
+    font-family: 'Roboto', sans-serif !important;
+}
+
+.selector div {
+    color: var(--gray) !important;
+}
+
+.selector div div{
+    padding: 10px 10px 10px 18px !important;
+}

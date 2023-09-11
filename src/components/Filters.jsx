@@ -5,6 +5,7 @@ import { CustomSelector } from './CustomSelector';
 import { useNavigate } from 'react-router-dom';
 import { filterReas } from '../services/reaquerys';
 import { useLocation } from 'react-router-dom';
+import { SuperSelector } from './SuperSelector';
 
 export function Filters({ onFilterChange = () => {}, pageSize, currentPage, reqConfigState, setIsLoading }) {
 
@@ -38,16 +39,12 @@ export function Filters({ onFilterChange = () => {}, pageSize, currentPage, reqC
             [id]: s
         }));
     }
-
     
     const [ reqConfig, setReqConfig ] = useState(standardValues)
     const [isSubmitted, setIsSubmitted] = useState(false);
 
-
     // Estado para armazenar as seleções dos filtros
     const [searchValue, setSearchValue] = useState('');
-
-    
 
     // Função para construir e executar a requisição à API com base nas seleções dos filtros
     const fetchResources = async () => {
@@ -96,10 +93,6 @@ export function Filters({ onFilterChange = () => {}, pageSize, currentPage, reqC
         fetchData();
     }, [reqConfig, currentPage]); // Run this effect whenever reqConfig changes
 
-    
-    
-    
-
     return (
         <div className={styles.container}>
 
@@ -112,17 +105,10 @@ export function Filters({ onFilterChange = () => {}, pageSize, currentPage, reqC
             </form>
 
             <div className = { styles.selectorsAndSearch }>
-                <div className={styles.selectorExternalContainer}>
+
+            <div className={styles.selectorExternalContainer}>
                     <span className={styles.blueSpan}>ÁREA DO CONHECIMENTO</span>
-                    <CustomSelector
-                        id = "knowledgeArea"
-                        selectorId={1}
-                        width={"200px"}
-                        height={"44px"}
-                        options={["Português", "Matemática", "Biologia", "Teologia"]}
-                        handleResult = { updateSelected }
-                        placeholder = {reqConfigState?.knowledgeArea}
-                        />
+                    <SuperSelector/>
                 </div>
 
                 <div className={styles.selectorExternalContainer}>
