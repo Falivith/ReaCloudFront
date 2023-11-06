@@ -11,7 +11,7 @@ export function PluginReasPanel(){
         navigate(`../${route}`);
     }
 
-    var ExtensionId = "hhglkeeogekcimonpepemfjabkikbimh"
+    var ExtensionId = import.meta.env.VITE_extension_id;
 
     const [reasPlugin, setReasPlugin] = useState([]);
     const [reasPluginCount, setReasPluginCount] = useState(0);
@@ -43,6 +43,7 @@ export function PluginReasPanel(){
                     return <PluginResourceContainer
                         index = {index}
                         rea = {rea}
+                        key = {index}
                     />
                     })
                 }

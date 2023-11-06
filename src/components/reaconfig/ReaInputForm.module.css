@@ -2,24 +2,25 @@
     color: black;
     margin: 24px auto;
     height: 90%;
-    width: 50%;
-    min-width: fit-content;
     display: flex;
     flex-direction: column;
     border-radius: 10px;
     overflow: auto;
     box-shadow: 0px 5px 16px 1px rgba(0, 0, 0, 0.09);
+    max-width: 900px;
+    align-items: center;
+    transition: 0.2s;
 }
 
 @media (max-width: 1400px){
     .container{
-        width: 70%;
+        min-width: 70%;
     }
 }
 
 @media (max-width: 1200px){
     .container{
-        width: 80%;
+        min-width: fit-content;
     }
 }
 
@@ -46,6 +47,7 @@
     gap: 10px;
     justify-content: flex-start;
     padding: 8px 13px;
+    width: 100%;
 }
 
 .header > img {
@@ -58,6 +60,7 @@
     border-radius: 0px 0px 10px 10px;
     display: grid;
     padding-top: 30px;
+    width: 100%;
 }
 
 .formContainer > .column, .description, .instructions{

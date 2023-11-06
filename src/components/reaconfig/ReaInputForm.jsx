@@ -13,7 +13,7 @@ import Loading from "../Loading";
 
 export function ReaInputForm(){
 
-    var extensionId = "hhglkeeogekcimonpepemfjabkikbimh"
+    var extensionId = import.meta.env.VITE_extension_id;
 
     const [ selectedRea, setSelectedRea ] = useState(null);
     const { index } = useParams();
@@ -159,7 +159,7 @@ export function ReaInputForm(){
 
             <header className = { styles.header }><img src = { AddRing } alt = "Símbolo de Adição de Recurso" /> Adicionar novos recursos</header>
 
-            {isLoading ? Loading : 
+            {isLoading ? <Loading /> : 
             (<form id = "reaconfig" className = { styles.formContainer } onSubmit = {handleSubmit( addRea )}>
                 <div className = { styles.columns }>
                     <div className = { styles.column }>
