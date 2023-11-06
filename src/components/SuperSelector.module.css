@@ -8,10 +8,18 @@
     font-family: 'Roboto', sans-serif !important;
 }
 
+.selector 
+
 .selector div {
     color: var(--gray) !important;
 }
 
 .selector div div{
-    padding: 10px 10px 10px 18px !important;
+    padding: 8px 10px 10px 18px !important;
+}
+
+.selector div div div{
+    border-radius: 4px !important;
+    font-size: 1rem !important;
+    padding: 5px !important;;
 }

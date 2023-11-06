@@ -19,7 +19,7 @@ export function EditReaPanel({reas, isLoading}){
                     <img src = { EditGear } alt = "Editar seus Recursos" />
                     <h1>Edite seus recursos</h1>                    
                 </div>
-                <span>Você tem <span className = { styles.pluginReaCounter }>{reas?.length}</span> recursos cadastrados. </span>
+                <span>Você tem&nbsp;<span className = { styles.pluginReaCounter }>{reas?.length}</span> &nbsp;recursos cadastrados. </span>
             </div>
             <div className = { styles.pluginRequester }>
                 {isLoading ? <Loading editReas = {true} /> :

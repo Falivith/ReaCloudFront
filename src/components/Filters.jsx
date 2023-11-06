@@ -1,11 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Filters.module.css';
 import Search from '../assets/Search.svg';
-import { CustomSelector } from './CustomSelector';
 import { useNavigate } from 'react-router-dom';
 import { filterReas } from '../services/reaquerys';
 import { useLocation } from 'react-router-dom';
 import { SuperSelector } from './SuperSelector';
+
+const knowledgeArea = [
+    { name: ' Linguagens', code: 'LI' },
+    { name: ' Ciências Exatas', code: 'CE' },
+    { name: ' Ciências Biológicas', code: 'CB' },
+    { name: ' Ciências Humanas', code: 'CH' },
+    { name: ' Anos Iniciais', code: 'AI' }
+];
+
+const type = [
+    { name: ' Site', code: 'ST' },
+    { name: ' Artigo', code: 'ART' },
+    { name: ' Documento', code: 'DOC' },
+    { name: ' Vídeo', code: 'VID' },
+    { name: ' Ferramenta', code: 'TL' }
+];
 
 export function Filters({ onFilterChange = () => {}, pageSize, currentPage, reqConfigState, setIsLoading }) {
 
@@ -13,35 +28,36 @@ export function Filters({ onFilterChange = () => {}, pageSize, currentPage, reqC
     const navigate = useNavigate();
     
     useEffect(() => {
-        if (reqConfigState !== null && reqConfigState !== undefined) {
-          setSearchValue(reqConfigState.title);
-          
-        }
+        if (reqConfigState !== null && reqConfigState !== undefined)
+            setSearchValue(reqConfigState.title);
       }, [reqConfigState]);
 
     const routeChangeHandler = async (route) => {
         await new Promise(resolve => setTimeout(resolve, 1)); 
         navigate(`../${route}`);
-    }   
+    }
+
     const standardValues = {
         title: '',
         type: '',
         knowledgeArea: '',
         ...(reqConfigState !== null ? reqConfigState : {})
-      };
+    };
     
     const updateSelected = (id, s) => {
         console.log(id, s);
     
-        // Use a variável searchValue que foi definida no componente
         setReqConfig(prevState => ({
             ...prevState,
             [id]: s
         }));
     }
     
+    const [ knowledgeAreaConfig, setKnowledgeAreaConfig ] = useState(null)
+    const [ typeConfig, setTypeConfig ] = useState(null)
+
     const [ reqConfig, setReqConfig ] = useState(standardValues)
-    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [ isSubmitted, setIsSubmitted ] = useState(false);
 
     // Estado para armazenar as seleções dos filtros
     const [searchValue, setSearchValue] = useState('');
@@ -54,19 +70,13 @@ export function Filters({ onFilterChange = () => {}, pageSize, currentPage, reqC
                 ...prevState,
                 title: searchValue
             }));
-            
-    
         } catch (error) {
             console.error(error);
         }
     }
     
-    // Use useEffect to handle the API call after reqConfig is updated
     useEffect(() => {
-
         const fetchData = async () => {
-            
-
             try {
                 if (location.pathname === '/explorer' ) {
                     setIsLoading(true);
@@ -91,15 +101,19 @@ export function Filters({ onFilterChange = () => {}, pageSize, currentPage, reqC
         };
     
         fetchData();
-    }, [reqConfig, currentPage]); // Run this effect whenever reqConfig changes
+    }, [reqConfig, currentPage]);
+
+    useEffect(() => {
+        updateSelected('knowledgeArea', knowledgeAreaConfig);
+        updateSelected('type', typeConfig);
+    }, [knowledgeAreaConfig, typeConfig]);
 
     return (
         <div className={styles.container}>
-
             <form className={styles.internalContainer} onSubmit={(e) => {
                                                         e.preventDefault(); 
                                                         fetchResources();
-    }}>
+            }}>
                 <input value={searchValue} className={styles.inputSpace} type="text" placeholder="O que você procura?" onChange={(e) => setSearchValue(e.target.value)}/>
                 <button className={styles.searchButton} type="submit"><img src={Search} alt="Pesquisar" /></button>
             </form>
@@ -108,20 +122,12 @@ export function Filters({ onFilterChange = () => {}, pageSize, currentPage, reqC
 
             <div className={styles.selectorExternalContainer}>
                     <span className={styles.blueSpan}>ÁREA DO CONHECIMENTO</span>
-                    <SuperSelector/>
+                    <SuperSelector options = {knowledgeArea} selectedOptions = { knowledgeAreaConfig } setState = { setKnowledgeAreaConfig } />
                 </div>
 
                 <div className={styles.selectorExternalContainer}>
                     <span className={styles.blueSpan}>TIPO DO MATERIAL</span>
-                    <CustomSelector
-                        id = "type"
-                        selectorId={2}
-                        width={"200px"}
-                        height={"44px"}
-                        options={["Website", "Vídeo", "Artigo"]}
-                        handleResult = { updateSelected } 
-                        placeholder = {reqConfigState?.type}
-                        />
+                    <SuperSelector options = {type} selectedOptions = { typeConfig } setState = { setTypeConfig }/>
                 </div>
 
                 <button className={styles.blueSearchButton} onClick={fetchResources}>BUSCAR</button>
