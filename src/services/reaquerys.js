@@ -28,25 +28,30 @@ export async function getResourceInfo(resourceId) {
 }
 
 export async function getUserResources() {
-  const {userObject,config} = await checkLoginStatus()
-  
-  
-  if (userObject) {
-    const response = await baseUrl.get(`/api/recurso/user`, config)
-    return response.data
-  }
+  try {
+    const { userObject, config } = await checkLoginStatus();
 
-  console.log("nenhum usuario logado");  
+    if (userObject) {
+      const response = await baseUrl.get(`/api/recurso/user`, config);
+      console.log(response.data);
+      return response.data;
+    } else {
+      console.log("Nenhum Usuário Logado.");
+      return [];
+    }
+  } catch (error) {
+    console.error("Erro ao obter recursos do usuário:", error);
+    return [];
+  }
 }
 
 
-  
-  export async function getReaInfo(id) {
+export async function getReaInfo(id) {
 
-    const reaInfo = await baseUrl.get('./api/recurso/' + id + '/', async (req, res) => {
-      console.log("Cheguei")
-      const reas = await baseUrl.get();
-      res.status(201).json(reas);
-    })
-    return reas.data;
-  }
+  const reaInfo = await baseUrl.get('./api/recurso/' + id + '/', async (req, res) => {
+    console.log("Cheguei")
+    const reas = await baseUrl.get();
+    res.status(201).json(reas);
+  })
+  return reas.data;
+}

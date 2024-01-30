@@ -13,8 +13,8 @@ export async function checkLogin() {
     if (response.status == 200) {
       return true}
   }
-  return false;
 
+  return false;
 }
 
 export async function login(credentials) {
@@ -40,21 +40,19 @@ export async function register(credentials) {
 
 
 export async function getUser() {
-  const {userObject,config} = await checkLoginStatus()
-  
+  const {userObject, config} = await checkLoginStatus()
   
   if (userObject) {
     const response = await baseUrl.get(`/api/users/${userObject.email}`, config)
     return response.data
   }
 
-  console.log("nenhum usuario logado");  
+  console.log("Nenhum usuário logado.");  
 }
-
 
 export async function updateUser(updatedUser) {
   
-  const {userObject,config} = await checkLoginStatus()
+  const {userObject, config} = await checkLoginStatus()
 
   if (userObject) {
     const response = await baseUrl.put(`/api/users/${userObject?.email}`, updatedUser, {
@@ -64,7 +62,6 @@ export async function updateUser(updatedUser) {
       },
     });
 
-    console.log("blablabla", response.status);
     return {
       data: response.data,
       status: response.status
@@ -88,7 +85,6 @@ export async function uploadPhoto(profilePicture) {
   }
 }
 
-
 export async function getProfilePicture() {
   
   const {userObject,config} = await checkLoginStatus()
@@ -98,17 +94,13 @@ export async function getProfilePicture() {
     return response.data
   }
 }
-export async function updateUserAccount(password,newPassword) {    // pra email e senha  
+
+export async function updateUserAccount(password, newPassword) {    // pra email e senha  
   
   const {userObject,config} = await checkLoginStatus()
 
   if (userObject) {
-    const response = await baseUrl.put('/api/users/dados',{password,newPassword},config)
+    const response = await baseUrl.put('/api/users/dados', {password,newPassword},config)
     return response.data
   }
 }
-
-
-
-
-

@@ -77,7 +77,6 @@ export function ReaInputForm(){
         setResult(prevState => ({
             ...prevState,
             title: data.title,
-            reaType: data.reaType,
             link: data.link,
             description: data.description,
             instructions: data.instructions
@@ -86,7 +85,6 @@ export function ReaInputForm(){
         const updatedResult = {
             ...result,
             title: data.title,
-            reaType: data.reaType,
             link: data.link,
             description: data.description,
             instructions: data.instructions
@@ -105,6 +103,8 @@ export function ReaInputForm(){
         formData.append('knowledgeArea', updatedResult.knowledgeArea);
     
         formData.append('thumb', image);
+
+        console.log(updatedResult, updatedResult.reaType);
     
         try {
             const formSubmitSuccess = await submitRea(formData);
@@ -141,6 +141,8 @@ export function ReaInputForm(){
             ...prevState, 
             [id]: s
         }))
+
+        console.log(result);
     }
 
     const [focusedField, setFocusedField] = useState(null);

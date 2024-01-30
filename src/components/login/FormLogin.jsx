@@ -52,7 +52,7 @@ export function FormLogin(){
         console.log("ta entrando");
         try {
             const user = await login({
-              email,password
+              email, password
             })  
             console.log('user = ', user);
             navigate('/');

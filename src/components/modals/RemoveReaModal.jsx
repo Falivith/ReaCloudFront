@@ -1,7 +1,9 @@
 import styles from './RemoveReaModal.module.css'
 import XFigure from '../../assets/XFigure.svg'
+import { deleteRea } from '../../services/submitNewRea';
 
 export default function RemoveReaModal(props){
+    console.log(props);
     return(
         <div className = { styles.background }>
             <div className = { styles.modalContainer }>
@@ -14,7 +16,7 @@ export default function RemoveReaModal(props){
                 </div>
                 <div className = { styles.buttonsContainer } >
                     <button className = { styles.cancelButton } onClick = {props.callModal} >CANCELAR</button>
-                    <button className = { styles.submitButton }>REMOVER</button>
+                    <button onClick={() => { deleteRea(props.id); props.callModal(); }} className={styles.submitButton}>REMOVER</button>
                 </div>
             </div>
         </div>

@@ -7,7 +7,6 @@ import { getUser, updateUser, updateUserAccount } from '../services/authenticati
 import { BaseNotification } from '../components/modals/BaseNotification';
 
 export function MeuPerfil() {
-    
 
     const [showNotification, setShowNotification] = useState(false);
     const [notificationType, setNotificationType] = useState('');
@@ -28,8 +27,6 @@ export function MeuPerfil() {
 
     const [values, setValues] = useState(initialValues);
 
-
-
     useEffect(() => {
         async function fetchData(){
             const some_values = await getUser()
@@ -48,46 +45,35 @@ export function MeuPerfil() {
     };
 
     const handleSubmit = async(e) =>{
+
         e.preventDefault();
-        console.log('e = ', e.target.name);
-        console.log('values = ', values);
+
         if (e.target.name === 'MeusDados'){
             try {
                 const valores = { ...values };
                 delete valores.password; 
                 delete valores.newPassword;    
-                console.log("valores = ", valores);
+
                 const result = await updateUser(valores)
-                
-                
-                console.log('result = ', result.data);
-                console.log('codigo= ', result.status);
-     
-                setShowNotification(true);
+
                 if (result.status === 200){
                     setNotificationType('savePerfilSuccess'); 
-                }   
-
-                if (result.status === 400){
+                }else{
                     setNotificationType('saveError');   
                 }
-                
+
+                setShowNotification(true);
             }
 
             catch (exception) {
-                console.log("algum erro aconteceu", exception);
-
+                console.log(exception);
             }
         }
         
         else if (e.target.name === 'MeuEmailESenha'){
-            console.log("atualizando  ",values.password,values.newPassword);
             const result = await updateUserAccount(values.password,values.newPassword)
-            console.log('result= ', result);
         }
-      
     }
-    
     
     return (
         <div>

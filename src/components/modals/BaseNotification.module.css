@@ -4,23 +4,30 @@
     right: 0px;
     top: 53px;
     display: flex;
-    width: 310px;
     height: fit-content;
     border-radius: 10px 0px 0px 10px;
+    z-index: 999;
 }
 
 .background{
+    display: flex;
+    flex-direction: column;
     margin-left: 5px;
     border-radius: 10px 0px 0px 10px;
-    width: 310px;
+    height: max-content;
     background-color: #F4F4F4;
 }
 
 .header{
+    display: flex;
     margin-top: 16px;
     margin-left: 12px;
-    font-display: flex;
-    justify-content: flex-start;
+    gap: 15px;
+}
+
+.header > div {
+    display: flex;
+    gap: 10px;
 }
 
 .header > img {
@@ -34,10 +41,21 @@
 }
 
 .close{
-    position: relative;
-    right: -280px;
-    bottom: 68px;
+    width: 12px;
+    height: 12px;
     cursor: pointer;
+    transition: .2s;
+    align-self: center;
+    justify-self: center;
+    padding-bottom: 3px;
+}
+
+.close:hover{
+    background-color: rgb(228, 228, 228);
+    border-radius: 50%;
+    transition: .2s;
+    width: 15px;
+    height: 15px;
 }
 
 .description{
@@ -45,4 +63,5 @@
     margin-left: 45px;
     font-size: 13px;
     font-weight: 600;
+    padding-bottom: 10px;
 }

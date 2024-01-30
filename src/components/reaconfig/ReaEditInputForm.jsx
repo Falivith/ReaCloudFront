@@ -59,8 +59,8 @@ export function ReaInputForm(){
 
                         </div>
                         <div className = { styles.inputContainer }>
-                            <label htmlFor = "reatype" className = { styles.inputLabel }>ÁREA DO CONHECIMENTO</label>
-                            <CustomSelector id = "reatype"
+                            <label htmlFor = "knowledgeArea" className = { styles.inputLabel }>ÁREA DO CONHECIMENTO</label>
+                            <CustomSelector id = "knowledgeArea"
                                 selectorId = { 2 }
                                 width = {"364px"}
                                 height = {"44px"}
@@ -70,7 +70,7 @@ export function ReaInputForm(){
                         </div>
                         <div className = { styles.inputContainer }>
                             <label htmlFor = "license" className = { styles.inputLabel }>TIPO DE LICENÇA</label>
-                            <CustomSelector id = "targetpublic"
+                            <CustomSelector id = "license"
                                 selectorId = { 3 }
                                 width = {"364px"}
                                 height = {"44px"}
@@ -80,7 +80,7 @@ export function ReaInputForm(){
                         </div>
                         <div className = { styles.inputContainer }>
                             <label htmlFor = "language" className = { styles.inputLabel }>IDIOMA DO MATERIAL</label>
-                            <CustomSelector id = "targetpublic"
+                            <CustomSelector id = "language"
                                 selectorId = { 4 }
                                 width = {"364px"}
                                 height = {"44px"}

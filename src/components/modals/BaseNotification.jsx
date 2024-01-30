@@ -139,11 +139,13 @@ export function BaseNotification(props){
         <div className = { styles.backgroundColorAndContainer } style = {{ backgroundColor: notificationProps.backgroundcolor }}>
             <div className = { styles.background }>
                 <header className = { styles.header }>
-                    <img src = { notificationProps.img }/>
-                    <h1 className = { styles.title } style = {{ color: notificationProps.textcolor }} > { notificationProps.title } </h1>
+                    <div>
+                        <img src = { notificationProps.img }/>
+                        <h1 className = { styles.title } style = {{ color: notificationProps.textcolor }} > { notificationProps.title } </h1>
+                    </div>
+                    <img onClick = { close } src = { CloseSymbol } alt = "Fechar" className = { styles.close }/>
                 </header>
                     <p className = { styles.description }> { notificationProps.description } </p>
-                    <img onClick = { close } src = { CloseSymbol } alt = "Fechar" className = { styles.close }/>
             </div>
         </div>
     ) : null;

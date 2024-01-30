@@ -2,14 +2,9 @@ import { ProfileLabelAndInput } from './ProfileLabelAndInput';
 import styles from './Profile.module.css';
 import MeusDadosImg from '../../assets/User_cicle_lightblue.png'
 import '../../global.css'
-import {useState,useEffect} from 'react';
-import { checkLogin, getUser, updateUser } from '../../services/authentication';
 import ProfilePicture from './profilePicture';
 
 export function MeusDados({values,handleChange,handleSubmit}) {
-    
-      
-    
     return(
         <div className={styles.containerForm}>
             <ProfilePicture nome={values.nome}/>
@@ -26,7 +21,6 @@ export function MeusDados({values,handleChange,handleSubmit}) {
                     
                     <input className={styles.whiteButton} type="reset" value="Cancelar"></input>
                     <input className={styles.blueSearchButton} type="submit" value="Salvar"></input>
-
             </fieldset>
             </form>
         </div>

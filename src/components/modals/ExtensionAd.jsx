@@ -32,10 +32,9 @@ export function ExtensionAd(props){
                     </p>
 
                     <a className = { styles.link } 
-                        href="https://chrome.google.com/webstore/detail/reacloud/flnllibpodbojpadpmpajmggfjchabdp/related?hl=pt-BR" 
+                        href="https://chromewebstore.google.com/" 
                         target='_blank'
                         onClick={handleClick}
-                    
                     >
                         <p> Link da Chrome Web Store </p>
                         <img className = { styles.reaCloudLogoImage } src = {reaCloudLogo} alt="Logotipo do ReaCloud"/>
