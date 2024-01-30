@@ -38,7 +38,6 @@ export async function register(credentials) {
   return response.data
 }
 
-
 export async function getUser() {
   const {userObject, config} = await checkLoginStatus()
   

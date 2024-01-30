@@ -45,7 +45,8 @@ export function MeuPerfil() {
     };
 
     const handleSubmit = async(e) =>{
-
+        
+        console.log(values);
         e.preventDefault();
 
         if (e.target.name === 'MeusDados'){
@@ -71,16 +72,14 @@ export function MeuPerfil() {
         }
         
         else if (e.target.name === 'MeuEmailESenha'){
-            const result = await updateUserAccount(values.password,values.newPassword)
+            const result = await updateUserAccount(values.password, values.newPassword)
         }
     }
     
     return (
         <div>
             <Header notificationNumber = {0}/>
-
             {(<BaseNotification type = {notificationType} showing={showNotification} onClose={closeNotification} />)}
-
             <MeusDados values = {values}  handleChange={handleChange}  handleSubmit={handleSubmit} />
             <MeuEmailESenha values = {values} handleChange={handleChange} handleSubmit={handleSubmit} />
             <Help/>

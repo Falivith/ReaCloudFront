@@ -5,17 +5,10 @@
     align-items: center;
     flex-direction: column;
     gap: 1.625rem;
-    width: 98%;
 }
 
 @media (max-width: 1350px) {
     .reaContainer {
         max-width: 72.5%;
-    }
-}
-
-@media (max-width: 850px) {
-    .reaContainer {
-        max-width: 95%;
     }
 }
