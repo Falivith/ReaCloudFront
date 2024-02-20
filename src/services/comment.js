@@ -33,6 +33,7 @@ export async function getCommentInfo(id) {
   try {
     const response = await baseUrl.get(`/api/comment/${id}`);
     const comments = response.data;
+    console.log(comments);
     return comments;
   } catch (error) {
     console.error('Error fetching comments:', error);

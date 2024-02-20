@@ -21,6 +21,7 @@
     height: 72px;
     padding: 10px;
     resize: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .buttonsContainer {
@@ -64,6 +65,7 @@
     border: 1px solid var(--blue);
     border-radius: 10px;
     transition: 0.2s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .submitButton:hover {

@@ -69,7 +69,7 @@ export function CommentSection({ resourceId }) {
                     <p>Loading...</p>
                 ) : (
                     comments.map( (comment, index) => (
-                        <Comment key={index} nome={comment.user_id} text={comment.comment} date={comment.createdAt} foto={comment.foto} />
+                        <Comment key={index} nome={comment.user.nome} text={comment.comment} date={comment.createdAt} foto={comment.user.profilePicture} />
                     ))
                 )}
             </div>
