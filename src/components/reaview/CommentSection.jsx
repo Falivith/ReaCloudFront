@@ -3,7 +3,7 @@ import styles from './CommentSection.module.css';
 import { Comment } from './Comment';
 import avatar1 from './Avatar.webp';
 import avatar2 from './Avatar2.png';
-import { submitComment } from '../../services/comments';
+import { submitComment } from '../../services/comment';
 
 const mocados = [
     {
