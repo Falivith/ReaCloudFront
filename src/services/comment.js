@@ -29,14 +29,10 @@ export async function submitComment(commentText, resourceId) {
   }
 }
 
-
 export async function getCommentInfo(id) {
   try {
-    // Make a GET request to fetch comments based on the provided id
     const response = await baseUrl.get(`/api/comment/${id}`);
-
     const comments = response.data;
-    console.log('Retrieved comments:', comments); // Log comments to the console
     return comments;
   } catch (error) {
     console.error('Error fetching comments:', error);

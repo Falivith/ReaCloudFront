@@ -6,24 +6,10 @@ import avatar2 from './Avatar2.png';
 import { submitComment } from '../../services/comment';
 import { getCommentInfo } from '../../services/comment';
 
-const mocados = [
-    {
-        nome: "Fulano",
-        text:  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla malesuada enim ut orci pretium, in iaculis massa porttitor. Ut rutrum arcu vitae fermentum elementum. Fusce tristique, lacus at fermentum lacinia, libero quam egestas est, non semper justo diam ac dui. Nullam ac tempor sem. In rutrum ac massa sed viverra. Quisque elementum mauris vitae sollicitudin fringilla.",
-        date: "2021-08-04T12:00:00Z",
-        foto: avatar1
-    },
-    {
-        nome: "Fulano",
-        text:  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla malesuada enim ut orci pretium, in iaculis massa porttitor. Ut rutrum arcu vitae fermentum elementum. Fusce tristique, lacus at fermentum lacinia, libero quam egestas est, non semper justo diam ac dui. Nullam ac tempor sem. In rutrum ac massa sed viverra. Quisque elementum mauris vitae sollicitudin fringilla.",
-        date: "2021-08-04T12:00:00Z",
-        foto: avatar2
-    },
-]
-
 export function CommentSection({ resourceId }) {
     const [commentText, setCommentText] = useState('');
     const [comments, setComments] = useState([]);
+    const [loading, setLoading] = useState(true);
   
     useEffect(() => {
       // Fetch comments when the component mounts or when resourceId changes
@@ -32,10 +18,13 @@ export function CommentSection({ resourceId }) {
   
     const fetchComments = async () => {
       try {
+        setLoading(true);
         const commentInfo = await getCommentInfo(resourceId);
         setComments(commentInfo);
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching comments:', error);
+        setLoading(false);
       }
     };
   
@@ -47,7 +36,6 @@ export function CommentSection({ resourceId }) {
       event.preventDefault();
   
       await submitComment(commentText, resourceId);
-      console.log('Comentário enviado:', commentText);
   
       // Fetch comments after submitting a new comment
       fetchComments();
@@ -77,9 +65,13 @@ export function CommentSection({ resourceId }) {
             </form>
 
             <div className = { styles.commentList }>
-                {comments.map( (comment, index) => (
-                    <Comment key={index} nome={comment.user_id} text={comment.comment} date={comment.createdAt} foto={comment.foto} />
-                ))}
+                {loading ? (
+                    <p>Loading...</p>
+                ) : (
+                    comments.map( (comment, index) => (
+                        <Comment key={index} nome={comment.user_id} text={comment.comment} date={comment.createdAt} foto={comment.foto} />
+                    ))
+                )}
             </div>
 
         </div>

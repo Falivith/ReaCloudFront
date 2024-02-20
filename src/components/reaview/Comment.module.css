@@ -2,7 +2,10 @@
     display: flex;
     height: fit-content;
     gap: 18px;
-    align-items: flex-start;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid var(--lightgray);
+    border-radius: 10px;
 }
 
 .profilePhotoContainer {
@@ -11,6 +14,7 @@
 
 .profilePhoto {
     width: 45px;
+    height: 45px;
     border-radius: 50%;
     background-color: var(--lightgray);
 }
