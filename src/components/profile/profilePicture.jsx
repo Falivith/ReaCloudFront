@@ -18,24 +18,53 @@ const ProfilePicture = ({nome}) => {
   fetchData()
   }, []);
 
-
-  const handleAvatarChange = async(event) => {
+// usa o API Canvas do próprio navegador para redimensionar a imagem antes dela chegar no backend
+  const handleAvatarChange = async (event) => {
     const file = event.target.files[0];
-    const formData = new FormData();
-    
-    formData.append('file', file);
-    await uploadPhoto(formData)
-    
+    if (!file) return;
+  
+    const maxWidth = 200; 
+    const maxHeight = 200;
     const reader = new FileReader();
-    
-    reader.onload = async (e) => {   
-      setAvatarSrc(e.target.result);
+  
+    reader.onload = async (e) => {
+      const img = document.createElement("img");
+      img.src = e.target.result;
+  
+      img.onload = async () => {
+        let width = img.width;
+        let height = img.height;
+  
+        if (width > height) {
+          if (width > maxWidth) {
+            height *= maxWidth / width;
+            width = maxWidth;
+          }
+        } else {
+          if (height > maxHeight) {
+            width *= maxHeight / height;
+            height = maxHeight;
+          }
+        }
+  
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, width, height);
+  
+        canvas.toBlob(async (blob) => {
+          const formData = new FormData();
+          formData.append('file', blob, file.name);
+          await uploadPhoto(formData);
+          setAvatarSrc(URL.createObjectURL(blob));
+        }, file.type);
+      };
     };
-
+  
     reader.readAsDataURL(file);
-    
   };
-
+  
   return (
     <Stack direction="row" alignItems="center" spacing={2}>
       <label htmlFor="avatar-upload">
