@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
+// TODO: Arquivo morto. Lógica pra ser revisada e implementada em outro lugar.
+
 const useFetch = (url) => {
 
   const navigate = useNavigate();
@@ -24,7 +26,7 @@ const useFetch = (url) => {
       })
       .then((data) => {
         if (data?.user) {
-          localStorage.setItem("user", JSON.stringify(data?.user));
+          localStorage.setItem("reaCloudSession", JSON.stringify(data?.user));
           window.location.reload();
           
         }
@@ -34,9 +36,7 @@ const useFetch = (url) => {
       .catch((error) => {
         setError(error?.message);
       });
-      console.log("navegaaaaaaaaando");
       navigate('../')
-
   };
   return { loading, error, handleGoogle };
 };

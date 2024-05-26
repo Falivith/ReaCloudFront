@@ -5,12 +5,27 @@ import SairLogo from '../assets/Close_round_light.png'
 import UserLogo from '../assets/User_circle_light.png';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useGoogleLogin } from "@react-oauth/google";
 
 export function Header() {
 
     var ExtensionId = "hhglkeeogekcimonpepemfjabkikbimh"
 
     const [reasPluginCount, setReasPluginCount] = useState(0);
+
+    const signIn = useGoogleLogin({
+        onSuccess: async (tokenResponse) => {
+            console.log(tokenResponse);
+            setIsLoggedIn(true);
+            localStorage.setItem('reaCloudSession', JSON.stringify({ tokenResponse }));
+            navigate("/");
+        },
+    });
+
+    const handleClick = (event) => {
+        event.preventDefault();
+        signIn();
+    };
 
     useEffect(() => {
         const extensionId = ExtensionId;
@@ -39,11 +54,11 @@ export function Header() {
     const [initialCheckDone, setInitialCheckDone] = useState(false);
 
     useEffect(() => {
-        const user = localStorage.getItem('user');
+        const user = localStorage.getItem('reaCloudSession');
         setIsLoggedIn(user);
         setInitialCheckDone(true);
     }, []);
-    
+
     if (!initialCheckDone) {
         return null;
     }
@@ -51,7 +66,7 @@ export function Header() {
     return (
         <header className={styles.header}>
             <div className={styles.home}>
-                <img onClick={() => routeChangeHandler('/')} className={styles.reaCloudHat } src={ReaCloudLogo} alt="Logotipo da ReaCloud" />
+                <img onClick={() => routeChangeHandler('/')} className={styles.reaCloudHat} src={ReaCloudLogo} alt="Logotipo da ReaCloud" />
                 <span onClick={() => routeChangeHandler('/')} className={styles.reaCloudLogoText}>ReaCloud</span>
             </div>
             <div className={styles.buttons}>
@@ -69,12 +84,12 @@ export function Header() {
                     </div>
                     : <span className={styles.loginButtons} >
                         <button onClick={() => routeChangeHandler('addrea')} className={styles.addReaButton} >ADICIONAR RECURSO</button>
-                        <div className = { styles.loginAndSignup }>
-                            <button className={styles.loginButton} onClick={() => routeChangeHandler('login')}>ENTRE</button>
+                        <div className={styles.loginAndSignup}>
+                            <button className={styles.loginButton} onClick={(event) => handleClick(event)}>ENTRE</button>
                             {' OU '}
-                            <button onClick={() => routeChangeHandler('cadastro')} className={styles.loginButton} >CADASTRE-SE</button>  
+                            <button onClick={(event) => handleClick(event)} className={styles.loginButton} >CADASTRE-SE</button>
                         </div>
-                      </span>
+                    </span>
                 }
             </div>
         </header>

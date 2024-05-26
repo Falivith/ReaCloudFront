@@ -2,7 +2,7 @@ import { checkLoginStatus } from './utils';
 import { baseUrl } from './utils';
 
 export async function checkLogin() {
-  let token = JSON.parse(localStorage.getItem('user'))?.token
+  let token = JSON.parse(localStorage.getItem('reaCloudSession'))?.token
  
   const config = {
     headers: { Authorization: `Bearer ${token}` },
@@ -22,7 +22,7 @@ export async function login(credentials) {
   
   if (response.status === 200){
     window.localStorage.setItem(
-      'user', JSON.stringify(response.data)
+      'reaCloudSession', JSON.stringify(response.data)
     )}
    
   return response.data

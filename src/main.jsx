@@ -28,11 +28,11 @@ const router = createBrowserRouter([
   },
   {
     path : '/login',
-    element: <Login/>,
+    element: <Login/>, // TODO: Rota morta
   },
   {
     path : '/cadastro',
-    element: <Cadastrar/>,
+    element: <Login/>, // TODO: Rota morta
   },
   {
     path : '/addrea',
@@ -74,8 +74,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <GoogleOAuthProvider clientId={secret}>
-  <React.StrictMode>
-    <RouterProvider router = {router}/> 
-  </React.StrictMode>
+    <React.StrictMode>
+      <RouterProvider router = {router}/> 
+    </React.StrictMode>
   </GoogleOAuthProvider>
 )

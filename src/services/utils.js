@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export async function checkLoginStatus() {
-  const user = window.localStorage.getItem('user')   
+  const user = window.localStorage.getItem('reaCloudSession')   
   const userObject = JSON.parse(user)
   
   const config = {
@@ -12,5 +12,5 @@ export async function checkLoginStatus() {
 }
 
 export const baseUrl = axios.create({
-  baseURL: process.env.NODE_ENV === 'development'? 'http://localhost:3001': 'https://reacloud2.fly.dev'
+  baseURL: 'http://localhost:4001'
 });
