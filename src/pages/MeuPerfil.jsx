@@ -3,8 +3,9 @@ import { Help } from '../components/Help';
 import { MeusDados } from '../components/profile/MeusDados';
 import { MeuEmailESenha } from '../components/profile/MeuEmailESenha'
 import { useEffect, useState } from 'react';
-import { getUser, updateUser, updateUserAccount } from '../services/authentication';
+import { getUser, loginWithGoogle, updateUser, updateUserAccount } from '../services/authentication';
 import { BaseNotification } from '../components/modals/BaseNotification';
+import { checkLoginStatus } from '../services/utils';
 
 export function MeuPerfil() {
 
@@ -28,13 +29,24 @@ export function MeuPerfil() {
     const [values, setValues] = useState(initialValues);
 
     useEffect(() => {
-        async function fetchData(){
+        async function fetchData() {
+          // Espera pela resolução da promessa retornada por checkLoginStatus
+          //const loginStatus = await loginWithGoogle();
+          //console.log(loginStatus);
+        }
+        
+        fetchData(); // Chama a função assíncrona
+      }, []);
+    
+    /*useEffect(() => {
+        console.log(checkLoginStatus());
+        /*async function fetchData(){
             const some_values = await getUser()
             const all_values = {...some_values, password: values.password, newPassword: values.newPassword}
             setValues(all_values) 
         }
         fetchData()
-      }, [])
+      }, [])*/
 
       const handleChange = (e) => {
         const { name, value } = e.target;

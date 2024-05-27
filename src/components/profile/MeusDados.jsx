@@ -7,7 +7,8 @@ import ProfilePicture from './profilePicture';
 export function MeusDados({ values, handleChange, handleSubmit }) {
     return (
         <div className={styles.containerForm}>
-            <ProfilePicture nome={values.nome} />
+            {//<ProfilePicture nome={values.nome} />
+            }
             <form onSubmit={handleSubmit} name={'MeusDados'}>
                 <div className={styles.addNewReasLabel}>
                     <img src={MeusDadosImg} alt="Meus Dados" />

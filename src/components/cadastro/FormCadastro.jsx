@@ -2,8 +2,7 @@ import styles from "./FormCadastro.module.css";
 import { LabelAndInput } from "../login/LabelAndInput";
 import { Button } from "../login/Button";
 import styleLabelandInput from "../login/LabelAndInput.module.css";
-import { useState, useEffect } from "react";
-import { login, register } from "../../services/authentication";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BaseNotification } from "../modals/BaseNotification";
 import { CustomSelector } from "../CustomSelector";
@@ -46,7 +45,7 @@ export function FormCadastro() {
     });
   };
 
-  const handleSubmit = async (e) => {
+  /*const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
@@ -73,7 +72,7 @@ export function FormCadastro() {
         console.log("Conexão não permitida.");
       }
     }
-  };
+  };*/
 
   return (
     <div className={styles.containerForm}>

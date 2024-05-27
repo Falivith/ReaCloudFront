@@ -1,17 +1,22 @@
+import { isLogged } from './authentication';
 import { checkLoginStatus } from './utils';
 import { baseUrl } from './utils';
 
 export async function submitRea(recurso){
-  const {userObject, config} = await checkLoginStatus()
+
+  let reaCloudSession = await JSON.parse(localStorage.getItem("reaCloudSession"))
+  let token = reaCloudSession?.jwt_token;
+
+  const logged = await isLogged();
 
   const reaConfig = {
     headers: {
-    'Authorization': `${config.headers.Authorization}`,
+    'Authorization': `Bearer ${token}`,
     'Content-Type': 'multipart/form-data',      
     }
   };
 
-  if(userObject){
+  if(logged){
     const response = await baseUrl.post(`/api/recurso`, recurso, reaConfig)
     return response;
   }

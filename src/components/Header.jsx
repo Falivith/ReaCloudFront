@@ -6,6 +6,7 @@ import UserLogo from '../assets/User_circle_light.png';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useGoogleLogin } from "@react-oauth/google";
+import { isLogged, loginWithGoogle } from '../services/authentication';
 
 export function Header() {
 
@@ -14,12 +15,12 @@ export function Header() {
     const [reasPluginCount, setReasPluginCount] = useState(0);
 
     const signIn = useGoogleLogin({
-        onSuccess: async (tokenResponse) => {
-            console.log(tokenResponse);
-            setIsLoggedIn(true);
-            localStorage.setItem('reaCloudSession', JSON.stringify({ tokenResponse }));
+        onSuccess: async ({ code }) => {
+            let status = await loginWithGoogle(code);
+            setIsLoggedIn(status);
             navigate("/");
         },
+        flow: 'auth-code',
     });
 
     const handleClick = (event) => {
@@ -43,20 +44,24 @@ export function Header() {
         navigate(`../${route}`);
     }
 
-    const logout = () => {
+    const logout = async () => {
         window.localStorage.clear()
-        setIsLoggedIn(false)
+        setIsLoggedIn(false);
         navigate('../')
         window.location.reload();
     }
 
-    const [isLoggedIn, setIsLoggedIn] = useState(null);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [initialCheckDone, setInitialCheckDone] = useState(false);
 
-    useEffect(() => {
-        const user = localStorage.getItem('reaCloudSession');
-        setIsLoggedIn(user);
+    const checkLoginStatus = async () => {
+        const loggedIn = await isLogged();
+        setIsLoggedIn(loggedIn);
         setInitialCheckDone(true);
+    };
+
+    useEffect(() => {
+        checkLoginStatus();
     }, []);
 
     if (!initialCheckDone) {
