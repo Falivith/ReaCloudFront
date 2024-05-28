@@ -3,9 +3,8 @@ import { Help } from '../components/Help';
 import { MeusDados } from '../components/profile/MeusDados';
 import { MeuEmailESenha } from '../components/profile/MeuEmailESenha'
 import { useEffect, useState } from 'react';
-import { getUser, loginWithGoogle, updateUser, updateUserAccount } from '../services/authentication';
+import { getUser, updateUser, updateUserAccount, getUserInfoFromJWT } from '../services/authentication';
 import { BaseNotification } from '../components/modals/BaseNotification';
-import { checkLoginStatus } from '../services/utils';
 
 export function MeuPerfil() {
 
@@ -30,23 +29,30 @@ export function MeuPerfil() {
 
     useEffect(() => {
         async function fetchData() {
-          // Espera pela resolução da promessa retornada por checkLoginStatus
-          //const loginStatus = await loginWithGoogle();
-          //console.log(loginStatus);
+          const userInfo = await getUserInfoFromJWT();
+
+          if (userInfo && userInfo.email) {
+            try {
+              const response = await getUser(userInfo.email);
+              //console.log(response);
+
+              setValues({
+                nome: response.given_name || '',
+                sobrenome: response.family_name || '',
+                instituicao: response.institution || '',
+                perfil: response.profile || '',
+                email: response.email || '',
+                password: '',
+                newPassword: '',
+              });
+            } catch (error) {
+              console.error('Error fetching user data:', error);
+            }
+          }
         }
-        
-        fetchData(); // Chama a função assíncrona
-      }, []);
-    
-    /*useEffect(() => {
-        console.log(checkLoginStatus());
-        /*async function fetchData(){
-            const some_values = await getUser()
-            const all_values = {...some_values, password: values.password, newPassword: values.newPassword}
-            setValues(all_values) 
-        }
-        fetchData()
-      }, [])*/
+
+        fetchData();
+    }, []);
 
       const handleChange = (e) => {
         const { name, value } = e.target;
