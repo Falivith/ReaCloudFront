@@ -32,7 +32,7 @@ export function ExtensionAd(props){
                     </p>
 
                     <a className = { styles.link } 
-                        href="https://chromewebstore.google.com/" 
+                        href="https://chromewebstore.google.com/detail/reacloud/flnllibpodbojpadpmpajmggfjchabdp" 
                         target='_blank'
                         onClick={handleClick}
                     >
