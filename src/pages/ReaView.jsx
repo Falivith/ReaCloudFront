@@ -36,7 +36,8 @@ export function ReaView() {
           <ReaPanel 
             rea = {rea} 
             isLoading = {isLoading} />
-          <CommentSection resourceId = {id}/>
+          {//<CommentSection resourceId = {id}/>
+          }
         </div>
         <Suggestions />
       </div>

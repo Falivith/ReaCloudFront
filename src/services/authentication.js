@@ -2,7 +2,6 @@ import { checkLoginStatus } from "./utils";
 import { baseUrl } from "./utils";
 
 export async function loginWithGoogle(code) {
-  console.log(code);
   if (code) {
     const response = await baseUrl.post("/api/auth/", {
       code,
@@ -17,24 +16,28 @@ export async function loginWithGoogle(code) {
 }
 
 export async function isLogged() {
-  let reaCloudSession = await JSON.parse(localStorage.getItem("reaCloudSession"))
+  let reaCloudSession = await JSON.parse(localStorage.getItem("reaCloudSession"));
   let token = reaCloudSession?.jwt_token;
 
   if (token) {
-
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
 
-    const response = await baseUrl.post("/api/auth/checkToken", null, config);
-    if (response.status == 200) {
-      console.log('oi?');
-      return true;
+    try {
+      const response = await baseUrl.post("/api/auth/checkToken", null, config);
+      if (response.status === 200) {
+        return true;
+      }
+    } catch (error) {
+      console.error('Sem token de autenticação.', error);
+      localStorage.removeItem("reaCloudSession");
     }
   }
 
   return false;
 }
+
 
 export async function getUser() {
   const { userObject, config } = await checkLoginStatus();

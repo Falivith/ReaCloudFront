@@ -32,7 +32,6 @@ export function Filters({ onFilterChange = () => {}, pageSize, currentPage, reqC
     const updateSelected = (id, s) => {
         console.log(id, s);
     
-        // Use a variável searchValue que foi definida no componente
         setReqConfig(prevState => ({
             ...prevState,
             [id]: s
@@ -43,13 +42,9 @@ export function Filters({ onFilterChange = () => {}, pageSize, currentPage, reqC
     const [ reqConfig, setReqConfig ] = useState(standardValues)
     const [isSubmitted, setIsSubmitted] = useState(false);
 
-
-    // Estado para armazenar as seleções dos filtros
     const [searchValue, setSearchValue] = useState('');
 
     
-
-    // Função para construir e executar a requisição à API com base nas seleções dos filtros
     const fetchResources = async () => {
         setIsSubmitted(true)
         try {
@@ -57,8 +52,6 @@ export function Filters({ onFilterChange = () => {}, pageSize, currentPage, reqC
                 ...prevState,
                 title: searchValue
             }));
-            
-    
         } catch (error) {
             console.error(error);
         }
@@ -95,10 +88,6 @@ export function Filters({ onFilterChange = () => {}, pageSize, currentPage, reqC
     
         fetchData();
     }, [reqConfig, currentPage]); // Run this effect whenever reqConfig changes
-
-    
-    
-    
 
     return (
         <div className={styles.container}>

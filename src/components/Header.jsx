@@ -10,8 +10,8 @@ import { isLogged, loginWithGoogle } from '../services/authentication';
 
 export function Header() {
 
-    var ExtensionId = "hhglkeeogekcimonpepemfjabkikbimh"
-
+    const extensionId = import.meta.env.VITE_REACLOUD_EXTENSION_ID;
+    
     const [reasPluginCount, setReasPluginCount] = useState(0);
 
     const signIn = useGoogleLogin({
@@ -29,7 +29,6 @@ export function Header() {
     };
 
     useEffect(() => {
-        const extensionId = ExtensionId;
         if (window.chrome && chrome.runtime && chrome.runtime.sendMessage) {
             chrome.runtime.sendMessage(extensionId, { getTargetData: true }, (response) => {
                 if (response && response.setTargetData) {
@@ -52,21 +51,15 @@ export function Header() {
     }
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [initialCheckDone, setInitialCheckDone] = useState(false);
 
     const checkLoginStatus = async () => {
         const loggedIn = await isLogged();
         setIsLoggedIn(loggedIn);
-        setInitialCheckDone(true);
     };
 
     useEffect(() => {
         checkLoginStatus();
     }, []);
-
-    if (!initialCheckDone) {
-        return null;
-    }
 
     return (
         <header className={styles.header}>

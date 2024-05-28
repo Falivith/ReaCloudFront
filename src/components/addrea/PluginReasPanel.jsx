@@ -11,19 +11,18 @@ export function PluginReasPanel(){
         navigate(`../${route}`);
     }
 
-    var ExtensionId = "hhglkeeogekcimonpepemfjabkikbimh"
+    const extensionId = import.meta.env.VITE_REACLOUD_EXTENSION_ID;
 
     const [reasPlugin, setReasPlugin] = useState([]);
     const [reasPluginCount, setReasPluginCount] = useState(0);
 
     useEffect(() => {
-        const extensionId = ExtensionId;
         if (window.chrome && chrome.runtime && chrome.runtime.sendMessage) {
             chrome.runtime.sendMessage(extensionId, { getTargetData: true }, (response) => {
                 if (response && response.setTargetData) {
                     setReasPlugin(response.setTargetData);
                     setReasPluginCount(response.setTargetData.length)
-                    console.log(response.setTargetData);
+                    //console.log(response.setTargetData);
                 }
             });
         }
@@ -41,6 +40,7 @@ export function PluginReasPanel(){
             <div className = { styles.pluginRequester }>
                 {reasPlugin.map((rea, index) => {
                     return <PluginResourceContainer
+                        key = {index}
                         index = {index}
                         rea = {rea}
                     />

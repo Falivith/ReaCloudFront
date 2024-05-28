@@ -3,8 +3,6 @@ import ReactDOM from "react-dom/client";
 import { MainPage } from "./pages/MainPage";
 import { Explorer } from "./pages/Explorer";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Login } from "./pages/Login";
-import { Cadastrar } from "./pages/Cadastrar";
 import { AddRea } from "./pages/AddRea";
 import { ReaView } from "./pages/ReaView";
 import { Recover } from "./components/login/Recover";
@@ -26,14 +24,14 @@ const router = createBrowserRouter([
     path : '/explorer',
     element: <Explorer/>
   },
-  {
+  /*{
     path : '/login',
     element: <Login/>, // TODO: Rota morta
   },
   {
     path : '/cadastro',
     element: <Login/>, // TODO: Rota morta
-  },
+  },*/
   {
     path : '/addrea',
     element: <AddRea/>

@@ -6,13 +6,13 @@ export function PluginResourceContainer(props){
     const navigate = useNavigate();
     const routeChangeHandler = (route) => {
         navigate(`../${route}`);
-
     }
     
+    console.log("Index:", props.index);
     return(
-        <div className = { styles.container }>
-            <div className = { styles.h1container }>
-                <h1>{ props.rea.title }</h1>    
+        <div className={styles.container}>
+            <div className={styles.h1container}>
+                <h1>{props.rea.title}</h1>    
             </div>
             <button onClick={() => routeChangeHandler(`/reaeditadd/${props.index}`)}>ADICIONAR</button>
         </div>
