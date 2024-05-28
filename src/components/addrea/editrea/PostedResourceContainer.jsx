@@ -5,15 +5,13 @@ import { useState } from "react";
 import RemoveReaModal from '../../modals/RemoveReaModal'
 
 export function PostedResourceContainer(props){
-
-    function removeRea(){
-        console.log("removing");
-    }
-
+    
     const [modalOpen, open] = useState(false)
 
     const callModal = () => {
         open(!modalOpen);
+
+        console.log("removing");
     }
 
     const id = props?.id

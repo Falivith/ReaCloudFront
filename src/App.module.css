@@ -11,6 +11,10 @@
     gap: 35px;
 }
 
+.reaViewContent {
+    flex: 5; 
+}
+
 .loginRCLogo{
     margin: 3rem auto;
     padding-right: 20px;

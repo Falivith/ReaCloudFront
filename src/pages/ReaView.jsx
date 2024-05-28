@@ -32,12 +32,11 @@ export function ReaView() {
     <div>
       <Header />
       <div className={styles.reaViewContainer}>
-        <div>
+        <div className={styles.reaViewContent}>
           <ReaPanel 
             rea = {rea} 
             isLoading = {isLoading} />
-          {//<CommentSection resourceId = {id}/>
-          }
+          <CommentSection resourceId = {id}/>
         </div>
         <Suggestions />
       </div>

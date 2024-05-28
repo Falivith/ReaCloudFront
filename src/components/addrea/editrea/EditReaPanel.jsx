@@ -3,7 +3,6 @@ import { PostedResourceContainer } from "./PostedResourceContainer";
 import styles from "./EditReaPanel.module.css";
 import { useNavigate } from 'react-router-dom';
 import Loading from "../../Loading";
-import { useState } from "react";
 
 export function EditReaPanel({reas, isLoading}){
 

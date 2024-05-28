@@ -3,9 +3,8 @@ import { Help } from '../components/Help';
 import { MeusDados } from '../components/profile/MeusDados';
 import { MeuEmailESenha } from '../components/profile/MeuEmailESenha'
 import { useEffect, useState } from 'react';
-import { getUser, loginWithGoogle, updateUser, updateUserAccount } from '../services/authentication';
+import { updateUser, updateUserAccount } from '../services/authentication';
 import { BaseNotification } from '../components/modals/BaseNotification';
-import { checkLoginStatus } from '../services/utils';
 
 export function MeuPerfil() {
 

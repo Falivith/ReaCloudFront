@@ -27,20 +27,19 @@ export async function submitRea(recurso){
 }
 
 export async function deleteRea(recursoId) {
-  const { userObject, config } = await checkLoginStatus();
+  let reaCloudSession = await JSON.parse(localStorage.getItem("reaCloudSession"))
+  let token = reaCloudSession?.jwt_token;
 
-  const reaConfig = {
-    headers: {
-      'Authorization': `${config.headers.Authorization}`,
-    },
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
   };
 
-  if (userObject) {
+  if (token) {
     try {
-      const response = await baseUrl.delete(`/api/recurso/${recursoId}`, reaConfig);
+      const response = await baseUrl.delete(`/api/recurso/${recursoId}`, config);
       return response;
     } catch (error) {
-      console.error('Error deleting resource:', error);
+      console.error('Erro ao deletar o recurso:', error);
       return null;
     }
   } else {

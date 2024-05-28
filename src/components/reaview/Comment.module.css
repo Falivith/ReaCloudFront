@@ -2,17 +2,18 @@
     display: flex;
     gap: 18px;
     padding: 10px;
-    padding-left: 18px;
+    padding-left: 10px;
     border-radius: 10px;
     align-items: center;
 }
 
 .profilePhotoContainer {
     width: 45px;
+    height: 45px;
 }
 
 .profilePhoto {
-    width: 45px;
+    min-width: 45px;
     height: 45px;
     border-radius: 50%;
     background-color: var(--lightgray);

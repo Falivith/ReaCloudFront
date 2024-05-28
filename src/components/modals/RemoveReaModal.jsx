@@ -3,7 +3,6 @@ import XFigure from '../../assets/XFigure.svg'
 import { deleteRea } from '../../services/submitNewRea';
 
 export default function RemoveReaModal(props){
-    console.log(props);
     return(
         <div className = { styles.background }>
             <div className = { styles.modalContainer }>
