@@ -1,5 +1,6 @@
 import { checkLoginStatus } from "./utils";
 import { baseUrl } from "./utils";
+import jwtDecode from 'jwt-decode';
 
 export async function loginWithGoogle(code) {
   if (code) {
@@ -38,13 +39,27 @@ export async function isLogged() {
   return false;
 }
 
+export async function getUserInfoFromJWT() {
+  let reaCloudSession = await JSON.parse(localStorage.getItem("reaCloudSession"));
+  let token = reaCloudSession?.jwt_token;
 
-export async function getUser() {
+  if (!token) return null;
+
+  try {
+    const decodedToken = jwtDecode(token);
+    return decodedToken;
+  } catch (error) {
+    console.error('Error decoding token:', error);
+    return null;
+  }
+}
+
+export async function getUser(email) {
   const { userObject, config } = await checkLoginStatus();
 
   if (userObject) {
     const response = await baseUrl.get(
-      `/api/users/${userObject.email}`,
+      `/api/users/${email}`,
       config
     );
     return response.data;
