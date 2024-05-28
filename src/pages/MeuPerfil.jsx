@@ -1,9 +1,8 @@
 import { Header } from '../components/Header';
 import { Help } from '../components/Help';
 import { MeusDados } from '../components/profile/MeusDados';
-import { MeuEmailESenha } from '../components/profile/MeuEmailESenha'
 import { useEffect, useState } from 'react';
-import { getUser, updateUser, updateUserAccount, getUserInfoFromJWT } from '../services/authentication';
+import { getUser, updateUser, getUserInfoFromJWT } from '../services/authentication';
 import { BaseNotification } from '../components/modals/BaseNotification';
 
 export function MeuPerfil() {
@@ -16,13 +15,10 @@ export function MeuPerfil() {
     };
 
     const initialValues = {
-        nome: '',
-        sobrenome: '',
-        instituicao: '',
-        perfil: '',
-        email: '',
-        password: '',
-        newPassword: '',
+        given_name: '',
+        family_name: '',
+        institution: '',
+        profile: '',
     };
 
     const [values, setValues] = useState(initialValues);
@@ -37,13 +33,10 @@ export function MeuPerfil() {
               //console.log(response);
 
               setValues({
-                nome: response.given_name || '',
-                sobrenome: response.family_name || '',
-                instituicao: response.institution || '',
-                perfil: response.profile || '',
-                email: response.email || '',
-                password: '',
-                newPassword: '',
+                given_name: response.given_name || '',
+                family_name: response.family_name || '',
+                institution: response.institution || '',
+                profile: response.profile || '',
               });
             } catch (error) {
               console.error('Error fetching user data:', error);
@@ -70,8 +63,8 @@ export function MeuPerfil() {
         if (e.target.name === 'MeusDados'){
             try {
                 const valores = { ...values };
-                delete valores.password; 
-                delete valores.newPassword;    
+                // delete valores.password; 
+                // delete valores.newPassword;    
 
                 const result = await updateUser(valores)
 
@@ -88,10 +81,6 @@ export function MeuPerfil() {
                 console.log(exception);
             }
         }
-        
-        else if (e.target.name === 'MeuEmailESenha'){
-            const result = await updateUserAccount(values.password, values.newPassword)
-        }
     }
     
     return (
@@ -99,7 +88,6 @@ export function MeuPerfil() {
             <Header notificationNumber = {0}/>
             {(<BaseNotification type = {notificationType} showing={showNotification} onClose={closeNotification} />)}
             <MeusDados values = {values}  handleChange={handleChange}  handleSubmit={handleSubmit} />
-            <MeuEmailESenha values = {values} handleChange={handleChange} handleSubmit={handleSubmit} />
             <Help/>
         </div>
     )

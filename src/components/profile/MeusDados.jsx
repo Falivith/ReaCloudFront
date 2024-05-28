@@ -15,10 +15,10 @@ export function MeusDados({ values, handleChange, handleSubmit }) {
                     <h1>Meus Dados</h1>
                 </div>
                 <fieldset className={styles.fieldset}>
-                    <ProfileLabelAndInput name={'nome'} value={values.nome} onChange={handleChange} labelText={'NOME'} inputType={'text'} placeholderText={'Nome'} />
-                    <ProfileLabelAndInput name={'sobrenome'} value={values.sobrenome} onChange={handleChange} labelText={'SOBRENOME'} inputType={'text'} placeholderText={'Sobrenome'} />
-                    <ProfileLabelAndInput name={'instituicao'} value={values.instituicao} onChange={handleChange} labelText={'INSTITUIÇÃO DE ENSINO'} inputType={'text'} placeholderText={'Instituição de Ensino'} />
-                    <ProfileLabelAndInput name={'perfil'} value={values.perfil} onChange={handleChange} labelText={'PERFIL'} inputType={'text'} placeholderText={'Perfil'} showButton={false} />
+                    <ProfileLabelAndInput name={'given_name'} value={values.given_name} onChange={handleChange} labelText={'NOME'} inputType={'text'} placeholderText={'Nome'} />
+                    <ProfileLabelAndInput name={'family_name'} value={values.family_name} onChange={handleChange} labelText={'SOBRENOME'} inputType={'text'} placeholderText={'Sobrenome'} />
+                    <ProfileLabelAndInput name={'institution'} value={values.institution} onChange={handleChange} labelText={'INSTITUIÇÃO DE ENSINO'} inputType={'text'} placeholderText={'Instituição de Ensino'} />
+                    <ProfileLabelAndInput name={'profile'} value={values.profile} onChange={handleChange} labelText={'PERFIL'} inputType={'text'} placeholderText={'Perfil'} showButton={false} />
                     <input className={styles.whiteButton} type="reset" value="Cancelar"></input>
                     <input className={styles.blueSearchButton} type="submit" value="Salvar"></input>
                 </fieldset>

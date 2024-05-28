@@ -69,11 +69,17 @@ export async function getUser(email) {
 }
 
 export async function updateUser(updatedUser) {
-  const { userObject, config } = await checkLoginStatus();
+  const userData = await getUserInfoFromJWT();
+  let reaCloudSession = await JSON.parse(localStorage.getItem("reaCloudSession"));
+  let token = reaCloudSession?.jwt_token;
 
-  if (userObject) {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  }
+
+  if (userData) {
     const response = await baseUrl.put(
-      `/api/users/${userObject?.email}`,
+      `/api/users/${userData?.email}`,
       updatedUser,
       {
         ...config,
@@ -117,17 +123,17 @@ export async function getProfilePicture() {
   }
 }
 
-export async function updateUserAccount(password, newPassword) {
-  // pra email e senha
+// export async function updateUserAccount(password, newPassword) {
+//   // pra email e senha
 
-  const { userObject, config } = await checkLoginStatus();
+//   const { userObject, config } = await checkLoginStatus();
 
-  if (userObject) {
-    const response = await baseUrl.put(
-      "/api/users/dados",
-      { password, newPassword },
-      config
-    );
-    return response.data;
-  }
-}
+//   if (userObject) {
+//     const response = await baseUrl.put(
+//       "/api/users/dados",
+//       { password, newPassword },
+//       config
+//     );
+//     return response.data;
+//   }
+// }
