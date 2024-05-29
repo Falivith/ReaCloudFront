@@ -25,7 +25,7 @@ export function PostedResourceContainer(props) {
                 <h1>{props.title}</h1>
             </div>
             <div>
-                <button onClick={() => navigate('/postedreaedit', { state: { id } })}>EDITAR</button>
+                <button disabled = {true} onClick={() => navigate('/postedreaedit', { state: { id } })}>EDITAR</button>
                 <img src={CloseSymbol} alt="Figura de remoção" className={styles.close} onClick={callModal} />
             </div>
             {modalOpen && <RemoveReaModal  callModal={callModal} title={props.title} id={id} refreshPage={refreshPage} />}

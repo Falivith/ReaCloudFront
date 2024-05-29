@@ -17,7 +17,6 @@ export const publicoAlvo = {
 };
 
 export const areasConhecimento = {
-    GERAL: "Geral",
     LINGUAGENS: "Linguagens",
     EXATAS: "Exatas",
     BIOLOGIA: "Biologia",

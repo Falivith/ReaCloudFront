@@ -2,9 +2,8 @@ import { useEffect, useState } from 'react';
 import { ProfileLabelAndInput } from './ProfileLabelAndInput';
 import styles from './Profile.module.css';
 import MeusDadosImg from '../../assets/User_cicle_lightblue.png';
-import BaseProfilePic from '../../../public/PlaceholderProfilePic.jpg'
+import BaseProfilePic from '../../assets/PlaceholderProfilePic.jpg'
 import '../../global.css';
-import ProfilePicture from './profilePicture';
 
 export function MeusDados({ values, handleChange, handleSubmit }) {
     const [profilePicture, setProfilePicture] = useState(values.profile_picture);
@@ -13,7 +12,7 @@ export function MeusDados({ values, handleChange, handleSubmit }) {
         if (values.profile_picture) {
             setProfilePicture(values.profile_picture);
         } else {
-            setProfilePicture(BaseProfilePic); // imagem padrão caso profile_picture seja undefined ou null
+            setProfilePicture(BaseProfilePic);
         }
     }, [values.profile_picture]);
 

@@ -14,14 +14,22 @@ export function CustomSelector(props){
   const onOptionClicked = value => () => {
     setSelectedOption(value);
 
+    if(value == "Todos"){
+      value = ""
+    }
+
     if(props.handleResult) // Se o parâmetro foi passado
     props.handleResult(props.id, value)
 
     setIsOpen(false);
   };
 
-  const options = props.options
+  let options = props.options
   const id = props.selectorId
+
+  if(props.type == "filter" && options[0] != "Todos"){
+    options.unshift("Todos")
+  }
 
   // Fechar ao clicar fora do container
 
@@ -36,7 +44,7 @@ export function CustomSelector(props){
   }), [];
 
   return(
-    <div className = { styles.dropDownContainer } id = { props.selectorId } /*onClick = { () => { console.log("click", props.id) } }*/
+    <div className = { styles.dropDownContainer } id = { props.selectorId } 
         style = {{ 
         width: props.width,
         height: props.height
@@ -48,7 +56,7 @@ export function CustomSelector(props){
         color: props.color,
         fontSize: props.fontSize
       }}>
-        {selectedOption || "Todas"}
+        { selectedOption || "Todos" }
           <img className = { styles.arrow } src = { Polygon } id = { props.selectorId }/>
       </div>
       {isOpen && (

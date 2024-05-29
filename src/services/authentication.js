@@ -62,7 +62,6 @@ export async function getUser(email) {
       `/api/users/${email}`,
       config
     );
-    console.log("response = ", response.data);
     return response.data;
   }
 
@@ -99,8 +98,6 @@ export async function updateUser(updatedUser) {
 
 export async function uploadPhoto(profilePicture) {
   const { userObject, config } = await checkLoginStatus();
-
-  console.log("profilePicture = ", profilePicture.get("file"));
   if (userObject) {
     try {
       const response = await baseUrl.post(

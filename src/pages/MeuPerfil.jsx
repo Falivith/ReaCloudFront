@@ -30,8 +30,6 @@ export function MeuPerfil() {
           if (userInfo && userInfo.email) {
             try {
               const response = await getUser(userInfo.email);
-              //console.log(response);
-
               setValues({
                 given_name: response.given_name || '',
                 family_name: response.family_name || '',
@@ -57,18 +55,11 @@ export function MeuPerfil() {
     };
 
     const handleSubmit = async(e) =>{
-        
-        console.log(values);
         e.preventDefault();
-
         if (e.target.name === 'MeusDados'){
             try {
                 const valores = { ...values };
-                // delete valores.password; 
-                // delete valores.newPassword;    
-
                 const result = await updateUser(valores)
-
                 if (result.status === 200){
                     setNotificationType('savePerfilSuccess'); 
                 }else{

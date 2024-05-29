@@ -6,15 +6,15 @@ import { useNavigate } from "react-router-dom";
 import { filterReas } from "../services/reaquerys";
 import { useLocation } from "react-router-dom";
 import {
-    tipoRecurso,
-    publicoAlvo,
-    areasConhecimento,
-    tiposLicenca,
-    idiomas,
+  tipoRecurso,
+  publicoAlvo,
+  areasConhecimento,
+  tiposLicenca,
+  idiomas,
 } from "../models/resource";
 
 export function Filters({
-  onFilterChange = () => {},
+  onFilterChange = () => { },
   pageSize,
   currentPage,
   reqConfigState,
@@ -41,8 +41,6 @@ export function Filters({
   };
 
   const updateSelected = (id, s) => {
-    console.log(id, s);
-
     setReqConfig((prevState) => ({
       ...prevState,
       [id]: s,
@@ -123,6 +121,7 @@ export function Filters({
           <span className={styles.blueSpan}>ÁREA DO CONHECIMENTO</span>
           <CustomSelector
             id="knowledgeArea"
+            type="filter"
             selectorId={1}
             width={"200px"}
             height={"44px"}
@@ -136,6 +135,7 @@ export function Filters({
           <span className={styles.blueSpan}>TIPO DO MATERIAL</span>
           <CustomSelector
             id="type"
+            type="filter"
             selectorId={2}
             width={"200px"}
             height={"44px"}

@@ -13,10 +13,9 @@ export function MainPage() {
       setShowNotification(false);
   };
 
-  var ExtensionId = "hhglkeeogekcimonpepemfjabkikbimh"
+  const extensionId = import.meta.env.VITE_REACLOUD_EXTENSION_ID;
 
   useEffect(() => {
-    const extensionId = ExtensionId;
     if (window.chrome && chrome.runtime && chrome.runtime.sendMessage) {
       chrome.runtime.sendMessage(extensionId, 'isExtensionInstalled', (response) => {
         if (response) {
@@ -33,9 +32,7 @@ export function MainPage() {
   return(
     <div>
       <Header/>
-
         {(< ExtensionAd showing={showNotification} onClose={closeNotification} />)}
-
       <MainPageContainer/>
       <Help/>
     </div>

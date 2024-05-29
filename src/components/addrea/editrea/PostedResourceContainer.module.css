@@ -17,6 +17,8 @@
     line-height: 22px;
 }
 
+/* Descomentar as linhas quando fizer a implementação do EditResource */
+
 .container > div > button {
     margin-right: 20px;
     margin-left: 5px;
@@ -27,16 +29,17 @@
     height: 30px;
     border: none;
     border-radius: 10px;
-    background-color: var(--orange);
+    background-color: rgb(204, 204, 204);
+    /*background-color: var(--orange);*/
     transition: 0.2s;
-    cursor: pointer;
+    /*cursor: pointer;*/
 }
 
-.container > div > button:hover {
+/*.container > div > button:hover {
     background-color: var(--darkorange);
     transition: 0.2s;
     cursor: pointer;
-}
+}*/
 
 .close{
     position: absolute;
