@@ -72,9 +72,7 @@ export function Header() {
                         {reasPluginCount > 0 && (
                             <span className={`badge ${styles.badge}`}>{reasPluginCount}</span>
                         )}
-                        {location.pathname !== '/addrea' && (
-                            <button className={styles.buttonsLogged} onClick={() => routeChangeHandler('addrea')}>ADICIONAR RECURSO</button>
-                        )}
+                        <button className={styles.buttonsLogged} onClick={() => routeChangeHandler('addrea')}>ADICIONAR RECURSO</button>
                         <img onClick={() => routeChangeHandler('profile')} className={styles.reaCloudLogo} src={UserLogo} alt="Perfil do Usuário" />
                         <button className={styles.buttonsLogged} onClick={() => routeChangeHandler('profile')}>MEU PERFIL</button>
                         <img onClick={logout} className={styles.sairLogo} src={SairLogo} alt="Sair" />
