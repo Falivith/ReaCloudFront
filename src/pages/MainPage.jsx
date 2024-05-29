@@ -15,26 +15,37 @@ export function MainPage() {
 
   const extensionId = import.meta.env.VITE_REACLOUD_EXTENSION_ID;
 
+  const isMobileDevice = () => {
+    return /Mobi|Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/.test(navigator.userAgent);
+  };
+
   useEffect(() => {
+    if (isMobileDevice()) {
+      setShowNotification(false);
+      return;
+    }
+
     if (window.chrome && chrome.runtime && chrome.runtime.sendMessage) {
       chrome.runtime.sendMessage(extensionId, 'isExtensionInstalled', (response) => {
         if (response) {
           console.log('Extension is installed!');
-          setShowNotification(false)
+          setShowNotification(false);
+        } else {
+          setShowNotification(true);
         }
       });
-    }else{
+    } else {
       console.log('Extension is not installed.');
-      setShowNotification(true)
+      setShowNotification(true);
     }
   }, []);
 
-  return(
+  return (
     <div>
       <Header/>
-        {(< ExtensionAd showing={showNotification} onClose={closeNotification} />)}
+      {showNotification && <ExtensionAd showing={showNotification} onClose={closeNotification} />}
       <MainPageContainer/>
       <Help/>
     </div>
-  )
+  );
 }
