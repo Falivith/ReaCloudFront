@@ -2,12 +2,15 @@ import { useState, useEffect } from "react";
 import styles from "./CommentSection.module.css";
 import { Comment } from "./Comment";
 import { submitComment, getCommentInfo } from "../../services/comment";
-import { getUser, getUserInfoFromJWT } from "../../services/authentication";
+import { Pagination } from "../explorer/Pagination"
+
 
 export function CommentSection({ resourceId }) {
   const [commentText, setCommentText] = useState("");
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const commentsPerPage = 5;
 
   useEffect(() => {
     fetchComments();
@@ -41,6 +44,12 @@ export function CommentSection({ resourceId }) {
     setCommentText("");
   };
 
+  // Pagination logic
+  const indexOfLastComment = currentPage * commentsPerPage;
+  const indexOfFirstComment = indexOfLastComment - commentsPerPage;
+  const currentComments = comments.slice(indexOfFirstComment, indexOfLastComment);
+
+
   return (
     <div className={styles.container}>
       <label htmlFor="commentTextArea" className={styles.headerLabel}>
@@ -71,8 +80,8 @@ export function CommentSection({ resourceId }) {
       <div className={styles.commentList}>
         {loading ? (
           <p>Loading...</p>
-        ) : comments && comments.length > 0 ? (
-          comments.map((comment) => {
+        ) : currentComments && currentComments.length > 0 ? (
+          currentComments.map((comment) => {
             return (
               <Comment
                 key={comment.id}
@@ -89,6 +98,13 @@ export function CommentSection({ resourceId }) {
           <p>Nenhum comentário encontrado.</p>
         )}
       </div>
+
+      {comments.length > commentsPerPage && (
+        <Pagination 
+          setCurrentPage={setCurrentPage} 
+          currentPage={currentPage} 
+        />
+      )}
     </div>
   );
 }

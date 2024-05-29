@@ -16,13 +16,27 @@ export function Pagination({ setCurrentPage,currentPage }) {
 
     const handlePreviousClick = (event) => {
         event.preventDefault();
-        setCurrentPage((prevPage) => prevPage - 1);
+        setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+    };
+
+    const getPageNumbers = () => {
+        const pageNumbers = [];
+        const maxPagesToShow = 5; 
+        const halfWindow = Math.floor(maxPagesToShow / 2);
+        let startPage = Math.max(currentPage - halfWindow, 1);
+        let endPage = startPage + maxPagesToShow - 1;
+
+        for (let i = startPage; i <= endPage; i++) {
+            pageNumbers.push(i);
+        }
+
+        return pageNumbers;
     };
 
     return (
         <div className={styles.pagination}>
             <a onClick={handlePreviousClick} href="#"><img src={Preview} alt="preview" /></a>
-            {[1, 2, 3, 4, 5, 6].map((page) => (
+            {getPageNumbers().map((page) => (
                 <a 
                     href="#" 
                     key={page} 
