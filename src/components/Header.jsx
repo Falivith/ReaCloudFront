@@ -1,9 +1,9 @@
 import styles from './Header.module.css';
 import ReaCloudLogo from '../assets/RClogo.svg';
 import RecursosEducacionaisLogo from '../assets/Add_ring.png';
-import SairLogo from '../assets/Close_round_light.png'
+import SairLogo from '../assets/Close_round_light.png';
 import UserLogo from '../assets/User_circle_light.png';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useGoogleLogin } from "@react-oauth/google";
 import { isLogged, loginWithGoogle } from '../services/authentication';
@@ -11,12 +11,14 @@ import { isLogged, loginWithGoogle } from '../services/authentication';
 export function Header() {
 
     const extensionId = import.meta.env.VITE_REACLOUD_EXTENSION_ID;
-    
     const [reasPluginCount, setReasPluginCount] = useState(0);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const navigate = useNavigate();
+    const location = useLocation(); // Get the current location
 
     const signIn = useGoogleLogin({
         onSuccess: async ({ code }) => {
-            let status = await loginWithGoogle(code);
+            const status = await loginWithGoogle(code);
             setIsLoggedIn(status);
             navigate("/");
         },
@@ -32,63 +34,64 @@ export function Header() {
         if (window.chrome && chrome.runtime && chrome.runtime.sendMessage) {
             chrome.runtime.sendMessage(extensionId, { getTargetData: true }, (response) => {
                 if (response && response.setTargetData) {
-                    setReasPluginCount(response.setTargetData.length)
+                    setReasPluginCount(response.setTargetData.length);
                 }
             });
         }
-    }, []);
-
-    const navigate = useNavigate();
-    const routeChangeHandler = (route) => {
-        navigate(`../${route}`);
-    }
-
-    const logout = async () => {
-        window.localStorage.clear()
-        setIsLoggedIn(false);
-        navigate('../')
-        window.location.reload();
-    }
-
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-    const checkLoginStatus = async () => {
-        const loggedIn = await isLogged();
-        setIsLoggedIn(loggedIn);
-    };
+    }, [extensionId]);
 
     useEffect(() => {
+        const checkLoginStatus = async () => {
+            const loggedIn = await isLogged();
+            setIsLoggedIn(loggedIn);
+        };
+
         checkLoginStatus();
     }, []);
+
+    const routeChangeHandler = (route) => {
+        navigate(`/${route}`); //PRA NÃO FAZER APPEND DAS ROTAS
+    };
+
+    const logout = () => {
+        window.localStorage.clear();
+        setIsLoggedIn(false);
+        navigate('/');
+    };
 
     return (
         <header className={styles.header}>
             <div className={styles.home}>
-                <img onClick={() => routeChangeHandler('/')} className={styles.reaCloudHat} src={ReaCloudLogo} alt="Logotipo da ReaCloud" />
-                <span onClick={() => routeChangeHandler('/')} className={styles.reaCloudLogoText}>ReaCloud</span>
+                <img onClick={() => routeChangeHandler('')} className={styles.reaCloudHat} src={ReaCloudLogo} alt="Logotipo da ReaCloud" />
+                <span onClick={() => routeChangeHandler('')} className={styles.reaCloudLogoText}>ReaCloud</span>
             </div>
             <div className={styles.buttons}>
-                {isLoggedIn ?
+                {isLoggedIn ? (
                     <div className={styles.buttons}>
-                        <img onClick={() => routeChangeHandler('addrea')} className={styles.reaCloudLogo} src={RecursosEducacionaisLogo} />
-                        {reasPluginCount > 0 ?
+                        <img onClick={() => routeChangeHandler('addrea')} className={styles.reaCloudLogo} src={RecursosEducacionaisLogo} alt="Adicionar Recurso" />
+                        {reasPluginCount > 0 && (
                             <span className={`badge ${styles.badge}`}>{reasPluginCount}</span>
-                            : null}
-                        <button className={styles.buttonsLogged} onClick={() => routeChangeHandler('addrea')}>RECURSOS</button>
-                        <img onClick={() => routeChangeHandler('profile')} className={styles.reaCloudLogo} src={UserLogo} />
+                        )}
+                        {location.pathname !== '/addrea' && (
+                            <button className={styles.buttonsLogged} onClick={() => routeChangeHandler('addrea')}>ADICIONAR RECURSO</button>
+                        )}
+                        <img onClick={() => routeChangeHandler('profile')} className={styles.reaCloudLogo} src={UserLogo} alt="Perfil do Usuário" />
                         <button className={styles.buttonsLogged} onClick={() => routeChangeHandler('profile')}>MEU PERFIL</button>
-                        <img onClick={logout} className={styles.sairLogo} src={SairLogo} />
+                        <img onClick={logout} className={styles.sairLogo} src={SairLogo} alt="Sair" />
                         <button className={styles.buttonsLogged} onClick={logout}>SAIR</button>
                     </div>
-                    : <span className={styles.loginButtons} >
-                        <button onClick={() => routeChangeHandler('addrea')} className={styles.addReaButton} >ADICIONAR RECURSO</button>
+                ) : (
+                    <span className={styles.loginButtons}>
+                        {location.pathname !== '/addrea' && (
+                            <button onClick={() => routeChangeHandler('addrea')} className={styles.addReaButton}>ADICIONAR RECURSO</button>
+                        )}
                         <div className={styles.loginAndSignup}>
-                            <button className={styles.loginButton} onClick={(event) => handleClick(event)}>ENTRE</button>
+                            <button className={styles.loginButton} onClick={handleClick}>ENTRE</button>
                             {' OU '}
-                            <button onClick={(event) => handleClick(event)} className={styles.loginButton} >CADASTRE-SE</button>
+                            <button onClick={handleClick} className={styles.loginButton}>CADASTRE-SE</button>
                         </div>
                     </span>
-                }
+                )}
             </div>
         </header>
     );
