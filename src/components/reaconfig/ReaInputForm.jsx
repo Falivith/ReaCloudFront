@@ -128,8 +128,6 @@ export function ReaInputForm() {
 
     formData.append("thumb", image);
 
-    console.log(updatedResult, updatedResult.reaType);
-
     try {
       console.log("aqui", formData);
       const formSubmitSuccess = await submitRea(formData);

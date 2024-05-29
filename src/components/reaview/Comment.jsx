@@ -12,14 +12,6 @@ export function Comment({ id, nome, text, date, foto, fetchAgain }) {
     }
   };
 
-  let url;
-
-  if (foto) {
-    const uint8Array = new Uint8Array(foto.data);
-    const blob = new Blob([uint8Array], { type: "image/png" });
-    url = URL.createObjectURL(blob);
-  }
-
   const formattedDate = new Date(date).toLocaleDateString();
   const formattedTime = new Date(date).toLocaleTimeString([], {
     hour: "2-digit",
@@ -29,7 +21,7 @@ export function Comment({ id, nome, text, date, foto, fetchAgain }) {
   return (
     <div className={styles.container}>
       <div className={styles.profilePhotoContainer}>
-        {foto && <img className={styles.profilePhoto} src={url} alt="Foto do perfil" />}
+        {foto && <img className={styles.profilePhoto} src={foto} alt="Foto do perfil" />}
       </div>
       <div className={styles.commentDetails}>
         <div className={styles.textContainer}>

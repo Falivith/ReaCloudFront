@@ -1,27 +1,25 @@
 import styles from "./PostedResourceContainer.module.css";
 import { useNavigate } from "react-router-dom";
-import CloseSymbol from '../../../assets/CloseX.png'
+import CloseSymbol from '../../../assets/CloseX.png';
 import { useState } from "react";
-import RemoveReaModal from '../../modals/RemoveReaModal'
+import RemoveReaModal from '../../modals/RemoveReaModal';
 
-export function PostedResourceContainer(props){
-    
-    const [modalOpen, open] = useState(false)
+export function PostedResourceContainer(props) {
+    const [modalOpen, open] = useState(false);
 
     const callModal = () => {
         open(!modalOpen);
-
-        console.log("removing");
     }
 
-    const id = props?.id
+    const id = props?.id;
 
     const navigate = useNavigate();
-    const routeChangeHandler = (route) => {
-        navigate(`../${route}`);
+
+    const refreshPage = () => {
+        window.location.reload();
     }
-    
-    return(
+
+    return (
         <div className={styles.container} id={id}>
             <div className={styles.h1container}>
                 <h1>{props.title}</h1>
@@ -30,7 +28,7 @@ export function PostedResourceContainer(props){
                 <button onClick={() => navigate('/postedreaedit', { state: { id } })}>EDITAR</button>
                 <img src={CloseSymbol} alt="Figura de remoção" className={styles.close} onClick={callModal} />
             </div>
-            {modalOpen && <RemoveReaModal callModal = { callModal } title = { props.title } id = { id }/>}
+            {modalOpen && <RemoveReaModal  callModal={callModal} title={props.title} id={id} refreshPage={refreshPage} />}
         </div>
-    )
+    );
 }

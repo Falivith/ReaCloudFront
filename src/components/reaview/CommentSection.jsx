@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import styles from "./CommentSection.module.css";
 import { Comment } from "./Comment";
 import { submitComment, getCommentInfo } from "../../services/comment";
+import { getUser, getUserInfoFromJWT } from "../../services/authentication";
 
 export function CommentSection({ resourceId }) {
   const [commentText, setCommentText] = useState("");
@@ -72,13 +73,6 @@ export function CommentSection({ resourceId }) {
           <p>Loading...</p>
         ) : comments && comments.length > 0 ? (
           comments.map((comment) => {
-            let userImageURL = "";
-            if (comment.user.profilePicture) {
-              const uint8Array = new Uint8Array(comment.user.profilePicture);
-              const blob = new Blob([uint8Array], { type: "Buffer" });
-              userImageURL = URL.createObjectURL(blob);
-            }
-
             return (
               <Comment
                 key={comment.id}
@@ -86,7 +80,7 @@ export function CommentSection({ resourceId }) {
                 nome={comment.user.given_name}
                 text={comment.comment}
                 date={comment.createdAt}
-                foto={userImageURL}
+                foto={comment.user.profilePicture}
                 fetchAgain={fetchComments}
               />
             );
