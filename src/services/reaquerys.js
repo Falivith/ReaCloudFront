@@ -11,6 +11,7 @@ export async function getAllReas() {
 
 // Filtra os recursos
 export async function filterReas(filter, currentPage, pageSize) {
+  console.log(filter, currentPage, pageSize);
   const reas = await baseUrl.get("/api/recurso/filter", {
     params: {
       ...filter,
