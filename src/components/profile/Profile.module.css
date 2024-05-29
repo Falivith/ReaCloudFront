@@ -1,32 +1,42 @@
-.text{
+.profilePicContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0px 5px 16px 1px rgba(0, 0, 0, 0.09);
+    margin-bottom: 20px;
+}
+
+.text {
     font-style: normal;
     font-weight: 700;
     font-size: 1rem;
-    line-height: 1.375rem;        
-    color: #4F518C;
+    line-height: 1.375rem;
+    color: #4f518c;
     margin-bottom: 0.1875rem;
     margin-top: 0.4375rem;
 }
 
-.input2{
+.input2 {
     max-width: 10.875rem;
     min-height: 3rem;
-    border: 0.0625rem solid #D9D9D9;
+    border: 0.0625rem solid #d9d9d9;
     border-radius: 0.75rem;
 
     display: flex;
     align-items: center;
-   
+
     font-weight: 400;
     font-size: 20px;
     line-height: 22px;
     padding-left: 1.125rem;
 }
 
-.input{
+.input {
     min-width: 22.75rem;
     min-height: 3rem;
-    border: 0.0625rem solid #D9D9D9;
+    border: 0.0625rem solid #d9d9d9;
     border-radius: 0.75rem;
     display: flex;
     align-items: center;
@@ -39,14 +49,13 @@
 .input::placeholder {
     display: flex;
     align-items: center;
-    color: #BEBEBE;
+    color: #bebebe;
     font-weight: 400;
     font-size: 20px;
     line-height: 22px;
-
 }
 
-.containerForm{
+.containerForm {
     min-height: fit-content;
     width: 100vw;
     margin-top: 2.875rem;
@@ -56,31 +65,30 @@
     justify-items: center;
 }
 
-.containerForm > form {
+.containerForm>form {
     box-shadow: 0px 5px 16px 1px rgba(0, 0, 0, 0.09);
     border-radius: 10px;
 }
 
-
-.divSpacing{
+.divSpacing {
     margin-top: 0.9375rem;
 }
 
-.twoItens{
+.twoItens {
     margin-top: 0.9375rem;
     display: flex;
-    column-gap: 1rem; 
+    column-gap: 1rem;
 }
 
-.inputTwo{
+.inputTwo {
     max-width: 10.875rem;
     min-height: 3rem;
-    border: 0.0625rem solid #D9D9D9;
+    border: 0.0625rem solid #d9d9d9;
     border-radius: 0.75rem;
 
     display: flex;
     align-items: center;
-   
+
     font-weight: 400;
     font-size: 20px;
     line-height: 22px;
@@ -90,36 +98,35 @@
 .inputTwo::placeholder {
     display: flex;
     align-items: center;
-    color: #BEBEBE;
+    color: #bebebe;
     font-weight: 400;
     font-size: 20px;
     line-height: 22px;
-
 }
 
 .MeuButton {
-width: 3.563rem;
-cursor: pointer;
-height: 3rem;
-margin-left: -3.5rem;
-background: #E2E9FF;
-border: 0px solid #E2E9FF;
-border-radius: 0px 10px 10px 0px;
-transition: ease-in 0.5s;
+    width: 3.563rem;
+    cursor: pointer;
+    height: 3rem;
+    margin-left: -3.5rem;
+    background: #e2e9ff;
+    border: 0px solid #e2e9ff;
+    border-radius: 0px 10px 10px 0px;
+    transition: ease-in 0.5s;
 }
 
 .MeuButtonClick {
-transition: ease-in 0.5s;
-width: 3.563rem;
-cursor: pointer;
-height: 3rem;
-margin-left: -3.5rem;
-background: transparent;
-border: 0px solid #E2E9FF;
-border-radius: 0px 10px 10px 0px;
+    transition: ease-in 0.5s;
+    width: 3.563rem;
+    cursor: pointer;
+    height: 3rem;
+    margin-left: -3.5rem;
+    background: transparent;
+    border: 0px solid #e2e9ff;
+    border-radius: 0px 10px 10px 0px;
 }
 
-.SpanContainer{
+.SpanContainer {
     display: flex;
     flex-direction: row;
     margin-bottom: 1.5rem;
@@ -129,17 +136,19 @@ border-radius: 0px 10px 10px 0px;
     padding: 2.25rem;
     border: 1px solid #f2f2f2;
     border-radius: 0.5rem;
-    -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
-    scrollbar-width: none;  /* Hide scrollbar for Firefox */
+    -ms-overflow-style: none;
+    /* Hide scrollbar for IE and Edge */
+    scrollbar-width: none;
+    /* Hide scrollbar for Firefox */
     font-style: normal;
     font-weight: 700;
     font-size: 1rem;
     background-color: transparent;
-    list-style-type: none;     
-    color: #4F518C;
+    list-style-type: none;
+    color: #4f518c;
 }
 
-.addNewReasLabel{
+.addNewReasLabel {
     display: flex;
     gap: 8px;
     align-items: center;
@@ -150,19 +159,19 @@ border-radius: 0px 10px 10px 0px;
     margin-bottom: -0.5rem;
 }
 
-.addNewReasLabel > h1 {
-    font-family: 'Antic', sans-serif;
+.addNewReasLabel>h1 {
+    font-family: "Antic", sans-serif;
     color: var(--gray);
     font-size: 1.5rem;
     font-weight: 400;
 }
 
-.blueSearchButton{
+.blueSearchButton {
     cursor: pointer;
     padding: 12px 36px 12px 36px;
     border: hidden;
     margin-left: 0.5rem;
-    width:49%;
+    width: 49%;
     border-radius: 10px;
     height: 2.75rem;
     font-size: 1rem;
@@ -172,13 +181,13 @@ border-radius: 0px 10px 10px 0px;
     transition: 0.3s;
 }
 
-.blueSearchButton:hover{
+.blueSearchButton:hover {
     background-color: var(--darkblue);
 }
 
-.whiteButton{
+.whiteButton {
     cursor: pointer;
-    width:48%;
+    width: 48%;
     padding: 12px 36px 12px 36px;
     border: 1px solid var(--blue);
     border-radius: 10px;
@@ -190,7 +199,7 @@ border-radius: 0px 10px 10px 0px;
     transition: 0.3s;
 }
 
-.whiteButton:hover{
+.whiteButton:hover {
     background-color: var(--lightgray);
 }
 
@@ -204,7 +213,7 @@ border-radius: 0px 10px 10px 0px;
     padding-bottom: 3rem;
 }
 
-.containerFormEmail > form {
+.containerFormEmail>form {
     box-shadow: 0px 5px 16px 1px rgba(0, 0, 0, 0.09);
     border-radius: 10px;
 }

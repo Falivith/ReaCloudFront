@@ -37,6 +37,7 @@ export function MeuPerfil() {
                 family_name: response.family_name || '',
                 institution: response.institution || '',
                 profile: response.profile || '',
+                profile_picture: response.profilePicture || '',
               });
             } catch (error) {
               console.error('Error fetching user data:', error);

@@ -1,14 +1,27 @@
+import { useEffect, useState } from 'react';
 import { ProfileLabelAndInput } from './ProfileLabelAndInput';
 import styles from './Profile.module.css';
 import MeusDadosImg from '../../assets/User_cicle_lightblue.png';
+import BaseProfilePic from '../../../public/PlaceholderProfilePic.jpg'
 import '../../global.css';
 import ProfilePicture from './profilePicture';
 
 export function MeusDados({ values, handleChange, handleSubmit }) {
+    const [profilePicture, setProfilePicture] = useState(values.profile_picture);
+
+    useEffect(() => {
+        if (values.profile_picture) {
+            setProfilePicture(values.profile_picture);
+        } else {
+            setProfilePicture(BaseProfilePic); // imagem padrão caso profile_picture seja undefined ou null
+        }
+    }, [values.profile_picture]);
+
     return (
         <div className={styles.containerForm}>
-            {//<ProfilePicture nome={values.nome} />
-            }
+            <div className={styles.profilePicContainer }>
+                <img className={styles.profilePicImg } src={profilePicture} alt="profile_picture"/>
+            </div>
             <form onSubmit={handleSubmit} name={'MeusDados'}>
                 <div className={styles.addNewReasLabel}>
                     <img src={MeusDadosImg} alt="Meus Dados" />

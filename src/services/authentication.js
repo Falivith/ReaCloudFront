@@ -62,6 +62,7 @@ export async function getUser(email) {
       `/api/users/${email}`,
       config
     );
+    console.log("response = ", response.data);
     return response.data;
   }
 
