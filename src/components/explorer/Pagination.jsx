@@ -10,13 +10,11 @@ export function Pagination({ setCurrentPage,currentPage }) {
     };
 
     const handleNextClick = (event) => {
-        console.log("currentPage = ",currentPage)
         event.preventDefault();
         setCurrentPage((prevPage) => prevPage + 1);
     };
 
     const handlePreviousClick = (event) => {
-        console.log("currentPage = ",currentPage)
         event.preventDefault();
         setCurrentPage((prevPage) => prevPage - 1);
     };

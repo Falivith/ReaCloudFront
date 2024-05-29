@@ -51,7 +51,6 @@ export function ReaInputForm() {
         { getTargetData: true },
         (response) => {
           if (response && response.setTargetData) {
-            console.log(response);
             setSelectedRea(response.setTargetData[index]);
           }
         }
@@ -66,9 +65,9 @@ export function ReaInputForm() {
     }));
   };
 
-  useEffect(() => {
+  /*useEffect(() => {
     console.log(result);
-  }, [ result ]);
+  }, [ result ]);*/
 
   useEffect(() => {
     if (selectedRea) {
@@ -129,7 +128,6 @@ export function ReaInputForm() {
     formData.append("thumb", image);
 
     try {
-      console.log("aqui", formData);
       const formSubmitSuccess = await submitRea(formData);
       if (formSubmitSuccess) {
         setNotificationType("saveReaSuccess");

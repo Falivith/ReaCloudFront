@@ -25,7 +25,7 @@ export async function submitComment(commentText, resourceId) {
       return null;
     }
   } else {
-    console.log('Você não pode enviar um comentário sem estar logado.');
+    console.error('Você não pode enviar um comentário sem estar logado.');
     return null;
   }
 }
@@ -41,7 +41,6 @@ export async function deleteComment(commentId) {
   if (token) {
     try {
       const response = await baseUrl.delete(`/api/comments/${commentId}`, commentConfig);
-      console.log(response.data);
       return response;
     } catch (error) {
       console.error('Erro ao deletar o comentário:', error);
@@ -54,7 +53,6 @@ export async function getCommentInfo(id) {
   try {
     const response = await baseUrl.get(`/api/comments/${id}`);
     const comments = response.data;
-    console.log(comments);
     return comments;
   } catch (error) {
     console.error('Error fetching comments:', error);

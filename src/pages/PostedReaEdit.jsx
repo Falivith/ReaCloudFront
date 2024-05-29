@@ -14,7 +14,6 @@ export function PostedReaEdit(){
         const fetchResourceInfo = async () => {
             try {
                 const result = await getResourceInfo(id);
-                console.log(result);
             } catch (error) {
                 console.error('Failed to fetch resource info', error);
             }

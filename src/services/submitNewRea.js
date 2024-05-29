@@ -21,7 +21,7 @@ export async function submitRea(recurso){
     return response;
   }
   else{
-    console.log("Você não pode cadastrar um recurso sem estar logado.");
+    console.error("Você não pode cadastrar um recurso sem estar logado.");
     return null;
   }
 }
@@ -43,7 +43,7 @@ export async function deleteRea(recursoId) {
       return null;
     }
   } else {
-    console.log('Você não pode excluir um recurso sem estar logado.');
+    console.error('Você não pode excluir um recurso sem estar logado.');
     return null;
   }
 }

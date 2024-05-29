@@ -15,7 +15,6 @@ const styleImage = {
 export function FormLogin() {
   const signIn = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
-      console.log(tokenResponse);
       navigate("/");
     },
   });

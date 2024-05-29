@@ -28,14 +28,12 @@ export function MainPage() {
     if (window.chrome && chrome.runtime && chrome.runtime.sendMessage) {
       chrome.runtime.sendMessage(extensionId, 'isExtensionInstalled', (response) => {
         if (response) {
-          console.log('Extension is installed!');
           setShowNotification(false);
         } else {
           setShowNotification(true);
         }
       });
     } else {
-      console.log('Extension is not installed.');
       setShowNotification(true);
     }
   }, []);

@@ -8,7 +8,6 @@ export function PluginResourceContainer(props){
         navigate(`../${route}`);
     }
     
-    console.log("Index:", props.index);
     return(
         <div className={styles.container}>
             <div className={styles.h1container}>

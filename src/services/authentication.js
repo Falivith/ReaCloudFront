@@ -65,7 +65,7 @@ export async function getUser(email) {
     return response.data;
   }
 
-  console.log("Nenhum usuário logado.");
+  console.error("Nenhum usuário logado.");
 }
 
 export async function updateUser(updatedUser) {
@@ -107,7 +107,7 @@ export async function uploadPhoto(profilePicture) {
       );
       return response.data;
     } catch (error) {
-      console.log("error");
+      console.error(error);
     }
   }
 }

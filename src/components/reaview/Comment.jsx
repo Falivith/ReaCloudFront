@@ -5,7 +5,6 @@ export function Comment({ id, nome, text, date, foto, fetchAgain }) {
   const handleCommentDeletion = async () => {
     const response = await deleteComment(id);
     if (response) {
-      console.log("Excluir comentário");
       fetchAgain();
     } else {
       console.error("Erro ao deletar o comentário");

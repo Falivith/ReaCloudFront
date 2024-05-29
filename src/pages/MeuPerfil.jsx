@@ -70,7 +70,7 @@ export function MeuPerfil() {
             }
 
             catch (exception) {
-                console.log(exception);
+                console.error(exception);
             }
         }
     }

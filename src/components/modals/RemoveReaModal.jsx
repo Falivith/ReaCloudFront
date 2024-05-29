@@ -6,8 +6,6 @@ export default function RemoveReaModal(props){
 
     async function handleDelete() {
         let deleted = await deleteRea(props.id);
-        console.log('deleted', deleted
-        );
         if(deleted.status === 204){
             props.callModal();
             props.refreshPage();

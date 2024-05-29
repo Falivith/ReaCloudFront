@@ -41,7 +41,7 @@ export async function getUserResources() {
       const response = await baseUrl.get(`/api/recurso/user`, config);
       return response.data;
     } else {
-      console.log("Nenhum Usuário Logado.");
+      console.error("Nenhum Usuário Logado.");
       return [];
     }
   } catch (error) {

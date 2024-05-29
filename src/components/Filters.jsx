@@ -7,10 +7,7 @@ import { filterReas } from "../services/reaquerys";
 import { useLocation } from "react-router-dom";
 import {
   tipoRecurso,
-  publicoAlvo,
   areasConhecimento,
-  tiposLicenca,
-  idiomas,
 } from "../models/resource";
 
 export function Filters({
