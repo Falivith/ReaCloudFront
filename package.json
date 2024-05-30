@@ -24,6 +24,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.7",
     "react-router-dom": "^6.8.1",
+    "react-spring": "^9.7.3",
     "react-transition-group": "^4.4.5",
     "sass": "^1.58.3",
     "styled-components": "^5.3.6"

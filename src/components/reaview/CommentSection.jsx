@@ -4,8 +4,6 @@ import { Comment } from "./Comment";
 import { submitComment, getCommentInfo } from "../../services/comment";
 import { Pagination } from "../explorer/Pagination"
 import { getUserInfoFromJWT } from "../../services/authentication";
-import RemoveCommentModal from "../modals/RemoveCommentModal";
-
 
 export function CommentSection({ resourceId }) {
   const [commentText, setCommentText] = useState("");
@@ -59,7 +57,6 @@ export function CommentSection({ resourceId }) {
     setCommentText("");
   };
 
-  // Pagination logic
   const indexOfLastComment = currentPage * commentsPerPage;
   const indexOfFirstComment = indexOfLastComment - commentsPerPage;
   const currentComments = comments.slice(indexOfFirstComment, indexOfLastComment);
