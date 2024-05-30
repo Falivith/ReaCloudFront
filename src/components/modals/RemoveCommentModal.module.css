@@ -26,6 +26,8 @@
 
 .header{
     width: 100%;
+    display: flex;
+    align-items: center;
     background-color: #F2F2F2;
     border-radius: 10px 10px 0px 0px;
     justify-content: flex-start;
