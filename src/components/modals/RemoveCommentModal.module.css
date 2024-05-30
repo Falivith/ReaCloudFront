@@ -35,6 +35,7 @@
 
 .header > img {
     width: 40px;
+    cursor: pointer;
 }
 
 .header > h1 {

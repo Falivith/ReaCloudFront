@@ -16,7 +16,7 @@ export default function RemoveReaModal(props){
         <div className = { styles.background }>
             <div className = { styles.modalContainer }>
                 <header className = { styles.header }>
-                    <img onClick = {props.callModal} src = { XFigure } alt = "Figura de remoção"/>
+                    <img src = { XFigure } alt = "Figura de remoção"/>
                     <h1> Remover recurso </h1>
                 </header>
                 <div className = { styles.textContainer }>

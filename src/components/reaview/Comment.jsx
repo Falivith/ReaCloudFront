@@ -1,7 +1,10 @@
 import { deleteComment } from "../../services/comment";
+import RemoveCommentModal from "../modals/RemoveCommentModal";
 import styles from "./Comment.module.css";
+import { useState } from "react";
 
-export function Comment({ id, nome, text, date, foto, fetchAgain }) {
+export function Comment({ id, nome, text, date, foto, fetchAgain, author }) {
+  
   const handleCommentDeletion = async () => {
     const response = await deleteComment(id);
     if (response) {
@@ -10,6 +13,21 @@ export function Comment({ id, nome, text, date, foto, fetchAgain }) {
       console.error("Erro ao deletar o comentário");
     }
   };
+
+  const [modalOpen, open] = useState(false);
+
+  const callModal = () => {
+      open(!modalOpen);
+  }
+
+  const refreshPage = () => {
+    window.location.reload();
+  }
+
+  const handleClick = async () => {
+    callModal();
+    await handleCommentDeletion();
+  }
 
   const formattedDate = new Date(date).toLocaleDateString();
   const formattedTime = new Date(date).toLocaleTimeString([], {
@@ -28,12 +46,15 @@ export function Comment({ id, nome, text, date, foto, fetchAgain }) {
           <p className={styles.commentContent}>{text}</p>
         </div>
         <div className={styles.commentActions}>
-          <button onClick={handleCommentDeletion} className={styles.deleteButton}>
-            Excluir
-          </button>
+          {author && (
+            <button onClick={callModal} className={styles.deleteButton}>
+              Excluir
+            </button>
+          )}
           <p className={styles.commentDate}>{formattedDate} {formattedTime}</p>
         </div>
       </div>
+      {modalOpen && <RemoveCommentModal  callModal={callModal} id={id} refreshPage={refreshPage} deleteFunc={handleCommentDeletion} />}
     </div>
   );
 }

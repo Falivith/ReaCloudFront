@@ -3,6 +3,8 @@ import styles from "./CommentSection.module.css";
 import { Comment } from "./Comment";
 import { submitComment, getCommentInfo } from "../../services/comment";
 import { Pagination } from "../explorer/Pagination"
+import { getUserInfoFromJWT } from "../../services/authentication";
+import RemoveCommentModal from "../modals/RemoveCommentModal";
 
 
 export function CommentSection({ resourceId }) {
@@ -10,6 +12,7 @@ export function CommentSection({ resourceId }) {
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
+
   const commentsPerPage = 5;
 
   useEffect(() => {
@@ -18,8 +21,20 @@ export function CommentSection({ resourceId }) {
 
   const fetchComments = async () => {
     try {
+      const userInfo = await getUserInfoFromJWT();
       setLoading(true);
       const commentInfo = await getCommentInfo(resourceId);
+
+      if(userInfo){
+        commentInfo.forEach(comment => {
+          if (comment.user_id === userInfo.id) {
+            console.log(comment);
+            comment.user.given_name = "Você";
+            comment.user.isAuthor = true;
+          }
+        });
+      }
+
       setComments(commentInfo);
       setLoading(false);
     } catch (error) {
@@ -48,7 +63,6 @@ export function CommentSection({ resourceId }) {
   const indexOfLastComment = currentPage * commentsPerPage;
   const indexOfFirstComment = indexOfLastComment - commentsPerPage;
   const currentComments = comments.slice(indexOfFirstComment, indexOfLastComment);
-
 
   return (
     <div className={styles.container}>
@@ -90,6 +104,7 @@ export function CommentSection({ resourceId }) {
                 text={comment.comment}
                 date={comment.createdAt}
                 foto={comment.user.profilePicture}
+                author={comment.user.isAuthor}
                 fetchAgain={fetchComments}
               />
             );
