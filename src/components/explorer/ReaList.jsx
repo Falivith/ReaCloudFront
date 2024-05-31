@@ -37,7 +37,7 @@ export function ReaList({ filterData, onFilterChange, isLoading }) {
                                 title={rea.title}
                                 link={rea.link}
                                 description={rea.description}
-                                likes={rea.likes}
+                                likes={rea.numLikes}
                                 thumb={url}
                             />
                         </animated.div>

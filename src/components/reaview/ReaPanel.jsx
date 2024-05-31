@@ -31,12 +31,12 @@ export function ReaPanel({ isLoading, rea }) {
         let response = await liked(rea.id);
         let likesCount = await getLikeCount(rea.id)
         setLikeCount(likesCount);
-        setLiked(response); // Atualiza o estado isLiked com base na resposta da API
+        setLiked(response);
     }
 
     const handleLike = async () => {
         let response = await toggleLike(rea.id)
-        setLiked(response); // Atualiza o estado isLiked com base na resposta da API
+        setLiked(response);
         await checkLike();
     }
 
@@ -45,14 +45,14 @@ export function ReaPanel({ isLoading, rea }) {
             <div className = { styles.thumbAuxContainer }>
                 <div className = { styles.previewContainer }>
                     <h1 className = { styles.reaTitle }>{ rea.title }</h1>
-                    <span className = { styles.likesCount }>948 pessoas acharam isso útil</span>
+                    <span className = { styles.likesCount }>{likeCount} pessoas acharam isso útil</span>
                     <div className = { styles.buttonContainer }>
                         {/* Adiciona uma classe CSS condicional com base no estado isLiked */}
                         <button 
                             onClick={handleLike} 
                             className={`${styles.socialButton} ${isLiked ? styles.likedButton : ''}`} // Adiciona a classe likedButton se isLiked for verdadeiro
                         > 
-                            <img src = { Like } alt = "Joinha" /> Útil <p className={styles.likeCount}>{likeCount}</p> 
+                            <img src = { Like } alt = "Joinha" /> Útil  
                         </button>
                         <button className = { styles.socialButton }> <img src = { Comments } alt = "Comentários" /> Comentários </button>
                         <a className = { styles.bugReport } href = "https://github.com/Falivith" target='_blank'> Informar um Problema </a>

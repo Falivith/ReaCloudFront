@@ -11,7 +11,9 @@ export async function checkLoginStatus() {
   return {userObject,config}
 }
 
-console.log((import.meta.env.VITE_PRODUCTION == 'false')? 'http://localhost:4001': 'https://reacloudback.onrender.com/');
+console.log("Environment Production?", import.meta.env.VITE_PRODUCTION)
+
+console.log("Comparação Resultado: ", (import.meta.env.VITE_PRODUCTION == 'false')? 'http://localhost:4001': 'https://reacloudback.onrender.com/');
 
 export const baseUrl = axios.create({
   baseURL: (import.meta.env.VITE_PRODUCTION == 'false')? 'http://localhost:4001': 'https://reacloudback.onrender.com/'
