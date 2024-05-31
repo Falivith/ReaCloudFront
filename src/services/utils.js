@@ -11,6 +11,8 @@ export async function checkLoginStatus() {
   return {userObject,config}
 }
 
+console.log((import.meta.env.VITE_PRODUCTION == 'false')? 'http://localhost:4001': 'https://reacloudback.onrender.com/');
+
 export const baseUrl = axios.create({
-  baseURL: (import.meta.env.VITE_PRODUCTION === false)? 'http://localhost:4001': 'https://reacloudback.onrender.com/'
+  baseURL: (import.meta.env.VITE_PRODUCTION == 'false')? 'http://localhost:4001': 'https://reacloudback.onrender.com/'
 });

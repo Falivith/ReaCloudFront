@@ -4,6 +4,7 @@ import jwtDecode from 'jwt-decode';
 
 export async function loginWithGoogle(code) {
   if (code) {
+    console.log(baseUrl);
     const response = await baseUrl.post("/api/auth/", {
       code,
     });
