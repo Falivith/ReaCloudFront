@@ -45,35 +45,6 @@ export function FormCadastro() {
     });
   };
 
-  /*const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      if (values.nome.length > 2 && values.email.length > 5) {
-        const result1 = await register(values);
-        const result2 = await login({
-          email: values.email,
-          password: values.password,
-        });
-        navigate("/");
-        setShowNotification(true);
-        setNotificationType("saveSuccess");
-      } else {
-        setShowNotification(true);
-        setNotificationType("saveErrorLogin");
-        throw new Error("Nome ou email inválidos!");
-      }
-    } catch (exception) {
-      if (values.nome.length < 2 || values.email.length < 5) {
-        console.log("Nome ou email inválidos.");
-      } else {
-        setShowNotification(true);
-        setNotificationType("signupError");
-        console.log("Conexão não permitida.");
-      }
-    }
-  };*/
-
   return (
     <div className={styles.containerForm}>
       {

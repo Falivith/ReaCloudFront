@@ -36,6 +36,8 @@
     flex-direction: column;
     gap: 5px;
     flex-grow: 1;
+    max-width: 84vw;
+    overflow-wrap: break-word;
 }
 
 .commentActions {

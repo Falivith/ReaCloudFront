@@ -35,7 +35,7 @@ export function ReaPanel({ isLoading, rea }) {
                     <span className = { styles.likesCount }>948 pessoas acharam isso útil</span>
                     <div className = { styles.buttonContainer }>
                         <button className = { styles.socialButton }> <img src = { Like } alt = "Joinha" /> Útil </button>
-                        <button className = { styles.socialButton }> <img src = { Comments } alt = "Joinha" /> Comentários </button>
+                        <button className = { styles.socialButton }> <img src = { Comments } alt = "Comentários" /> Comentários </button>
                         <a className = { styles.bugReport } href = "https://github.com/Falivith" target='_blank'> Informar um Problema </a>
                     </div>
                 </div>

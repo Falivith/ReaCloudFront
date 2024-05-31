@@ -21,14 +21,13 @@ export function CommentSection({ resourceId }) {
     try {
       const userInfo = await getUserInfoFromJWT();
       setLoading(true);
-      const commentInfo = await getCommentInfo(resourceId);
+      let commentInfo = await getCommentInfo(resourceId);
 
-      if(userInfo){
+      if(userInfo && commentInfo){
         commentInfo.forEach(comment => {
           if (comment.user_id === userInfo.id) {
-            console.log(comment);
-            comment.user.given_name = "Você";
-            comment.user.isAuthor = true;
+            comment.User.given_name = "Você";
+            comment.User.isAuthor = true;
           }
         });
       }
@@ -97,11 +96,11 @@ export function CommentSection({ resourceId }) {
               <Comment
                 key={comment.id}
                 id={comment.id}
-                nome={comment.user.given_name}
+                nome={comment.User.given_name}
                 text={comment.comment}
-                date={comment.createdAt}
-                foto={comment.user.profilePicture}
-                author={comment.user.isAuthor}
+                date={comment.created_at}
+                foto={comment.User.profilePicture}
+                author={comment.User.isAuthor}
                 fetchAgain={fetchComments}
               />
             );

@@ -24,11 +24,6 @@ export function Comment({ id, nome, text, date, foto, fetchAgain, author }) {
     window.location.reload();
   }
 
-  const handleClick = async () => {
-    callModal();
-    await handleCommentDeletion();
-  }
-
   const formattedDate = new Date(date).toLocaleDateString();
   const formattedTime = new Date(date).toLocaleTimeString([], {
     hour: "2-digit",

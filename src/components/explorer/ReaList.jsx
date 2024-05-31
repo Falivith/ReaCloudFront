@@ -25,7 +25,7 @@ export function ReaList({ filterData, onFilterChange, isLoading }) {
                         opacity: 1,
                         transform: 'translateY(0)',
                         from: { opacity: 0, transform: 'translateY(20px)' },
-                        delay: index * 100,
+                        delay: index * 150,
                         config: config.gentle,
                         width: '100%',
                     });

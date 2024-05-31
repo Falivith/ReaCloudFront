@@ -23,7 +23,7 @@ export async function filterReas(filter, currentPage, pageSize) {
 
 // Consulta informações avançadas do recurso
 export async function getResourceInfo(resourceId) {
-  const response = await baseUrl.get(`/api/recurso/resource/${resourceId}`);
+  const response = await baseUrl.get(`/api/recurso/${resourceId}`);
   return response.data;
 }
 
