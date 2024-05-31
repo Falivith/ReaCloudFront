@@ -1,7 +1,8 @@
 import styles from './ReaPanel.module.css';
 import Like from '../../assets/Like.png';
 import Comments from '../../assets/Comments.png';
-import Loading from '../Loading';
+import { liked, toggleLike, getLikeCount } from '../../services/reaquerys';
+import { useEffect, useState } from 'react';
 
 export function ReaPanel({ isLoading, rea }) {
 
@@ -19,12 +20,24 @@ export function ReaPanel({ isLoading, rea }) {
         }
     }
 
-    if (isLoading) {
-        return(
-        <div className = { styles.containerLoading }>
-            <Loading />;
-        </div>    
-        )
+    const [isLiked, setLiked] = useState(false);
+    const [likeCount, setLikeCount] = useState(false); 
+
+    useEffect(() => {
+        checkLike(rea.id);
+    }, []);
+
+    const checkLike = async () => {
+        let response = await liked(rea.id);
+        let likesCount = await getLikeCount(rea.id)
+        setLikeCount(likesCount);
+        setLiked(response); // Atualiza o estado isLiked com base na resposta da API
+    }
+
+    const handleLike = async () => {
+        let response = await toggleLike(rea.id)
+        setLiked(response); // Atualiza o estado isLiked com base na resposta da API
+        await checkLike();
     }
 
     return (
@@ -34,7 +47,13 @@ export function ReaPanel({ isLoading, rea }) {
                     <h1 className = { styles.reaTitle }>{ rea.title }</h1>
                     <span className = { styles.likesCount }>948 pessoas acharam isso útil</span>
                     <div className = { styles.buttonContainer }>
-                        <button className = { styles.socialButton }> <img src = { Like } alt = "Joinha" /> Útil </button>
+                        {/* Adiciona uma classe CSS condicional com base no estado isLiked */}
+                        <button 
+                            onClick={handleLike} 
+                            className={`${styles.socialButton} ${isLiked ? styles.likedButton : ''}`} // Adiciona a classe likedButton se isLiked for verdadeiro
+                        > 
+                            <img src = { Like } alt = "Joinha" /> Útil <p className={styles.likeCount}>{likeCount}</p> 
+                        </button>
                         <button className = { styles.socialButton }> <img src = { Comments } alt = "Comentários" /> Comentários </button>
                         <a className = { styles.bugReport } href = "https://github.com/Falivith" target='_blank'> Informar um Problema </a>
                     </div>
