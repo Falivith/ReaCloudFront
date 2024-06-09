@@ -1,10 +1,15 @@
-import styles from './BaseNotification.module.css'
-import WarningSymbol from '../../assets/WarningSymbol.png'
-import CheckSymbol from '../../assets/CheckSymbol.png'
-import DangerSymbol from '../../assets/DangerSymbol.png'
-import CloseSymbol from '../../assets/CloseX.png'
+import styles from './BaseNotification.module.css';
+import WarningSymbol from '../../assets/WarningSymbol.png';
+import CheckSymbol from '../../assets/CheckSymbol.png';
+import DangerSymbol from '../../assets/DangerSymbol.png';
+import CloseSymbol from '../../assets/CloseX.png';
+import { useEffect, useRef } from 'react';
+import { CSSTransition } from 'react-transition-group';
+import ReactDOM from 'react-dom';
 
-export function BaseNotification(props){
+export function BaseNotification(props) {
+
+    const nodeRef = useRef(null);
 
     const close = () => {
         if (props.onClose) {
@@ -12,28 +17,87 @@ export function BaseNotification(props){
         }
     };
 
-    let notificationProps
+    useEffect(() => {
+        if (props.showing) {
+            const timer = setTimeout(() => {
+                close();
+            }, 3000);
+            return () => clearTimeout(timer);
+        }
+    }, [props.showing]);
 
-    switch(props.type){
+    let notificationProps;
+    
+    switch (props.type) {
+        case 'likeNotLogged':
+            notificationProps = {
+                img: WarningSymbol,
+                title: "Falha ao tentar avaliar o recurso.",
+                description: "Você não está logado. Faça login para poder avaliar.",
+                backgroundcolor: "#EE7700",
+                textcolor: "#EE7700"
+            }
+            break;
+
+        case 'likeGeneralError':
+            notificationProps = {
+                img: DangerSymbol,
+                title: "Falha ao tentar avaliar o recurso.",
+                description: "Verifique sua conexão e tente mais tarde.",
+                backgroundcolor: "#D30000",
+                textcolor: "#D30000"
+            }
+            break;
+
+        case 'saveReaErrorNetwork':
+            notificationProps = {
+                img: DangerSymbol,
+                title: "Falha ao tentar postar comentário.",
+                description: "Verifique sua conexão e tente mais tarde.",
+                backgroundcolor: "#22BB55",
+                textcolor: "#22BB55"
+            }
+            break;
+
+        case 'saveCommentBadRequest':
+            notificationProps = {
+                img: WarningSymbol,
+                title: "Falha ao tentar postar comentário.",
+                description: "Tente novamente mais tarde.",
+                backgroundcolor: "#22BB55",
+                textcolor: "#22BB55"
+            }
+            break;
+
+        case 'saveCommentUnlogged':
+            notificationProps = {
+                img: WarningSymbol,
+                title: "Você não está logado.",
+                description: "Cadastre-se ou faça login para poder comentar.",
+                backgroundcolor: "#22BB55",
+                textcolor: "#22BB55"
+            }
+            break;
+
         case 'savePerfilSuccess':
             notificationProps = {
-                img: CheckSymbol, 
+                img: CheckSymbol,
                 title: "Dados salvos com sucesso!",
                 description: "Seu perfil foi atualizado.",
                 backgroundcolor: "#22BB55",
                 textcolor: "#22BB55"
             }
-        break;
+            break;
 
         case 'saveReaSuccess':
             notificationProps = {
-                img: CheckSymbol, 
+                img: CheckSymbol,
                 title: "Dados salvos com sucesso!",
                 description: "Seu recurso foi salvo.",
                 backgroundcolor: "#22BB55",
                 textcolor: "#22BB55"
             }
-        break;
+            break;
 
         case 'saveReaError':
             notificationProps = {
@@ -43,7 +107,7 @@ export function BaseNotification(props){
                 backgroundcolor: "#D30000",
                 textcolor: "#D30000"
             }
-        break;
+            break;
 
         case 'saveError':
             notificationProps = {
@@ -53,7 +117,7 @@ export function BaseNotification(props){
                 backgroundcolor: "#D30000",
                 textcolor: "#D30000"
             }
-        break;
+            break;
 
         case 'saveErrorLogin':
             notificationProps = {
@@ -63,7 +127,7 @@ export function BaseNotification(props){
                 backgroundcolor: "#D30000",
                 textcolor: "#D30000"
             }
-        break;
+            break;
 
         case 'saveReaErrorUnloged':
             notificationProps = {
@@ -73,7 +137,7 @@ export function BaseNotification(props){
                 backgroundcolor: "#EE7700",
                 textcolor: "#EE7700"
             }
-        break;
+            break;
 
         case 'signupError':
             notificationProps = {
@@ -83,7 +147,7 @@ export function BaseNotification(props){
                 backgroundcolor: "#D30000",
                 textcolor: "#D30000"
             }
-        break;
+            break;
 
         case 'loginError':
             notificationProps = {
@@ -93,7 +157,7 @@ export function BaseNotification(props){
                 backgroundcolor: "#D30000",
                 textcolor: "#D30000"
             }
-        break;
+            break;
 
         case 'passwordSuccess':
             notificationProps = {
@@ -103,7 +167,7 @@ export function BaseNotification(props){
                 backgroundcolor: "#22BB55",
                 textcolor: "#22BB55"
             }
-        break;
+            break;
 
         case 'passwordWarning':
             notificationProps = {
@@ -113,17 +177,17 @@ export function BaseNotification(props){
                 backgroundcolor: "#EE7700",
                 textcolor: "#EE7700"
             }
-        break;
+            break;
 
         case 'passwordError':
             notificationProps = {
-                img: DangerSymbol, 
+                img: DangerSymbol,
                 title: "Erro ao alterar senha.",
                 description: "Por favor, tente novamente.",
                 backgroundcolor: "#D30000",
                 textcolor: "#D30000"
             }
-        break;
+            break;
 
         default:
             notificationProps = {
@@ -135,18 +199,32 @@ export function BaseNotification(props){
             }
     }
 
-    return props.showing ? (
-        <div className = { styles.backgroundColorAndContainer } style = {{ backgroundColor: notificationProps.backgroundcolor }}>
-            <div className = { styles.background }>
-                <header className = { styles.header }>
-                    <div>
-                        <img src = { notificationProps.img }/>
-                        <h1 className = { styles.title } style = {{ color: notificationProps.textcolor }} > { notificationProps.title } </h1>
-                    </div>
-                    <img onClick = { close } src = { CloseSymbol } alt = "Fechar" className = { styles.close }/>
-                </header>
-                    <p className = { styles.description }> { notificationProps.description } </p>
+    return ReactDOM.createPortal(
+        <CSSTransition
+            in={props.showing}
+            timeout={500}
+            classNames={{
+                enter: styles['slide-enter'],
+                enterActive: styles['slide-enter-active'],
+                exit: styles['slide-exit'],
+                exitActive: styles['slide-exit-active'],
+            }}
+            unmountOnExit
+            nodeRef={nodeRef}
+        >
+            <div onClick={(event) => { event.stopPropagation(); }} ref={nodeRef} className={styles.backgroundColorAndContainer} style={{ backgroundColor: notificationProps.backgroundcolor }}>
+                <div className={styles.background}>
+                    <header className={styles.header}>
+                        <div>
+                            <img src={notificationProps.img} alt="Notification Symbol" />
+                            <h1 className={styles.title} style={{ color: notificationProps.textcolor }} > {notificationProps.title} </h1>
+                        </div>
+                        <img onClick={close} src={CloseSymbol} alt="Fechar" className={styles.close} />
+                    </header>
+                    <p className={styles.description}> {notificationProps.description} </p>
+                </div>
             </div>
-        </div>
-    ) : null;
+        </CSSTransition>,
+        document.body
+    );
 }

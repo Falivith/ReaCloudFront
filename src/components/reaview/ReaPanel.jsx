@@ -3,8 +3,9 @@ import Like from '../../assets/Like.png';
 import Comments from '../../assets/Comments.png';
 import { liked, toggleLike, getLikeCount } from '../../services/reaquerys';
 import { useEffect, useState } from 'react';
+import { BaseNotification } from "../modals/BaseNotification";
 
-export function ReaPanel({ isLoading, rea }) {
+export function ReaPanel({ rea, scrollToComments }) {
 
     let url;
 
@@ -21,7 +22,9 @@ export function ReaPanel({ isLoading, rea }) {
     }
 
     const [isLiked, setLiked] = useState(false);
-    const [likeCount, setLikeCount] = useState(false); 
+    const [likeCount, setLikeCount] = useState(false);
+    const [notificationType, setNotificationType] = useState(null);
+    const [showNotification, setShowNotification] = useState(false);
 
     useEffect(() => {
         checkLike(rea.id);
@@ -34,58 +37,93 @@ export function ReaPanel({ isLoading, rea }) {
         setLiked(response);
     }
 
+    const getLikesText = (likes) => {
+        if (likes == 0) {
+            return "Ainda não avaliaram esse recurso.";
+        } else if (likes == 1) {
+            return "1 pessoa achou isso útil.";
+        } else {
+            return `${likes} pessoas acharam isso útil.`;
+        }
+    };
+
     const handleLike = async () => {
+
         let response = await toggleLike(rea.id)
+
+        if(response.success == false){
+            switch(response.message){
+                case 'Nenhum usuário logado.':
+                    setNotificationType('likeNotLogged');
+                    setShowNotification(true);
+                    break;
+                case 'Erro ao adicionar/remover like:':
+                    setNotificationType('likeGeneralError');
+                    setShowNotification(true);
+                    break;
+                default:
+                    return;
+            }
+            return;
+        }
+
         setLiked(response);
         await checkLike();
     }
 
     return (
-        <div className = { styles.container }>
-            <div className = { styles.thumbAuxContainer }>
-                <div className = { styles.previewContainer }>
-                    <h1 className = { styles.reaTitle }>{ rea.title }</h1>
-                    <span className = { styles.likesCount }>{likeCount} pessoas acharam isso útil</span>
-                    <div className = { styles.buttonContainer }>
+        <div className={styles.container}>
+            <BaseNotification
+                type={notificationType}
+                showing={showNotification}
+                onClose={() => setShowNotification(false)}
+            />
+            <div className={styles.thumbAuxContainer}>
+                <div className={styles.previewContainer}>
+                    <h1 className={styles.reaTitle}>{rea.title}</h1>
+                    <span className={styles.likesCount}> {getLikesText(likeCount)} </span>
+                    <div className={styles.buttonContainer}>
                         {/* Adiciona uma classe CSS condicional com base no estado isLiked */}
-                        <button 
-                            onClick={handleLike} 
+                        <button
+                            onClick={handleLike}
                             className={`${styles.socialButton} ${isLiked ? styles.likedButton : ''}`} // Adiciona a classe likedButton se isLiked for verdadeiro
-                        > 
-                            <img src = { Like } alt = "Joinha" /> Útil  
+                        >
+                            <img src={Like} alt="Joinha" /> Útil
                         </button>
-                        <button className = { styles.socialButton }> <img src = { Comments } alt = "Comentários" /> Comentários </button>
-                        <a className = { styles.bugReport } href = "https://github.com/Falivith" target='_blank'> Informar um Problema </a>
+                        <button className={styles.socialButton} onClick={scrollToComments}>
+                            <img src={Comments} alt="Comentários" /> Comentários
+                        </button>
+                        <a className={styles.bugReport} href="https://github.com/Falivith" target='_blank'> Informar um Problema </a>
                     </div>
                 </div>
-                <a href= { rea.link } target="_blank" rel="noopener noreferrer">
+                <a href={rea.link} target="_blank" rel="noopener noreferrer">
                     <img src={url} alt="reaThumb" className={styles.thumbImage} />
-                </a> 
+                </a>
             </div>
-           
+
             <ul className={styles.metaData}>
-            <li>
-                <strong>Tipo do Material:</strong> {rea.reaType}
-            </li>
-            <li>
-                <strong>Área do conhecimento:</strong> {rea.knowledgeArea}
-            </li>
-            <li>
-                <strong>Tipo de Licença:</strong> {rea.license}
-            </li>
-            <li>
-                <strong>Público alvo:</strong> {rea.targetPublic}
-            </li>
-            <li>
-                <strong>Idioma:</strong> {rea.language}
-            </li>
-            <li>
-                <strong>Descrição:</strong> {rea.description}
-            </li>
-            <li>
-                <strong>Instruções de uso:</strong> {rea.instructions}
-            </li>
-        </ul>
+                <li>
+                    <strong>Tipo do Material:</strong> {rea.reaType}
+                </li>
+                <li>
+                    <strong>Área do conhecimento:</strong> {rea.knowledgeArea}
+                </li>
+                <li>
+                    <strong>Tipo de Licença:</strong> {rea.license}
+                </li>
+                <li>
+                    <strong>Público alvo:</strong> {rea.targetPublic}
+                </li>
+                <li>
+                    <strong>Idioma:</strong> {rea.language}
+                </li>
+                <li>
+                    <strong>Descrição:</strong> {rea.description}
+                </li>
+                <li>
+                    <strong>Instruções de uso:</strong> {rea.instructions}
+                </li>
+            </ul>
         </div>
     );
 }

@@ -61,6 +61,10 @@ const router = createBrowserRouter([
     element: <ReaView/>
   },
   {
+    path: '/reaview/:id/:comments',
+    element: <ReaView/>
+  },
+  {
     path: '/profile',
     element: <MeuPerfil/>
   },

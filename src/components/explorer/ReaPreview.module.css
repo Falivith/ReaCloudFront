@@ -115,6 +115,33 @@
     contrast(100%);
 }
 
+.likedButton{
+    color: white;
+    display: flex;
+    align-items: center;
+    background-color: var(--blue);
+    box-sizing: border-box;
+    border-radius: 24px;
+    border: 1px solid var(--lightgray);
+    padding: 5px 10px;
+}
+
+.likedButton > img{
+    filter: invert(98%) sepia(1%) saturate(248%) hue-rotate(10deg) brightness(115%) contrast(100%);
+}
+
+.likedButton:hover{
+    transition: 0.2s;
+    background: rgb(155, 107, 107);
+    cursor: pointer;
+}
+
+.likedButton:hover > img{
+    transition: 0.9s;
+    filter: invert(98%) sepia(1%) saturate(248%) hue-rotate(10deg) brightness(115%) contrast(100%);
+    transform: rotate(180deg);
+}
+
 
 @media (max-width: 650px) {
     .container{

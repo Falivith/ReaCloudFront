@@ -4,7 +4,7 @@ import { ReaPreview } from './ReaPreview';
 import styles from './ReaList.module.css';
 import Loading from '../Loading';
 
-export function ReaList({ filterData, onFilterChange, isLoading }) {
+export function ReaList({ filterData, isLoading }) {
 
     return (
         <div className={styles.reaContainer}>

@@ -1,18 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { Header } from '../components/Header';
 import { ReaPanel } from '../components/reaview/ReaPanel';
 import { CommentSection } from '../components/reaview/CommentSection';
-//import { Suggestions } from '../components/reaview/Suggestions';
 import styles from '../App.module.css';
 import { getResourceInfo } from '../services/reaquerys';
 import Loading from '../components/Loading';
 
+
 export function ReaView() {
-  const { id } = useParams();
+  const { id, comments } = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const [rea, setRea] = useState(null);
-  
+  const [commentSectionMounted, setCommentSectionMounted] = useState(false);
+
+  const commentSectionRef = useRef(null);
+
   useEffect(() => {
     const fetchResourceInfo = async () => {
       try {
@@ -28,6 +31,18 @@ export function ReaView() {
     fetchResourceInfo();
   }, [id]);
 
+  const scrollToComments = () => {
+    if (commentSectionMounted) {
+      commentSectionRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  useEffect(() => {
+    if (comments === 'comments') {
+      scrollToComments();
+    }
+  }, [commentSectionMounted]);
+
   return (
     <div>
       <Header />
@@ -37,11 +52,14 @@ export function ReaView() {
             <Loading/>
           ) : (
             <>
-              <ReaPanel 
+              <ReaPanel
                 rea={rea} 
                 isLoading={isLoading} 
+                scrollToComments={scrollToComments}
               />
-              <CommentSection resourceId={id} />
+              <div ref={commentSectionRef} onLoad={() => setCommentSectionMounted(true)}>
+                <CommentSection resourceId={id} />
+              </div>
             </>
           )}
         </div>

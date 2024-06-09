@@ -1,7 +1,7 @@
 import { baseUrl } from './utils';
 
 export async function submitComment(commentText, resourceId) {
-  const reaCloudSession = await JSON.parse(localStorage.getItem("reaCloudSession"))
+  const reaCloudSession = JSON.parse(localStorage.getItem("reaCloudSession"));
   const token = reaCloudSession?.jwt_token;
 
   const commentConfig = {
@@ -11,24 +11,28 @@ export async function submitComment(commentText, resourceId) {
     },
   };
 
-  if (token) {
-    try {
-      const commentData = {
-        text: commentText,
-        resourceId: resourceId,
-      };
+  try {
+    const commentData = {
+      text: commentText,
+      resourceId: resourceId,
+    };
 
-      const response = await baseUrl.post('/api/comments', commentData, commentConfig);
-      return response;
-    } catch (error) {
-      console.error('Erro ao postar o comentário:', error);
-      return null;
+    const response = await baseUrl.post('/api/comments', commentData, commentConfig);
+    return response;
+  } catch (error) {
+    if (error.response) {
+      const statusCode = error.response.status;
+      if (statusCode === 401 || statusCode === 404) {
+        return { error: true, message: 'Unlogged' };
+      } else if (statusCode === 400) {
+        return { error: true, message: 'Bad Request' };
+      }
+    } else {
+      return { error: true, message: 'Network Error' };
     }
-  } else {
-    console.error('Você não pode enviar um comentário sem estar logado.');
-    return null;
   }
 }
+
 
 export async function deleteComment(commentId) {
   const reaCloudSession = await JSON.parse(localStorage.getItem("reaCloudSession"))
