@@ -20,3 +20,7 @@ export const baseUrl = axios.create({
   baseURL: (import.meta.env.VITE_PRODUCTION === 'true') ? 'https://reacloudback.onrender.com/' : 'http://localhost:4001'
 });
 
+const backURL = (import.meta.env.VITE_PRODUCTION === 'true') ? 'https://reacloudback.onrender.com/' : 'http://localhost:4001';
+
+
+export { backURL };

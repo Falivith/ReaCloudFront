@@ -3,23 +3,16 @@ import { useSpring, animated, config } from 'react-spring';
 import { ReaPreview } from './ReaPreview';
 import styles from './ReaList.module.css';
 import Loading from '../Loading';
+import { backURL } from "../../services/utils";
 
 export function ReaList({ filterData, isLoading }) {
+
+    const getFullThumbURL = (thumbPath) => `${backURL}/${thumbPath}`;
 
     return (
         <div className={styles.reaContainer}>
             {isLoading ? <Loading /> :
                 filterData && filterData.map((rea, index) => {
-
-                    let uint8Array = new Uint8Array(rea.thumb);
-                    let blob = new Blob([uint8Array], { type: "Buffer" });
-                    let url = URL.createObjectURL(blob);
-
-                    if (rea.thumb) {
-                        uint8Array = new Uint8Array(rea.thumb.data);
-                        blob = new Blob([uint8Array], { type: "Buffer" });
-                        url = URL.createObjectURL(blob);
-                    }
 
                     const springProps = useSpring({
                         opacity: 1,
@@ -38,7 +31,7 @@ export function ReaList({ filterData, isLoading }) {
                                 link={rea.link}
                                 description={rea.description}
                                 likes={rea.numLikes}
-                                thumb={url}
+                                thumb={getFullThumbURL(rea.thumb)}
                             />
                         </animated.div>
                     );

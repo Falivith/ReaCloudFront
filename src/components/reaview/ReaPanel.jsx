@@ -4,22 +4,11 @@ import Comments from '../../assets/Comments.png';
 import { liked, toggleLike, getLikeCount } from '../../services/reaquerys';
 import { useEffect, useState } from 'react';
 import { BaseNotification } from "../modals/BaseNotification";
+import { backURL } from "../../services/utils";
 
 export function ReaPanel({ rea, scrollToComments }) {
 
-    let url;
-
-    if (rea) {
-        let uint8Array = new Uint8Array(rea.thumb);
-        let blob = new Blob([uint8Array], { type: "Buffer" });
-        url = URL.createObjectURL(blob);
-
-        if (rea.thumb) {
-            uint8Array = new Uint8Array(rea.thumb.data);
-            blob = new Blob([uint8Array], { type: "Buffer" });
-            url = URL.createObjectURL(blob);
-        }
-    }
+    let url = `${backURL}/${rea.thumb}`;
 
     const [isLiked, setLiked] = useState(false);
     const [likeCount, setLikeCount] = useState(false);
