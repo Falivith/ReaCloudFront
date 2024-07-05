@@ -11,11 +11,12 @@ import {
 } from "../models/resource";
 
 export function Filters({
-  onFilterChange = () => { },
+  onFilterChange = () => {},
   pageSize,
   currentPage,
   reqConfigState,
   setIsLoading,
+  setTotalPages // Pass a function to update the total number of pages
 }) {
   const location = useLocation();
   const navigate = useNavigate();
@@ -30,6 +31,7 @@ export function Filters({
     await new Promise((resolve) => setTimeout(resolve, 1));
     navigate(`../${route}`);
   };
+
   const standardValues = {
     title: "",
     type: "",
@@ -46,7 +48,6 @@ export function Filters({
 
   const [reqConfig, setReqConfig] = useState(standardValues);
   const [isSubmitted, setIsSubmitted] = useState(false);
-
   const [searchValue, setSearchValue] = useState("");
 
   const fetchResources = async () => {
@@ -77,7 +78,8 @@ export function Filters({
             pageSize
           );
 
-          onFilterChange(response);
+          onFilterChange(response.recursos);
+          setTotalPages(response.totalPages); // Update total pages from response
           setIsLoading(false);
         }
 
@@ -86,11 +88,12 @@ export function Filters({
         }
       } catch (error) {
         console.error(error);
+        setIsLoading(false); // Ensure loading state is updated on error
       }
     };
 
     fetchData();
-  }, [reqConfig, currentPage]); // Run this effect whenever reqConfig changes
+  }, [reqConfig, currentPage, pageSize]); // Run this effect whenever reqConfig, currentPage, or pageSize changes
 
   return (
     <div className={styles.container}>

@@ -2,7 +2,7 @@ import styles from './Pagination.module.css';
 import Preview from '../../assets/LeftArrow.svg';
 import Next from '../../assets/RightArrow.svg';
 
-export function Pagination({ setCurrentPage,currentPage }) {
+export function Pagination({ setCurrentPage, currentPage, totalPages }) {
     const handlePageClick = (event) => {
         event.preventDefault();
         const newPage = parseInt(event.target.innerHTML);
@@ -11,7 +11,9 @@ export function Pagination({ setCurrentPage,currentPage }) {
 
     const handleNextClick = (event) => {
         event.preventDefault();
-        setCurrentPage((prevPage) => prevPage + 1);
+        if (currentPage < totalPages) {
+            setCurrentPage((prevPage) => prevPage + 1);
+        }
     };
 
     const handlePreviousClick = (event) => {
@@ -21,10 +23,15 @@ export function Pagination({ setCurrentPage,currentPage }) {
 
     const getPageNumbers = () => {
         const pageNumbers = [];
-        const maxPagesToShow = 5; 
+        const maxPagesToShow = 5;
         const halfWindow = Math.floor(maxPagesToShow / 2);
         let startPage = Math.max(currentPage - halfWindow, 1);
-        let endPage = startPage + maxPagesToShow - 1;
+        let endPage = Math.min(startPage + maxPagesToShow - 1, totalPages);
+
+        // Adjust startPage if endPage is less than maxPagesToShow
+        if (endPage - startPage + 1 < maxPagesToShow) {
+            startPage = Math.max(endPage - maxPagesToShow + 1, 1);
+        }
 
         for (let i = startPage; i <= endPage; i++) {
             pageNumbers.push(i);
