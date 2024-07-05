@@ -53,12 +53,17 @@ export async function deleteComment(commentId) {
   }
 }
 
-export async function getCommentInfo(id) {
+export const getCommentInfo = async (id, currentPage, commentsPerPage) => {
   try {
-    const response = await baseUrl.get(`/api/comments/${id}`);
-    const comments = response.data;
-    return comments;
+      const response = await baseUrl.get(`/api/comments/${id}`, {
+          params: {
+              currentPage,
+              pageSize: commentsPerPage,
+          },
+      });
+      return response.data;
   } catch (error) {
-    console.error('Error fetching comments:', error);
+      console.error('Error fetching comments:', error);
+      throw error;
   }
-}
+};

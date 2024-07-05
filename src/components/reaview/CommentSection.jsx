@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import styles from "./CommentSection.module.css";
 import { Comment } from "./Comment";
-import { submitComment, getCommentInfo } from "../../services/comment";
+import { submitComment, getCommentInfo } from "../../services/comment"; // Updated import
 import { Pagination } from "../explorer/Pagination";
 import { getUserInfoFromJWT } from "../../services/authentication";
 import { BaseNotification } from "../modals/BaseNotification";
@@ -14,25 +14,26 @@ export function CommentSection({ resourceId }) {
   const [showNotification, setShowNotification] = useState(false);
   const [notificationType, setNotificationType] = useState(null);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const [totalPages, setTotalPages] = useState(0); // New state for total pages
 
   const commentsPerPage = 5;
 
   useEffect(() => {
     fetchComments();
-  }, [resourceId]);
+  }, [resourceId, currentPage]); // Update comments when resourceId or currentPage changes
 
   const fetchComments = async () => {
     try {
       const userInfo = await getUserInfoFromJWT();
       setLoading(true);
-      let commentInfo = await getCommentInfo(resourceId);
+      const commentInfo = await getCommentInfo(resourceId, currentPage, commentsPerPage);
 
       if (userInfo) {
         setUserLoggedIn(true);
       }
 
-      if (userInfo && commentInfo) {
-        commentInfo.forEach((comment) => {
+      if (userInfo && commentInfo.comments) {
+        commentInfo.comments.forEach((comment) => {
           if (comment.user_id === userInfo.id) {
             comment.User.given_name = "Você";
             comment.User.isAuthor = true;
@@ -40,7 +41,8 @@ export function CommentSection({ resourceId }) {
         });
       }
 
-      setComments(commentInfo);
+      setComments(commentInfo.comments);
+      setTotalPages(commentInfo.totalPages); // Update total pages
       setLoading(false);
     } catch (error) {
       console.error("Error fetching comments:", error);
@@ -82,13 +84,6 @@ export function CommentSection({ resourceId }) {
     setCommentText("");
   };
 
-  const indexOfLastComment = currentPage * commentsPerPage;
-  const indexOfFirstComment = indexOfLastComment - commentsPerPage;
-  const currentComments = comments.slice(
-    indexOfFirstComment,
-    indexOfLastComment
-  );
-
   return (
     <div className={styles.container}>
       <BaseNotification
@@ -114,7 +109,6 @@ export function CommentSection({ resourceId }) {
           placeholder={!userLoggedIn ? "Faça Login para poder comentar" : ""}
         ></textarea>
         <div className={styles.buttonsContainer}>
-        <div className={styles.buttonsContainer}>
           <button
             className={!userLoggedIn ? styles.disabledButton : styles.cancelButton}
             onClick={handleCancelComment}
@@ -130,14 +124,13 @@ export function CommentSection({ resourceId }) {
             Enviar Comentário
           </button>
         </div>
-        </div>
       </form>
 
       <div className={styles.commentList}>
         {loading ? (
           <p>Loading...</p>
-        ) : currentComments && currentComments.length > 0 ? (
-          currentComments.map((comment) => {
+        ) : comments && comments.length > 0 ? (
+          comments.map((comment) => {
             return (
               <Comment
                 key={comment.id}
@@ -156,8 +149,8 @@ export function CommentSection({ resourceId }) {
         )}
       </div>
 
-      {comments.length > commentsPerPage && (
-        <Pagination setCurrentPage={setCurrentPage} currentPage={currentPage} />
+      {totalPages > 1 && (
+        <Pagination setCurrentPage={setCurrentPage} currentPage={currentPage} totalPages={totalPages} />
       )}
     </div>
   );
