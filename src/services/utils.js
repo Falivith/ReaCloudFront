@@ -14,13 +14,13 @@ export async function checkLoginStatus() {
 console.log("Environment Production?", import.meta.env.VITE_PRODUCTION);
 
 // Comparação correta com a string 'true'
-console.log("Comparação Resultado: ", (import.meta.env.VITE_PRODUCTION === 'true') ? 'http://ec2-44-200-222-124.compute-1.amazonaws.com' : 'http://localhost:4001');
+console.log("Comparação Resultado: ", (import.meta.env.VITE_PRODUCTION === 'true') ? 'https://reacloud.duckdns.org' : 'http://localhost:4001');
 
 export const baseUrl = axios.create({
-  baseURL: (import.meta.env.VITE_PRODUCTION === 'true') ? 'http://ec2-44-200-222-124.compute-1.amazonaws.com' : 'http://localhost:4001'
+  baseURL: (import.meta.env.VITE_PRODUCTION === 'true') ? 'https://reacloud.duckdns.org' : 'http://localhost:4001'
 });
 
-const backURL = (import.meta.env.VITE_PRODUCTION === 'true') ? 'http://ec2-44-200-222-124.compute-1.amazonaws.com' : 'http://localhost:4001';
+const backURL = (import.meta.env.VITE_PRODUCTION === 'true') ? 'https://reacloud.duckdns.org' : 'http://localhost:4001';
 
 
 export { backURL };
