@@ -39,7 +39,7 @@ export function MainPage() {
   }, []);
 
   return (
-    <div>
+    <div className="mainPageRef">
       <Header/>
       {showNotification && <ExtensionAd showing={showNotification} onClose={closeNotification} />}
       <MainPageContainer/>

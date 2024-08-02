@@ -9,6 +9,8 @@ import {
   tipoRecurso,
   areasConhecimento,
 } from "../models/resource";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 
 export function Filters({
   onFilterChange = () => {},
@@ -16,7 +18,8 @@ export function Filters({
   currentPage,
   reqConfigState,
   setIsLoading,
-  setTotalPages // Pass a function to update the total number of pages
+  setTotalPages, // Pass a function to update the total number of pages
+  isFirstLoad
 }) {
   const location = useLocation();
   const navigate = useNavigate();
@@ -49,6 +52,7 @@ export function Filters({
   const [reqConfig, setReqConfig] = useState(standardValues);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const [showTooltip, setShowTooltip] = useState(false);
 
   const fetchResources = async () => {
     setIsSubmitted(true);
@@ -94,6 +98,17 @@ export function Filters({
 
     fetchData();
   }, [reqConfig, currentPage, pageSize]); // Run this effect whenever reqConfig, currentPage, or pageSize changes
+
+  useEffect(() => {
+    if (isFirstLoad) {
+      setShowTooltip(true);
+      const timer = setTimeout(() => {
+        setShowTooltip('hide');
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isFirstLoad]);
 
   return (
     <div className={styles.container}>
@@ -145,9 +160,22 @@ export function Filters({
           />
         </div>
 
-        <button className={styles.blueSearchButton} onClick={fetchResources}>
-          BUSCAR
-        </button>
+        <div className={styles.tooltipWrapper}>
+          <button className={styles.blueSearchButton} onClick={fetchResources}>
+            BUSCAR
+          </button>
+          {showTooltip && (
+            <div className={`${styles.tooltip} ${showTooltip === 'hide' ? styles.hidden : ''}`} onClick={() => setShowTooltip('hide')}>
+              <span>
+                Clique aqui para buscar recursos!
+              </span>
+              <FontAwesomeIcon
+                icon={faArrowDown}
+                className={styles.pulse}
+              />
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

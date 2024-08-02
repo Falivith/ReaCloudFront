@@ -118,7 +118,7 @@ export async function getProfilePicture() {
 
   if (userObject) {
     const response = await baseUrl.get("/api/users/uploadPhoto", config);
-    return response.data;
+    return response.data.data;
   }
 }
 
