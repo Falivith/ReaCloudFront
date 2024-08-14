@@ -1,12 +1,12 @@
 import React from 'react';
 import { useEffect, useState } from "react";
-import { AppBar, Toolbar, Typography, Box, Button, IconButton, Container, CircularProgress } from '@mui/material';
-import { Logout } from '@mui/icons-material'; 
+import { AppBar, Toolbar, Typography, Box, Button, IconButton, Container, CircularProgress, Avatar } from '@mui/material';
+import { Logout } from '@mui/icons-material';
 import ReaCloudLogo from "../assets/RClogo.svg";
+import UserLogo from "../assets/User_circle_light.png";
 import { useNavigate } from "react-router-dom";
 import { useGoogleLogin } from '@react-oauth/google';
-import { loginWithGoogle } from "../services/authentication";
-
+import { loginWithGoogle, getProfilePicture } from "../services/authentication";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -16,15 +16,17 @@ const Navbar = () => {
 
   const [isLoading, setIsLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [profilePicture, setProfilePicture] = useState(null);
 
   const googleLogin = useGoogleLogin({
     onSuccess: async ({ code }) => {
       const status = await loginWithGoogle(code);
-      localStorage.setItem("isLoggedIn", JSON.stringify(status)); 
+      localStorage.setItem("isLoggedIn", JSON.stringify(status));
       setIsLoggedIn(status);
     },
     onError: () => {
       console.log('Login Failed');
+      setIsLoggedIn(false);
     },
     flow: "auth-code",
   });
@@ -49,6 +51,18 @@ const Navbar = () => {
       setIsLoading(false);
     };
 
+    const getProfilePic = async () => {
+      try {
+        const pic = await getProfilePicture();
+        //console.log(pic);
+        setProfilePicture(pic);
+      } catch (error) {
+        //console.error('Failed to fetch profile picture:', error);
+        setProfilePicture(null);
+      }
+    };
+
+    getProfilePic();
     checkConnectionSpeed();
   }, []);
 
@@ -71,7 +85,13 @@ const Navbar = () => {
               <CircularProgress color="inherit" size={24} />
             ) : isLoggedIn ? (
               <>
-                <Button onClick={() => routeChangeHandler("profile")} color="inherit">Meu Perfil</Button>
+                <Button id='profile' onClick={() => routeChangeHandler("profile")} color="inherit" sx={{ mr: 3 }} startIcon={
+                  <Avatar
+                    src={profilePicture || UserLogo}
+                    alt="Profile Picture/Foto de Perfil"
+                    sx={{ width: 24, height: 24 }}
+                  />
+                }>Meu Perfil</Button>
                 <Button color="inherit" onClick={handleLogout} startIcon={<Logout />}>Sair</Button>
               </>
             ) : (

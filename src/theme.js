@@ -12,6 +12,7 @@ const theme = createTheme({
     },
   },
   typography: {
+    fontFamily: "'Roboto', sans-serif", // Set the default font family
     h5: {
       fontFamily: "'Antic', sans-serif", // Apply the Antic font to h6
     },
