@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { Header } from '../components/Header';
+import Navbar from '../components/Navbar';
 import { ReaPanel } from '../components/reaview/ReaPanel';
 import { CommentSection } from '../components/reaview/CommentSection';
 import styles from '../App.module.css';
@@ -45,7 +45,7 @@ export function ReaView() {
 
   return (
     <div>
-      <Header />
+      <Navbar />
       <div className={styles.reaViewContainer}>
         <div className={styles.reaViewContent}>
           {isLoading ? (

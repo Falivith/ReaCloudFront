@@ -1,8 +1,5 @@
 import '../global.css';
-import { Header } from '../components/Header';
 import Navbar from '../components/Navbar';
-import theme from '../theme'
-import { ThemeProvider } from '@mui/material/styles';
 import { Help } from '../components/Help';
 import { MainPageContainer } from '../components/mainpage/MainPageContainer';
 import { ExtensionAd } from '../components/modals/ExtensionAd';
@@ -43,13 +40,10 @@ export function MainPage() {
 
   return (
     <div className="mainPageRef">
-      <ThemeProvider theme={theme}>
-        <Header/>
         <Navbar />
         {showNotification && <ExtensionAd showing={showNotification} onClose={closeNotification} />}
         <MainPageContainer/>
         <Help/>
-      </ThemeProvider>
     </div>
   );
 }

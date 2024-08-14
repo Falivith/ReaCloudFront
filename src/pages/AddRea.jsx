@@ -1,10 +1,10 @@
-import { Header } from '../components/Header';
+import Navbar from '../components/Navbar';
 import { AddReaPanel } from '../components/addrea/AddReaPanel';
 
 export function AddRea() {
     return (
         <div>
-            <Header/>
+            <Navbar/>
             <AddReaPanel/>       
         </div>
     )

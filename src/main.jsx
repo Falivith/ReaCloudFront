@@ -12,6 +12,8 @@ import { PostedReaEdit } from "./pages/PostedReaEdit";
 import { EditPostedReas } from './pages/EditPostedReas';
 import { NewReaEdit } from './pages/NewReaEdit';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import theme from '../src/theme'
+import { ThemeProvider } from '@mui/material/styles';
 
 const secret = import.meta.env.VITE_GOOGLE_SECRET;
 
@@ -75,9 +77,11 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
+  <ThemeProvider theme={theme}>
   <GoogleOAuthProvider clientId={secret}>
     <React.StrictMode>
       <RouterProvider router = {router}/> 
     </React.StrictMode>
   </GoogleOAuthProvider>
+  </ThemeProvider>
 )

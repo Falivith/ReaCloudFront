@@ -1,5 +1,5 @@
 import { EditReaPanel } from '../components/addrea/editrea/EditReaPanel';
-import { Header } from '../components/Header';
+import Navbar from '../components/Navbar';
 import { useState, useEffect } from 'react';
 import { getUserResources } from '../services/reaquerys';
 
@@ -21,7 +21,7 @@ export function EditPostedReas(){
 
     return(
         <div>
-            <Header />
+            <Navbar />
             <EditReaPanel reas = {userResources} isLoading = {isLoading}/>
         </div>
     )

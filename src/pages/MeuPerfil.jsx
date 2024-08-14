@@ -1,4 +1,4 @@
-import { Header } from '../components/Header';
+import Navbar from '../components/Navbar';
 import { Help } from '../components/Help';
 import { MeusDados } from '../components/profile/MeusDados';
 import { useEffect, useState } from 'react';
@@ -77,7 +77,7 @@ export function MeuPerfil() {
     
     return (
         <div>
-            <Header notificationNumber = {0}/>
+            <Navbar/>
             {(<BaseNotification type = {notificationType} showing={showNotification} onClose={closeNotification} />)}
             <MeusDados values = {values}  handleChange={handleChange}  handleSubmit={handleSubmit} />
             <Help/>

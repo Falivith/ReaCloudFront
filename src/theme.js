@@ -11,6 +11,11 @@ const theme = createTheme({
       main: '#22AA61', // Replace with your secondary color
     },
   },
+  typography: {
+    h5: {
+      fontFamily: "'Antic', sans-serif", // Apply the Antic font to h6
+    },
+  },
 });
 
 export default theme;
