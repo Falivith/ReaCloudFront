@@ -1,4 +1,4 @@
-import { Header } from "../components/Header"
+import Navbar from "../components/Navbar";
 import { ReaInputForm } from "../components/reaconfig/ReaEditInputForm"
 import { useLocation } from 'react-router-dom';
 import { getResourceInfo } from "../services/reaquerys";
@@ -25,7 +25,7 @@ export function PostedReaEdit(){
 
     return(
         <div>
-            <Header />
+            <Navbar />
             <ReaInputForm/>
         </div>
     )
