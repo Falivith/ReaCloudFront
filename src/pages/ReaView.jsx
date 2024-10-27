@@ -1,12 +1,12 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { useParams } from 'react-router-dom';
-import { Header } from '../components/Header';
-import { ReaPanel } from '../components/reaview/ReaPanel';
-import { CommentSection } from '../components/reaview/CommentSection';
-import styles from '../App.module.css';
-import { getResourceInfo } from '../services/reaquerys';
-import Loading from '../components/Loading';
-
+import React, { useEffect, useState, useRef } from "react";
+import { useParams } from "react-router-dom";
+import { Header } from "../components/Header";
+import { ReaPanel } from "../components/reaview/ReaPanel";
+import { CommentSection } from "../components/reaview/CommentSection";
+import styles from "../App.module.css";
+import { getResourceInfo } from "../services/reaquerys";
+import Loading from "../components/Loading";
+import { Suggestions } from "../components/reaview/Suggestions";
 
 export function ReaView() {
   const { id, comments } = useParams();
@@ -23,7 +23,7 @@ export function ReaView() {
         setRea(result);
         setIsLoading(false);
       } catch (error) {
-        console.error('Failed to fetch resource info', error);
+        console.error("Failed to fetch resource info", error);
         setIsLoading(false);
       }
     };
@@ -33,12 +33,12 @@ export function ReaView() {
 
   const scrollToComments = () => {
     if (commentSectionMounted) {
-      commentSectionRef.current.scrollIntoView({ behavior: 'smooth' });
+      commentSectionRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   useEffect(() => {
-    if (comments === 'comments') {
+    if (comments === "comments") {
       scrollToComments();
     }
   }, [commentSectionMounted]);
@@ -49,17 +49,23 @@ export function ReaView() {
       <div className={styles.reaViewContainer}>
         <div className={styles.reaViewContent}>
           {isLoading ? (
-            <Loading/>
+            <Loading />
           ) : (
             <>
-              <ReaPanel
-                rea={rea} 
-                isLoading={isLoading} 
-                scrollToComments={scrollToComments}
-              />
-              <div ref={commentSectionRef} onLoad={() => setCommentSectionMounted(true)}>
-                <CommentSection resourceId={id} />
+              <div className={styles.panelAndSuggestionsWrapper}>
+                <ReaPanel
+                  rea={rea}
+                  isLoading={isLoading}
+                  scrollToComments={scrollToComments}
+                />
+                <div
+                  ref={commentSectionRef}
+                  onLoad={() => setCommentSectionMounted(true)}
+                >
+                  <CommentSection resourceId={id} />
+                </div>
               </div>
+              <Suggestions />
             </>
           )}
         </div>
