@@ -1,6 +1,6 @@
 import { checkLoginStatus } from "./utils";
 import { baseUrl } from "./utils";
-import jwtDecode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 
 export async function loginWithGoogle(code) {
   if (code) {
