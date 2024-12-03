@@ -50,17 +50,15 @@ export function Header() {
   }, [extensionId]);
 
   useEffect(() => {
-    const checkLoginStatus = async () => {
-      const loggedIn = await isLogged();
-      setIsLoggedIn(loggedIn);
-      localStorage.setItem("isLoggedIn", JSON.stringify(loggedIn));
-    };
-  
     const getProfilePic = async () => {
       try {
-        const pic = await getProfilePicture();
-        console.log(pic);
-        setProfilePicture(pic);
+        if (isLoggedIn) { // Only fetch if the user is logged in
+          const pic = await getProfilePicture();
+          // console.log(pic);
+          setProfilePicture(pic);
+        } else {
+          setProfilePicture(null); // Clear the profile picture when logged out
+        }
       } catch (error) {
         console.error('Failed to fetch profile picture:', error);
         setProfilePicture(null);
@@ -68,6 +66,15 @@ export function Header() {
     };
   
     getProfilePic();
+  }, [isLoggedIn]);
+
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      const loggedIn = await isLogged();
+      setIsLoggedIn(loggedIn);
+      localStorage.setItem("isLoggedIn", JSON.stringify(loggedIn));
+    };
+
     checkLoginStatus();
   }, []);
 
@@ -78,6 +85,7 @@ export function Header() {
   const logout = () => {
     localStorage.clear();
     setIsLoggedIn(false);
+    setProfilePicture(null);
     navigate("/");
   };
 
