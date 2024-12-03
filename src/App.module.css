@@ -7,14 +7,15 @@
 .reaViewContainer{
     display: flex;
     padding: 5rem 6rem;
-    justify-content: space-between;
+    justify-content: center;
     gap: 35px;
 }
 
 .reaViewContent {
     display: flex;
-    flex-direction: row;
-    flex: 5; 
+    flex-direction: column;
+    /* flex: 5;  */
+    width: 60%;
 }
 
 .loginRCLogo{

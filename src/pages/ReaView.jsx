@@ -6,7 +6,6 @@ import { CommentSection } from "../components/reaview/CommentSection";
 import styles from "../App.module.css";
 import { getResourceInfo } from "../services/reaquerys";
 import Loading from "../components/Loading";
-import { Suggestions } from "../components/reaview/Suggestions";
 
 export function ReaView() {
   const { id, comments } = useParams();
@@ -65,7 +64,6 @@ export function ReaView() {
                   <CommentSection resourceId={id} />
                 </div>
               </div>
-              <Suggestions />
             </>
           )}
         </div>

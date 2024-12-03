@@ -3,28 +3,30 @@ import ReaCloudLogo from "../assets/RClogo.svg";
 import RecursosEducacionaisLogo from "../assets/Add_ring.png";
 import SairLogo from "../assets/Close_round_light.png";
 import UserLogo from "../assets/User_circle_light.png";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useGoogleLogin } from "@react-oauth/google";
-import { isLogged, loginWithGoogle, getProfilePicture } from "../services/authentication";
+import {
+  isLogged,
+  loginWithGoogle,
+  getProfilePicture,
+} from "../services/authentication";
 
 export function Header() {
   const extensionId = import.meta.env.VITE_REACLOUD_EXTENSION_ID;
   const [reasPluginCount, setReasPluginCount] = useState(0);
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
-    // Initialize isLoggedIn from localStorage if available
     const savedLoginState = localStorage.getItem("isLoggedIn");
     return savedLoginState ? JSON.parse(savedLoginState) : null;
   });
   const navigate = useNavigate();
-  const location = useLocation(); // Get the current location
   const [profilePicture, setProfilePicture] = useState(null);
-  
+
   const signIn = useGoogleLogin({
     onSuccess: async ({ code }) => {
       const status = await loginWithGoogle(code);
       setIsLoggedIn(status);
-      localStorage.setItem("isLoggedIn", JSON.stringify(status)); // Save to localStorage
+      localStorage.setItem("isLoggedIn", JSON.stringify(status));
       navigate("/");
     },
     flow: "auth-code",
@@ -52,19 +54,19 @@ export function Header() {
   useEffect(() => {
     const getProfilePic = async () => {
       try {
-        if (isLoggedIn) { // Only fetch if the user is logged in
+        if (isLoggedIn) {
           const pic = await getProfilePicture();
           // console.log(pic);
           setProfilePicture(pic);
         } else {
-          setProfilePicture(null); // Clear the profile picture when logged out
+          setProfilePicture(null);
         }
       } catch (error) {
-        console.error('Failed to fetch profile picture:', error);
+        console.error("Failed to fetch profile picture:", error);
         setProfilePicture(null);
       }
     };
-  
+
     getProfilePic();
   }, [isLoggedIn]);
 
