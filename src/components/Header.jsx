@@ -55,18 +55,32 @@ export function Header() {
     const getProfilePic = async () => {
       try {
         if (isLoggedIn) {
-          const pic = await getProfilePicture();
-          // console.log(pic);
-          setProfilePicture(pic);
+          const cachedPic = localStorage.getItem("profilePicture");
+          if (cachedPic) {
+            console.log("Using cached profile picture");
+            setProfilePicture(cachedPic);
+          } else {
+            const picUrl = await getProfilePicture();
+            const response = await fetch(picUrl);
+            const blob = await response.blob();
+            const reader = new FileReader();
+            reader.onloadend = () => {
+              const base64data = reader.result;
+              localStorage.setItem("profilePicture", base64data);
+              setProfilePicture(base64data);
+            };
+            reader.readAsDataURL(blob);
+          }
         } else {
           setProfilePicture(null);
+          localStorage.removeItem("profilePicture");
         }
       } catch (error) {
         console.error("Failed to fetch profile picture:", error);
         setProfilePicture(null);
       }
     };
-
+  
     getProfilePic();
   }, [isLoggedIn]);
 
