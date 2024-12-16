@@ -20,7 +20,7 @@ export default function RemoveReaModal(props){
                     <h1> Remover recurso </h1>
                 </header>
                 <div className = { styles.textContainer }>
-                    <p className = { styles.text }>Você deseja <span className = { styles.span }> remover </span> o recurso <strong>{ props.title }</strong></p>
+                    <p className = { styles.text }>Você deseja <span className = { styles.span }> remover </span> o recurso <strong>{ props.title }</strong>?</p>
                 </div>
                 <div className = { styles.buttonsContainer } >
                     <button className = { styles.cancelButton } onClick = {props.callModal} >CANCELAR</button>
