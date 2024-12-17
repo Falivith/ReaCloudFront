@@ -36,7 +36,8 @@
 }
 
 .header > img {
-    width: 40px;
+    width: 20px;
+    margin-inline-start: 0.5rem;
 }
 
 .header > h1 {
@@ -52,10 +53,11 @@
 
 .text{
     word-wrap: break-word;
+    color: var(--darkgray)
 }
 
 .textContainer {
-    padding: 30px 40px;
+    padding: 10px 20px;
     width: 100%;
     font-family: 'Antic', sans-serif;
     font-size: 18px;
@@ -103,4 +105,23 @@
     color: white;
     transition: 0.2s;
     cursor: pointer;
+}
+
+.input {
+    margin-top: 10px;
+    border: 1px solid var(--lightgray);
+    border-radius: 10px;
+    width: 100%;
+    height: 6rem;
+    padding: 10px;
+    resize: none;
+    font-size: 16px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.warningImage {
+    filter: grayscale(100%);
 }

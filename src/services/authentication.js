@@ -66,7 +66,7 @@ export async function getUser(email) {
     return response.data;
   }
 
-  console.error("Nenhum usuário logado.");
+  //console.error("Nenhum usuário logado.");
 }
 
 export async function updateUser(updatedUser) {

@@ -57,7 +57,7 @@ export function Header() {
         if (isLoggedIn) {
           const cachedPic = localStorage.getItem("profilePicture");
           if (cachedPic) {
-            console.log("Using cached profile picture");
+            // console.log("Using cached profile picture");
             setProfilePicture(cachedPic);
           } else {
             const picUrl = await getProfilePicture();
@@ -176,11 +176,9 @@ export function Header() {
             </button>
             <div className={styles.loginAndSignup}>
               <button className={styles.loginButton} onClick={handleClick}>
-                ENTRE
-              </button>
-              {" OU "}
-              <button onClick={handleClick} className={styles.loginButton}>
-                CADASTRE-SE
+              <span>ENTRE </span>
+              <span style={{fontWeight: 'normal'}}>OU</span>
+              <span> CADASTRE-SE</span>
               </button>
             </div>
           </span>
