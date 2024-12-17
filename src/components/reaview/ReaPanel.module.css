@@ -61,11 +61,12 @@
     max-height: fit-content;
 }
 
-.reaTitle {
+.reaTitle a {
     color: var(--blue);
     font-size: 1.25rem;
     cursor: pointer;
     width: fit-content;
+    text-decoration: none;
 }
 
 .likesCount {

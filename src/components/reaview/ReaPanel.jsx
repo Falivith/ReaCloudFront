@@ -69,7 +69,11 @@ export function ReaPanel({ rea, scrollToComments }) {
             />
             <div className={styles.thumbAuxContainer}>
                 <div className={styles.previewContainer}>
-                    <h1 className={styles.reaTitle}>{rea.title}</h1>
+                    <h1 className={styles.reaTitle}>
+                        <a href={rea.link} target="_blank" rel="noopener noreferrer">
+                        {rea.title}
+                        </a>
+                    </h1>
                     <span className={styles.likesCount}> {getLikesText(likeCount)} </span>
                     <div className={styles.buttonContainer}>
                         {/* Adiciona uma classe CSS condicional com base no estado isLiked */}
