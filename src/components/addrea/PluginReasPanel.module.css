@@ -18,7 +18,7 @@
 .header > span {
     text-align: center;
     margin-top: 30px;
-    color: var(--gray);
+    color: var(--darkgray);
     font-size: 20px;
     font-weight: 400;
     gap: 5px;
@@ -48,7 +48,7 @@
 
 .addNewReasLabel > h1 {
     font-family: 'Antic', sans-serif;
-    color: var(--gray);
+    color: var(--darkgray);
     font-size: 48px;
     font-weight: 400;
 }
@@ -95,7 +95,7 @@
 }
 
 .footerSpan{
-    color: var(--gray);
+    color: var(--darkgray);
     padding: 0px;
     font-size: 16px;
 }

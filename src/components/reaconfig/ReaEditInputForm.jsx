@@ -38,7 +38,7 @@ export function ReaInputForm(){
                                 selectorId = { 1 }
                                 width = {"364px"}
                                 height = {"44px"}
-                                color = {"var(--lightgray4)"}
+                                color = {"var(--dark-grey)"}
                                 fontSize = {"18px"}
                                 options = {["Séries Iniciais", "Fundamental", "Médio", "Superior"]}/>
                         </div>
@@ -64,7 +64,7 @@ export function ReaInputForm(){
                                 selectorId = { 2 }
                                 width = {"364px"}
                                 height = {"44px"}
-                                color = {"var(--lightgray4)"}
+                                color = {"var(--dark-grey)"}
                                 fontSize = {"18px"}
                                 options = {["Português", "Matemática", "Biologia", "Teologia"]}/>
                         </div>
@@ -74,7 +74,7 @@ export function ReaInputForm(){
                                 selectorId = { 3 }
                                 width = {"364px"}
                                 height = {"44px"}
-                                color = {"var(--lightgray4)"}
+                                color = {"var(--dark-grey)"}
                                 fontSize = {"18px"}
                                 options = {["Domínio Público", "GNU"]}/> 
                         </div>
@@ -84,7 +84,7 @@ export function ReaInputForm(){
                                 selectorId = { 4 }
                                 width = {"364px"}
                                 height = {"44px"}
-                                color = {"var(--lightgray4)"}
+                                color = {"var(--dark-grey)"}
                                 fontSize = {"18px"}
                                 options = {["Português", "Inglês", "Francês", "Alemão", "Outro"]}/>
                         </div>

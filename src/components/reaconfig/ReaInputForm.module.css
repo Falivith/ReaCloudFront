@@ -39,7 +39,7 @@
     background-color: var(--lightgray3);
     border-radius: 10px 10px 0px 0px;
     font-family: 'Antic', sans-serif;
-    color: var(--gray);
+    color: var(--darkgray);
     font-size: 20px;
     font-weight: 400;
     display: flex;
@@ -117,7 +117,7 @@
 }
 
 .inputBox::placeholder{
-    color: var(--lightgray4);
+    color: var(--gray);
 }
 
 .fileChooser{
@@ -134,7 +134,7 @@
 }
 
 .fileChooser > span {
-    color: var(--lightgray4);
+    color: var(--gray);
     font-size: 18px;
     font-weight: 400;
     max-width: 50%;
@@ -198,7 +198,7 @@
 }
 
 .descriptionInputBox::placeholder{
-    color: var(--lightgray4);
+    color: var(--gray);
 }
 
 .instructions{
@@ -220,7 +220,7 @@
 }
 
 .textArea::placeholder{
-    color: var(--lightgray4);
+    color: var(--gray);
 }
 
 .buttonsContainer {

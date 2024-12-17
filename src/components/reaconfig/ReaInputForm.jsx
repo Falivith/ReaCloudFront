@@ -225,7 +225,7 @@ export function ReaInputForm() {
                   selectorId={5}
                   width={"364px"}
                   height={"44px"}
-                  color={"var(--lightgray4)"}
+                  color={"var(--darkgrey)"}
                   fontSize={"18px"}
                   options={Object.values(tipoRecurso)}
                   handleResult={updateSelected}
@@ -263,7 +263,7 @@ export function ReaInputForm() {
                   selectorId={1}
                   width={"364px"}
                   height={"44px"}
-                  color={"var(--lightgray4)"}
+                  color={"var(--darkgrey)"}
                   fontSize={"18px"}
                   options={Object.values(publicoAlvo)}
                   handleResult={updateSelected}
@@ -306,7 +306,7 @@ export function ReaInputForm() {
                   selectorId={2}
                   width={"364px"}
                   height={"44px"}
-                  color={"var(--lightgray4)"}
+                  color={"var(--darkgrey)"}
                   fontSize={"18px"}
                   options={Object.values(areasConhecimento)}
                   handleResult={updateSelected}
@@ -322,7 +322,7 @@ export function ReaInputForm() {
                   selectorId={3}
                   width={"364px"}
                   height={"44px"}
-                  color={"var(--lightgray4)"}
+                  color={"var(--darkgrey)"}
                   fontSize={"18px"}
                   options={Object.values(tiposLicenca)}
                   handleResult={updateSelected}
@@ -338,7 +338,7 @@ export function ReaInputForm() {
                   selectorId={4}
                   width={"364px"}
                   height={"44px"}
-                  color={"var(--lightgray4)"}
+                  color={"var(--darkgrey)"}
                   fontSize={"18px"}
                   options={Object.values(idiomas)}
                   handleResult={updateSelected}
