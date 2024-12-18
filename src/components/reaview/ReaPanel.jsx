@@ -67,13 +67,24 @@ export function ReaPanel({ rea, scrollToComments }) {
       setNotificationType("reaIssueError");
       setShowNotification(true);
     }
-    
   };
 
   const [modalOpen, setModalOpen] = useState(false);
 
   const callModal = () => {
     setModalOpen(!modalOpen);
+  };
+
+  const handleProblemClick = () => {
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
+    if (!isLoggedIn) {
+      setNotificationType("reaIssueErrorLogin");
+      setShowNotification(true);
+      return;
+    } else {
+    callModal();
+    }
   };
 
   return (
@@ -106,13 +117,17 @@ export function ReaPanel({ rea, scrollToComments }) {
             </button>
             <span
               className={styles.bugReport}
-              onClick={callModal}
+              onClick={handleProblemClick}
               style={{ cursor: "pointer" }}
             >
               Informar um Problema
             </span>
             {modalOpen && (
-              <InformarProblemaModal onSubmit={handleProblemReport} callModal={callModal} id={rea.id} />
+              <InformarProblemaModal
+                onSubmit={handleProblemReport}
+                callModal={callModal}
+                id={rea.id}
+              />
             )}
           </div>
         </div>

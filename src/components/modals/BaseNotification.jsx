@@ -170,6 +170,16 @@ export function BaseNotification(props) {
       };
       break;
 
+      case "reaIssueErrorLogin":
+      notificationProps = {
+        img: DangerSymbol,
+        title: "Erro ao enviar problema.",
+        description: "Você precisa estar logado para enviar um problema.",
+        backgroundcolor: "#D30000",
+        textcolor: "#D30000",
+      };
+      break;
+
     case "reaIssueSuccess":
       notificationProps = {
         img: CheckSymbol,

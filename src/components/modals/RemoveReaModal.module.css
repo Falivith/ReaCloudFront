@@ -63,6 +63,13 @@
     font-size: 18px;
 }
 
+
+.spinnerContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .buttonsContainer {
     margin-top: 15px;
     display: flex;
