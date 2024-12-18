@@ -109,3 +109,22 @@ export async function getLikeCount(resourceId) {
     return null;
   }
 }
+
+export async function sendReaIssue(resourceId, issue) {
+  try {
+    let reaCloudSession = await JSON.parse(localStorage.getItem("reaCloudSession"));
+    let token = reaCloudSession?.jwt_token;
+    if (token) {
+      const config = {
+        headers: { Authorization: `Bearer ${token}` },
+      };
+      const response = await baseUrl.post(`/api/recurso/${resourceId}/report`, { issue: issue }, config);
+      return response;
+    } else {
+      return { status: 401, message: 'Nenhum usuário logado.' };
+    }
+  } catch (error) {
+    console.error("Erro ao enviar problema:", error);
+    return { status: 500, message: 'Erro ao enviar problema.' };
+  }
+}
