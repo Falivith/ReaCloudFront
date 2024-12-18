@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./RemoveReaModal.module.css";
 import Warningsymbol from "../../assets/WarningSymbol.png";
+import {sendReaIssue} from "../../services/reaquerys";
 
 const InformarProblemaModal = (props) => {
   const [inputValue, setInputValue] = useState("")
