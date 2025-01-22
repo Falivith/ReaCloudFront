@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import ReactDOM from "react-dom/client";
 import { MainPage } from "./pages/MainPage";
 import { Explorer } from "./pages/Explorer";
@@ -9,20 +9,20 @@ import { Recover } from "./components/login/Recover";
 import { MeuPerfil } from "./pages/MeuPerfil";
 import { PluginReas } from "./pages/PluginReas";
 import { PostedReaEdit } from "./pages/PostedReaEdit";
-import { EditPostedReas } from './pages/EditPostedReas';
-import { NewReaEdit } from './pages/NewReaEdit';
-import { GoogleOAuthProvider } from '@react-oauth/google';
+import { EditPostedReas } from "./pages/EditPostedReas";
+import { NewReaEdit } from "./pages/NewReaEdit";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const secret = import.meta.env.VITE_GOOGLE_SECRET;
 
 const router = createBrowserRouter([
   {
-    path : "/",
-    element: <MainPage/>,
+    path: "/",
+    element: <MainPage />,
   },
   {
-    path : '/explorer',
-    element: <Explorer/>
+    path: "/explorer",
+    element: <Explorer />,
   },
   /*{
     path : '/login',
@@ -33,51 +33,51 @@ const router = createBrowserRouter([
     element: <Login/>, // TODO: Rota morta
   },*/
   {
-    path : '/addrea',
-    element: <AddRea/>
+    path: "/addrea",
+    element: <AddRea />,
   },
   {
-    path: '/pluginreas',
-    element: <PluginReas/>
+    path: "/pluginreas",
+    element: <PluginReas />,
   },
   {
-    path: '/editpostedreas',
-    element: <EditPostedReas/>
+    path: "/editpostedreas",
+    element: <EditPostedReas />,
   },
   {
-    path: '/reaeditadd',
-    element:  <NewReaEdit/> // http://localhost:5173/reaeditadd
+    path: "/reaeditadd",
+    element: <NewReaEdit />, // http://localhost:5173/reaeditadd
   },
   {
-    path: '/reaeditadd/:index', //  http://localhost:5173/reaeditadd/algum-indice
-    element:  <NewReaEdit/>
+    path: "/reaeditadd/:index", //  http://localhost:5173/reaeditadd/algum-indice
+    element: <NewReaEdit />,
   },
   {
-    path: '/postedreaedit',
-    element: <PostedReaEdit/>
+    path: "/postedreaedit/:id",
+    element: <PostedReaEdit />,
   },
   {
-    path: '/reaview/:id',
-    element: <ReaView/>
+    path: "/reaview/:id",
+    element: <ReaView />,
   },
   {
-    path: '/reaview/:id/:comments',
-    element: <ReaView/>
+    path: "/reaview/:id/:comments",
+    element: <ReaView />,
   },
   {
-    path: '/profile',
-    element: <MeuPerfil/>
+    path: "/profile",
+    element: <MeuPerfil />,
   },
   {
-    path: '/redefinir',
-    element: <Recover/>
-  }
+    path: "/redefinir",
+    element: <Recover />,
+  },
 ]);
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <GoogleOAuthProvider clientId={secret}>
     <React.StrictMode>
-      <RouterProvider router = {router}/> 
+      <RouterProvider router={router} />
     </React.StrictMode>
   </GoogleOAuthProvider>
-)
+);

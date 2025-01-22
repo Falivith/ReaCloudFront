@@ -29,10 +29,10 @@
     height: 30px;
     border: none;
     border-radius: 10px;
-    background-color: rgb(204, 204, 204);
-    /*background-color: var(--orange);*/
+    /*background-color: rgb(204, 204, 204);*/
+    background-color: var(--orange);
     transition: 0.2s;
-    /*cursor: pointer;*/
+    cursor: pointer;
 }
 
 /*.container > div > button:hover {

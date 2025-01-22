@@ -35,15 +35,18 @@ export function ReaInputForm() {
     description: "",
     instructions: "",
   };
+
   const [result, setResult] = useState(initialValues);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const [image, setImage] = useState("");
-  
 
+  const [image, setImage] = useState("");
+
+  // Extension Communication
   useEffect(() => {
     if (window.chrome && chrome.runtime && chrome.runtime.sendMessage) {
       chrome.runtime.sendMessage(
@@ -57,6 +60,7 @@ export function ReaInputForm() {
       );
     }
   }, [index]);
+
   // Update Selector
   const updateSelected = (id, s) => {
     setResult((prevState) => ({
@@ -64,10 +68,6 @@ export function ReaInputForm() {
       [id]: s,
     }));
   };
-
-  /*useEffect(() => {
-    console.log(result);
-  }, [ result ]);*/
 
   useEffect(() => {
     if (selectedRea) {
@@ -157,8 +157,6 @@ export function ReaInputForm() {
       setShowNotification(true);
     }
   };
-
-
 
   const [focusedField, setFocusedField] = useState(null);
   const handleFocus = (fieldName) => {
