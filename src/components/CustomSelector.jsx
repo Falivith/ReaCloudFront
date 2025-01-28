@@ -19,7 +19,7 @@ export function CustomSelector(props) {
       choosedOption = "";
     }
 
-    if (props.handleResult) props.handleResult(props.id, value);
+    if (props.handleResult) props.handleResult(props.id, choosedOption);
 
     setIsOpen(false);
   };

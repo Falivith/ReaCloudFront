@@ -5,12 +5,9 @@ import { CustomSelector } from "./CustomSelector";
 import { useNavigate } from "react-router-dom";
 import { filterReas } from "../services/reaquerys";
 import { useLocation } from "react-router-dom";
-import {
-  tipoRecurso,
-  areasConhecimento,
-} from "../models/resource";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
+import { tipoRecurso, areasConhecimento } from "../models/resource";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 export function Filters({
   onFilterChange = () => {},
@@ -19,7 +16,7 @@ export function Filters({
   reqConfigState,
   setIsLoading,
   setTotalPages, // Pass a function to update the total number of pages
-  isFirstLoad
+  isFirstLoad,
 }) {
   const location = useLocation();
   const navigate = useNavigate();
@@ -38,14 +35,28 @@ export function Filters({
   const standardValues = {
     title: "",
     type: "",
-    knowledgeArea: "",
+    subject: "",
     ...(reqConfigState !== null ? reqConfigState : {}),
   };
 
-  const updateSelected = (id, s) => {
+  const updateSelected = (id, selectedValue) => {
+    let key;
+
+    // Map the selected value to its corresponding key
+    if (id === "subject") {
+      key = Object.keys(areasConhecimento).find(
+        (k) => areasConhecimento[k] === selectedValue
+      );
+    } else if (id === "type") {
+      key = Object.keys(tipoRecurso).find(
+        (k) => tipoRecurso[k] === selectedValue
+      );
+    }
+
+    // Update the state with the key instead of the value
     setReqConfig((prevState) => ({
       ...prevState,
-      [id]: s,
+      [id]: key || selectedValue, // Fallback to the selected value if no key is found
     }));
   };
 
@@ -75,8 +86,8 @@ export function Filters({
           const response = await filterReas(
             {
               title: reqConfig.title,
-              knowledge_area: reqConfig.knowledgeArea,
-              rea_type: reqConfig.type,
+              subject: reqConfig.subject,
+              type: reqConfig.type,
             },
             currentPage,
             pageSize
@@ -103,7 +114,7 @@ export function Filters({
     if (isFirstLoad) {
       setShowTooltip(true);
       const timer = setTimeout(() => {
-        setShowTooltip('hide');
+        setShowTooltip("hide");
       }, 5000);
 
       return () => clearTimeout(timer);
@@ -135,14 +146,14 @@ export function Filters({
         <div className={styles.selectorExternalContainer}>
           <span className={styles.blueSpan}>ÁREA DO CONHECIMENTO</span>
           <CustomSelector
-            id="knowledgeArea"
+            id="subject"
             type="filter"
             selectorId={1}
             width={"200px"}
             height={"44px"}
             options={Object.values(areasConhecimento)}
             handleResult={updateSelected}
-            placeholder={reqConfigState?.knowledgeArea}
+            placeholder={areasConhecimento[reqConfigState?.subject] || "Todos"} // Map key to value
           />
         </div>
 
@@ -156,7 +167,7 @@ export function Filters({
             height={"44px"}
             options={Object.values(tipoRecurso)}
             handleResult={updateSelected}
-            placeholder={reqConfigState?.type}
+            placeholder={tipoRecurso[reqConfigState?.type] || "Todos"} // Map key to value
           />
         </div>
 
@@ -165,14 +176,14 @@ export function Filters({
             BUSCAR
           </button>
           {showTooltip && (
-            <div className={`${styles.tooltip} ${showTooltip === 'hide' ? styles.hidden : ''}`} onClick={() => setShowTooltip('hide')}>
-              <span>
-                Clique aqui para buscar recursos!
-              </span>
-              <FontAwesomeIcon
-                icon={faArrowDown}
-                className={styles.pulse}
-              />
+            <div
+              className={`${styles.tooltip} ${
+                showTooltip === "hide" ? styles.hidden : ""
+              }`}
+              onClick={() => setShowTooltip("hide")}
+            >
+              <span>Clique aqui para buscar recursos!</span>
+              <FontAwesomeIcon icon={faArrowDown} className={styles.pulse} />
             </div>
           )}
         </div>
