@@ -31,15 +31,15 @@ export function ReaInputForm() {
     coverage: "",
     creator: "",
     date: "",
-    format: Object.values(formats)[0],
+    format: Object.keys(formats)[0],
     publisher: "",
-    type: Object.values(tipoRecurso)[0],
+    type: Object.keys(tipoRecurso)[0],
     source: "",
-    audience: Object.values(publicoAlvo)[0],
+    audience: Object.keys(publicoAlvo)[0],
     thumb: "",
-    subject: Object.values(areasConhecimento)[0],
-    rights: Object.values(tiposLicenca)[0],
-    language: Object.values(idiomas)[0],
+    subject: Object.keys(areasConhecimento)[0],
+    rights: Object.keys(tiposLicenca)[0],
+    language: Object.keys(idiomas)[0],
     description: "",
     instructionalMethod: "",
   };
@@ -71,32 +71,49 @@ export function ReaInputForm() {
 
   // Update Selector
   const updateSelected = (id, selectedValue) => {
-    let value = selectedValue;
+    // Debug what's being passed
+    // console.log('Type of selectedValue:', typeof selectedValue);
+    // console.log('Selected value:', selectedValue);
   
-    // Handle specific inputs to get keys
-    if (["subject", "type", "audience", "rights", "language", "format"].includes(id)) {
-      value = Object.keys(
-        id === "subject" ? areasConhecimento :
-        id === "type" ? tipoRecurso :
-        id === "audience" ? publicoAlvo :
-        id === "rights" ? tiposLicenca :
-        id === "language" ? idiomas :
-        id === "format" ? formats : {}
-      ).find(k => (
-        id === "subject" ? areasConhecimento[k] :
-        id === "type" ? tipoRecurso[k] :
-        id === "audience" ? publicoAlvo[k] :
-        id === "rights" ? tiposLicenca[k] :
-        id === "language" ? idiomas[k] :
-        id === "format" ? formats[k] : ""
-      ) === selectedValue);
+    if (typeof selectedValue === 'object' && selectedValue.value) {
+      // If selectedValue is an object with a value property
+      selectedValue = selectedValue.value;
     }
   
-    setResult((prevState) => ({
-      ...prevState,
-      [id]: value,
-    }));
+    const mapping = {
+      subject: areasConhecimento,
+      type: tipoRecurso,
+      audience: publicoAlvo,
+      rights: tiposLicenca,
+      language: idiomas,
+      format: formats,
+    };
+  
+    if (["subject", "type", "audience", "rights", "language", "format"].includes(id)) {
+      const selectedKey = Object.entries(mapping[id])
+        .find(([_, value]) => value === selectedValue)?.[0];
+  
+      console.log('Comparing:', {
+        selectedValue,
+        availableValues: Object.values(mapping[id])
+      });
+  
+      if (selectedKey) {
+        setResult((prevState) => ({
+          ...prevState,
+          [id]: selectedKey,
+        }));
+      } else {
+        console.warn(`Key not found for value: ${selectedValue}`);
+      }
+    } else {
+      setResult((prevState) => ({
+        ...prevState,
+        [id]: selectedValue,
+      }));
+    }
   };
+
 
   useEffect(() => {
     if (selectedRea) {
@@ -212,9 +229,10 @@ export function ReaInputForm() {
     setFocusedField(null); // Remover o foco do campo atual
   };
 
-  useEffect(() => {
-    console.log("Updated result:", result);
-  }, [result]);
+  // useEffect(() => {
+  //   console.log("Updated result:", result);
+  //   console.log("tipo", tipoRecurso);
+  // }, [result]);
 
   return (
     <div className={styles.container}>
@@ -292,7 +310,7 @@ export function ReaInputForm() {
                   color={"var(--darkgrey)"}
                   fontSize={"18px"}
                   options={Object.values(tipoRecurso)}
-                  handleResult={(selected) => updateSelected("type", selected)}
+                  handleResult={updateSelected}
                   placeholder={Object.values(tipoRecurso)[0]}
                 />
               </div>
@@ -330,7 +348,7 @@ export function ReaInputForm() {
                   color={"var(--darkgrey)"}
                   fontSize={"18px"}
                   options={Object.values(publicoAlvo)}
-                  handleResult={(selected) => updateSelected("audience", selected)}
+                  handleResult={updateSelected}
                   placeholder={Object.values(publicoAlvo)[0]}
                 />
               </div>
@@ -363,7 +381,7 @@ export function ReaInputForm() {
                   color={"var(--darkgrey)"}
                   fontSize={"18px"}
                   options={Object.values(formats)}
-                  handleResult={(selected) => updateSelected("format", selected)}
+                  handleResult={updateSelected}
                   placeholder={Object.values(formats)[0]}
                 />
               </div>
@@ -423,7 +441,7 @@ export function ReaInputForm() {
                   color={"var(--darkgrey)"}
                   fontSize={"18px"}
                   options={Object.values(areasConhecimento)}
-                  handleResult={(selected) => updateSelected("subject", selected)}
+                  handleResult={updateSelected}
                   placeholder={Object.values(areasConhecimento)[0]}
                 />
               </div>
@@ -439,7 +457,7 @@ export function ReaInputForm() {
                   color={"var(--darkgrey)"}
                   fontSize={"18px"}
                   options={Object.values(tiposLicenca)}
-                  handleResult={(selected) => updateSelected("rights", selected)}
+                  handleResult={updateSelected}
                   placeholder={Object.values(tiposLicenca)[0]}
                 />
               </div>
@@ -455,7 +473,7 @@ export function ReaInputForm() {
                   color={"var(--darkgrey)"}
                   fontSize={"18px"}
                   options={Object.values(idiomas)}
-                  handleResult={(selected) => updateSelected("language", selected)}
+                  handleResult={updateSelected}
                   placeholder={Object.values(idiomas)[0]}
                 />
               </div>
