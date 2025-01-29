@@ -139,6 +139,11 @@ export function ReaEditInputForm() {
     }
   };
 
+  const formatDateForInput = (dateString) => {
+    if (!dateString) return '';
+    return new Date(dateString).toISOString().split('T')[0];
+  };
+
   return (
     <div className={styles.container}>
       <BaseNotification type="passwordWarning" />
@@ -168,7 +173,7 @@ export function ReaEditInputForm() {
               </div>
               <div className={styles.inputContainer}>
                 <label htmlFor="contributor" className={styles.inputLabel}>
-                  CONTRIBUÍNTE
+                  CONTRIBUÍDOR
                 </label>
                 <input
                   id="contributor"
@@ -179,76 +184,6 @@ export function ReaEditInputForm() {
                   onChange={handleInputChange}
                 />
               </div>
-              <div className={styles.inputContainer}>
-                <label htmlFor="coverage" className={styles.inputLabel}>
-                  COBERTURA
-                </label>
-                <input
-                  id="coverage"
-                  type="text"
-                  className={styles.inputBox}
-                  placeholder="Cobertura (abrangência espacial ou temporal do recurso. Ex: Brasil, século XIX. )"
-                  value={resourceData.coverage}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className={styles.inputContainer}>
-                <label htmlFor="creator" className={styles.inputLabel}>
-                  CRIADOR
-                </label>
-                <input
-                  id="creator"
-                  type="text"
-                  className={styles.inputBox}
-                  placeholder="Criador/Autor do recurso"
-                  value={resourceData.creator}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className={styles.inputContainer}>
-                <label htmlFor="date" className={styles.inputLabel}>
-                  DATA DO RECURSO
-                </label>
-                <input
-                  id="date"
-                  type="date"
-                  className={styles.inputBox}
-                  value={resourceData.date}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className={styles.inputContainer}>
-                <label htmlFor="format" className={styles.inputLabel}>
-                  FORMATO
-                </label>
-                <CustomSelector
-                  id="format"
-                  selectorId={1}
-                  width={"364px"}
-                  height={"44px"}
-                  color={"var(--dark-grey)"}
-                  fontSize={"18px"}
-                  options={Object.values(formats)}
-                  handleResult={updateSelected}
-                  initialValue={resourceData.format}
-                />
-              </div>
-              <div className={styles.inputContainer}>
-                <label htmlFor="publisher" className={styles.inputLabel}>
-                  PUBLICADOR
-                </label>
-                <input
-                  id="publisher"
-                  type="text"
-                  className={styles.inputBox}
-                  placeholder="Publicador"
-                  value={resourceData.publisher}
-                  onChange={handleInputChange}
-                />
-              </div>
-            </div>
-
-            <div className={styles.column}>
               <div className={styles.inputContainer}>
                 <label htmlFor="type" className={styles.inputLabel}>
                   TIPO DO MATERIAL
@@ -262,7 +197,7 @@ export function ReaEditInputForm() {
                   fontSize={"18px"}
                   options={Object.values(tipoRecurso)}
                   handleResult={updateSelected}
-                  initialValue={resourceData.type}
+                  initialValue={tipoRecurso[resourceData.type]}
                 />
               </div>
               <div className={styles.inputContainer}>
@@ -291,7 +226,84 @@ export function ReaEditInputForm() {
                   fontSize={"18px"}
                   options={Object.values(publicoAlvo)}
                   handleResult={updateSelected}
-                  initialValue={resourceData.audience}
+                  initialValue={publicoAlvo[resourceData.audience]}
+                />
+              </div>
+              <div className={styles.inputContainer}>
+                <label htmlFor="creator" className={styles.inputLabel}>
+                  CRIADOR
+                </label>
+                <input
+                  id="creator"
+                  type="text"
+                  className={styles.inputBox}
+                  placeholder="Criador/Autor do recurso"
+                  value={resourceData.creator}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className={styles.inputContainer}>
+                <label htmlFor="publisher" className={styles.inputLabel}>
+                  PUBLICADOR
+                </label>
+                <input
+                  id="publisher"
+                  type="text"
+                  className={styles.inputBox}
+                  placeholder="Publicador"
+                  value={resourceData.publisher}
+                  onChange={handleInputChange}
+                />
+              </div>
+            </div>
+
+            <div className={styles.column}>
+            <div className={styles.inputContainer}>
+                <label htmlFor="imgpathStyle" className={styles.inputLabel}>
+                  IMAGEM DO MATERIAL
+                </label>
+
+                <label
+                  id="imgpathStyle"
+                  htmlFor="imgpath"
+                  className={`${styles.fileChooser} ${styles.disabled}`}
+                >
+                  <span className={styles.disabledUpload}>
+                    Não é possível editar a imagem
+                  </span>
+                  <span id="imgpath" type="file" style={{ display: "none" }} />
+                </label>
+              </div>
+              <div className={styles.inputContainer}>
+                <label htmlFor="language" className={styles.inputLabel}>
+                  IDIOMA DO MATERIAL
+                </label>
+                <CustomSelector
+                  id="language"
+                  selectorId={4}
+                  width={"364px"}
+                  height={"44px"}
+                  color={"var(--dark-grey)"}
+                  fontSize={"18px"}
+                  options={Object.values(idiomas)}
+                  handleResult={updateSelected}
+                  initialValue={idiomas[resourceData.language]}
+                />
+              </div>
+              <div className={styles.inputContainer}>
+                <label htmlFor="format" className={styles.inputLabel}>
+                  FORMATO
+                </label>
+                <CustomSelector
+                  id="format"
+                  selectorId={1}
+                  width={"364px"}
+                  height={"44px"}
+                  color={"var(--dark-grey)"}
+                  fontSize={"18px"}
+                  options={Object.values(formats)}
+                  handleResult={updateSelected}
+                  initialValue={formats[resourceData.format]}
                 />
               </div>
               <div className={styles.inputContainer}>
@@ -307,7 +319,7 @@ export function ReaEditInputForm() {
                   fontSize={"18px"}
                   options={Object.values(areasConhecimento)}
                   handleResult={updateSelected}
-                  initialValue={resourceData.subject}
+                  initialValue={areasConhecimento[resourceData.subject]}
                 />
               </div>
               <div className={styles.inputContainer}>
@@ -323,23 +335,32 @@ export function ReaEditInputForm() {
                   fontSize={"18px"}
                   options={Object.values(tiposLicenca)}
                   handleResult={updateSelected}
-                  initialValue={resourceData.rights}
+                  initialValue={tiposLicenca[resourceData.rights]}
                 />
               </div>
               <div className={styles.inputContainer}>
-                <label htmlFor="language" className={styles.inputLabel}>
-                  IDIOMA DO MATERIAL
+                <label htmlFor="coverage" className={styles.inputLabel}>
+                  COBERTURA
                 </label>
-                <CustomSelector
-                  id="language"
-                  selectorId={4}
-                  width={"364px"}
-                  height={"44px"}
-                  color={"var(--dark-grey)"}
-                  fontSize={"18px"}
-                  options={Object.values(idiomas)}
-                  handleResult={updateSelected}
-                  initialValue={resourceData.language}
+                <input
+                  id="coverage"
+                  type="text"
+                  className={styles.inputBox}
+                  placeholder="Cobertura (Ex: Brasil, século XIX.)"
+                  value={resourceData.coverage}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className={styles.inputContainer}>
+                <label htmlFor="date" className={styles.inputLabel}>
+                  DATA DO RECURSO
+                </label>
+                <input
+                  id="date"
+                  type="date"
+                  className={styles.inputBox}
+                  value={formatDateForInput(resourceData.date)}
+                  onChange={handleInputChange}
                 />
               </div>
             </div>

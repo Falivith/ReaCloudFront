@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { BaseNotification } from "../modals/BaseNotification";
 import { backURL } from "../../services/utils";
 import InformarProblemaModal from "../modals/InformarProblemaModal";
+import { tipoRecurso, publicoAlvo, areasConhecimento, tiposLicenca, idiomas, formats } from "../../models/resource";
 
 export function ReaPanel({ rea, scrollToComments }) {
   let url = `${backURL}/${rea.thumb}`;
@@ -87,6 +88,15 @@ export function ReaPanel({ rea, scrollToComments }) {
     }
   };
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('pt-BR', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    });
+  };
+
   return (
     <div className={styles.container}>
       <BaseNotification
@@ -138,25 +148,22 @@ export function ReaPanel({ rea, scrollToComments }) {
 
       <ul className={styles.metaData}>
         <li>
-          <strong>Tipo do Material:</strong> {rea.type}
+          <strong>ID: </strong> {rea.id}
         </li>
         <li>
-          <strong>Área do conhecimento:</strong> {rea.subject}
+          <strong>Tipo do Material:</strong> {tipoRecurso[rea.type]}
         </li>
         <li>
-          <strong>Tipo de Licença:</strong> {rea.rights}
+          <strong>Área do conhecimento:</strong> {areasConhecimento[rea.subject]}
         </li>
         <li>
-          <strong>Público alvo:</strong> {rea.audience}
+          <strong>Tipo de Licença:</strong> {tiposLicenca[rea.rights]}
         </li>
         <li>
-          <strong>Idioma:</strong> {rea.language}
+          <strong>Público alvo:</strong> {publicoAlvo[rea.audience]}
         </li>
         <li>
-          <strong>Descrição:</strong> {rea.description}
-        </li>
-        <li>
-          <strong>Instruções de uso:</strong> {rea.instructionalMethod}
+          <strong>Idioma:</strong> {idiomas[rea.language]}
         </li>
         {rea.contributor && (
           <li>
@@ -175,12 +182,12 @@ export function ReaPanel({ rea, scrollToComments }) {
         )}
         {rea.date && (
           <li>
-            <strong>Data:</strong> {rea.date}
+            <strong>Data:</strong> {rea.date ? formatDate(rea.date) : ''}
           </li>
         )}
         {rea.format && (
           <li>
-            <strong>Formato:</strong> {rea.format}
+            <strong>Formato:</strong> {formats[rea.format]}
           </li>
         )}
         {rea.publisher && (
@@ -193,6 +200,12 @@ export function ReaPanel({ rea, scrollToComments }) {
             <strong>Fonte:</strong> {rea.source}
           </li>
         )}
+        <li>
+          <strong>Descrição:</strong> {rea.description}
+        </li>
+        <li>
+          <strong>Instruções de uso:</strong> {rea.instructionalMethod}
+        </li>
       </ul>
     </div>
   );

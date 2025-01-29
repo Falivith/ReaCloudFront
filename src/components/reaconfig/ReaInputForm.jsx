@@ -261,7 +261,7 @@ export function ReaInputForm() {
             <div className={styles.column}>
               <div className={styles.inputContainer}>
                 <label htmlFor="title" className={styles.inputLabel}>
-                  TÍTULO DO MATERIAL
+                  TÍTULO
                 </label>
                 <input
                   id="title"
@@ -271,7 +271,7 @@ export function ReaInputForm() {
                     required: "Este campo é obrigatório",
                   })}
                   className={styles.inputBox}
-                  placeholder="Título do Material"
+                  placeholder="Título do Recurso"
                   defaultValue={selectedRea?.title ?? ""}
                   onFocus={() => handleFocus("title")}
                   onBlur={handleBlur}
@@ -300,7 +300,7 @@ export function ReaInputForm() {
               </div>
               <div className={styles.inputContainer}>
                 <label htmlFor="type" className={styles.inputLabel}>
-                  TIPO DO MATERIAL
+                  TIPO
                 </label>
                 <CustomSelector
                   id="type"
@@ -316,7 +316,7 @@ export function ReaInputForm() {
               </div>
               <div className={styles.inputContainer}>
                 <label htmlFor="source" className={styles.inputLabel}>
-                  LINK
+                  FONTE
                 </label>
                 <input
                   id="source"
@@ -326,7 +326,7 @@ export function ReaInputForm() {
                     required: "Este campo é obrigatório",
                   })}
                   className={styles.inputBox}
-                  placeholder="Source (link)"
+                  placeholder="Fonte (link)"
                   defaultValue={selectedRea?.source ?? ""}
                   onFocus={() => handleFocus("source")}
                   onBlur={handleBlur}
@@ -370,19 +370,20 @@ export function ReaInputForm() {
                 />
               </div>
               <div className={styles.inputContainer}>
-                <label htmlFor="format" className={styles.inputLabel}>
-                  FORMATO
+                <label htmlFor="publisher" className={styles.inputLabel}>
+                  PUBLICADOR
                 </label>
-                <CustomSelector
-                  id="format"
-                  selectorId={6}
-                  width={"364px"}
-                  height={"44px"}
-                  color={"var(--darkgrey)"}
-                  fontSize={"18px"}
-                  options={Object.values(formats)}
-                  handleResult={updateSelected}
-                  placeholder={Object.values(formats)[0]}
+                <input
+                  id="publisher"
+                  type="text"
+                  name="publisher"
+                  {...register("publisher")}
+                  className={styles.inputBox}
+                  placeholder={"Publicador do Recurso (pessoa/entidade)"}
+                  defaultValue={""}
+                  onFocus={() => handleFocus("publisher")}
+                  onBlur={handleBlur}
+                  maxLength={100}
                 />
               </div>
             </div>
@@ -413,20 +414,35 @@ export function ReaInputForm() {
                 </label>
               </div>
               <div className={styles.inputContainer}>
-                <label htmlFor="coverage" className={styles.inputLabel}>
-                  COBERTURA
+                <label htmlFor="language" className={styles.inputLabel}>
+                  IDIOMA DO MATERIAL
                 </label>
-                <input
-                  id="coverage"
-                  type="text"
-                  name="coverage"
-                  {...register("coverage")}
-                  className={styles.inputBox}
-                  placeholder={"Cobertura (Ex: Brasil, século XIX.)"}
-                  defaultValue={""}
-                  onFocus={() => handleFocus("coverage")}
-                  onBlur={handleBlur}
-                  maxLength={100}
+                <CustomSelector
+                  id="language"
+                  selectorId={4}
+                  width={"364px"}
+                  height={"44px"}
+                  color={"var(--darkgrey)"}
+                  fontSize={"18px"}
+                  options={Object.values(idiomas)}
+                  handleResult={updateSelected}
+                  placeholder={Object.values(idiomas)[0]}
+                />
+              </div>
+              <div className={styles.inputContainer}>
+                <label htmlFor="format" className={styles.inputLabel}>
+                  FORMATO
+                </label>
+                <CustomSelector
+                  id="format"
+                  selectorId={6}
+                  width={"364px"}
+                  height={"44px"}
+                  color={"var(--darkgrey)"}
+                  fontSize={"18px"}
+                  options={Object.values(formats)}
+                  handleResult={updateSelected}
+                  placeholder={Object.values(formats)[0]}
                 />
               </div>
               <div className={styles.inputContainer}>
@@ -462,19 +478,20 @@ export function ReaInputForm() {
                 />
               </div>
               <div className={styles.inputContainer}>
-                <label htmlFor="language" className={styles.inputLabel}>
-                  IDIOMA DO MATERIAL
+                <label htmlFor="coverage" className={styles.inputLabel}>
+                  COBERTURA
                 </label>
-                <CustomSelector
-                  id="language"
-                  selectorId={4}
-                  width={"364px"}
-                  height={"44px"}
-                  color={"var(--darkgrey)"}
-                  fontSize={"18px"}
-                  options={Object.values(idiomas)}
-                  handleResult={updateSelected}
-                  placeholder={Object.values(idiomas)[0]}
+                <input
+                  id="coverage"
+                  type="text"
+                  name="coverage"
+                  {...register("coverage")}
+                  className={styles.inputBox}
+                  placeholder={"Cobertura (Ex: Brasil, século XIX.)"}
+                  defaultValue={""}
+                  onFocus={() => handleFocus("coverage")}
+                  onBlur={handleBlur}
+                  maxLength={100}
                 />
               </div>
               <div className={styles.inputContainer}>
@@ -487,23 +504,6 @@ export function ReaInputForm() {
                   {...register("date")}
                   className={styles.inputBox}
                   onFocus={() => handleFocus("date")}
-                  onBlur={handleBlur}
-                  maxLength={100}
-                />
-              </div>
-              <div className={styles.inputContainer}>
-                <label htmlFor="publisher" className={styles.inputLabel}>
-                  PUBLICADOR
-                </label>
-                <input
-                  id="publisher"
-                  type="text"
-                  name="publisher"
-                  {...register("publisher")}
-                  className={styles.inputBox}
-                  placeholder={"Publicador do Recurso (pessoa/entidade)"}
-                  defaultValue={""}
-                  onFocus={() => handleFocus("publisher")}
                   onBlur={handleBlur}
                   maxLength={100}
                 />
