@@ -14,6 +14,7 @@ import {
   areasConhecimento,
   tiposLicenca,
   idiomas,
+  formats,
 } from "../../models/resource";
 
 /* saveSuccess, saveError, passwordSuccess, passwordWarning, passwordError */
@@ -26,14 +27,21 @@ export function ReaInputForm() {
   const [isLoading, setIsLoading] = useState(index ? true : false);
   const initialValues = {
     title: "",
-    reaType: Object.values(tipoRecurso)[0],
-    link: "",
-    targetPublic: Object.values(publicoAlvo)[0],
-    knowledgeArea: Object.values(areasConhecimento)[0],
-    license: Object.values(tiposLicenca)[0],
+    contributor: "",
+    coverage: "",
+    creator: "",
+    date: "",
+    format: Object.values(formats)[0],
+    publisher: "",
+    type: Object.values(tipoRecurso)[0],
+    source: "",
+    audience: Object.values(publicoAlvo)[0],
+    thumb: "",
+    subject: Object.values(areasConhecimento)[0],
+    rights: Object.values(tiposLicenca)[0],
     language: Object.values(idiomas)[0],
     description: "",
-    instructions: "",
+    instructionalMethod: "",
   };
 
   const [result, setResult] = useState(initialValues);
@@ -62,10 +70,31 @@ export function ReaInputForm() {
   }, [index]);
 
   // Update Selector
-  const updateSelected = (id, s) => {
+  const updateSelected = (id, selectedValue) => {
+    let value = selectedValue;
+  
+    // Handle specific inputs to get keys
+    if (["subject", "type", "audience", "rights", "language", "format"].includes(id)) {
+      value = Object.keys(
+        id === "subject" ? areasConhecimento :
+        id === "type" ? tipoRecurso :
+        id === "audience" ? publicoAlvo :
+        id === "rights" ? tiposLicenca :
+        id === "language" ? idiomas :
+        id === "format" ? formats : {}
+      ).find(k => (
+        id === "subject" ? areasConhecimento[k] :
+        id === "type" ? tipoRecurso[k] :
+        id === "audience" ? publicoAlvo[k] :
+        id === "rights" ? tiposLicenca[k] :
+        id === "language" ? idiomas[k] :
+        id === "format" ? formats[k] : ""
+      ) === selectedValue);
+    }
+  
     setResult((prevState) => ({
       ...prevState,
-      [id]: s,
+      [id]: value,
     }));
   };
 
@@ -100,30 +129,46 @@ export function ReaInputForm() {
     setResult((prevState) => ({
       ...prevState,
       title: data.title,
-      link: data.link,
+      contributor: data.contributor,
+      coverage: data.coverage,
+      creator: data.creator,
+      date: data.date,
+      publisher: data.publisher,
+      source: data.source,
       description: data.description,
-      instructions: data.instructions,
+      instructionalMethod: data.instructionalMethod,
     }));
 
     const updatedResult = {
       ...result,
       title: data.title,
-      link: data.link,
+      contributor: data.contributor,
+      coverage: data.coverage,
+      creator: data.creator,
+      date: data.date,
+      publisher: data.publisher,
+      source: data.source,
       description: data.description,
-      instructions: data.instructions,
+      instructionalMethod: data.instructionalMethod,
     };
 
     const formData = new FormData();
 
     formData.append("title", updatedResult.title);
-    formData.append("reaType", updatedResult.reaType);
-    formData.append("link", updatedResult.link);
-    formData.append("description", updatedResult.description);
-    formData.append("instructions", updatedResult.instructions);
-    formData.append("targetPublic", updatedResult.targetPublic);
+    formData.append("contributor", updatedResult.contributor);
+    formData.append("coverage", updatedResult.coverage);
+    formData.append("creator", updatedResult.creator);
+    formData.append("date", updatedResult.date);
+    formData.append("format", updatedResult.format);
+    formData.append("publisher", updatedResult.publisher);
+    formData.append("type", updatedResult.type);
+    formData.append("source", updatedResult.source);
+    formData.append("audience", updatedResult.audience);
+    formData.append("subject", updatedResult.subject);
+    formData.append("rights", updatedResult.rights);
     formData.append("language", updatedResult.language);
-    formData.append("license", updatedResult.license);
-    formData.append("knowledgeArea", updatedResult.knowledgeArea);
+    formData.append("description", updatedResult.description);
+    formData.append("instructionalMethod", updatedResult.instructionalMethod);
 
     formData.append("thumb", image);
 
@@ -166,6 +211,10 @@ export function ReaInputForm() {
   const handleBlur = () => {
     setFocusedField(null); // Remover o foco do campo atual
   };
+
+  useEffect(() => {
+    console.log("Updated result:", result);
+  }, [result]);
 
   return (
     <div className={styles.container}>
@@ -215,57 +264,107 @@ export function ReaInputForm() {
                 )}
               </div>
               <div className={styles.inputContainer}>
-                <label htmlFor="reaType" className={styles.inputLabel}>
+                <label htmlFor="contributor" className={styles.inputLabel}>
+                  CONTRIBUÍDOR
+                </label>
+                <input
+                  id="contributor"
+                  type="text"
+                  name="contributor"
+                  className={styles.inputBox}
+                  {...register("contributor")}
+                  placeholder="Contribuídor do Material"
+                  defaultValue={""}
+                  onFocus={() => handleFocus("contributor")}
+                  onBlur={handleBlur}
+                  maxLength={100}
+                />
+              </div>
+              <div className={styles.inputContainer}>
+                <label htmlFor="type" className={styles.inputLabel}>
                   TIPO DO MATERIAL
                 </label>
                 <CustomSelector
-                  id="reaType"
+                  id="type"
                   selectorId={5}
                   width={"364px"}
                   height={"44px"}
                   color={"var(--darkgrey)"}
                   fontSize={"18px"}
                   options={Object.values(tipoRecurso)}
-                  handleResult={updateSelected}
+                  handleResult={(selected) => updateSelected("type", selected)}
                   placeholder={Object.values(tipoRecurso)[0]}
                 />
               </div>
               <div className={styles.inputContainer}>
-                <label htmlFor="link" className={styles.inputLabel}>
+                <label htmlFor="source" className={styles.inputLabel}>
                   LINK
                 </label>
                 <input
-                  id="link"
+                  id="source"
                   type="text"
-                  name="link"
-                  {...register("link", {
+                  name="source"
+                  {...register("source", {
                     required: "Este campo é obrigatório",
                   })}
                   className={styles.inputBox}
-                  placeholder="Link"
-                  defaultValue={selectedRea?.link ?? ""}
-                  onFocus={() => handleFocus("link")}
+                  placeholder="Source (link)"
+                  defaultValue={selectedRea?.source ?? ""}
+                  onFocus={() => handleFocus("source")}
                   onBlur={handleBlur}
                   maxLength={2000}
                 />
-                {errors.link && focusedField === "link" && (
+                {errors.link && focusedField === "source" && (
                   <p className={styles.errorMessage}>{errors.link.message}</p>
                 )}
               </div>
               <div className={styles.inputContainer}>
-                <label htmlFor="targetPublic" className={styles.inputLabel}>
+                <label htmlFor="audience" className={styles.inputLabel}>
                   PÚBLICO ALVO
                 </label>
                 <CustomSelector
-                  id="targetPublic"
+                  id="audience"
                   selectorId={1}
                   width={"364px"}
                   height={"44px"}
                   color={"var(--darkgrey)"}
                   fontSize={"18px"}
                   options={Object.values(publicoAlvo)}
-                  handleResult={updateSelected}
+                  handleResult={(selected) => updateSelected("audience", selected)}
                   placeholder={Object.values(publicoAlvo)[0]}
+                />
+              </div>
+              <div className={styles.inputContainer}>
+                <label htmlFor="creator" className={styles.inputLabel}>
+                  CRIADOR
+                </label>
+                <input
+                  id="creator"
+                  type="text"
+                  name="creator"
+                  className={styles.inputBox}
+                  {...register("creator")}
+                  placeholder="Autor do Recurso"
+                  defaultValue={""}
+                  onFocus={() => handleFocus("creator")}
+                  onBlur={handleBlur}
+                  maxLength={100}
+                />
+              </div>
+              <div className={styles.inputContainer}>
+                <label htmlFor="format" className={styles.inputLabel}>
+                  FORMATO
+                </label>
+                <CustomSelector
+                  id="format"
+                  selectorId={6}
+                  width={"364px"}
+                  height={"44px"}
+                  color={"var(--darkgrey)"}
+                  fontSize={"18px"}
+                  options={Object.values(formats)}
+                  handleResult={(selected) => updateSelected("format", selected)}
+                  placeholder={Object.values(formats)[0]}
                 />
               </div>
             </div>
@@ -296,34 +395,51 @@ export function ReaInputForm() {
                 </label>
               </div>
               <div className={styles.inputContainer}>
-                <label htmlFor="knowledgeArea" className={styles.inputLabel}>
+                <label htmlFor="coverage" className={styles.inputLabel}>
+                  COBERTURA
+                </label>
+                <input
+                  id="coverage"
+                  type="text"
+                  name="coverage"
+                  {...register("coverage")}
+                  className={styles.inputBox}
+                  placeholder={"Cobertura (Ex: Brasil, século XIX.)"}
+                  defaultValue={""}
+                  onFocus={() => handleFocus("coverage")}
+                  onBlur={handleBlur}
+                  maxLength={100}
+                />
+              </div>
+              <div className={styles.inputContainer}>
+                <label htmlFor="subject" className={styles.inputLabel}>
                   ÁREA DO CONHECIMENTO
                 </label>
                 <CustomSelector
-                  id="knowledgeArea"
+                  id="subject"
                   selectorId={2}
                   width={"364px"}
                   height={"44px"}
                   color={"var(--darkgrey)"}
                   fontSize={"18px"}
                   options={Object.values(areasConhecimento)}
-                  handleResult={updateSelected}
+                  handleResult={(selected) => updateSelected("subject", selected)}
                   placeholder={Object.values(areasConhecimento)[0]}
                 />
               </div>
               <div className={styles.inputContainer}>
-                <label htmlFor="license" className={styles.inputLabel}>
+                <label htmlFor="rights" className={styles.inputLabel}>
                   TIPO DE LICENÇA
                 </label>
                 <CustomSelector
-                  id="license"
+                  id="rights"
                   selectorId={3}
                   width={"364px"}
                   height={"44px"}
                   color={"var(--darkgrey)"}
                   fontSize={"18px"}
                   options={Object.values(tiposLicenca)}
-                  handleResult={updateSelected}
+                  handleResult={(selected) => updateSelected("rights", selected)}
                   placeholder={Object.values(tiposLicenca)[0]}
                 />
               </div>
@@ -339,8 +455,39 @@ export function ReaInputForm() {
                   color={"var(--darkgrey)"}
                   fontSize={"18px"}
                   options={Object.values(idiomas)}
-                  handleResult={updateSelected}
+                  handleResult={(selected) => updateSelected("language", selected)}
                   placeholder={Object.values(idiomas)[0]}
+                />
+              </div>
+              <div className={styles.inputContainer}>
+                <label htmlFor="date" className={styles.inputLabel}>
+                  DATA DO RECURSO (CRIAÇÃO/MODIFICAÇÃO)
+                </label>
+                <input
+                  id="date"
+                  type="date"
+                  {...register("date")}
+                  className={styles.inputBox}
+                  onFocus={() => handleFocus("date")}
+                  onBlur={handleBlur}
+                  maxLength={100}
+                />
+              </div>
+              <div className={styles.inputContainer}>
+                <label htmlFor="publisher" className={styles.inputLabel}>
+                  PUBLICADOR
+                </label>
+                <input
+                  id="publisher"
+                  type="text"
+                  name="publisher"
+                  {...register("publisher")}
+                  className={styles.inputBox}
+                  placeholder={"Publicador do Recurso (pessoa/entidade)"}
+                  defaultValue={""}
+                  onFocus={() => handleFocus("publisher")}
+                  onBlur={handleBlur}
+                  maxLength={100}
                 />
               </div>
             </div>
@@ -358,7 +505,7 @@ export function ReaInputForm() {
                 required: "Este campo é obrigatório",
               })}
               className={styles.descriptionInputBox}
-              placeholder="Descrição do recurso educacional"
+              placeholder={"Descrição do recurso educacional"}
               defaultValue={selectedRea?.description ?? ""}
               onFocus={() => handleFocus("description")}
               onBlur={handleBlur}
@@ -372,15 +519,15 @@ export function ReaInputForm() {
           </div>
 
           <div className={styles.instructions}>
-            <label htmlFor="instructions" className={styles.inputLabel}>
+            <label htmlFor="instructionalMethod" className={styles.inputLabel}>
               INSTRUÇÕES DE USO
             </label>
             <textarea
               rows="4"
               cols="20"
-              name="instructions"
-              {...register("instructions")}
-              id="instructions"
+              name="instructionalMethod"
+              {...register("instructionalMethod")}
+              id="instructionalMethod"
               maxLength="1000"
               className={styles.textArea}
               placeholder="Instruções de Uso"

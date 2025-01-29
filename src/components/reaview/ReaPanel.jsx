@@ -138,16 +138,16 @@ export function ReaPanel({ rea, scrollToComments }) {
 
       <ul className={styles.metaData}>
         <li>
-          <strong>Tipo do Material:</strong> {rea.reaType}
+          <strong>Tipo do Material:</strong> {rea.type}
         </li>
         <li>
-          <strong>Área do conhecimento:</strong> {rea.knowledgeArea}
+          <strong>Área do conhecimento:</strong> {rea.subject}
         </li>
         <li>
-          <strong>Tipo de Licença:</strong> {rea.license}
+          <strong>Tipo de Licença:</strong> {rea.rights}
         </li>
         <li>
-          <strong>Público alvo:</strong> {rea.targetPublic}
+          <strong>Público alvo:</strong> {rea.audience}
         </li>
         <li>
           <strong>Idioma:</strong> {rea.language}
@@ -156,8 +156,43 @@ export function ReaPanel({ rea, scrollToComments }) {
           <strong>Descrição:</strong> {rea.description}
         </li>
         <li>
-          <strong>Instruções de uso:</strong> {rea.instructions}
+          <strong>Instruções de uso:</strong> {rea.instructionalMethod}
         </li>
+        {rea.contributor && (
+          <li>
+            <strong>Contribuidor:</strong> {rea.contributor}
+          </li>
+        )}
+        {rea.coverage && (
+          <li>
+            <strong>Cobertura:</strong> {rea.coverage}
+          </li>
+        )}
+        {rea.creator && (
+          <li>
+            <strong>Criador:</strong> {rea.creator}
+          </li>
+        )}
+        {rea.date && (
+          <li>
+            <strong>Data:</strong> {rea.date}
+          </li>
+        )}
+        {rea.format && (
+          <li>
+            <strong>Formato:</strong> {rea.format}
+          </li>
+        )}
+        {rea.publisher && (
+          <li>
+            <strong>Publicador:</strong> {rea.publisher}
+          </li>
+        )}
+        {rea.source && (
+          <li>
+            <strong>Fonte:</strong> {rea.source}
+          </li>
+        )}
       </ul>
     </div>
   );

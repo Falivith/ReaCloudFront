@@ -8,10 +8,12 @@ import styles from "./ReaInputForm.module.css";
 import Loading from "../Loading";
 import { editRea } from "../../services/submitNewRea";
 import {
+  tipoRecurso,
   publicoAlvo,
   areasConhecimento,
   tiposLicenca,
   idiomas,
+  formats,
 } from "../../models/resource";
 
 export function ReaEditInputForm() {
@@ -21,14 +23,21 @@ export function ReaEditInputForm() {
 
   const [resourceData, setResourceData] = useState({
     title: "",
-    reaType: "",
-    link: "",
-    targetPublic: "",
-    knowledgeArea: "",
-    license: "",
+    contributor: "",
+    coverage: "",
+    creator: "",
+    date: "",
+    format: "",
+    publisher: "",
+    type: "",
+    source: "",
+    audience: "",
+    thumb: "",
+    subject: "",
+    rights: "",
     language: "",
     description: "",
-    instructions: "",
+    instructionalMethod: "",
   });
 
   // Popula os forms
@@ -74,33 +83,42 @@ export function ReaEditInputForm() {
   };
 
   const updateRea = async (data) => {
-    setResourceData((prevState) => ({
-      ...prevState,
-      title: data.title,
-      link: data.link,
-      description: data.description,
-      instructions: data.instructions,
-    }));
-
     const updatedResult = {
       ...resourceData,
       title: data.title,
-      link: data.link,
+      contributor: data.contributor,
+      coverage: data.coverage,
+      creator: data.creator,
+      date: data.date,
+      format: data.format,
+      publisher: data.publisher,
+      type: data.type,
+      source: data.source,
+      audience: data.audience,
+      subject: data.subject,
+      rights: data.rights,
+      language: data.language,
       description: data.description,
-      instructions: data.instructions,
+      instructionalMethod: data.instructionalMethod,
     };
 
     const formData = new FormData();
 
     formData.append("title", updatedResult.title);
-    formData.append("reaType", updatedResult.reaType);
-    formData.append("link", updatedResult.link);
-    formData.append("description", updatedResult.description);
-    formData.append("instructions", updatedResult.instructions);
-    formData.append("targetPublic", updatedResult.targetPublic);
+    formData.append("contributor", updatedResult.contributor);
+    formData.append("coverage", updatedResult.coverage);
+    formData.append("creator", updatedResult.creator);
+    formData.append("date", updatedResult.date);
+    formData.append("format", updatedResult.format);
+    formData.append("publisher", updatedResult.publisher);
+    formData.append("type", updatedResult.type);
+    formData.append("source", updatedResult.source);
+    formData.append("audience", updatedResult.audience);
+    formData.append("subject", updatedResult.subject);
+    formData.append("rights", updatedResult.rights);
     formData.append("language", updatedResult.language);
-    formData.append("license", updatedResult.license);
-    formData.append("knowledgeArea", updatedResult.knowledgeArea);
+    formData.append("description", updatedResult.description);
+    formData.append("instructionalMethod", updatedResult.instructionalMethod);
 
     try {
       const formSubmitSuccess = await editRea(id, formData);
@@ -149,37 +167,123 @@ export function ReaEditInputForm() {
                 />
               </div>
               <div className={styles.inputContainer}>
-                <label htmlFor="reatype" className={styles.inputLabel}>
+                <label htmlFor="contributor" className={styles.inputLabel}>
+                  CONTRIBUÍNTE
+                </label>
+                <input
+                  id="contributor"
+                  type="text"
+                  className={styles.inputBox}
+                  placeholder="Contribuidor do recurso"
+                  value={resourceData.contributor}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className={styles.inputContainer}>
+                <label htmlFor="coverage" className={styles.inputLabel}>
+                  COBERTURA
+                </label>
+                <input
+                  id="coverage"
+                  type="text"
+                  className={styles.inputBox}
+                  placeholder="Cobertura (abrangência espacial ou temporal do recurso. Ex: Brasil, século XIX. )"
+                  value={resourceData.coverage}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className={styles.inputContainer}>
+                <label htmlFor="creator" className={styles.inputLabel}>
+                  CRIADOR
+                </label>
+                <input
+                  id="creator"
+                  type="text"
+                  className={styles.inputBox}
+                  placeholder="Criador/Autor do recurso"
+                  value={resourceData.creator}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className={styles.inputContainer}>
+                <label htmlFor="date" className={styles.inputLabel}>
+                  DATA DO RECURSO
+                </label>
+                <input
+                  id="date"
+                  type="date"
+                  className={styles.inputBox}
+                  value={resourceData.date}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className={styles.inputContainer}>
+                <label htmlFor="format" className={styles.inputLabel}>
+                  FORMATO
+                </label>
+                <CustomSelector
+                  id="format"
+                  selectorId={1}
+                  width={"364px"}
+                  height={"44px"}
+                  color={"var(--dark-grey)"}
+                  fontSize={"18px"}
+                  options={Object.values(formats)}
+                  handleResult={updateSelected}
+                  initialValue={resourceData.format}
+                />
+              </div>
+              <div className={styles.inputContainer}>
+                <label htmlFor="publisher" className={styles.inputLabel}>
+                  PUBLICADOR
+                </label>
+                <input
+                  id="publisher"
+                  type="text"
+                  className={styles.inputBox}
+                  placeholder="Publicador"
+                  value={resourceData.publisher}
+                  onChange={handleInputChange}
+                />
+              </div>
+            </div>
+
+            <div className={styles.column}>
+              <div className={styles.inputContainer}>
+                <label htmlFor="type" className={styles.inputLabel}>
                   TIPO DO MATERIAL
                 </label>
-                <input
-                  id="reatype"
-                  type="text"
-                  className={styles.inputBox}
-                  placeholder="Tipo do Material"
-                  value={resourceData.reaType}
-                  onChange={handleInputChange}
+                <CustomSelector
+                  id="type"
+                  selectorId={1}
+                  width={"364px"}
+                  height={"44px"}
+                  color={"var(--dark-grey)"}
+                  fontSize={"18px"}
+                  options={Object.values(tipoRecurso)}
+                  handleResult={updateSelected}
+                  initialValue={resourceData.type}
                 />
               </div>
               <div className={styles.inputContainer}>
-                <label htmlFor="link" className={styles.inputLabel}>
-                  LINK
+                <label htmlFor="source" className={styles.inputLabel}>
+                  FONTE
                 </label>
                 <input
-                  id="link"
+                  id="source"
                   type="text"
                   className={styles.inputBox}
-                  placeholder="Link"
-                  value={resourceData.link}
+                  placeholder="Fonte"
+                  value={resourceData.source}
                   onChange={handleInputChange}
                 />
               </div>
               <div className={styles.inputContainer}>
-                <label htmlFor="targetPublic" className={styles.inputLabel}>
+                <label htmlFor="audience" className={styles.inputLabel}>
                   PÚBLICO ALVO
                 </label>
                 <CustomSelector
-                  id="targetPublic"
+                  id="audience"
                   selectorId={1}
                   width={"364px"}
                   height={"44px"}
@@ -187,34 +291,15 @@ export function ReaEditInputForm() {
                   fontSize={"18px"}
                   options={Object.values(publicoAlvo)}
                   handleResult={updateSelected}
-                  initialValue={resourceData.targetPublic}
+                  initialValue={resourceData.audience}
                 />
               </div>
-            </div>
-
-            <div className={styles.column}>
               <div className={styles.inputContainer}>
-                <label htmlFor="imgpathStyle" className={styles.inputLabel}>
-                  IMAGEM DO MATERIAL
-                </label>
-
-                <label
-                  id="imgpathStyle"
-                  htmlFor="imgpath"
-                  className={`${styles.fileChooser} ${styles.disabled}`}
-                >
-                  <span className={styles.disabledUpload}>
-                    Não é possível editar a imagem
-                  </span>
-                  <span id="imgpath" type="file" style={{ display: "none" }} />
-                </label>
-              </div>
-              <div className={styles.inputContainer}>
-                <label htmlFor="knowledgeArea" className={styles.inputLabel}>
+                <label htmlFor="subject" className={styles.inputLabel}>
                   ÁREA DO CONHECIMENTO
                 </label>
                 <CustomSelector
-                  id="knowledgeArea"
+                  id="subject"
                   selectorId={2}
                   width={"364px"}
                   height={"44px"}
@@ -222,15 +307,15 @@ export function ReaEditInputForm() {
                   fontSize={"18px"}
                   options={Object.values(areasConhecimento)}
                   handleResult={updateSelected}
-                  initialValue={resourceData.knowledgeArea}
+                  initialValue={resourceData.subject}
                 />
               </div>
               <div className={styles.inputContainer}>
-                <label htmlFor="license" className={styles.inputLabel}>
+                <label htmlFor="rights" className={styles.inputLabel}>
                   TIPO DE LICENÇA
                 </label>
                 <CustomSelector
-                  id="license"
+                  id="rights"
                   selectorId={3}
                   width={"364px"}
                   height={"44px"}
@@ -238,7 +323,7 @@ export function ReaEditInputForm() {
                   fontSize={"18px"}
                   options={Object.values(tiposLicenca)}
                   handleResult={updateSelected}
-                  initialValue={resourceData.license}
+                  initialValue={resourceData.rights}
                 />
               </div>
               <div className={styles.inputContainer}>
@@ -268,25 +353,25 @@ export function ReaEditInputForm() {
               id="description"
               type="text"
               className={styles.descriptionInputBox}
-              placeholder="Descrição do recurso educacional"
+              placeholder="Descrição..."
               value={resourceData.description}
               onChange={handleInputChange}
             />
           </div>
 
           <div className={styles.instructions}>
-            <label htmlFor="instructions" className={styles.inputLabel}>
+            <label htmlFor="instructionalMethod" className={styles.inputLabel}>
               INSTRUÇÕES DE USO
             </label>
             <textarea
               rows="4"
               cols="20"
-              name="instructions"
-              id="instructions"
+              name="instructionalMethod"
+              id="instructionalMethod"
               maxLength="1000"
               className={styles.textArea}
               placeholder="Instruções de Uso"
-              value={resourceData.instructions}
+              value={resourceData.instructionalMethod}
               onChange={handleInputChange}
             ></textarea>
           </div>
