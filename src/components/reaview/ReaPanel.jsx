@@ -107,7 +107,7 @@ export function ReaPanel({ rea, scrollToComments }) {
       <div className={styles.thumbAuxContainer}>
         <div className={styles.previewContainer}>
           <h1 className={styles.reaTitle}>
-            <a href={rea.link} target="_blank" rel="noopener noreferrer">
+            <a href={rea.source} target="_blank" rel="noopener noreferrer">
               {rea.title}
             </a>
           </h1>
@@ -141,7 +141,7 @@ export function ReaPanel({ rea, scrollToComments }) {
             )}
           </div>
         </div>
-        <a href={rea.link} target="_blank" rel="noopener noreferrer">
+        <a href={rea.source} target="_blank" rel="noopener noreferrer">
           <img src={url} alt="reaThumb" className={styles.thumbImage} />
         </a>
       </div>
