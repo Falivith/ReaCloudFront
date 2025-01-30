@@ -170,7 +170,7 @@ export function BaseNotification(props) {
       };
       break;
 
-      case "reaIssueErrorLogin":
+    case "reaIssueErrorLogin":
       notificationProps = {
         img: DangerSymbol,
         title: "Erro ao enviar problema.",
@@ -187,6 +187,36 @@ export function BaseNotification(props) {
         description: "Seu problema foi enviado.",
         backgroundcolor: "#22BB55",
         textcolor: "#22BB55",
+      };
+      break;
+
+    case "editReaSuccess":
+      notificationProps = {
+        img: CheckSymbol,
+        title: "Sucesso!",
+        description: "Seu recurso foi editado.",
+        backgroundcolor: "#22BB55",
+        textcolor: "#22BB55",
+      };
+      break;
+
+    case "editReaErrorUnloged":
+      notificationProps = {
+        img: DangerSymbol,
+        title: "Erro ao editar recurso.",
+        description: "Você precisa estar logado para editar um recurso.",
+        backgroundcolor: "#D30000",
+        textcolor: "#D30000",
+      };
+      break;
+
+    case "editReaError":
+      notificationProps = {
+        img: DangerSymbol,
+        title: "Erro ao editar recurso.",
+        description: "Por favor, tente novamente.",
+        backgroundcolor: "#D30000",
+        textcolor: "#D30000",
       };
       break;
 

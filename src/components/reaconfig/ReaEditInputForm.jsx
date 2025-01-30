@@ -62,11 +62,48 @@ export function ReaEditInputForm() {
   };
 
   // Update Selector
-  const updateSelected = (id, s) => {
-    setResourceData((prevState) => ({
-      ...prevState,
-      [id]: s,
-    }));
+  const updateSelected = (id, selectedValue) => {
+    // Debug what's being passed
+    // console.log('Type of selectedValue:', typeof selectedValue);
+    // console.log('Selected value:', selectedValue);
+  
+    if (typeof selectedValue === 'object' && selectedValue.value) {
+      // If selectedValue is an object with a value property
+      selectedValue = selectedValue.value;
+    }
+  
+    const mapping = {
+      subject: areasConhecimento,
+      type: tipoRecurso,
+      audience: publicoAlvo,
+      rights: tiposLicenca,
+      language: idiomas,
+      format: formats,
+    };
+  
+    if (["subject", "type", "audience", "rights", "language", "format"].includes(id)) {
+      const selectedKey = Object.entries(mapping[id])
+        .find(([_, value]) => value === selectedValue)?.[0];
+  
+      console.log('Comparing:', {
+        selectedValue,
+        availableValues: Object.values(mapping[id])
+      });
+  
+      if (selectedKey) {
+        setResourceData((prevState) => ({
+          ...prevState,
+          [id]: selectedKey,
+        }));
+      } else {
+        console.warn(`Key not found for value: ${selectedValue}`);
+      }
+    } else {
+      setResourceData((prevState) => ({
+        ...prevState,
+        [id]: selectedValue,
+      }));
+    }
   };
 
   // Route Change Handler (quit page after edit)
@@ -146,7 +183,11 @@ export function ReaEditInputForm() {
 
   return (
     <div className={styles.container}>
-      <BaseNotification type="passwordWarning" />
+      <BaseNotification
+      type={notificationType}
+      showing={showNotification}
+      onClose={() => setShowNotification(false)}
+    />
 
       <header className={styles.header}>
         <img src={Gear} alt="Símbolo de Adição de Recurso" /> Editar Recurso{" "}
