@@ -30,7 +30,7 @@ export function ReaInputForm() {
     contributor: "",
     coverage: "",
     creator: "",
-    date: "",
+    date: null,
     format: Object.keys(formats)[0],
     publisher: "",
     type: Object.keys(tipoRecurso)[0],
@@ -175,7 +175,11 @@ export function ReaInputForm() {
     formData.append("contributor", updatedResult.contributor);
     formData.append("coverage", updatedResult.coverage);
     formData.append("creator", updatedResult.creator);
-    formData.append("date", updatedResult.date);
+    if (data.date) {
+      formData.append("date", data.date);
+    } else {
+      formData.append("date", null);
+    }
     formData.append("format", updatedResult.format);
     formData.append("publisher", updatedResult.publisher);
     formData.append("type", updatedResult.type);
