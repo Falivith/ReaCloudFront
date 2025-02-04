@@ -14,14 +14,13 @@ export function MeuPerfil() {
         setShowNotification(false);
     };
 
-    const initialValues = {
+    const [values, setValues] = useState({
         given_name: '',
         family_name: '',
         institution: '',
         profile: '',
-    };
-
-    const [values, setValues] = useState(initialValues);
+        profile_picture: ''
+      });
 
     useEffect(() => {
         async function fetchData() {
@@ -46,40 +45,30 @@ export function MeuPerfil() {
         fetchData();
     }, []);
 
-      const handleChange = (e) => {
-        const { name, value } = e.target;
-        setValues({
-        ...values,
-        [name]: value,
-        });
-    };
 
-    const handleSubmit = async(e) =>{
+    const handleSubmit = async(e, formValues) => {
         e.preventDefault();
         if (e.target.name === 'MeusDados'){
-            try {
-                const valores = { ...values };
-                const result = await updateUser(valores)
-                if (result.status === 200){
-                    setNotificationType('savePerfilSuccess'); 
-                }else{
-                    setNotificationType('saveError');   
-                }
-
-                setShowNotification(true);
+          try {
+            const result = await updateUser(formValues);
+            if (result.status === 200){
+              setValues(formValues); // Update parent state
+              setNotificationType('savePerfilSuccess'); 
+            } else {
+              setNotificationType('saveError');   
             }
-
-            catch (exception) {
-                console.error(exception);
-            }
+            setShowNotification(true);
+          } catch (exception) {
+            console.error(exception);
+          }
         }
-    }
+      };
     
     return (
         <div>
             <Header notificationNumber = {0}/>
             {(<BaseNotification type = {notificationType} showing={showNotification} onClose={closeNotification} />)}
-            <MeusDados values = {values}  handleChange={handleChange}  handleSubmit={handleSubmit} />
+            <MeusDados values = {values}  handleSubmit={handleSubmit} />
             <Help/>
         </div>
     )

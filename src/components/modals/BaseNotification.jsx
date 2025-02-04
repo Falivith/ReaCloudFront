@@ -251,6 +251,16 @@ export function BaseNotification(props) {
       };
       break;
 
+      case "deleteUserError":
+        notificationProps = {
+          img: DangerSymbol,
+          title: "Erro ao remover usuário.",
+          description: "Por favor, tente novamente.",
+          backgroundcolor: "#D30000",
+          textcolor: "#D30000",
+        };
+        break;
+
     default:
       notificationProps = {
         img: WarningSymbol,

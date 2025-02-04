@@ -122,17 +122,36 @@ export async function getProfilePicture() {
   }
 }
 
-// export async function updateUserAccount(password, newPassword) {
-//   // pra email e senha
+export async function deleteUser() {
+  const userData = await getUserInfoFromJWT();
+  let reaCloudSession = await JSON.parse(localStorage.getItem("reaCloudSession"));
+  let token = reaCloudSession?.jwt_token;
 
-//   const { userObject, config } = await checkLoginStatus();
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
 
-//   if (userObject) {
-//     const response = await baseUrl.put(
-//       "/api/users/dados",
-//       { password, newPassword },
-//       config
-//     );
-//     return response.data;
-//   }
-// }
+  if (userData) {
+    try {
+      const response = await baseUrl.delete(
+        `/api/users/${userData?.email}`,
+        {
+          ...config,
+          validateStatus: function (status) {
+            return true;
+          },
+        }
+      );
+
+      if (response.status === 204) {
+        localStorage.removeItem("reaCloudSession");
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error('Error deleting user:', error);
+      return false;
+    }
+  }
+  return false;
+}
