@@ -8,16 +8,28 @@ import { useNavigate } from "react-router-dom";
 export default function RemoveUserAccount({ callModal }) {
     const navigate = useNavigate();
 
-  async function handleDelete() {
-    let deleted = await deleteUser();
-    if (deleted) {
-      localStorage.clear();
-      navigate("/");
-    } else {
-      setNotificationType('deleteUserError');
-      setShowNotification(true);
-      console.log("Erro ao deletar conta");
-    }
+    async function handleDelete() {
+      try {
+          const response = await deleteUser();
+          if (response.status === 204) {
+              try {
+                  localStorage.clear();
+                  navigate("/");
+              } catch (error) {
+                  console.error('Error during cleanup:', error);
+                  setNotificationType('deleteUserError');
+                  setShowNotification(true);
+              }
+          } else {
+              setNotificationType('deleteUserError');
+              setShowNotification(true);
+              console.error(`Erro ao deletar conta. Status: ${response.status}`);
+          }
+      } catch (error) {
+          console.error('Error in deleteUser:', error);
+          setNotificationType('deleteUserError');
+          setShowNotification(true);
+      }
   }
 
   const [showNotification, setShowNotification] = useState(false);
