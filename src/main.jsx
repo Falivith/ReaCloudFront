@@ -12,6 +12,7 @@ import { PostedReaEdit } from "./pages/PostedReaEdit";
 import { EditPostedReas } from "./pages/EditPostedReas";
 import { NewReaEdit } from "./pages/NewReaEdit";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { HelpPage } from "./pages/HelpPage";
 
 const secret = import.meta.env.VITE_GOOGLE_SECRET;
 
@@ -71,6 +72,10 @@ const router = createBrowserRouter([
   {
     path: "/redefinir",
     element: <Recover />,
+  },
+  {
+    path: "/help",
+    element: <HelpPage />,
   },
 ]);
 

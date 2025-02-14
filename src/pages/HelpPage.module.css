@@ -1,0 +1,43 @@
+.helpContainer {
+    display: flex;
+    flex-direction: row-reverse;  /* Change to row for side-by-side layout */
+    justify-content: center;  /* Space between content and TOC */
+    margin: 2rem;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.mainPageContent {
+    flex: 1;  /* Take remaining space */
+    width: 70%;  /* Limit content width */
+}
+  
+.tableOfContents {
+    position: sticky;
+    top: 2rem;
+    height: fit-content;
+    width: 30%;  /* Fixed width instead of max-width */
+    background-color: white;
+    align-self: flex-start;  /* Stick to top */
+    color: black;
+    border: 1px solid var(--lightgray);
+    border-radius: 10px;
+    padding: 24px 37px;
+    margin-top: 2rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+  
+  .tableOfContents ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .tableOfContents li {
+    cursor: pointer;
+    padding: 0.5rem 0;
+    color: var(--blue);
+  }
+  
+  .tableOfContents li:hover {
+    text-decoration: underline;
+  }

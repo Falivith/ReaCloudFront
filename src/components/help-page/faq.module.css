@@ -1,0 +1,31 @@
+.container {
+    color: black;
+    border: 1px solid var(--lightgray);
+    border-radius: 10px;
+    padding: 24px 37px;
+    margin: 2rem;
+    max-width: 100%;
+    height: fit-content;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.titleContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 1rem;
+    cursor: pointer;
+}
+
+.reaTitle {
+    color: var(--blue);
+    width: fit-content;
+    text-decoration: none;
+    margin: 0;
+}
+
+.reaTitleDesk {
+    color: var(--blue);
+    font-size: 1.2rem;
+    margin: 0;
+}
