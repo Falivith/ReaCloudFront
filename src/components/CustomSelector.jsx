@@ -35,14 +35,15 @@ export function CustomSelector(props) {
 
   useEffect(() => {
     const closeDropDown = (e) => {
-      if (!(e.composedPath()[1].id == id || e.composedPath()[0].id == id)) {
+      const clickedInside = document.getElementById(id)?.contains(e.target);
+      if (!clickedInside) {
         setIsOpen(false);
       }
     };
+
     document.body.addEventListener("click", closeDropDown);
     return () => document.body.removeEventListener("click", closeDropDown);
-  }),
-    [];
+  }, [id]);
 
   return (
     <div
@@ -63,7 +64,9 @@ export function CustomSelector(props) {
           fontSize: props.fontSize,
         }}
       >
-        {selectedOption || "Todos"}
+        <span className={styles.selectedOption}>
+          {selectedOption || "Todos"}
+        </span>
         <img className={styles.arrow} src={Polygon} id={props.selectorId} />
       </div>
       {isOpen && (

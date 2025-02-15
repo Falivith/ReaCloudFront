@@ -1,11 +1,18 @@
-.dropDownContainer{
+.selectedOption {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 150px;
+  overflow: hidden;
+}
+
+.dropDownContainer {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
   cursor: pointer;
 }
 
-.dropDownHeader{
+.dropDownHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -16,15 +23,15 @@
   font-size: 1.3rem;
   color: var(--gray);
   background: #ffffff;
-  transition: .2s;
+  transition: 0.2s;
 }
 
-.dropDownHeader:hover{
+.dropDownHeader:hover {
   background: var(--lightgray2);
-  transition: .2s;
+  transition: 0.2s;
 }
 
-.dropDownHeaderClosed{
+.dropDownHeaderClosed {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -35,20 +42,20 @@
   font-size: 1.3rem;
   color: var(--gray);
   background: #ffffff;
-  transition: .2s;
+  transition: 0.2s;
 }
 
-.dropDownHeaderClosed:hover{
+.dropDownHeaderClosed:hover {
   background: var(--lightgray2);
-  transition: .2s;
+  transition: 0.2s;
 }
 
-.arrow{
+.arrow {
   margin: 5px 1px;
   height: 13px;
 }
 
-.dropDownList{
+.dropDownList {
   z-index: 2;
   width: 370px;
   position: absolute;
@@ -61,7 +68,7 @@
   overflow: hidden;
 }
 
-.listItem{
+.listItem {
   background-color: var(--lightgray2);
   font-size: 20px;
   list-style: none;
