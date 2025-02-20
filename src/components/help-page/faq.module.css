@@ -15,6 +15,13 @@
     flex-direction: row;
     gap: 1rem;
     cursor: pointer;
+    padding: 1rem;
+    user-select: none;
+}
+
+.titleContainer:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
 }
 
 .reaTitle {
@@ -28,4 +35,18 @@
     color: var(--blue);
     font-size: 1.2rem;
     margin: 0;
+}
+
+.FaqContent {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.FaqContent.open {
+    max-height: 1000px; /* Adjust based on your content */
+    transition: max-height 0.5s ease-in;
 }
