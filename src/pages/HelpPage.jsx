@@ -19,13 +19,13 @@ export function HelpPage() {
     <div className="mainPageRef">
       <Header/>
       <div className={styles.helpContainer}>
-        <nav className={styles.tableOfContents}>
+        {/* <nav className={styles.tableOfContents}>
           <ul>
             <li onClick={() => scrollToSection(faqRef)}>FAQ - Perguntas Frequentes</li>
             <li onClick={() => scrollToSection(commonIssuesRef)}>Problemas Comuns</li>
             <li onClick={() => scrollToSection(stepByStepGuidesRef)}>Guias Passo-a-Passo</li>
           </ul>
-        </nav>
+        </nav> */}
         <div className={styles.mainPageContent}>
           <div ref={faqRef}>
             <Faq />
@@ -33,9 +33,9 @@ export function HelpPage() {
           <div ref={commonIssuesRef}>
             <CommonIssues />
           </div>
-          <div ref={stepByStepGuidesRef}>
+          {/* <div ref={stepByStepGuidesRef}>
             <StepByStepGuides />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

@@ -5,10 +5,29 @@
     margin: 2rem;
     gap: 2rem;
     padding: 2rem;
+    position: relative;
+    min-height: calc(100vh - 8rem); /* Subtract margin */
+    background-color: white;
+}
+
+.helpContainer::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%; /* Make image width smaller */
+  height: 500px; /* Fixed smaller height */
+  background-image: url('../assets/RCArt1.png');
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.2;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .mainPageContent {
-    flex: 1;  /* Take remaining space */
     width: 80%;  /* Limit content width */
 }
   
@@ -47,7 +66,7 @@
   /* Media query for mobile devices */
 @media screen and (max-width: 768px) {
   .helpContainer {
-      flex-direction: column;
+      /* flex-direction: column; */
       margin: 1rem;
       padding: 1rem;
       gap: 1rem;

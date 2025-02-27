@@ -2,11 +2,14 @@
     color: black;
     border: 1px solid var(--lightgray);
     border-radius: 10px;
-    padding: 24px 37px;
+    padding: 1rem 1rem;
     margin: 2rem;
     max-width: 100%;
     height: fit-content;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    position: relative;
+    z-index: 1;
 }
 
 .titleContainer {
@@ -41,12 +44,51 @@
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 1rem;
-    max-height: 0;
+    margin: 0rem 2rem;
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: all 0.3s ease-out;
+    opacity: 0;
+}
+
+.FaqContent > div {
     overflow: hidden;
-    transition: max-height 0.3s ease-out;
+    transition: all 0.3s ease-out;
 }
 
 .FaqContent.open {
-    max-height: 1000px; /* Adjust based on your content */
-    transition: max-height 0.5s ease-in;
+    grid-template-rows: 1fr;
+    opacity: 1;
+    transition: all 0.3s ease-in;
+    padding: 1rem 0;
+}
+
+.FaqContent.open > div {
+    transition: all 0.3s ease-in;
+}
+
+.FaqContent h2 {
+    color: var(--blue);
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.FaqContent p {
+    color: var(--darkgrey);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    text-align: justify;
+    padding-left: 1rem;
+    border-left: 3px solid var(--lightgray);
+}
+
+.emailLink {
+    color: var(--blue);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.emailLink:hover {
+    text-decoration: underline;
 }
