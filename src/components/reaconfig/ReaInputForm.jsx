@@ -211,7 +211,12 @@ export function ReaInputForm() {
           );
         }
 
-        await routeChangeHandler("");
+        console.log(formSubmitSuccess);
+
+        // Get the ID from the response and navigate
+      const newReaId = formSubmitSuccess.data.id; 
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      navigate(`/ReaView/${newReaId}`);
       } else {
         setNotificationType("saveReaErrorUnloged");
         setShowNotification(true);
