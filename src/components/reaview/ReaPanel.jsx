@@ -90,11 +90,10 @@ export function ReaPanel({ rea, scrollToComments }) {
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('pt-BR', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric'
-    });
+    const year = date.getUTCFullYear();
+    const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+    const day = String(date.getUTCDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
   };
 
   return (
@@ -182,7 +181,7 @@ export function ReaPanel({ rea, scrollToComments }) {
         )}
         {rea.date && (
           <li>
-            <strong>Data:</strong> {rea.date ? formatDate(rea.date) : ''}
+            <strong>Data:</strong> {formatDate(rea.date)}
           </li>
         )}
         {rea.format && (

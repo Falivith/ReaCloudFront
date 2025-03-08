@@ -568,7 +568,7 @@ export function ReaInputForm() {
             >
               Cancelar
             </button>
-            <button className={styles.submitButton}>Salvar</button>
+            <button id="submitButton" className={styles.submitButton}>Salvar</button>
           </div>
         </form>
       )}
