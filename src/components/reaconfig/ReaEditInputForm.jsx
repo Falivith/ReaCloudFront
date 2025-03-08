@@ -231,7 +231,7 @@ export function ReaEditInputForm() {
                 </label>
                 <CustomSelector
                   id="type"
-                  selectorId={1}
+                  selectorId={5}
                   width={"364px"}
                   height={"44px"}
                   color={"var(--dark-grey)"}
@@ -337,7 +337,7 @@ export function ReaEditInputForm() {
                 </label>
                 <CustomSelector
                   id="format"
-                  selectorId={1}
+                  selectorId={6}
                   width={"364px"}
                   height={"44px"}
                   color={"var(--dark-grey)"}
@@ -446,6 +446,7 @@ export function ReaEditInputForm() {
               Cancelar
             </button>
             <button
+              id="submitButton"
               className={styles.submitButton}
               onClick={(e) => {
                 e.preventDefault();
