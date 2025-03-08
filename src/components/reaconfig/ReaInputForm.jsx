@@ -286,7 +286,7 @@ export function ReaInputForm() {
                   onBlur={handleBlur}
                   maxLength={100}
                 />
-                {errors.title && focusedField === "title" && (
+                {errors.title && (
                   <p className={styles.errorMessage}>{errors.title.message}</p>
                 )}
               </div>
@@ -341,8 +341,8 @@ export function ReaInputForm() {
                   onBlur={handleBlur}
                   maxLength={2000}
                 />
-                {errors.link && focusedField === "source" && (
-                  <p className={styles.errorMessage}>{errors.link.message}</p>
+                {errors.source && (
+                  <p className={styles.errorMessage}>{errors.source.message}</p>
                 )}
               </div>
               <div className={styles.inputContainer}>
@@ -414,6 +414,9 @@ export function ReaInputForm() {
                     type="file"
                     accept=".png, .jpg, .jpeg"
                     style={{ display: "none" }}
+                    {...register("thumb", {
+                      required: "Este campo é obrigatório",
+                    })}
                     onChange={(e) => setImage(e.target.files[0])}
                   />
                   <div className={styles.cornerUpload}>
@@ -421,6 +424,9 @@ export function ReaInputForm() {
                     <span>CARREGAR</span>
                   </div>
                 </label>
+                {errors.thumb && (
+                  <p className={styles.errorMessage}>{errors.thumb.message}</p>
+                )}
               </div>
               <div className={styles.inputContainer}>
                 <label htmlFor="language" className={styles.inputLabel}>
@@ -510,12 +516,17 @@ export function ReaInputForm() {
                 <input
                   id="date"
                   type="date"
-                  {...register("date")}
+                  {...register("date", {
+                    required: "Este campo é obrigatório",
+                  })}
                   className={styles.inputBox}
                   onFocus={() => handleFocus("date")}
                   onBlur={handleBlur}
                   maxLength={100}
                 />
+                {errors.date && (
+                  <p className={styles.errorMessage}>{errors.date.message}</p>
+                )}
               </div>
             </div>
           </div>
@@ -538,7 +549,7 @@ export function ReaInputForm() {
               onBlur={handleBlur}
               maxLength={1000}
             />
-            {errors.description && focusedField === "description" && (
+            {errors.description && (
               <p className={styles.errorMessage}>
                 {errors.description.message}
               </p>
