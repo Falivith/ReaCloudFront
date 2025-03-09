@@ -127,29 +127,33 @@ export async function deleteUser() {
   let reaCloudSession = await JSON.parse(localStorage.getItem("reaCloudSession"));
   let token = reaCloudSession?.jwt_token;
 
-  const config = {
-    headers: { Authorization: `Bearer ${token}` },
-  };
-
   if (userData) {
     try {
       const response = await baseUrl.delete(
         `/api/users/${userData?.email}`,
         {
-          ...config,
+          headers: { Authorization: `Bearer ${token}` },
           validateStatus: function (status) {
             return true;
-          },
+          }
         }
       );
+
+      console.log('Delete response:', response.status, response.data);
 
       if (response.status === 204) {
         localStorage.removeItem("reaCloudSession");
         return true;
       }
+      
+      // Log specific error information from the response
+      console.error('Server response:', response.status, response.data);
       return false;
     } catch (error) {
-      console.error('Error deleting user:', error);
+      console.error('Error deleting user:', error.message);
+      if (error.response) {
+        console.error('Server response:', error.response.status, error.response.data);
+      }
       return false;
     }
   }

@@ -230,7 +230,7 @@ export function ReaInputForm() {
 
       // Check for internal server error (500)
       if (error.response && error.response.status === 500) {
-        setNotificationType("saveReaNetworkError");
+        setNotificationType("saveReaInternalError");
         setShowNotification(true);
       } else if (error.message === "Network Error") {
         setNotificationType("saveReaNetworkError");

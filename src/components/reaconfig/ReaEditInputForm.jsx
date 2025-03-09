@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Gear from "../../assets/Gear.png";
 import { getResourceInfo } from "../../services/reaquerys";
 import { CustomSelector } from "../CustomSelector";
+import { useForm } from "react-hook-form";
 import { BaseNotification } from "../modals/BaseNotification";
 import styles from "./ReaInputForm.module.css";
 import Loading from "../Loading";
@@ -20,6 +21,24 @@ export function ReaEditInputForm() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+  } = useForm({
+    defaultValues: {
+      title: "",
+      contributor: "",
+      coverage: "",
+      creator: "",
+      date: "",
+      source: "",
+      description: "",
+      instructionalMethod: "",
+    },
+  });
 
   const [resourceData, setResourceData] = useState({
     title: "",
@@ -46,6 +65,12 @@ export function ReaEditInputForm() {
       try {
         const result = await getResourceInfo(id);
         setResourceData(result);
+
+        // Set form values for React Hook Form
+        Object.entries(result).forEach(([key, value]) => {
+          setValue(key, value || "");
+        });
+
         setIsLoading(false);
       } catch (error) {
         console.error("Failed to fetch resource info", error);
@@ -54,7 +79,7 @@ export function ReaEditInputForm() {
     };
 
     fetchResourceInfo();
-  }, [id]);
+  }, [id, setValue]);
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -66,12 +91,12 @@ export function ReaEditInputForm() {
     // Debug what's being passed
     // console.log('Type of selectedValue:', typeof selectedValue);
     // console.log('Selected value:', selectedValue);
-  
-    if (typeof selectedValue === 'object' && selectedValue.value) {
+
+    if (typeof selectedValue === "object" && selectedValue.value) {
       // If selectedValue is an object with a value property
       selectedValue = selectedValue.value;
     }
-  
+
     const mapping = {
       subject: areasConhecimento,
       type: tipoRecurso,
@@ -80,16 +105,21 @@ export function ReaEditInputForm() {
       language: idiomas,
       format: formats,
     };
-  
-    if (["subject", "type", "audience", "rights", "language", "format"].includes(id)) {
-      const selectedKey = Object.entries(mapping[id])
-        .find(([_, value]) => value === selectedValue)?.[0];
-  
-      console.log('Comparing:', {
+
+    if (
+      ["subject", "type", "audience", "rights", "language", "format"].includes(
+        id
+      )
+    ) {
+      const selectedKey = Object.entries(mapping[id]).find(
+        ([_, value]) => value === selectedValue
+      )?.[0];
+
+      console.log("Comparing:", {
         selectedValue,
-        availableValues: Object.values(mapping[id])
+        availableValues: Object.values(mapping[id]),
       });
-  
+
       if (selectedKey) {
         setResourceData((prevState) => ({
           ...prevState,
@@ -177,17 +207,17 @@ export function ReaEditInputForm() {
   };
 
   const formatDateForInput = (dateString) => {
-    if (!dateString) return '';
-    return new Date(dateString).toISOString().split('T')[0];
+    if (!dateString) return "";
+    return new Date(dateString).toISOString().split("T")[0];
   };
 
   return (
     <div className={styles.container}>
       <BaseNotification
-      type={notificationType}
-      showing={showNotification}
-      onClose={() => setShowNotification(false)}
-    />
+        type={notificationType}
+        showing={showNotification}
+        onClose={() => setShowNotification(false)}
+      />
 
       <header className={styles.header}>
         <img src={Gear} alt="Símbolo de Adição de Recurso" /> Editar Recurso{" "}
@@ -196,7 +226,11 @@ export function ReaEditInputForm() {
       {isLoading ? (
         <Loading />
       ) : (
-        <form id="reaconfig" className={styles.formContainer}>
+        <form
+          id="reaconfig"
+          className={styles.formContainer}
+          onSubmit={handleSubmit(updateRea)}
+        >
           <div className={styles.columns}>
             <div className={styles.column}>
               <div className={styles.inputContainer}>
@@ -208,9 +242,15 @@ export function ReaEditInputForm() {
                   type="text"
                   className={styles.inputBox}
                   placeholder="Título do Material"
+                  {...register("title", {
+                    required: "Este campo é obrigatório",
+                  })}
                   value={resourceData.title}
                   onChange={handleInputChange}
                 />
+                {errors.title && (
+                  <p className={styles.errorMessage}>{errors.title.message}</p>
+                )}
               </div>
               <div className={styles.inputContainer}>
                 <label htmlFor="contributor" className={styles.inputLabel}>
@@ -221,6 +261,7 @@ export function ReaEditInputForm() {
                   type="text"
                   className={styles.inputBox}
                   placeholder="Contribuidor do recurso"
+                  {...register("contributor")}
                   value={resourceData.contributor}
                   onChange={handleInputChange}
                 />
@@ -249,10 +290,16 @@ export function ReaEditInputForm() {
                   id="source"
                   type="text"
                   className={styles.inputBox}
+                  {...register("source", {
+                    required: "Este campo é obrigatório",
+                  })}
                   placeholder="Fonte"
                   value={resourceData.source}
                   onChange={handleInputChange}
                 />
+                {errors.source && (
+                  <p className={styles.errorMessage}>{errors.source.message}</p>
+                )}
               </div>
               <div className={styles.inputContainer}>
                 <label htmlFor="audience" className={styles.inputLabel}>
@@ -279,6 +326,7 @@ export function ReaEditInputForm() {
                   type="text"
                   className={styles.inputBox}
                   placeholder="Criador/Autor do recurso"
+                  {...register("creator")}
                   value={resourceData.creator}
                   onChange={handleInputChange}
                 />
@@ -291,6 +339,7 @@ export function ReaEditInputForm() {
                   id="publisher"
                   type="text"
                   className={styles.inputBox}
+                  {...register("publisher")}
                   placeholder="Publicador"
                   value={resourceData.publisher}
                   onChange={handleInputChange}
@@ -299,7 +348,7 @@ export function ReaEditInputForm() {
             </div>
 
             <div className={styles.column}>
-            <div className={styles.inputContainer}>
+              <div className={styles.inputContainer}>
                 <label htmlFor="imgpathStyle" className={styles.inputLabel}>
                   IMAGEM DO MATERIAL
                 </label>
@@ -387,6 +436,7 @@ export function ReaEditInputForm() {
                   id="coverage"
                   type="text"
                   className={styles.inputBox}
+                  {...register("coverage")}
                   placeholder="Cobertura (Ex: Brasil, século XIX.)"
                   value={resourceData.coverage}
                   onChange={handleInputChange}
@@ -399,10 +449,16 @@ export function ReaEditInputForm() {
                 <input
                   id="date"
                   type="date"
+                  {...register("date", {
+                    required: "Este campo é obrigatório",
+                  })}
                   className={styles.inputBox}
                   value={formatDateForInput(resourceData.date)}
                   onChange={handleInputChange}
                 />
+                {errors.date && (
+                  <p className={styles.errorMessage}>{errors.date.message}</p>
+                )}
               </div>
             </div>
           </div>
@@ -416,9 +472,17 @@ export function ReaEditInputForm() {
               type="text"
               className={styles.descriptionInputBox}
               placeholder="Descrição..."
+              {...register("description", {
+                required: "Este campo é obrigatório",
+              })}
               value={resourceData.description}
               onChange={handleInputChange}
             />
+            {errors.description && (
+              <p className={styles.errorMessage}>
+                {errors.description.message}
+              </p>
+            )}
           </div>
 
           <div className={styles.instructions}>
@@ -430,6 +494,7 @@ export function ReaEditInputForm() {
               cols="20"
               name="instructionalMethod"
               id="instructionalMethod"
+              {...register("instructionalMethod")}
               maxLength="1000"
               className={styles.textArea}
               placeholder="Instruções de Uso"
@@ -442,16 +507,14 @@ export function ReaEditInputForm() {
             <button
               className={styles.cancelButton}
               onClick={() => navigate("/")}
+              type="button"
             >
               Cancelar
             </button>
             <button
               id="submitButton"
               className={styles.submitButton}
-              onClick={(e) => {
-                e.preventDefault();
-                updateRea(resourceData);
-              }}
+              type="submit"
             >
               Salvar
             </button>

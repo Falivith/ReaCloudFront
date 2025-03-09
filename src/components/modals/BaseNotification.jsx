@@ -53,8 +53,8 @@ export function BaseNotification(props) {
         img: DangerSymbol,
         title: "Falha ao tentar postar comentário.",
         description: "Verifique sua conexão e tente mais tarde.",
-        backgroundcolor: "#22BB55",
-        textcolor: "#22BB55",
+        backgroundcolor: "#D30000",
+        textcolor: "#D30000",
       };
       break;
 
@@ -63,8 +63,8 @@ export function BaseNotification(props) {
         img: WarningSymbol,
         title: "Falha ao tentar postar comentário.",
         description: "Tente novamente mais tarde.",
-        backgroundcolor: "#22BB55",
-        textcolor: "#22BB55",
+        backgroundcolor: "#D30000",
+        textcolor: "#D30000",
       };
       break;
 
@@ -73,8 +73,8 @@ export function BaseNotification(props) {
         img: WarningSymbol,
         title: "Você não está logado.",
         description: "Cadastre-se ou faça login para poder comentar.",
-        backgroundcolor: "#22BB55",
-        textcolor: "#22BB55",
+        backgroundcolor: "#EE7700",
+        textcolor: "#EE7700",
       };
       break;
 
@@ -115,6 +115,16 @@ export function BaseNotification(props) {
         title: "Erro ao criar o recurso.",
         description:
           "Por favor, verifique sua conexão com a internet e tente novamente.",
+        backgroundcolor: "#D30000",
+        textcolor: "#D30000",
+      };
+      break;
+
+    case "saveReaInternalError":
+      notificationProps = {
+        img: DangerSymbol,
+        title: "Erro interno.",
+        description: "Ocorreu um erro interno, por favor tente novamente.",
         backgroundcolor: "#D30000",
         textcolor: "#D30000",
       };
