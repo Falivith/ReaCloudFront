@@ -2,6 +2,7 @@ import { EditReaPanel } from '../components/addrea/editrea/EditReaPanel';
 import { Header } from '../components/Header';
 import { useState, useEffect } from 'react';
 import { getUserResources } from '../services/reaquerys';
+import { Help } from '../components/Help';
 
 export function EditPostedReas(){
 
@@ -23,6 +24,7 @@ export function EditPostedReas(){
         <div>
             <Header />
             <EditReaPanel reas = {userResources} isLoading = {isLoading}/>
+            <Help/>
         </div>
     )
 }

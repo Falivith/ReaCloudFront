@@ -3,6 +3,7 @@ import { ReaEditInputForm } from "../components/reaconfig/ReaEditInputForm";
 import { useLocation } from "react-router-dom";
 import { getResourceInfo } from "../services/reaquerys";
 import { useEffect } from "react";
+import { Help } from "../components/Help";
 
 export function PostedReaEdit() {
   const location = useLocation(); // Get the location object
@@ -25,6 +26,7 @@ export function PostedReaEdit() {
     <div>
       <Header />
       <ReaEditInputForm />
+      <Help />
     </div>
   );
 }

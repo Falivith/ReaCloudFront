@@ -4,12 +4,17 @@
     right: 10px;
 }
 
-@media (max-width: 800px) {
-    .help{
-        display: none;
-    }
-}
-
 .help img {
     cursor: pointer;
+}
+
+/* Media query for small screens */
+@media (max-width: 600px) {
+    .help {
+        position: fixed; /* Keep it fixed */
+        bottom: 10px; /* Adjust bottom position */
+        right: 10px; /* Adjust right position */
+        width: auto; /* Ensure it doesn't take full width */
+        text-align: right; /* Align content to the right */
+    }
 }
