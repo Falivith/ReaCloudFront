@@ -109,6 +109,17 @@ export function BaseNotification(props) {
       };
       break;
 
+    case "saveReaNetworkError":
+      notificationProps = {
+        img: DangerSymbol,
+        title: "Erro ao criar o recurso.",
+        description:
+          "Por favor, verifique sua conexão com a internet e tente novamente.",
+        backgroundcolor: "#D30000",
+        textcolor: "#D30000",
+      };
+      break;
+
     case "saveError":
       notificationProps = {
         img: DangerSymbol,
@@ -251,15 +262,15 @@ export function BaseNotification(props) {
       };
       break;
 
-      case "deleteUserError":
-        notificationProps = {
-          img: DangerSymbol,
-          title: "Erro ao remover usuário.",
-          description: "Por favor, tente novamente.",
-          backgroundcolor: "#D30000",
-          textcolor: "#D30000",
-        };
-        break;
+    case "deleteUserError":
+      notificationProps = {
+        img: DangerSymbol,
+        title: "Erro ao remover usuário.",
+        description: "Por favor, tente novamente.",
+        backgroundcolor: "#D30000",
+        textcolor: "#D30000",
+      };
+      break;
 
     default:
       notificationProps = {
