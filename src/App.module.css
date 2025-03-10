@@ -1,40 +1,55 @@
-.mainPageContainer{
-    height: 100%;
-    width: 100%;
-    overflow-x: hidden;
+.mainPageContainer {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
 }
 
-.reaViewContainer{
-    display: flex;
-    padding: 5rem 6rem;
-    justify-content: center;
-    align-items: center;
-    gap: 35px;
+.reaViewContainer {
+  display: flex;
+  padding: 5rem 6rem;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
 }
 
 .reaViewContent {
+  display: flex;
+  flex-direction: column;
+  /* flex: 5;  */
+  width: 80%;
+}
+
+.loginRCLogo {
+  margin: 3rem auto;
+  padding-right: 20px;
+}
+
+.contentAndRecommendationsWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.panelAndCommentsWrapper {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media (max-width: 1150px) {
+  .reaViewContainer {
     display: flex;
     flex-direction: column;
-    /* flex: 5;  */
-    width: 60%;
-}
+    align-items: center;
+    padding: 2rem;
+  }
 
-.loginRCLogo{
-    margin: 3rem auto;
-    padding-right: 20px;
-}
+  .panelAndCommentsWrapper {
+    width: 100%;
+  }
 
-.panelAndSuggestionsWrapper {
-    display: flex;
+  .contentAndRecommendationsWrapper {
     flex-direction: column;
-    gap: 20px;
-}
-
-@media (max-width: 1000px){
-    .reaViewContainer{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 2rem;
-    }
+  }
 }

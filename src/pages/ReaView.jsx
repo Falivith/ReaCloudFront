@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { Header } from "../components/Header";
 import { ReaPanel } from "../components/reaview/ReaPanel";
 import { CommentSection } from "../components/reaview/CommentSection";
+import { Recommendations } from "../components/reaview/Recommendations";
 import styles from "../App.module.css";
 import { getResourceInfo } from "../services/reaquerys";
 import Loading from "../components/Loading";
@@ -51,18 +52,21 @@ export function ReaView() {
             <Loading />
           ) : (
             <>
-              <div className={styles.panelAndSuggestionsWrapper}>
-                <ReaPanel
-                  rea={rea}
-                  isLoading={isLoading}
-                  scrollToComments={scrollToComments}
-                />
-                <div
-                  ref={commentSectionRef}
-                  onLoad={() => setCommentSectionMounted(true)}
-                >
-                  <CommentSection resourceId={id} />
+              <div className={styles.contentAndRecommendationsWrapper}>
+                <div className={styles.panelAndCommentsWrapper}>
+                  <ReaPanel
+                    rea={rea}
+                    isLoading={isLoading}
+                    scrollToComments={scrollToComments}
+                  />
+                  <div
+                    ref={commentSectionRef}
+                    onLoad={() => setCommentSectionMounted(true)}
+                  >
+                    <CommentSection resourceId={id} />
+                  </div>
                 </div>
+                <Recommendations />
               </div>
             </>
           )}
