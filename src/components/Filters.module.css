@@ -149,6 +149,11 @@ Select Menus
 }
 
 @media (max-width: 650px) {
+
+  .tooltip {
+    display: none;
+  }
+
   .internalContainer {
     width: 200px;
   }

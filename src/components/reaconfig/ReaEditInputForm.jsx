@@ -149,50 +149,29 @@ export function ReaEditInputForm() {
     setShowNotification(false);
   };
 
+  const formatDateForInput = (dateString) => {
+    if (!dateString) return "";
+    return new Date(dateString).toISOString().split("T")[0];
+  };
+
   const updateRea = async (data) => {
-    const updatedResult = {
-      ...resourceData,
-      title: data.title,
-      contributor: data.contributor,
-      coverage: data.coverage,
-      creator: data.creator,
-      date: data.date,
-      format: data.format,
-      publisher: data.publisher,
-      type: data.type,
-      source: data.source,
-      audience: data.audience,
-      subject: data.subject,
-      rights: data.rights,
-      language: data.language,
-      description: data.description,
-      instructionalMethod: data.instructionalMethod,
-    };
-
+    // Ensure resourceData is up-to-date
+    //console.log("Final resourceData before submission:", resourceData);
+  
+    const updatedResult = { ...resourceData}; // Merge latest resourceData with form data
+  
+    //console.log("Final updatedResult being sent:", updatedResult);
+  
     const formData = new FormData();
-
-    formData.append("title", updatedResult.title);
-    formData.append("contributor", updatedResult.contributor);
-    formData.append("coverage", updatedResult.coverage);
-    formData.append("creator", updatedResult.creator);
-    formData.append("date", updatedResult.date);
-    formData.append("format", updatedResult.format);
-    formData.append("publisher", updatedResult.publisher);
-    formData.append("type", updatedResult.type);
-    formData.append("source", updatedResult.source);
-    formData.append("audience", updatedResult.audience);
-    formData.append("subject", updatedResult.subject);
-    formData.append("rights", updatedResult.rights);
-    formData.append("language", updatedResult.language);
-    formData.append("description", updatedResult.description);
-    formData.append("instructionalMethod", updatedResult.instructionalMethod);
-
+    Object.entries(updatedResult).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+  
     try {
       const formSubmitSuccess = await editRea(id, formData);
       if (formSubmitSuccess) {
         setNotificationType("editReaSuccess");
         setShowNotification(true);
-
         await routeChangeHandler("");
       } else {
         setNotificationType("editReaErrorUnloged");
@@ -200,15 +179,9 @@ export function ReaEditInputForm() {
       }
     } catch (error) {
       console.error("Error submitting REA:", error);
-
       setNotificationType("editReaError");
       setShowNotification(true);
     }
-  };
-
-  const formatDateForInput = (dateString) => {
-    if (!dateString) return "";
-    return new Date(dateString).toISOString().split("T")[0];
   };
 
   return (

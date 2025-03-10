@@ -1,6 +1,6 @@
 .header {
     height: 3.3125rem;
-    width: 100%;
+    width: 100vw;
     background: var(--blue); /* 0,6875 */
     padding-top: 0.6875rem;
     padding-left: 1.125rem;
