@@ -11,7 +11,7 @@ export default function RemoveUserAccount({ callModal }) {
     async function handleDelete() {
       try {
           const response = await deleteUser();
-          if (response.status === 204) {
+          if (response) {
               try {
                   localStorage.clear();
                   navigate("/");

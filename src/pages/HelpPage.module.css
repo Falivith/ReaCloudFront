@@ -5,18 +5,37 @@
     margin: 2rem;
     gap: 2rem;
     padding: 2rem;
+    position: relative;
+    min-height: calc(100vh - 8rem); /* Subtract margin */
+    background-color: white;
+}
+
+.helpContainer::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%; /* Make image width smaller */
+  height: 500px; /* Fixed smaller height */
+  background-image: url('../assets/RCArt1.png');
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.2;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .mainPageContent {
-    flex: 1;  /* Take remaining space */
-    width: 70%;  /* Limit content width */
+    width: 80%;  /* Limit content width */
 }
   
 .tableOfContents {
     position: sticky;
     top: 2rem;
     height: fit-content;
-    width: 30%;  /* Fixed width instead of max-width */
+    width: 20%;  /* Fixed width instead of max-width */
     background-color: white;
     align-self: flex-start;  /* Stick to top */
     color: black;
@@ -24,6 +43,8 @@
     border-radius: 10px;
     padding: 24px 37px;
     margin-top: 2rem;
+    font-size: 1.5rem;
+    text-decoration: none;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
   
@@ -39,5 +60,25 @@
   }
   
   .tableOfContents li:hover {
-    text-decoration: underline;
+    text-decoration: none;
   }
+
+  /* Media query for mobile devices */
+@media screen and (max-width: 768px) {
+  .helpContainer {
+      /* flex-direction: column; */
+      margin: 1rem;
+      padding: 1rem;
+      gap: 1rem;
+  }
+
+  .mainPageContent {
+      max-width: 100%;
+      width: 100%;
+      order: 2;
+  }
+
+  .tableOfContents {
+      display: none;
+  }
+}

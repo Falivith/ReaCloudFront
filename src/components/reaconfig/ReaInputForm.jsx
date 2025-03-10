@@ -74,12 +74,12 @@ export function ReaInputForm() {
     // Debug what's being passed
     // console.log('Type of selectedValue:', typeof selectedValue);
     // console.log('Selected value:', selectedValue);
-  
-    if (typeof selectedValue === 'object' && selectedValue.value) {
+
+    if (typeof selectedValue === "object" && selectedValue.value) {
       // If selectedValue is an object with a value property
       selectedValue = selectedValue.value;
     }
-  
+
     const mapping = {
       subject: areasConhecimento,
       type: tipoRecurso,
@@ -88,16 +88,21 @@ export function ReaInputForm() {
       language: idiomas,
       format: formats,
     };
-  
-    if (["subject", "type", "audience", "rights", "language", "format"].includes(id)) {
-      const selectedKey = Object.entries(mapping[id])
-        .find(([_, value]) => value === selectedValue)?.[0];
-  
-      console.log('Comparing:', {
+
+    if (
+      ["subject", "type", "audience", "rights", "language", "format"].includes(
+        id
+      )
+    ) {
+      const selectedKey = Object.entries(mapping[id]).find(
+        ([_, value]) => value === selectedValue
+      )?.[0];
+
+      console.log("Comparing:", {
         selectedValue,
-        availableValues: Object.values(mapping[id])
+        availableValues: Object.values(mapping[id]),
       });
-  
+
       if (selectedKey) {
         setResult((prevState) => ({
           ...prevState,
@@ -113,7 +118,6 @@ export function ReaInputForm() {
       }));
     }
   };
-
 
   useEffect(() => {
     if (selectedRea) {
@@ -211,7 +215,12 @@ export function ReaInputForm() {
           );
         }
 
-        await routeChangeHandler("");
+        console.log(formSubmitSuccess);
+
+        // Get the ID from the response and navigate
+        const newReaId = formSubmitSuccess.data.id;
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        navigate(`/ReaView/${newReaId}`);
       } else {
         setNotificationType("saveReaErrorUnloged");
         setShowNotification(true);
@@ -219,8 +228,17 @@ export function ReaInputForm() {
     } catch (error) {
       console.error("Error submitting REA:", error);
 
-      setNotificationType("saveReaError");
-      setShowNotification(true);
+      // Check for internal server error (500)
+      if (error.response && error.response.status === 500) {
+        setNotificationType("saveReaInternalError");
+        setShowNotification(true);
+      } else if (error.message === "Network Error") {
+        setNotificationType("saveReaNetworkError");
+        setShowNotification(true);
+      } else {
+        setNotificationType("saveReaError");
+        setShowNotification(true);
+      }
     }
   };
 
@@ -281,7 +299,7 @@ export function ReaInputForm() {
                   onBlur={handleBlur}
                   maxLength={100}
                 />
-                {errors.title && focusedField === "title" && (
+                {errors.title && (
                   <p className={styles.errorMessage}>{errors.title.message}</p>
                 )}
               </div>
@@ -336,8 +354,8 @@ export function ReaInputForm() {
                   onBlur={handleBlur}
                   maxLength={2000}
                 />
-                {errors.link && focusedField === "source" && (
-                  <p className={styles.errorMessage}>{errors.link.message}</p>
+                {errors.source && (
+                  <p className={styles.errorMessage}>{errors.source.message}</p>
                 )}
               </div>
               <div className={styles.inputContainer}>
@@ -409,6 +427,9 @@ export function ReaInputForm() {
                     type="file"
                     accept=".png, .jpg, .jpeg"
                     style={{ display: "none" }}
+                    {...register("thumb", {
+                      required: "Este campo é obrigatório",
+                    })}
                     onChange={(e) => setImage(e.target.files[0])}
                   />
                   <div className={styles.cornerUpload}>
@@ -416,6 +437,9 @@ export function ReaInputForm() {
                     <span>CARREGAR</span>
                   </div>
                 </label>
+                {errors.thumb && (
+                  <p className={styles.errorMessage}>{errors.thumb.message}</p>
+                )}
               </div>
               <div className={styles.inputContainer}>
                 <label htmlFor="language" className={styles.inputLabel}>
@@ -505,12 +529,17 @@ export function ReaInputForm() {
                 <input
                   id="date"
                   type="date"
-                  {...register("date")}
+                  {...register("date", {
+                    required: "Este campo é obrigatório",
+                  })}
                   className={styles.inputBox}
                   onFocus={() => handleFocus("date")}
                   onBlur={handleBlur}
                   maxLength={100}
                 />
+                {errors.date && (
+                  <p className={styles.errorMessage}>{errors.date.message}</p>
+                )}
               </div>
             </div>
           </div>
@@ -533,7 +562,7 @@ export function ReaInputForm() {
               onBlur={handleBlur}
               maxLength={1000}
             />
-            {errors.description && focusedField === "description" && (
+            {errors.description && (
               <p className={styles.errorMessage}>
                 {errors.description.message}
               </p>
@@ -563,7 +592,9 @@ export function ReaInputForm() {
             >
               Cancelar
             </button>
-            <button className={styles.submitButton}>Salvar</button>
+            <button id="submitButton" className={styles.submitButton}>
+              Salvar
+            </button>
           </div>
         </form>
       )}

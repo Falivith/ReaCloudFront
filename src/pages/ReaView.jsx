@@ -7,6 +7,7 @@ import { Recommendations } from "../components/reaview/Recommendations";
 import styles from "../App.module.css";
 import { getResourceInfo } from "../services/reaquerys";
 import Loading from "../components/Loading";
+import { Help } from "../components/Help";
 
 export function ReaView() {
   const { id, comments } = useParams();
@@ -72,6 +73,7 @@ export function ReaView() {
           )}
         </div>
       </div>
+      <Help />
     </div>
   );
 }

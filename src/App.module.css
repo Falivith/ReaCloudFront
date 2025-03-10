@@ -51,5 +51,28 @@
 
   .contentAndRecommendationsWrapper {
     flex-direction: column;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 900px) {
+  .reaViewContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .reaViewContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+  }
+
+  .reaViewContent {
+    width: 100%;
   }
 }
