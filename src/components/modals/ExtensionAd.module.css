@@ -92,7 +92,7 @@
 }
 
 /* Media query to hide the element for viewports smaller than { width: 768, height: 1024 } */
-@media (max-width: 768px), (max-height: 1024px) {
+@media (max-width: 768px) {
     .backgroundColorAndContainer {
         display: none;
     }
